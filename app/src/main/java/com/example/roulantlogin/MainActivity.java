@@ -22,7 +22,6 @@ public class MainActivity extends AppCompatActivity {
 
     private EditText Email;
     private EditText Password;
-    private TextView Info;
     private Button Login;
     private int counter = 5;
     private TextView userRegistration;
@@ -36,11 +35,8 @@ public class MainActivity extends AppCompatActivity {
 
         Email = (EditText)findViewById(R.id.etEmail);
         Password = (EditText)findViewById(R.id.etPassword);
-        Info = (TextView)findViewById(R.id.tvInfo);
         Login = (Button)findViewById(R.id.btnLogin);
         userRegistration = (TextView)findViewById(R.id.tvRegister);
-
-        Info.setText("No of attempts remaining: 5");
 
         firebaseAuth = FirebaseAuth.getInstance();
         FirebaseUser user = firebaseAuth.getCurrentUser();
@@ -77,11 +73,6 @@ public class MainActivity extends AppCompatActivity {
 
                 }else{
                     Toast.makeText(MainActivity.this, "Login Failed", Toast.LENGTH_SHORT).show();
-                    counter--;
-                    Info.setText("No of attempts remaining: " + String.valueOf(counter));
-                    if(counter == 0){
-                        Login.setEnabled(false);
-                    }
                 }
             }
         });
