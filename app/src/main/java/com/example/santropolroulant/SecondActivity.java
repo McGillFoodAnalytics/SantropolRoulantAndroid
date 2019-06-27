@@ -16,15 +16,16 @@ import com.google.firebase.auth.FirebaseAuth;
 public class SecondActivity extends AppCompatActivity {
 
     private FirebaseAuth mAuth;
-    private Button btnVolunteer;
+    private Button VolunteerButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_second);
+        VolunteerButton = (Button)findViewById(R.id.btnVolunteer);
         mAuth = FirebaseAuth.getInstance();
 
-        btnVolunteer.setOnClickListener(new View.OnClickListener() {
+        VolunteerButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(SecondActivity.this, VolunteerOptions.class));
