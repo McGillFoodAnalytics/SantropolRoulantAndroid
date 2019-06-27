@@ -1,42 +1,34 @@
 {
   "project_info": {
-    "project_number": "944546940166",
-    "firebase_url": "https://roulantfirebase.firebaseio.com",
-    "project_id": "roulantfirebase",
-    "storage_bucket": "roulantfirebase.appspot.com"
+    "project_number": "730863709360",
+    "firebase_url": "https://santropolroulant-b4d14.firebaseio.com",
+    "project_id": "santropolroulant-b4d14",
+    "storage_bucket": "santropolroulant-b4d14.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:944546940166:android:4ce43d43014b438e",
+        "mobilesdk_app_id": "1:730863709360:android:86cf2eb5c76f4ea3",
         "android_client_info": {
-          "package_name": "com.example.roulantlogin"
+          "package_name": "com.example.santropolroulant"
         }
       },
       "oauth_client": [
         {
-          "client_id": "944546940166-m7hfll9dutjdkmq4eu2bjsodp4ralj47.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "com.example.roulantlogin",
-            "certificate_hash": "28e72f1e85e95f20174da2e4bc5105cf7f9438ca"
-          }
-        },
-        {
-          "client_id": "944546940166-s94t80qh4rdctsgtkvji4a9i268kikc4.apps.googleusercontent.com",
+          "client_id": "730863709360-2le63675orei5lomoi2nk48k88jj6k8s.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyDptuAq_eCRT-OksEdxDbhj111esL1cCJo"
+          "current_key": "AIzaSyALmASF-czV39bmGkST_15oViky6Pab6gY"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "944546940166-s94t80qh4rdctsgtkvji4a9i268kikc4.apps.googleusercontent.com",
+              "client_id": "730863709360-2le63675orei5lomoi2nk48k88jj6k8s.apps.googleusercontent.com",
               "client_type": 3
             }
           ]

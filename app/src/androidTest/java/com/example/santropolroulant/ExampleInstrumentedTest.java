@@ -1,4 +1,4 @@
-package com.example.roulantlogin;
+package com.example.santropolroulant;
 
 import android.content.Context;
 
@@ -22,6 +22,6 @@ public class ExampleInstrumentedTest {
         // Context of the app under test.
         Context appContext = InstrumentationRegistry.getTargetContext();
 
-        assertEquals("com.example.roulantlogin", appContext.getPackageName());
+        assertEquals("com.example.santropolroulant", appContext.getPackageName());
     }
 }

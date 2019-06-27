@@ -1,4 +1,4 @@
-package com.example.roulantlogin;
+package com.example.santropolroulant;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -15,15 +15,16 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
-
-import java.io.FileReader;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 public class RegistrationActivity extends AppCompatActivity {
 
-    private EditText userName, userPassword, userEmail;
+    private EditText userFirstName,userLastName, userPassword, userEmail;
     private Button regButton;
     private TextView userLogin;
     private FirebaseAuth firebaseAuth;
+    String first_name, last_name, email, password;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,8 +47,10 @@ public class RegistrationActivity extends AppCompatActivity {
                         public void onComplete(@NonNull Task<AuthResult> task) {
 
                             if(task.isSuccessful()){
-                                Toast.makeText(RegistrationActivity.this, "Registration Successful", Toast.LENGTH_SHORT).show();
+                                sendUserData();
+                                Toast.makeText(RegistrationActivity.this, "Registration Successful!", Toast.LENGTH_SHORT).show();
                                 startActivity(new Intent(RegistrationActivity.this, MainActivity.class));
+
                             }else{
                                 Toast.makeText(RegistrationActivity.this, "Registration Failed", Toast.LENGTH_SHORT).show();
                             }
@@ -67,7 +70,8 @@ public class RegistrationActivity extends AppCompatActivity {
     }
 
     private void setupUIViews(){
-        userName = (EditText)findViewById(R.id.etUserName);
+        userFirstName = (EditText)findViewById(R.id.etUserF_Name);
+        userLastName = (EditText)findViewById(R.id.etUserL_Name);
         userPassword = (EditText)findViewById(R.id.etUserPassword);
         userEmail = (EditText)findViewById(R.id.etUserEmail);
         regButton = (Button)findViewById(R.id.btnRegister);
@@ -77,17 +81,24 @@ public class RegistrationActivity extends AppCompatActivity {
     private Boolean validate(){
         Boolean result = false;
 
-        String name = userName.getText().toString();
-        String password = userPassword.getText().toString();
-        String email = userEmail.getText().toString();
+        first_name = userFirstName.getText().toString();
+        last_name = userLastName.getText().toString();
+        password = userPassword.getText().toString();
+        email = userEmail.getText().toString();
 
-        if(name.isEmpty() || password.isEmpty() || email.isEmpty()){
-            Toast.makeText(this, "Please enter all the details", Toast.LENGTH_SHORT);
+        if(first_name.isEmpty() || last_name.isEmpty() || password.isEmpty() || email.isEmpty()){
+            Toast.makeText(this, "Please enter all the details", Toast.LENGTH_SHORT).show();
 
         }else{
             result = true;
         }
-
         return  result;
+    }
+
+    private void sendUserData(){
+        FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
+        DatabaseReference myRef = firebaseDatabase.getReference();
+        UserProfile userProfile = new UserProfile(email,first_name,last_name);
+        myRef.child("user").child(firebaseAuth.getUid()).setValue(userProfile);
     }
 }
