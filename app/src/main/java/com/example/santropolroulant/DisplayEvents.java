@@ -1,11 +1,16 @@
 package com.example.santropolroulant;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -18,6 +23,7 @@ import java.util.List;
 
 public class DisplayEvents extends AppCompatActivity {
 
+    private FirebaseAuth mAuth;
     private RecyclerView recyclerView;
     private EventAdapter adapter;
     private List<Event> eventList;
@@ -26,6 +32,7 @@ public class DisplayEvents extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_display_events);
+        mAuth = FirebaseAuth.getInstance();
 
 
         recyclerView = findViewById(R.id.recyclerView);
@@ -90,6 +97,39 @@ public class DisplayEvents extends AppCompatActivity {
         firstRef.addValueEventListener(typeListener);
 
 
+    }
+
+    private void Logout(){
+        mAuth.signOut();
+        finish();
+        startActivity(new Intent(DisplayEvents.this, MainActivity.class));
+    }
+
+    private void BackToMain(){
+        finish();
+        startActivity(new Intent(DisplayEvents.this, MainActivity.class));
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        switch(item.getItemId()){
+            case R.id.logoutMenu:
+                Logout();
+
+        }
+        switch(item.getItemId()){
+            case R.id.homeMenu:
+                BackToMain();
+
+        }
+
+        return super.onOptionsItemSelected(item);
     }
 
 }

@@ -12,8 +12,8 @@
         android:layout_height="494dp"
         android:layout_above="@+id/btnVolunteer"
         android:layout_alignParentTop="true"
-        android:layout_marginTop="0dp"
-        android:layout_marginBottom="95dp"
+        android:layout_marginTop="59dp"
+        android:layout_marginBottom="37dp"
         android:background="#FFFFFF"></androidx.recyclerview.widget.RecyclerView>
 
     <Button
@@ -21,6 +21,23 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:layout_marginBottom="90dp"
-        android:text="Volunteer" />
+        android:layout_marginBottom="39dp"
+        android:background="#9C27B0"
+        android:text="Volunteer"
+        android:textColor="#FFFFFF" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="263dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="72dp"
+        android:layout_marginTop="14dp"
+        android:layout_marginEnd="76dp"
+        android:text="What you are signed up for!"
+        android:textColor="#9C27B0"
+        android:textSize="20sp"
+        android:textStyle="bold" />
 </RelativeLayout>

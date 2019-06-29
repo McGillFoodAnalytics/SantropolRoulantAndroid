@@ -59,7 +59,10 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/etPassword"
-        app:layout_constraintVertical_bias="0.336" />
+        app:layout_constraintVertical_bias="0.336"
+        android:background="#9C27B0"
+        android:textColor="#FFFFFF" />
+
 
     <TextView
         android:id="@+id/tvRegister"

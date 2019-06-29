@@ -9,4 +9,12 @@
         android:title="Logout"
         >
     </item>
+
+    <item
+        android:id="@+id/homeMenu"
+        android:orderInCategory="100"
+        app:showAsAction = "never"
+        android:title="Home"
+        >
+    </item>
 </menu>

@@ -134,6 +134,11 @@ public class SecondActivity extends AppCompatActivity {
         startActivity(new Intent(SecondActivity.this, MainActivity.class));
     }
 
+    private void BackToMain(){
+        finish();
+        startActivity(new Intent(SecondActivity.this, MainActivity.class));
+    }
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu, menu);
@@ -147,6 +152,12 @@ public class SecondActivity extends AppCompatActivity {
                 Logout();
 
         }
+        switch(item.getItemId()){
+            case R.id.homeMenu:
+                BackToMain();
+
+        }
+
         return super.onOptionsItemSelected(item);
     }
 }
