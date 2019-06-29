@@ -7,13 +7,14 @@
     tools:context=".SecondActivity">
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerView"
+        android:id="@+id/recyclerViewUser"
         android:layout_width="match_parent"
         android:layout_height="494dp"
         android:layout_above="@+id/btnVolunteer"
         android:layout_alignParentTop="true"
         android:layout_marginTop="0dp"
-        android:layout_marginBottom="95dp"></androidx.recyclerview.widget.RecyclerView>
+        android:layout_marginBottom="95dp"
+        android:background="#FFFFFF"></androidx.recyclerview.widget.RecyclerView>
 
     <Button
         android:id="@+id/btnVolunteer"

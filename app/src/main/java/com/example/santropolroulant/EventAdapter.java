@@ -33,8 +33,9 @@ public class EventAdapter extends RecyclerView.Adapter<EventAdapter.EventViewHol
     public void onBindViewHolder(@NonNull EventViewHolder holder, int position) {
         Event event = eventList.get(position);
         holder.txtDate.setText(event.getDate());
-//        holder.txtCapacity.setText("Capacity: " + String.valueOf(event.getCap()));
-//        holder.txtSlot.setText("Time Slot: " + event.getSlot());
+        holder.txtType.setText("Event: " + event.getType());
+        holder.txtCapacity.setText("Capacity: " + String.valueOf(event.getCap()));
+        holder.txtSlot.setText("Time Slot: " + event.getSlot());
 
     }
 
@@ -45,7 +46,7 @@ public class EventAdapter extends RecyclerView.Adapter<EventAdapter.EventViewHol
 
     class EventViewHolder extends RecyclerView.ViewHolder {
 
-        TextView txtDate, txtSlot, txtCapacity;
+        TextView txtDate, txtSlot, txtCapacity, txtType;
 
         public EventViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -53,6 +54,7 @@ public class EventAdapter extends RecyclerView.Adapter<EventAdapter.EventViewHol
             txtSlot = itemView.findViewById(R.id.txtSlot);
             txtCapacity = itemView.findViewById(R.id.txtCapacity);
             txtDate = itemView.findViewById(R.id.txtDate);
+            txtType = itemView.findViewById(R.id.txtType);
         }
     }
 }

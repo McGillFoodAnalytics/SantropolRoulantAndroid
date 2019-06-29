@@ -28,7 +28,7 @@ public class VolunteerOptions extends AppCompatActivity {
             public void onClick(View view) {
                 startActivity(new Intent(VolunteerOptions.this, DisplayEvents.class));
                 Global g = (Global)getApplication();
-                g.setData("Delivery");
+                g.setData("mealDelivery");
                 String temp = g.getData();
                 Toast.makeText(VolunteerOptions.this, temp, Toast.LENGTH_SHORT).show();
             }

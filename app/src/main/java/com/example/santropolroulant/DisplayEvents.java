@@ -5,7 +5,6 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
-import android.widget.Toast;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -23,7 +22,6 @@ public class DisplayEvents extends AppCompatActivity {
     private EventAdapter adapter;
     private List<Event> eventList;
 
-    DatabaseReference dbEvents;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -40,35 +38,58 @@ public class DisplayEvents extends AppCompatActivity {
 //        dbEvents = FirebaseDatabase.getInstance().getReference("Event");
 //        dbEvents.addValueEventListener(valueEventListener);
 
-
         Global g = (Global)getApplication();
         String gtype = g.getData();
+        DatabaseReference firstRef = FirebaseDatabase.getInstance().getReference().child("type").child(gtype);
+        ValueEventListener typeListener = new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                final String slotVar = dataSnapshot.child("slot").getValue(String.class);
+                final Integer capVar = dataSnapshot.child("cap").getValue(Integer.class);
 
-        Query query = FirebaseDatabase.getInstance().getReference("Event")
-                .orderByChild("type")
-                .equalTo(gtype);
+                if (slotVar != null) {
+                    Global g = (Global)getApplication();
+                    final String gtype = g.getData();
+                    Query query = FirebaseDatabase.getInstance().getReference("Event")
+                            .orderByChild("type")
+                            .equalTo(gtype);
 
-        query.addListenerForSingleValueEvent(valueEventListener);
+                    ValueEventListener eventListener = new ValueEventListener() {
+                        @Override
+                        public void onDataChange(DataSnapshot dataSnapshot) {
+                            eventList.clear();
+                            if (dataSnapshot.exists()) {
+                                for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
+                                    String dateVar = snapshot.child("date").getValue(String.class);
+                                    eventList.add(
+                                            new Event(
+                                                    dateVar,
+                                                    capVar,
+                                                    slotVar,
+                                                    gtype
+                                            )
+                                    );
+                                }
+                                adapter.notifyDataSetChanged();
+                            }
+                        }
+
+                        @Override
+                        public void onCancelled(DatabaseError databaseError) {
+                            throw databaseError.toException();
+                        }
+                    };
+                    query.addValueEventListener(eventListener);
+                }
+            }
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                throw databaseError.toException();
+            }
+        };
+        firstRef.addValueEventListener(typeListener);
+
 
     }
-
-    ValueEventListener valueEventListener = new ValueEventListener() {
-        @Override
-        public void onDataChange(DataSnapshot dataSnapshot) {
-            eventList.clear();
-            if (dataSnapshot.exists()) {
-                for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
-                    Event event = snapshot.getValue(Event.class);
-                    eventList.add(event);
-                }
-                adapter.notifyDataSetChanged();
-            }
-        }
-
-        @Override
-        public void onCancelled(DatabaseError databaseError) {
-
-        }
-    };
 
 }
