@@ -9,17 +9,8 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerView"
         android:layout_width="match_parent"
-        android:layout_height="494dp"
-        android:layout_above="@+id/btnVolunteer"
+        android:layout_height="match_parent"
         android:layout_alignParentTop="true"
-        android:layout_marginTop="0dp"
-        android:layout_marginBottom="95dp"></androidx.recyclerview.widget.RecyclerView>
+        android:layout_marginTop="0dp"></androidx.recyclerview.widget.RecyclerView>
 
-    <Button
-        android:id="@+id/btnVolunteer"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_marginBottom="90dp"
-        android:text="Volunteer" />
 </RelativeLayout>
