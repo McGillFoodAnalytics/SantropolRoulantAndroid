@@ -62,7 +62,7 @@ public class SecondActivity extends AppCompatActivity {
                 eventList.clear();
                 if (dataSnapshot.exists()) {
                     for (DataSnapshot attendeeSnapshot : dataSnapshot.getChildren()) {
-                        String eid = attendeeSnapshot.child("EID").getValue(String.class);
+                        final String eid = attendeeSnapshot.child("EID").getValue(String.class);
 
                         DatabaseReference firstRef = FirebaseDatabase.getInstance().getReference().child("Event").child(eid);
                         ValueEventListener typeListener = new ValueEventListener() {
@@ -84,7 +84,8 @@ public class SecondActivity extends AppCompatActivity {
                                                                     dateVar,
                                                                     capVar,
                                                                     slotVar,
-                                                                    typeVar
+                                                                    typeVar,
+                                                                    eid
                                                             )
                                                     );
                                                 adapter.notifyDataSetChanged();

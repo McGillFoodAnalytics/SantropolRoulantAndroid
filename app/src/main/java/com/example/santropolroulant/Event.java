@@ -6,12 +6,14 @@ public class Event {
     Integer cap;
     String slot;
     String type;
+    String eid;
 
-    public Event(String date, Integer cap, String slot, String type) {
+    public Event(String date, Integer cap, String slot, String type, String eid) {
         this.date = date;
         this.cap = cap;
         this.slot = slot;
         this.type = type;
+        this.eid = eid;
     }
 
     public Event() {
@@ -48,5 +50,13 @@ public class Event {
 
     public void setType(String type) {
         this.type = type;
+    }
+
+    public String getEid() {
+        return eid;
+    }
+
+    public void setEid(String eid) {
+        this.eid = eid;
     }
 }
