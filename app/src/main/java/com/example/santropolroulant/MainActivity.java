@@ -43,7 +43,7 @@ public class MainActivity extends AppCompatActivity {
 
 //        if(user != null){
 //            finish();
-//            startActivity(new Intent(MainActivity.this, SecondActivity.class));
+//            startActivity(new Intent(MainActivity.this, HomeActivity.class));
 //        }
 
         Login.setOnClickListener(new View.OnClickListener() {
@@ -76,7 +76,7 @@ public class MainActivity extends AppCompatActivity {
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if(task.isSuccessful()){
                     Toast.makeText(MainActivity.this, "Login Successful", Toast.LENGTH_SHORT).show();
-                    startActivity(new Intent(MainActivity.this, SecondActivity.class));
+                    startActivity(new Intent(MainActivity.this, HomeActivity.class));
 
                 }else{
                     Toast.makeText(MainActivity.this, "Login Failed", Toast.LENGTH_SHORT).show();

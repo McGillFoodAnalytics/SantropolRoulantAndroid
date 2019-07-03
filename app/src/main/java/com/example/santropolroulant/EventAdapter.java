@@ -44,7 +44,7 @@ public class EventAdapter extends RecyclerView.Adapter<EventAdapter.EventViewHol
         holder.txtDate.setText(event.getDate());
         holder.txtType.setText("Event: " + event.getType());
         holder.txtCapacity.setText("Capacity: " + String.valueOf(event.getCap()));
-        holder.txtSlot.setText("Time Slot: " + event.getSlot());
+        holder.txtSlot.setText("Time: " + event.getSlot());
 
     }
 

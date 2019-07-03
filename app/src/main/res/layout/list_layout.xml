@@ -17,13 +17,13 @@
             android:layout_width="405dp"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:padding="8dp">
+            android:padding="5dp">
 
             <TextView
                 android:id="@+id/txtDate"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:padding="5dp"
+                android:padding="1dp"
                 android:textColor="#9C27B0"
                 android:textSize="18sp" />
 
@@ -31,21 +31,21 @@
                 android:id="@+id/txtType"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:padding="5dp"
+                android:padding="1dp"
                 android:textColor="#000000" />
 
             <TextView
                 android:id="@+id/txtCapacity"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:padding="5dp"
+                android:padding="1dp"
                 android:textColor="#000000" />
 
             <TextView
                 android:id="@+id/txtSlot"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:padding="5dp"
+                android:padding="1dp"
                 android:textColor="#000000" />
 
 

@@ -73,7 +73,7 @@ public class VolunteerOptions extends AppCompatActivity {
 
     private void BackToMain(){
         finish();
-        startActivity(new Intent(VolunteerOptions.this, MainActivity.class));
+        startActivity(new Intent(VolunteerOptions.this, HomeActivity.class));
     }
 
     @Override

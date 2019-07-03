@@ -1,13 +1,17 @@
 package com.example.santropolroulant;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -24,7 +28,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public class SecondActivity extends AppCompatActivity {
+public class HomeActivity extends AppCompatActivity {
 
     private FirebaseAuth mAuth;
     private Button VolunteerButton;
@@ -50,6 +54,40 @@ public class SecondActivity extends AppCompatActivity {
         adapter = new EventAdapter(this, eventList);
         recyclerView.setAdapter(adapter);
 
+
+        adapter.setOnItemClickListener(new EventAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(final int position) {
+                AlertDialog.Builder builder = new AlertDialog.Builder(HomeActivity.this);
+
+                builder.setCancelable(true);
+                builder.setTitle("Unregister?");
+                builder.setMessage("Would you like to unregister from this volunteering event? :(");
+
+                builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        dialogInterface.cancel();
+                    }
+                });
+                builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        Event clickedEvent = eventList.get(position);
+                        String clickedEid = clickedEvent.getEid();
+                        String clickedUid = mAuth.getUid();
+                        String key = clickedEid+clickedUid;
+                        FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
+                        DatabaseReference delRef = firebaseDatabase.getReference().child("attendee").child(key);
+                        delRef.removeValue();
+                        Toast.makeText(HomeActivity.this, "Successfully Unregistered!", Toast.LENGTH_SHORT).show();
+                    }
+                });
+                builder.show();
+            }
+        });
+
+
         String userID = mAuth.getCurrentUser().getUid();
 
         Query queryAttendee = FirebaseDatabase.getInstance().getReference("attendee")
@@ -60,6 +98,9 @@ public class SecondActivity extends AppCompatActivity {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 eventList.clear();
+                adapter.notifyDataSetChanged();
+                Log.d("listnerLVL1", "adapter notified");
+
                 if (dataSnapshot.exists()) {
                     for (DataSnapshot attendeeSnapshot : dataSnapshot.getChildren()) {
                         final String eid = attendeeSnapshot.child("EID").getValue(String.class);
@@ -89,6 +130,8 @@ public class SecondActivity extends AppCompatActivity {
                                                             )
                                                     );
                                                 adapter.notifyDataSetChanged();
+                                                Log.d("listnerLVL3", "adapter notified");
+
                                             }
                                         }
 
@@ -109,7 +152,6 @@ public class SecondActivity extends AppCompatActivity {
 
 
                     }
-                    adapter.notifyDataSetChanged();
                 }
             }
 
@@ -123,7 +165,7 @@ public class SecondActivity extends AppCompatActivity {
         VolunteerButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(SecondActivity.this, VolunteerOptions.class));
+                startActivity(new Intent(HomeActivity.this, VolunteerOptions.class));
             }
         });
     }
@@ -132,12 +174,12 @@ public class SecondActivity extends AppCompatActivity {
     private void Logout(){
         mAuth.signOut();
         finish();
-        startActivity(new Intent(SecondActivity.this, MainActivity.class));
+        startActivity(new Intent(HomeActivity.this, MainActivity.class));
     }
 
-    private void BackToMain(){
+    private void Refresh(){
         finish();
-        startActivity(new Intent(SecondActivity.this, MainActivity.class));
+        startActivity(new Intent(HomeActivity.this, HomeActivity.class));
     }
 
     @Override
@@ -154,11 +196,19 @@ public class SecondActivity extends AppCompatActivity {
 
         }
         switch(item.getItemId()){
-            case R.id.homeMenu:
-                BackToMain();
+            case R.id.refreshMenu:
+                Refresh();
 
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void onRestart() {
+        super.onRestart();
+        startActivity(new Intent(HomeActivity.this, HomeActivity.class));
+        //When BACK BUTTON is pressed, the activity on the stack is restarted
+        //Do what you want on the refresh procedure here
     }
 }
