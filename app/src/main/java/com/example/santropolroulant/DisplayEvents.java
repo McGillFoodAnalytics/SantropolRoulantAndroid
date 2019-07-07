@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.service.autofill.Dataset;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -93,9 +94,12 @@ public class DisplayEvents extends AppCompatActivity{
                             if (dataSnapshot.exists()) {
                                 // for each event snapshot from the query
                                 for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
+
                                     String eid = snapshot.getKey(); // Get event ID
                                     String dateVar = snapshot.child("date").getValue(String.class); // Get Date child
                                     Integer new_cap = snapshot.child("new_cap").getValue(Integer.class);
+
+
                                     if (new_cap == null){
                                         Log.d("@ @ : snapshot here:", "hey : BRaaaa1");
                                         // Make manual entry to eventList
@@ -146,6 +150,29 @@ public class DisplayEvents extends AppCompatActivity{
     }
 
 
+    private void empty(String eid){
+        Query queryCounter = FirebaseDatabase.getInstance().getReference("attendee")
+                .orderByChild("EID")
+                .equalTo(eid);
+        ValueEventListener countListener = new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                Integer Count = 0;
+                for (DataSnapshot countSnap : dataSnapshot.getChildren()){
+                    Count++;
+                }
+
+                Log.d("@ @ : COUNTER here:", "hey : " + String.valueOf(Count));
+            }
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        };
+        Log.d("@ @ : COUNTER here:", "hey : " );
+        queryCounter.addValueEventListener(countListener);
+
+    }
 
 
     // Function for popup dialogue
@@ -199,7 +226,7 @@ public class DisplayEvents extends AppCompatActivity{
 
     private void BackToMain(){
         finish();
-        startActivity(new Intent(DisplayEvents.this, HomeActivity.class));
+        startActivity(new Intent(DisplayEvents.this, Home.class));
     }
 
     @Override

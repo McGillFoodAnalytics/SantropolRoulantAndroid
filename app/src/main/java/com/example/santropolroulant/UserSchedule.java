@@ -28,7 +28,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public class HomeActivity extends AppCompatActivity {
+public class UserSchedule extends AppCompatActivity {
 
     private FirebaseAuth mAuth;
     private Button VolunteerButton;
@@ -58,7 +58,7 @@ public class HomeActivity extends AppCompatActivity {
         adapter.setOnItemClickListener(new EventAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(final int position) {
-                AlertDialog.Builder builder = new AlertDialog.Builder(HomeActivity.this);
+                AlertDialog.Builder builder = new AlertDialog.Builder(UserSchedule.this);
 
                 builder.setCancelable(true);
                 builder.setTitle("Unregister?");
@@ -80,7 +80,7 @@ public class HomeActivity extends AppCompatActivity {
                         FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
                         DatabaseReference delRef = firebaseDatabase.getReference().child("attendee").child(key);
                         delRef.removeValue();
-                        Toast.makeText(HomeActivity.this, "Successfully Unregistered!", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(UserSchedule.this, "Successfully Unregistered!", Toast.LENGTH_SHORT).show();
                     }
                 });
                 builder.show();
@@ -111,6 +111,7 @@ public class HomeActivity extends AppCompatActivity {
                             public void onDataChange(DataSnapshot dataSnapshot) {
                                 final String dateVar = dataSnapshot.child("date").getValue(String.class);
                                 final String typeVar = dataSnapshot.child("type").getValue(String.class);
+                                final Integer new_cap = dataSnapshot.child("new_cap").getValue(Integer.class);
 
                                 if (dateVar != null) {
                                     DatabaseReference secondRef = FirebaseDatabase.getInstance().getReference().child("type").child(typeVar);
@@ -118,20 +119,38 @@ public class HomeActivity extends AppCompatActivity {
                                         @Override
                                         public void onDataChange(DataSnapshot dataSnapshot) {
                                             if (dataSnapshot.exists()) {
-                                                    Integer capVar = dataSnapshot.child("cap").getValue(Integer.class);
-                                                    String slotVar = dataSnapshot.child("slot").getValue(String.class);
-                                                    eventList.add(
-                                                            new Event(
+                                                Integer capVar = dataSnapshot.child("cap").getValue(Integer.class);
+                                                String slotVar = dataSnapshot.child("slot").getValue(String.class);
+
+                                                    if (new_cap == null){
+                                                        Log.d("@ @ : snapshot here:", "hey : BRaaaa1");
+                                                        // Make manual entry to eventList
+                                                        // Use default 'Capacity' capVar from the type table
+                                                        eventList.add(
+                                                                new Event(
                                                                     dateVar,
                                                                     capVar,
                                                                     slotVar,
                                                                     typeVar,
                                                                     eid
-                                                            )
-                                                    );
-                                                adapter.notifyDataSetChanged();
-                                                Log.d("listnerLVL3", "adapter notified");
-
+                                                                )
+                                                        );
+                                                    }else {
+                                                        Log.d("@ @ : snapshot here:", "hey : BRaaaa2");
+                                                        // Make manual entry to eventList
+                                                        // Use new 'Capacity' new_cap from specific modification to event instance
+                                                        eventList.add(
+                                                                new Event(
+                                                                    dateVar,
+                                                                    new_cap,
+                                                                    slotVar,
+                                                                    typeVar,
+                                                                    eid
+                                                                )
+                                                        );
+                                                    }
+                                                    adapter.notifyDataSetChanged();
+                                                    Log.d("listnerLVL3", "adapter notified");
                                             }
                                         }
 
@@ -165,7 +184,7 @@ public class HomeActivity extends AppCompatActivity {
         VolunteerButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(HomeActivity.this, VolunteerOptions.class));
+                startActivity(new Intent(UserSchedule.this, VolunteerOptions.class));
             }
         });
     }
@@ -174,12 +193,17 @@ public class HomeActivity extends AppCompatActivity {
     private void Logout(){
         mAuth.signOut();
         finish();
-        startActivity(new Intent(HomeActivity.this, MainActivity.class));
+        startActivity(new Intent(UserSchedule.this, MainActivity.class));
     }
 
     private void Refresh(){
         finish();
-        startActivity(new Intent(HomeActivity.this, HomeActivity.class));
+        startActivity(new Intent(UserSchedule.this, UserSchedule.class));
+    }
+
+    private void BackToMain(){
+        finish();
+        startActivity(new Intent(UserSchedule.this, Home.class));
     }
 
     @Override
@@ -200,6 +224,11 @@ public class HomeActivity extends AppCompatActivity {
                 Refresh();
 
         }
+        switch(item.getItemId()){
+            case R.id.homeMenu:
+                BackToMain();
+
+        }
 
         return super.onOptionsItemSelected(item);
     }
@@ -207,7 +236,7 @@ public class HomeActivity extends AppCompatActivity {
     @Override
     public void onRestart() {
         super.onRestart();
-        startActivity(new Intent(HomeActivity.this, HomeActivity.class));
+        startActivity(new Intent(UserSchedule.this, UserSchedule.class));
         //When BACK BUTTON is pressed, the activity on the stack is restarted
         //Do what you want on the refresh procedure here
     }

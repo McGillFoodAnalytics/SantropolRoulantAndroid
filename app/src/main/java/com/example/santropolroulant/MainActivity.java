@@ -2,6 +2,7 @@ package com.example.santropolroulant;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.cardview.widget.CardView;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -22,9 +23,9 @@ public class MainActivity extends AppCompatActivity {
     private EditText Email;
     private EditText Password;
     private Button Login;
-    private TextView userRegistration;
+    private CardView userRegistration;
     private FirebaseAuth firebaseAuth;
-    private TextView forgotPassword;
+    private CardView forgotPassword;
 
 
     @Override
@@ -35,15 +36,15 @@ public class MainActivity extends AppCompatActivity {
         Email = (EditText)findViewById(R.id.etEmail);
         Password = (EditText)findViewById(R.id.etPassword);
         Login = (Button)findViewById(R.id.btnLogin);
-        userRegistration = (TextView)findViewById(R.id.tvRegister);
-        forgotPassword = (TextView)findViewById(R.id.tvForgotPassword);
+        userRegistration = (CardView) findViewById(R.id.crdRegister);
+        forgotPassword = (CardView) findViewById(R.id.crdForgotPassword);
 
         firebaseAuth = FirebaseAuth.getInstance();
         FirebaseUser user = firebaseAuth.getCurrentUser();
 
 //        if(user != null){
 //            finish();
-//            startActivity(new Intent(MainActivity.this, HomeActivity.class));
+//            startActivity(new Intent(MainActivity.this, UserSchedule.class));
 //        }
 
         Login.setOnClickListener(new View.OnClickListener() {
@@ -76,7 +77,7 @@ public class MainActivity extends AppCompatActivity {
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if(task.isSuccessful()){
                     Toast.makeText(MainActivity.this, "Login Successful", Toast.LENGTH_SHORT).show();
-                    startActivity(new Intent(MainActivity.this, HomeActivity.class));
+                    startActivity(new Intent(MainActivity.this, Home.class));
 
                 }else{
                     Toast.makeText(MainActivity.this, "Login Failed", Toast.LENGTH_SHORT).show();

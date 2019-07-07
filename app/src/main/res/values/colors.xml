@@ -2,5 +2,11 @@
 <resources>
     <color name="colorPrimary">#9C27B0</color>
     <color name="colorPrimaryDark">#9C27B0</color>
-    <color name="colorAccent">#DD9C27B0</color>
+    <color name="colorAccent">#DDE45EFA</color>
+    <color name="deeppurple">#7027B0</color>
+    <color name="yello">#FFC107</color>
+    <color name="green">#4E9751</color>
+    <color name="lightgrey">#D8D7D7</color>
+    <color name="backgroundcolor">#fcfcfc</color>
+    <color name="heartback">#B988FD</color>
 </resources>

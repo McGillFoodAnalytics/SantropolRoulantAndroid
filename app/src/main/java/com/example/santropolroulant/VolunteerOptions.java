@@ -2,6 +2,7 @@ package com.example.santropolroulant;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.cardview.widget.CardView;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -16,9 +17,9 @@ import com.google.firebase.auth.FirebaseAuth;
 public class VolunteerOptions extends AppCompatActivity {
 
     private FirebaseAuth mAuth;
-    private Button btnKam;
-    private Button btnKpm;
-    private Button btnDelivery;
+    private CardView crdKam;
+    private CardView crdKpm;
+    private CardView crdDelivery;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,11 +27,11 @@ public class VolunteerOptions extends AppCompatActivity {
         setContentView(R.layout.activity_volunteer_options);
         mAuth = FirebaseAuth.getInstance();
 
-        btnDelivery = (Button)findViewById(R.id.btnDelivery);
-        btnKam = (Button)findViewById(R.id.btnKam);
-        btnKpm = (Button)findViewById(R.id.btnKpm);
+        crdDelivery = (CardView) findViewById(R.id.crdDelivery);
+        crdKam = (CardView)findViewById(R.id.crdKam);
+        crdKpm = (CardView) findViewById(R.id.crdKpm);
 
-        btnDelivery.setOnClickListener(new View.OnClickListener() {
+        crdDelivery.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(VolunteerOptions.this, DisplayEvents.class));
@@ -41,7 +42,7 @@ public class VolunteerOptions extends AppCompatActivity {
             }
         });
 
-        btnKpm.setOnClickListener(new View.OnClickListener() {
+        crdKpm.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(VolunteerOptions.this, DisplayEvents.class));
@@ -52,7 +53,7 @@ public class VolunteerOptions extends AppCompatActivity {
             }
         });
 
-        btnKam.setOnClickListener(new View.OnClickListener() {
+        crdKam.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(VolunteerOptions.this, DisplayEvents.class));
@@ -73,7 +74,7 @@ public class VolunteerOptions extends AppCompatActivity {
 
     private void BackToMain(){
         finish();
-        startActivity(new Intent(VolunteerOptions.this, HomeActivity.class));
+        startActivity(new Intent(VolunteerOptions.this, Home.class));
     }
 
     @Override
