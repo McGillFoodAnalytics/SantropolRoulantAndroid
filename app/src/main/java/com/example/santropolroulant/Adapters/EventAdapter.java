@@ -1,6 +1,7 @@
-package com.example.santropolroulant;
+package com.example.santropolroulant.Adapters;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -8,6 +9,9 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.example.santropolroulant.FirebaseClasses.Event;
+import com.example.santropolroulant.R;
 
 import java.util.List;
 
@@ -43,7 +47,12 @@ public class EventAdapter extends RecyclerView.Adapter<EventAdapter.EventViewHol
         Event event = eventList.get(position);
         holder.txtDate.setText(event.getDate());
         holder.txtType.setText("Event: " + event.getType());
-        holder.txtCapacity.setText("Capacity: " + String.valueOf(event.getCap()));
+        if (event.getNum_vols() == event.getCap()){
+            holder.txtCapacity.setTextColor(Color.parseColor("#ff0000"));
+            holder.txtCapacity.setText("Capacity Full: " + String.valueOf(event.getNum_vols())+ " of " + String.valueOf(event.getCap()));
+        }else{
+            holder.txtCapacity.setText("Current Capacity: " + String.valueOf(event.getNum_vols())+ " of " + String.valueOf(event.getCap()));
+        }
         holder.txtSlot.setText("Time: " + event.getSlot());
 
     }

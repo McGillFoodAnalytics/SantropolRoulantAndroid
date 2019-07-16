@@ -3,14 +3,20 @@
     package="com.example.santropolroulant">
 
     <application
-        android:name=".Global"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="Santropol Roulant"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Home"></activity>
+        <activity
+            android:name=".Confirmation_Page_MealDelivery"
+            android:windowSoftInputMode="adjustPan">
+        </activity>
+        <activity
+            android:name=".Confirmation_Page"
+            android:windowSoftInputMode="adjustPan"></activity>
+        <activity android:name=".Home" />
         <activity android:name=".DisplayEvents" />
         <activity android:name=".VolunteerOptions" />
         <activity android:name=".PasswordActivity" />

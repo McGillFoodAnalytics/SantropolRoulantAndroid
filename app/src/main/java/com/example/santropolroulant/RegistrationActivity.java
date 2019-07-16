@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -98,7 +99,9 @@ public class RegistrationActivity extends AppCompatActivity {
     private void sendUserData(){
         FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
         DatabaseReference myRef = firebaseDatabase.getReference();
-        UserProfile userProfile = new UserProfile(email,first_name,last_name);
-        myRef.child("user").child(firebaseAuth.getUid()).setValue(userProfile);
+        myRef.child("user").child(firebaseAuth.getUid()).child("first_name").setValue(first_name);
+        myRef.child("user").child(firebaseAuth.getUid()).child("last_name").setValue(last_name);
+        myRef.child("user").child(firebaseAuth.getUid()).child("email").setValue(email);
+        Log.d("sendingUserData",first_name + " " + last_name);
     }
 }

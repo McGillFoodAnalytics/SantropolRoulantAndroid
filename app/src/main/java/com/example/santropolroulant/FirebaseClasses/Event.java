@@ -1,4 +1,4 @@
-package com.example.santropolroulant;
+package com.example.santropolroulant.FirebaseClasses;
 
 public class Event {
 
@@ -7,13 +7,15 @@ public class Event {
     String slot;
     String type;
     String eid;
+    Integer num_vols;
 
-    public Event(String date, Integer cap, String slot, String type, String eid) {
+    public Event(String date, Integer cap, String slot, String type, String eid, Integer num_vols) {
         this.date = date;
         this.cap = cap;
         this.slot = slot;
         this.type = type;
         this.eid = eid;
+        this.num_vols = num_vols;
     }
 
     public Event() {
@@ -58,5 +60,13 @@ public class Event {
 
     public void setEid(String eid) {
         this.eid = eid;
+    }
+
+    public Integer getNum_vols() {
+        return num_vols;
+    }
+
+    public void setNum_vols(Integer num_vols) {
+        this.num_vols = num_vols;
     }
 }

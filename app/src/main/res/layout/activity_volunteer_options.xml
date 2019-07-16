@@ -75,7 +75,7 @@
 
 
         <androidx.cardview.widget.CardView
-            android:id="@+id/crdDelivery"
+            android:id="@+id/crdKpm"
             android:layout_width="323dp"
             android:layout_height="100dp"
             android:layout_margin="4dp"
@@ -126,7 +126,7 @@
 
 
         <androidx.cardview.widget.CardView
-            android:id="@+id/crdKpm"
+            android:id="@+id/crdDelivery"
             android:layout_width="323dp"
             android:layout_height="100dp"
             android:layout_margin="4dp"

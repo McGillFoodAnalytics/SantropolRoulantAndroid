@@ -16,6 +16,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.santropolroulant.Adapters.EventAdapter;
+import com.example.santropolroulant.FirebaseClasses.Event;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -91,7 +93,7 @@ public class UserSchedule extends AppCompatActivity {
         String userID = mAuth.getCurrentUser().getUid();
 
         Query queryAttendee = FirebaseDatabase.getInstance().getReference("attendee")
-                .orderByChild("UID")
+                .orderByChild("uid")
                 .equalTo(userID);
 
         ValueEventListener attendeeListener = new ValueEventListener() {
@@ -103,9 +105,9 @@ public class UserSchedule extends AppCompatActivity {
 
                 if (dataSnapshot.exists()) {
                     for (DataSnapshot attendeeSnapshot : dataSnapshot.getChildren()) {
-                        final String eid = attendeeSnapshot.child("EID").getValue(String.class);
+                        final String eid = attendeeSnapshot.child("eid").getValue(String.class);
 
-                        DatabaseReference firstRef = FirebaseDatabase.getInstance().getReference().child("Event").child(eid);
+                        DatabaseReference firstRef = FirebaseDatabase.getInstance().getReference().child("event").child(eid);
                         ValueEventListener typeListener = new ValueEventListener() {
                             @Override
                             public void onDataChange(DataSnapshot dataSnapshot) {
@@ -121,36 +123,42 @@ public class UserSchedule extends AppCompatActivity {
                                             if (dataSnapshot.exists()) {
                                                 Integer capVar = dataSnapshot.child("cap").getValue(Integer.class);
                                                 String slotVar = dataSnapshot.child("slot").getValue(String.class);
+                                                String is_new = dataSnapshot.child("is_new").getValue(String.class);
+                                                Integer number_of_volunteers = dataSnapshot.child("number_of_volunteers").getValue(Integer.class);
 
-                                                    if (new_cap == null){
+                                                if (is_new.equals("New")) {
+                                                    if (new_cap == null) {
                                                         Log.d("@ @ : snapshot here:", "hey : BRaaaa1");
                                                         // Make manual entry to eventList
                                                         // Use default 'Capacity' capVar from the type table
                                                         eventList.add(
                                                                 new Event(
-                                                                    dateVar,
-                                                                    capVar,
-                                                                    slotVar,
-                                                                    typeVar,
-                                                                    eid
+                                                                        dateVar,
+                                                                        capVar,
+                                                                        slotVar,
+                                                                        typeVar,
+                                                                        eid,
+                                                                        number_of_volunteers
                                                                 )
                                                         );
-                                                    }else {
+                                                    } else {
                                                         Log.d("@ @ : snapshot here:", "hey : BRaaaa2");
                                                         // Make manual entry to eventList
                                                         // Use new 'Capacity' new_cap from specific modification to event instance
                                                         eventList.add(
                                                                 new Event(
-                                                                    dateVar,
-                                                                    new_cap,
-                                                                    slotVar,
-                                                                    typeVar,
-                                                                    eid
+                                                                        dateVar,
+                                                                        new_cap,
+                                                                        slotVar,
+                                                                        typeVar,
+                                                                        eid,
+                                                                        number_of_volunteers
                                                                 )
                                                         );
                                                     }
-                                                    adapter.notifyDataSetChanged();
-                                                    Log.d("listnerLVL3", "adapter notified");
+                                                }
+                                                adapter.notifyDataSetChanged();
+                                                Log.d("listnerLVL3", "adapter notified");
                                             }
                                         }
 
@@ -219,11 +227,7 @@ public class UserSchedule extends AppCompatActivity {
                 Logout();
 
         }
-        switch(item.getItemId()){
-            case R.id.refreshMenu:
-                Refresh();
 
-        }
         switch(item.getItemId()){
             case R.id.homeMenu:
                 BackToMain();

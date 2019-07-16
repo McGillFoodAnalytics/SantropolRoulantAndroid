@@ -9,8 +9,18 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerView"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="680dp"
         android:layout_alignParentTop="true"
-        android:layout_marginTop="0dp"></androidx.recyclerview.widget.RecyclerView>
+        android:layout_marginTop="51dp"></androidx.recyclerview.widget.RecyclerView>
+
+    <Switch
+        android:id="@+id/swtchWknd"
+        android:layout_width="163dp"
+        android:layout_height="51dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="124dp"
+        android:layout_marginEnd="124dp"
+        android:text="Weekend Shifts" />
 
 </RelativeLayout>

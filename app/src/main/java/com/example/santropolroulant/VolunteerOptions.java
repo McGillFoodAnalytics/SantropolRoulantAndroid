@@ -34,33 +34,30 @@ public class VolunteerOptions extends AppCompatActivity {
         crdDelivery.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(VolunteerOptions.this, DisplayEvents.class));
-                Global g = (Global)getApplication();
-                g.setData("mealDelivery");
-                String temp = g.getData();
-                Toast.makeText(VolunteerOptions.this, temp, Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(VolunteerOptions.this, DisplayEvents.class);
+                intent.putExtra("type", "mealDelivery");
+                startActivity(intent);
+
             }
         });
 
         crdKpm.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(VolunteerOptions.this, DisplayEvents.class));
-                Global g = (Global)getApplication();
-                g.setData("KitchenPM");
-                String temp = g.getData();
-                Toast.makeText(VolunteerOptions.this, temp, Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(VolunteerOptions.this, DisplayEvents.class);
+                intent.putExtra("type", "KitchenPM");
+                startActivity(intent);
             }
         });
+
+
 
         crdKam.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(VolunteerOptions.this, DisplayEvents.class));
-                Global g = (Global)getApplication();
-                g.setData("KitchenAM");
-                String temp = g.getData();
-                Toast.makeText(VolunteerOptions.this, temp, Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(VolunteerOptions.this, DisplayEvents.class);
+                intent.putExtra("type", "KitchenAM");
+                startActivity(intent);
             }
         });
 

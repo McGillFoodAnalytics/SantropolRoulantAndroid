@@ -18,11 +18,4 @@
         >
     </item>
 
-    <item
-        android:id="@+id/refreshMenu"
-        android:orderInCategory="100"
-        app:showAsAction = "never"
-        android:title="Refresh"
-        >
-    </item>
 </menu>
