@@ -28,6 +28,8 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.Date;
 import java.util.List;
 
@@ -37,6 +39,7 @@ public class DisplayEvents extends AppCompatActivity{
     private RecyclerView recyclerView; // Recycler view to work with Custom Adapter
     private EventAdapter adapter; // Custom adapter 'EventAdapter'
     private List<Event> eventList; // List that will be filled with Event classes from Firebase Query
+    private List<String> uniqueRefList;
     private Integer currentCap;
 
     @Override
@@ -49,6 +52,10 @@ public class DisplayEvents extends AppCompatActivity{
         recyclerView.setHasFixedSize(true); // Fix size
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         eventList = new ArrayList<>();
+        uniqueRefList = new ArrayList<>();
+
+
+
         adapter = new EventAdapter(this, eventList); //
         recyclerView.setAdapter(adapter);
 
@@ -56,172 +63,126 @@ public class DisplayEvents extends AppCompatActivity{
         Intent intent = getIntent();
         final String gtype = intent.getStringExtra("type");
 
-        Switch wkndSwitch = (Switch)findViewById(R.id.swtchWknd);
+        //Switch wkndSwitch = (Switch)findViewById(R.id.swtchWknd);
 
         // Building pop up dialog for when you click on the cardview
         adapter.setOnItemClickListener(new EventAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(final int position) {
                 Event event = eventList.get(position);
-                if (event.getNum_vols() < event.getCap()){
-                    if (gtype.equals("mealDelivery") || gtype.equals("mealDelivery_Sat")) {
-                        Intent intent = new Intent(DisplayEvents.this, Confirmation_Page_MealDelivery.class);
-                        intent.putExtra("eid", eventList.get(position).getEid());
-                        intent.putExtra("cap", eventList.get(position).getCap());
-                        startActivity(intent);
-                    } else {
-                        Intent intent = new Intent(DisplayEvents.this, Confirmation_Page.class);
-                        intent.putExtra("eid", eventList.get(position).getEid());
-                        startActivity(intent);
-                    }
-                }else{
-                    Toast.makeText(DisplayEvents.this,"This Event is Full", Toast.LENGTH_SHORT).show();
+
+                if (gtype.equals("deldr") || gtype.equals("delds") || gtype.equals("deliv")|| gtype.equals("delis")) {
+                    Intent intent = new Intent(DisplayEvents.this, Confirmation_Page_MealDelivery.class);
+                    intent.putExtra("type", eventList.get(position).getEvent_type());
+                    intent.putExtra("date", eventList.get(position).getDate());
+
+                    startActivity(intent);
+                } else {
+                    Intent intent = new Intent(DisplayEvents.this, Confirmation_Page.class);
+                    intent.putExtra("type", eventList.get(position).getEvent_type());
+                    intent.putExtra("date", eventList.get(position).getDate());
+                    startActivity(intent);
                 }
             }
         });
 
         nestedListener(gtype);
-        wkndSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton compoundButton, boolean isChecked) {
-                if (isChecked) {
-                    eventList.clear();
-                    adapter.notifyDataSetChanged();
-                    final String wkndType = gtype + "_Sat";
-                    nestedListener(wkndType);
+        nestedListener(wkndConverter(gtype));
 
-                }else{
-                    adapter.notifyDataSetChanged();
-                    nestedListener(gtype);
-                }
-            }
-        });
+        //wkndSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            //@Override
+            //public void onCheckedChanged(CompoundButton compoundButton, boolean isChecked) {
+                //if (isChecked) {
+                    //eventList.clear();
+                    //adapter.notifyDataSetChanged();
+                    //String wkndType = wkndConverter(gtype);
+                    //nestedListener(wkndType);
+
+                //}else{
+                    //eventList.clear();
+                    //adapter.notifyDataSetChanged();
+                    //nestedListener(gtype);
+                    //adapter.notifyDataSetChanged();
+                //}
+            //}
+        //});
     }
 
 
     // Function for nested listener
     private void nestedListener(final String gtype){
-        // Query the 'type' table for the type button clicked previously
-        DatabaseReference firstRef = FirebaseDatabase.getInstance().getReference().child("type").child(gtype);
-        // Create new nested value listener
-        ValueEventListener typeListener = new ValueEventListener() {
+        Query queryEvents = FirebaseDatabase.getInstance().getReference("event")
+                .orderByChild("event_type")
+                .equalTo(gtype);
+
+        ValueEventListener event_listener = new ValueEventListener() {
             @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                // Initial snapshot holds slot and cap
-                // Set to final as they will be entered into array at the end
-                final String slotVar = dataSnapshot.child("slot").getValue(String.class);
-                final Integer capVar = dataSnapshot.child("cap").getValue(Integer.class);
-                final Integer startTimeUnix = dataSnapshot.child("start_time").getValue(Integer.class);
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
-                // Simple test for null
-                if (slotVar != null) {
-                    // Querying all events of type 'gtype' (KitchenAM, KitchenPM, Delivery ....)
-                    Query query = FirebaseDatabase.getInstance().getReference("event")
-                            .orderByChild("type")
-                            .equalTo(gtype);
+                if (dataSnapshot.exists()){
+                    for(DataSnapshot scheduleSnap : dataSnapshot.getChildren()){
+                        final String date_txt = scheduleSnap.child("event_date_txt").getValue(String.class);
 
-                    // New event listener for new nested query
-                    ValueEventListener eventListener = new ValueEventListener() {
-                        @Override
-                        public void onDataChange(DataSnapshot dataSnapshot) {
-                            eventList.clear(); // Clean up array
-                            if (dataSnapshot.exists()) {
-                                // for each event snapshot from the query
-                                for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
+                        if (!uniqueRefList.contains(date_txt)){
+                            final Integer date = scheduleSnap.child("event_date").getValue(Integer.class);
+                            final String start_time = scheduleSnap.child("event_time_start").getValue(String.class);
+                            final String end_time = scheduleSnap.child("event_time_end").getValue(String.class);
+                            final String is_current = scheduleSnap.child("is_current").getValue(String.class);
+                            final Boolean first_shift = scheduleSnap.child("first_shift").getValue(Boolean.class);
 
+                            final String event_type = scheduleSnap.child("event_type").getValue(String.class);
+                            final String uid = scheduleSnap.child("uid").getValue(String.class);
+                            final String note = scheduleSnap.child("note").getValue(String.class);
 
-                                    String eid = snapshot.getKey(); // Get event ID
-                                    String dateVar = snapshot.child("date").getValue(String.class); // Get Date child
-                                    Integer new_cap = snapshot.child("new_cap").getValue(Integer.class);
-                                    String is_new = snapshot.child("is_new").getValue(String.class);
-                                    Integer number_of_volunteers = snapshot.child("number_of_volunteers").getValue(Integer.class);
-
-                                    if (is_new.equals("New")){
-                                        if (new_cap == null){
-                                            Log.d("@ @ : snapshot here:", "hey : BRaaaa1");
-                                            // Make manual entry to eventList
-                                            // Use default 'Capacity' capVar from the type table
-                                            eventList.add(
-                                                    new Event(
-                                                            dateVar,
-                                                            capVar,
-                                                            slotVar,
-                                                            gtype,
-                                                            eid,
-                                                            number_of_volunteers
-                                                    )
-                                            );
-                                        }else{
-                                            Log.d("@ @ : snapshot here:", "hey : BRaaaa2");
-                                            // Make manual entry to eventList
-                                            // Use new 'Capacity' new_cap from specific modification to event instance
-                                            eventList.add(
-                                                    new Event(
-                                                            dateVar,
-                                                            new_cap,
-                                                            slotVar,
-                                                            gtype,
-                                                            eid,
-                                                            number_of_volunteers
-                                                    )
-                                            );
-                                        }
-                                    }
+                            eventList.add(
+                                    new Event(
+                                            date_txt,
+                                            date,
+                                            start_time,
+                                            end_time,
+                                            event_type,
+                                            uid,
+                                            note,
+                                            is_current,
+                                            first_shift
+                                    )
+                            );
+                            Collections.sort(eventList, new Comparator<Event>() {
+                                @Override
+                                public int compare(Event e1, Event e2) {
+                                    return e1.getDate().compareTo(e2.getDate());
                                 }
-                                // Very helpful tool to ensure updated adapter on changes.
-                                adapter.notifyDataSetChanged();
-                            }
-                        }
-                        // Ignore 'onCancelled'
-                        @Override
-                        public void onCancelled(DatabaseError databaseError) {
-                            throw databaseError.toException();
-                        }
-                    };
-                    query.addValueEventListener(eventListener); // most inner listner = runs last
+                            });
+                        };
+                        uniqueRefList.add(date_txt);
+
+                    }
                 }
+                adapter.notifyDataSetChanged();
             }
+
             @Override
-            public void onCancelled(DatabaseError databaseError) {
-                throw databaseError.toException();
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
             }
         };
-        firstRef.addValueEventListener(typeListener); // outer listener = runs first
+        queryEvents.addValueEventListener(event_listener);
     }
 
-
-    private void Logout(){
-        mAuth.signOut();
-        finish();
-        startActivity(new Intent(DisplayEvents.this, MainActivity.class));
-    }
-
-    private void BackToMain(){
-        finish();
-        startActivity(new Intent(DisplayEvents.this, Home.class));
-    }
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        switch(item.getItemId()){
-            case R.id.logoutMenu:
-                Logout();
-
+    private String wkndConverter(final String gtype){
+        String wkndType = gtype;
+        if (gtype.equals("kitam")){
+            wkndType = "kitas";
+        } else if (gtype.equals("kitpm")){
+            wkndType = "kitps";
+        } else if (gtype.equals("deliv")){
+            wkndType = "delis";
+        } else if (gtype.equals("deldr")){
+            wkndType = "delds";
         }
-        switch(item.getItemId()){
-            case R.id.homeMenu:
-                BackToMain();
+        return wkndType;
+    };
 
-        }
-
-        return super.onOptionsItemSelected(item);
-    }
 
 
 }

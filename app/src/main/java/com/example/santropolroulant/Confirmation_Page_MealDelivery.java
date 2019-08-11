@@ -20,7 +20,7 @@ import android.widget.Switch;
 import android.widget.Toast;
 
 import com.example.santropolroulant.Adapters.UserAdapter;
-import com.example.santropolroulant.FirebaseClasses.UserProfile;
+import com.example.santropolroulant.FirebaseClasses.UserSlot;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -38,7 +38,7 @@ public class Confirmation_Page_MealDelivery extends AppCompatActivity {
     private FirebaseAuth mAuth; // Authentication for UserID
     private RecyclerView recyclerView; // Recycler view to work with Custom Adapter
     private UserAdapter adapter; // Custom adapter 'EventAdapter'
-    private List<UserProfile> userList; // List that will be filled with Event classes from Firebase Query
+    private List<UserSlot> userList; // List that will be filled with Event classes from Firebase Query
     private Button btnSignUp;
     private EditText txtNote;
     private Switch swtchNew;
@@ -166,10 +166,11 @@ public class Confirmation_Page_MealDelivery extends AppCompatActivity {
 
                             Log.d("ConfirmPAGE", "Inner Ting" + email + firstname + lastname);
                             userList.add(
-                                    new UserProfile(
+                                    new UserSlot(
                                             email,
                                             firstname,
-                                            lastname
+                                            lastname,
+                                            "2"
                                     )
                             );
                             adapter.notifyDataSetChanged();
@@ -196,36 +197,4 @@ public class Confirmation_Page_MealDelivery extends AppCompatActivity {
 
     }
 
-    private void Logout(){
-        mAuth.signOut();
-        finish();
-        startActivity(new Intent(Confirmation_Page_MealDelivery.this, MainActivity.class));
-    }
-
-    private void BackToMain(){
-        finish();
-        startActivity(new Intent(Confirmation_Page_MealDelivery.this, Home.class));
-    }
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        switch(item.getItemId()){
-            case R.id.logoutMenu:
-                Logout();
-
-        }
-        switch(item.getItemId()){
-            case R.id.homeMenu:
-                BackToMain();
-
-        }
-
-        return super.onOptionsItemSelected(item);
-    }
 }

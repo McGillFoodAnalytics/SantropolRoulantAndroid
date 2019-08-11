@@ -1,6 +1,7 @@
 package com.example.santropolroulant.Adapters;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,14 +11,14 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.santropolroulant.R;
-import com.example.santropolroulant.FirebaseClasses.UserProfile;
+import com.example.santropolroulant.FirebaseClasses.UserSlot;
 
 import java.util.List;
 
 public class UserAdapter extends RecyclerView.Adapter<UserAdapter.UserViewHolder> {
 
     private Context mCtx;
-    private List<UserProfile> userList;
+    private List<UserSlot> userList;
     private OnItemClickListener mListener;
 
     public interface OnItemClickListener{
@@ -28,7 +29,7 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.UserViewHolder
         mListener = listener;
     }
 
-    public UserAdapter(Context mCtx, List<UserProfile> userList) {
+    public UserAdapter(Context mCtx, List<UserSlot> userList) {
         this.mCtx = mCtx;
         this.userList = userList;
     }
@@ -42,7 +43,11 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.UserViewHolder
 
     @Override
     public void onBindViewHolder(@NonNull UserViewHolder holder, int position) {
-        UserProfile user = userList.get(position);
+        UserSlot user = userList.get(position);
+        holder.txtNumVal.setText(user.getNumVal());
+        if (user.getFirstName().equals("Selected Slot")){
+            holder.txtFullName.setTextColor(Color.parseColor("#8BC34A"));
+        }
         holder.txtFullName.setText(user.getFirstName()+" "+user.getLastName());
     }
 
@@ -53,12 +58,13 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.UserViewHolder
 
     public static class UserViewHolder extends RecyclerView.ViewHolder {
 
-        TextView txtFullName;
+        TextView txtFullName, txtNumVal;
 
         public UserViewHolder(@NonNull View itemView, final OnItemClickListener listener) {
             super(itemView);
 
             txtFullName = itemView.findViewById(R.id.txtFullName);
+            txtNumVal = itemView.findViewById(R.id.txtNumVal);
 
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override

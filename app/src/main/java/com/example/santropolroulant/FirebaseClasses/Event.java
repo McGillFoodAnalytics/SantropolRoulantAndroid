@@ -2,71 +2,103 @@ package com.example.santropolroulant.FirebaseClasses;
 
 public class Event {
 
-    String date;
-    Integer cap;
-    String slot;
-    String type;
-    String eid;
-    Integer num_vols;
+    String date_txt;
+    Integer date;
+    String start_time;
+    String end_time;
+    String event_type;
+    String uid;
+    String note;
+    Boolean first_shift;
+    String is_current;
 
-    public Event(String date, Integer cap, String slot, String type, String eid, Integer num_vols) {
+
+    public Event(String date_txt, Integer date, String start_time, String end_time, String event_type, String uid, String note, String is_current, Boolean first_shift) {
+
         this.date = date;
-        this.cap = cap;
-        this.slot = slot;
-        this.type = type;
-        this.eid = eid;
-        this.num_vols = num_vols;
+        this.date_txt = date_txt;
+        this.start_time = start_time;
+        this.end_time = end_time;
+        this.event_type = event_type;
+        this.uid = uid;
+        this.note = note;
+        this.first_shift = first_shift;
+        this.is_current = is_current;
     }
 
     public Event() {
         ;
     } // Empty constructor
 
-    public String getDate() {
+    public String getDate_txt() {
+        return date_txt;
+    }
+
+    public void setDate_txt(String date_txt) {
+        this.date_txt = date_txt;
+    }
+
+    public Integer getDate() {
         return date;
     }
 
-    public void setDate(String date) {
+    public void setDate(Integer date) {
         this.date = date;
     }
 
-    public Integer getCap() {
-        return cap;
+    public String getStart_time() {
+        return start_time;
     }
 
-    public void setCap(Integer cap) {
-        this.cap = cap;
+    public void setStart_time(String start_time) {
+        this.start_time = start_time;
     }
 
-    public String getSlot() {
-        return slot;
+    public String getEnd_time() {
+        return end_time;
     }
 
-    public void setSlot(String slot) {
-        this.slot = slot;
+    public void setEnd_time(String end_time) {
+        this.end_time = end_time;
     }
 
-    public String getType() {
-        return type;
+    public String getEvent_type() {
+        return event_type;
     }
 
-    public void setType(String type) {
-        this.type = type;
+    public void setEvent_type(String event_type) {
+        this.event_type = event_type;
     }
 
-    public String getEid() {
-        return eid;
+    public String getUid() {
+        return uid;
     }
 
-    public void setEid(String eid) {
-        this.eid = eid;
+    public void setUid(String uid) {
+        this.uid = uid;
     }
 
-    public Integer getNum_vols() {
-        return num_vols;
+    public String getNote() {
+        return note;
     }
 
-    public void setNum_vols(Integer num_vols) {
-        this.num_vols = num_vols;
+    public void setNote(String note) {
+        this.note = note;
+    }
+
+    public Boolean getFirst_shift() {
+        return first_shift;
+    }
+
+    public void setFirst_shift(Boolean first_shift) {
+        this.first_shift = first_shift;
+    }
+
+    public String getIs_current() {
+        return is_current;
+    }
+
+    public void setIs_current(String is_current) {
+        this.is_current = is_current;
     }
 }

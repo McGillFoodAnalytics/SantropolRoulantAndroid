@@ -3,19 +3,12 @@
     xmlns:app="http://shcemas.android.com/apk/res-auto">
 
     <item
-        android:id="@+id/logoutMenu"
-        android:orderInCategory="100"
-        app:showAsAction = "never"
-        android:title="Logout"
-        >
-    </item>
-
-    <item
         android:id="@+id/homeMenu"
-        android:orderInCategory="100"
-        app:showAsAction = "never"
+        android:icon="@drawable/ic_home_black_24dp"
+        app:showAsAction = "always"
         android:title="Home"
         >
     </item>
+
 
 </menu>

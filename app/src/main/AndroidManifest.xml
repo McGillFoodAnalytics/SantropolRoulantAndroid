@@ -9,18 +9,19 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".RegisterEvent"></activity>
+        <activity android:name=".CalanderSlots" />
         <activity
             android:name=".Confirmation_Page_MealDelivery"
-            android:windowSoftInputMode="adjustPan">
-        </activity>
+            android:windowSoftInputMode="adjustPan" />
         <activity
             android:name=".Confirmation_Page"
-            android:windowSoftInputMode="adjustPan"></activity>
+            android:windowSoftInputMode="adjustPan" />
         <activity android:name=".Home" />
         <activity android:name=".DisplayEvents" />
         <activity android:name=".VolunteerOptions" />
         <activity android:name=".PasswordActivity" />
-        <activity android:name=".RegistrationActivity" />
+        <activity android:name=".CreateAccount" />
         <activity android:name=".UserSchedule" />
         <activity android:name=".MainActivity">
             <intent-filter>

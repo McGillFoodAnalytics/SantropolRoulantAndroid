@@ -19,8 +19,10 @@ import android.widget.EditText;
 import android.widget.Switch;
 import android.widget.Toast;
 
+import com.example.santropolroulant.Adapters.EventAdapter;
 import com.example.santropolroulant.Adapters.UserAdapter;
-import com.example.santropolroulant.FirebaseClasses.UserProfile;
+import com.example.santropolroulant.FirebaseClasses.Event;
+import com.example.santropolroulant.FirebaseClasses.UserSlot;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -38,12 +40,15 @@ public class Confirmation_Page extends AppCompatActivity {
     private FirebaseAuth mAuth; // Authentication for UserID
     private RecyclerView recyclerView; // Recycler view to work with Custom Adapter
     private UserAdapter adapter; // Custom adapter 'EventAdapter'
-    private List<UserProfile> userList; // List that will be filled with Event classes from Firebase Query
+    private List<UserSlot> userList; // List that will be filled with Event classes from Firebase Query
     private Button btnSignUp;
     private EditText txtNote;
     private Switch swtchNew;
     private Boolean isNew;
-    private Integer isFull;
+    private String selectedKey;
+    private String selectedFirstName;
+    private String selectedLastName;
+    private String selectedUID;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,6 +63,7 @@ public class Confirmation_Page extends AppCompatActivity {
         recyclerView = findViewById(R.id.recyclerView2); //xml
         recyclerView.setHasFixedSize(true); // Fix size
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
+
         userList = new ArrayList<>();
         adapter = new UserAdapter(this, userList); //
         recyclerView.setAdapter(adapter);
@@ -75,16 +81,68 @@ public class Confirmation_Page extends AppCompatActivity {
 
 
         Intent intent = getIntent();
-        final String eid = intent.getStringExtra("eid");
+        final String typeT = intent.getStringExtra("type");
+        final Integer dateT = intent.getIntExtra("date",-1);
 
-        queryFunction(eid);
+        Log.d("hey:","Foop: " + String.valueOf(dateT) + typeT);
+
+        queryFunction(typeT, dateT);
 
         btnSignUp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                popUpClick(eid);
+                AlertDialog.Builder builder = new AlertDialog.Builder(Confirmation_Page.this);
+                builder.setCancelable(true);
+                builder.setTitle("Sign Up"); // Title
+                builder.setMessage("Would you like to sign up to volunteer?"); // Message of pop up
+
+                // Negative Button
+                builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        dialogInterface.cancel(); // Cancel pop up
+                    }
+                });
+                // Positive Button
+                builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+
+
+                        FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
+                        DatabaseReference myRef = firebaseDatabase.getReference(); // Get raw reference
+                        // Creating key from EID and UID which IS the key for the attendee instance
+
+                        // Writing attendee instance to the firebase db
+                        myRef.child("event").child(selectedKey).child("uid").setValue("blahblah");
+                        myRef.child("event").child(selectedKey).child("first_name").setValue(selectedFirstName);
+                        myRef.child("event").child(selectedKey).child("last_name").setValue(selectedLastName);
+
+                        // Print Success message
+                        Toast.makeText(Confirmation_Page.this, "Success", Toast.LENGTH_SHORT).show();
+                    }
+                });
+                builder.show();
+
             }
         });
+
+        adapter.setOnItemClickListener(new UserAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(final int position) {
+
+                UserSlot userSlot = userList.get(position);
+                selectedKey = userSlot.getKey();
+                selectedFirstName = userSlot.getFirstName();
+                selectedLastName = userSlot.getLastName();
+
+                userList.get(position).setFirstName("Selected Slot");
+                adapter.notifyDataSetChanged();
+                Toast.makeText(Confirmation_Page.this, userSlot.getFirstName(), Toast.LENGTH_SHORT).show();
+
+            }
+        });
+
 
 
     }
@@ -129,45 +187,31 @@ public class Confirmation_Page extends AppCompatActivity {
     }
 
 
-    private void queryFunction(final String eid){
-        Query attendeeQuery = FirebaseDatabase.getInstance().getReference("attendee")
-                .orderByChild("eid")
-                .equalTo(eid);
+    private void queryFunction(final String eventType, final Integer dateVal){
+        Query attendeeQuery = FirebaseDatabase.getInstance().getReference("event")
+                .orderByChild("event_date")
+                .equalTo(dateVal);
+
         ValueEventListener countListener = new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 userList.clear();
                 for (DataSnapshot userSnap : dataSnapshot.getChildren()){
-                    String uid = userSnap.child("uid").getValue(String.class);
+                    String key = userSnap.getKey();
+                    Log.d("hey:","For loop key: " + key);
 
-                    Log.d("ConfirmPAGE", "Outer Ting");
-                    DatabaseReference innerRef = FirebaseDatabase.getInstance().getReference().child("user").child(uid);
+                    if (key.contains(String.valueOf(dateVal) + eventType)){
+                        Log.d("hey:","For contained");
+                        final String slot = userSnap.child("slot").getValue(String.class);
+                        final String first_name = userSnap.child("first_name").getValue(String.class);
+                        final String last_name = userSnap.child("last_name").getValue(String.class);
 
-                    ValueEventListener userListener= new ValueEventListener() {
-                        @Override
-                        public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                            String email = dataSnapshot.child("email").getValue(String.class);
-                            String firstname = dataSnapshot.child("first_name").getValue(String.class);
-                            String lastname = dataSnapshot.child("last_name").getValue(String.class);
+                        Log.d("hey:","Whats" +slot + " : " + first_name + " " + last_name);
 
-                            Log.d("ConfirmPAGE", "Inner Ting" + email + firstname + lastname);
-                            userList.add(
-                                    new UserProfile(
-                                            email,
-                                            firstname,
-                                            lastname
-                                    )
-                            );
-                            adapter.notifyDataSetChanged();
-                        }
-
-                        @Override
-                        public void onCancelled(@NonNull DatabaseError databaseError) {
-
-                        }
-                    };
-                    innerRef.addValueEventListener(userListener);
-
+                        userList.add(
+                                new UserSlot(slot,first_name,last_name, key)
+                        );
+                    }
                 }
                 adapter.notifyDataSetChanged();
 
@@ -183,37 +227,4 @@ public class Confirmation_Page extends AppCompatActivity {
     }
 
 
-
-    private void Logout(){
-        mAuth.signOut();
-        finish();
-        startActivity(new Intent(Confirmation_Page.this, MainActivity.class));
-    }
-
-    private void BackToMain(){
-        finish();
-        startActivity(new Intent(Confirmation_Page.this, Home.class));
-    }
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        switch(item.getItemId()){
-            case R.id.logoutMenu:
-                Logout();
-
-        }
-        switch(item.getItemId()){
-            case R.id.homeMenu:
-                BackToMain();
-
-        }
-
-        return super.onOptionsItemSelected(item);
-    }
 }

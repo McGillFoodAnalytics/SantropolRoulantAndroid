@@ -21,7 +21,6 @@ import com.example.santropolroulant.FirebaseClasses.Event;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
@@ -41,11 +40,10 @@ public class UserSchedule extends AppCompatActivity {
     private List<Event> eventList;
 
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_second);
+        setContentView(R.layout.activity_user_schedule);
         VolunteerButton = (Button)findViewById(R.id.btnVolunteer);
         mAuth = FirebaseAuth.getInstance();
 
@@ -75,119 +73,14 @@ public class UserSchedule extends AppCompatActivity {
                 builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
-                        Event clickedEvent = eventList.get(position);
-                        String clickedEid = clickedEvent.getEid();
-                        String clickedUid = mAuth.getUid();
-                        String key = clickedEid+clickedUid;
-                        FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
-                        DatabaseReference delRef = firebaseDatabase.getReference().child("attendee").child(key);
-                        delRef.removeValue();
-                        Toast.makeText(UserSchedule.this, "Successfully Unregistered!", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(UserSchedule.this, "PumpFake Unregistered!", Toast.LENGTH_SHORT).show();
                     }
                 });
                 builder.show();
             }
         });
 
-
-        String userID = mAuth.getCurrentUser().getUid();
-
-        Query queryAttendee = FirebaseDatabase.getInstance().getReference("attendee")
-                .orderByChild("uid")
-                .equalTo(userID);
-
-        ValueEventListener attendeeListener = new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                eventList.clear();
-                adapter.notifyDataSetChanged();
-                Log.d("listnerLVL1", "adapter notified");
-
-                if (dataSnapshot.exists()) {
-                    for (DataSnapshot attendeeSnapshot : dataSnapshot.getChildren()) {
-                        final String eid = attendeeSnapshot.child("eid").getValue(String.class);
-
-                        DatabaseReference firstRef = FirebaseDatabase.getInstance().getReference().child("event").child(eid);
-                        ValueEventListener typeListener = new ValueEventListener() {
-                            @Override
-                            public void onDataChange(DataSnapshot dataSnapshot) {
-                                final String dateVar = dataSnapshot.child("date").getValue(String.class);
-                                final String typeVar = dataSnapshot.child("type").getValue(String.class);
-                                final Integer new_cap = dataSnapshot.child("new_cap").getValue(Integer.class);
-
-                                if (dateVar != null) {
-                                    DatabaseReference secondRef = FirebaseDatabase.getInstance().getReference().child("type").child(typeVar);
-                                    ValueEventListener eventListener = new ValueEventListener() {
-                                        @Override
-                                        public void onDataChange(DataSnapshot dataSnapshot) {
-                                            if (dataSnapshot.exists()) {
-                                                Integer capVar = dataSnapshot.child("cap").getValue(Integer.class);
-                                                String slotVar = dataSnapshot.child("slot").getValue(String.class);
-                                                String is_new = dataSnapshot.child("is_new").getValue(String.class);
-                                                Integer number_of_volunteers = dataSnapshot.child("number_of_volunteers").getValue(Integer.class);
-
-                                                if (is_new.equals("New")) {
-                                                    if (new_cap == null) {
-                                                        Log.d("@ @ : snapshot here:", "hey : BRaaaa1");
-                                                        // Make manual entry to eventList
-                                                        // Use default 'Capacity' capVar from the type table
-                                                        eventList.add(
-                                                                new Event(
-                                                                        dateVar,
-                                                                        capVar,
-                                                                        slotVar,
-                                                                        typeVar,
-                                                                        eid,
-                                                                        number_of_volunteers
-                                                                )
-                                                        );
-                                                    } else {
-                                                        Log.d("@ @ : snapshot here:", "hey : BRaaaa2");
-                                                        // Make manual entry to eventList
-                                                        // Use new 'Capacity' new_cap from specific modification to event instance
-                                                        eventList.add(
-                                                                new Event(
-                                                                        dateVar,
-                                                                        new_cap,
-                                                                        slotVar,
-                                                                        typeVar,
-                                                                        eid,
-                                                                        number_of_volunteers
-                                                                )
-                                                        );
-                                                    }
-                                                }
-                                                adapter.notifyDataSetChanged();
-                                                Log.d("listnerLVL3", "adapter notified");
-                                            }
-                                        }
-
-                                        @Override
-                                        public void onCancelled(DatabaseError databaseError) {
-                                            throw databaseError.toException();
-                                        }
-                                    };
-                                    secondRef.addValueEventListener(eventListener);
-                                }
-                            }
-                            @Override
-                            public void onCancelled(DatabaseError databaseError) {
-                                throw databaseError.toException();
-                            }
-                        };
-                        firstRef.addValueEventListener(typeListener);
-
-
-                    }
-                }
-            }
-
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-                throw databaseError.toException();
-            }
-        };
-        queryAttendee.addValueEventListener(attendeeListener);
+        getUserInfo();
 
         VolunteerButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -197,16 +90,86 @@ public class UserSchedule extends AppCompatActivity {
         });
     }
 
+    private void querySchedule(String user_UID){
+        Log.d("@ @ : snapshot here:", "hey : " + user_UID);
 
-    private void Logout(){
-        mAuth.signOut();
-        finish();
-        startActivity(new Intent(UserSchedule.this, MainActivity.class));
+        Query querySchedule = FirebaseDatabase.getInstance().getReference("event")
+                .orderByChild("uid")
+                .equalTo(user_UID);
+
+        final ValueEventListener scheduleListener = new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                if (dataSnapshot.exists()){
+                    for(DataSnapshot scheduleSnap : dataSnapshot.getChildren()){
+                        String key = scheduleSnap.getKey();
+                        final Integer date = scheduleSnap.child("event_date").getValue(Integer.class);
+                        final String date_txt = scheduleSnap.child("event_date_txt").getValue(String.class);
+                        final String start_time = scheduleSnap.child("event_time_start").getValue(String.class);
+                        final String end_time = scheduleSnap.child("event_time_end").getValue(String.class);
+                        final String is_current = scheduleSnap.child("is_current").getValue(String.class);
+                        final Boolean first_shift = scheduleSnap.child("first_shift").getValue(Boolean.class);
+                        final String event_type = scheduleSnap.child("event_type").getValue(String.class);
+                        final String uid = scheduleSnap.child("uid").getValue(String.class);
+                        final String note = scheduleSnap.child("note").getValue(String.class);
+
+                        Log.d("@ @ : snapshot here:", "hey : BRaaaa1" + key);
+                            // Make manual entry to eventList
+                            // Use default 'Capacity' capVar from the type table
+
+                        Log.d("@ @ : snapshot here:", "hey : after" + date_txt+ start_time + end_time +String.valueOf(first_shift));
+
+                        eventList.add(
+                                new Event(
+                                        date_txt,
+                                        date,
+                                        start_time,
+                                        end_time,
+                                        event_type,
+                                        uid,
+                                        note,
+                                        is_current,
+                                        false
+                                )
+                        );
+                    }
+                    adapter.notifyDataSetChanged();
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        };
+        querySchedule.addValueEventListener(scheduleListener);
     }
 
-    private void Refresh(){
-        finish();
-        startActivity(new Intent(UserSchedule.this, UserSchedule.class));
+    private void getUserInfo(){
+
+        final String userID = mAuth.getCurrentUser().getUid();
+
+        Query myRef = FirebaseDatabase.getInstance().getReference("user")
+                .orderByChild("key")
+                .equalTo(userID);
+        ValueEventListener userListener = new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                if (dataSnapshot.exists()){
+                    for (DataSnapshot userSnap : dataSnapshot.getChildren()){
+                        String user_UID = userSnap.getKey();
+                        Log.d("hey:","Key: "+user_UID);
+                        querySchedule(user_UID);
+                    }
+                }else{
+                    Toast.makeText(UserSchedule.this, "Unable to Fetch Events", Toast.LENGTH_SHORT).show();
+                }
+            }
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+            }
+        };
+        myRef.addValueEventListener(userListener);
     }
 
     private void BackToMain(){
@@ -222,11 +185,6 @@ public class UserSchedule extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        switch(item.getItemId()){
-            case R.id.logoutMenu:
-                Logout();
-
-        }
 
         switch(item.getItemId()){
             case R.id.homeMenu:

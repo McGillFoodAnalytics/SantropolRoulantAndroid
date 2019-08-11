@@ -1,25 +1,35 @@
 package com.example.santropolroulant.FirebaseClasses;
 
-public class UserProfile {
-    public String Email;
+public class UserSlot {
+    public String NumVal;
     public String FirstName;
     public String LastName;
+    public String Key;
 
-    public UserProfile() {
+    public UserSlot() {
         // Default constructor required for calls to DataSnapshot.getValue(User.class)
     }
-    public UserProfile(String userEmail, String userFirstName, String userLastName){
-        this.Email = userEmail;
+    public UserSlot(String numVal, String userFirstName, String userLastName, String Key){
+        this.NumVal = numVal;
         this.FirstName = userFirstName;
         this.LastName = userLastName;
+        this.Key = Key;
     }
 
-    public String getEmail() {
-        return Email;
+    public String getKey() {
+        return Key;
     }
 
-    public void setEmail(String email) {
-        Email = email;
+    public void setKey(String key) {
+        Key = key;
+    }
+
+    public String getNumVal() {
+        return NumVal;
+    }
+
+    public void setNumVal(String numVal) {
+        NumVal = numVal;
     }
 
     public String getFirstName() {

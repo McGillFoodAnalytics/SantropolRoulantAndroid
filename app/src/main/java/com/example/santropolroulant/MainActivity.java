@@ -9,7 +9,6 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -42,10 +41,10 @@ public class MainActivity extends AppCompatActivity {
         firebaseAuth = FirebaseAuth.getInstance();
         FirebaseUser user = firebaseAuth.getCurrentUser();
 
-        if(user != null){
-            finish();
-            startActivity(new Intent(MainActivity.this, Home.class));
-        }
+        //if(user != null){
+            //finish();
+            //startActivity(new Intent(MainActivity.this, Home.class));
+        //}
 
         Login.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -58,7 +57,7 @@ public class MainActivity extends AppCompatActivity {
         userRegistration.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(MainActivity.this, RegistrationActivity.class));
+                startActivity(new Intent(MainActivity.this, CreateAccount.class));
             }
         });
 
@@ -78,7 +77,6 @@ public class MainActivity extends AppCompatActivity {
                 if(task.isSuccessful()){
                     Toast.makeText(MainActivity.this, "Login Successful", Toast.LENGTH_SHORT).show();
                     startActivity(new Intent(MainActivity.this, Home.class));
-
                 }else{
                     Toast.makeText(MainActivity.this, "Login Failed", Toast.LENGTH_SHORT).show();
                 }

@@ -13,20 +13,50 @@
         app:cardCornerRadius="1dp"
         app:cardElevation="0dp">
 
-        <LinearLayout
-            android:layout_width="405dp"
+
+        <RelativeLayout
+            android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:padding="3dp">
+            android:background="@color/cardview_light_background"
+            android:orientation="horizontal"
+            android:padding="10dp">
 
-            <TextView
-                android:id="@+id/txtFullName"
+            <!-- Product Image -->
+
+            <LinearLayout
+                android:id="@+id/idLinearLayoutProductImage"
+                android:layout_width="50dp"
+                android:layout_height="30dp"
+                android:layout_alignParentLeft="true">
+
+                <TextView
+                    android:id="@+id/txtNumVal"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_alignParentTop="true"
+                    android:gravity="center_vertical|center_horizontal"
+                    android:textColor="#000000"
+                    android:textSize="15dp" />
+            </LinearLayout>
+
+            <!-- Rest of the product info and add/remove to/from cart symbols -->
+
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:padding="1dp"
-                android:textColor="#9C27B0"
-                android:textSize="18sp" />
+                android:layout_height="30dp"
+                android:layout_toRightOf="@id/idLinearLayoutProductImage"
+                android:orientation="horizontal"
+                android:id="@+id/idTopLayout">
 
-        </LinearLayout>
+                <TextView
+                    android:id="@+id/txtFullName"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_alignParentBottom="true"
+                    android:textColor="#CB000000"
+                    android:textSize="22dp" />
+
+            </LinearLayout>
+        </RelativeLayout>
     </androidx.cardview.widget.CardView>
 </LinearLayout>

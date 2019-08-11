@@ -71,12 +71,18 @@ public class Home extends AppCompatActivity {
         });
 
     }
+
     private void Logout(){
         mAuth.signOut();
         finish();
         startActivity(new Intent(Home.this, MainActivity.class));
     }
 
+
+    private void BackToMain(){
+        finish();
+        startActivity(new Intent(Home.this, Home.class));
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -86,9 +92,10 @@ public class Home extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+
         switch(item.getItemId()){
-            case R.id.logoutMenu:
-                Logout();
+            case R.id.homeMenu:
+                BackToMain();
 
         }
 

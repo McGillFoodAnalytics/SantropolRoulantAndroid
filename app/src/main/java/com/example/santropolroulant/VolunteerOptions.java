@@ -9,8 +9,6 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Button;
-import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 
@@ -34,8 +32,10 @@ public class VolunteerOptions extends AppCompatActivity {
         crdDelivery.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(VolunteerOptions.this, DisplayEvents.class);
-                intent.putExtra("type", "mealDelivery");
+                Intent intent = new Intent(VolunteerOptions.this, CalanderSlots.class);
+                intent.putExtra("type", "deliv");
+                intent.putExtra("type2", "deldr");
+
                 startActivity(intent);
 
             }
@@ -44,8 +44,8 @@ public class VolunteerOptions extends AppCompatActivity {
         crdKpm.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(VolunteerOptions.this, DisplayEvents.class);
-                intent.putExtra("type", "KitchenPM");
+                Intent intent = new Intent(VolunteerOptions.this, CalanderSlots.class);
+                intent.putExtra("type", "kitpm");
                 startActivity(intent);
             }
         });
@@ -55,18 +55,12 @@ public class VolunteerOptions extends AppCompatActivity {
         crdKam.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(VolunteerOptions.this, DisplayEvents.class);
-                intent.putExtra("type", "KitchenAM");
+                Intent intent = new Intent(VolunteerOptions.this, CalanderSlots.class);
+                intent.putExtra("type", "kitam");
                 startActivity(intent);
             }
         });
 
-    }
-
-    private void Logout(){
-        mAuth.signOut();
-        finish();
-        startActivity(new Intent(VolunteerOptions.this, MainActivity.class));
     }
 
     private void BackToMain(){
@@ -82,11 +76,7 @@ public class VolunteerOptions extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        switch(item.getItemId()){
-            case R.id.logoutMenu:
-                Logout();
 
-        }
         switch(item.getItemId()){
             case R.id.homeMenu:
                 BackToMain();

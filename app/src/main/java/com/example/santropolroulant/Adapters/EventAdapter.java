@@ -5,6 +5,7 @@ import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -45,18 +46,32 @@ public class EventAdapter extends RecyclerView.Adapter<EventAdapter.EventViewHol
     @Override
     public void onBindViewHolder(@NonNull EventViewHolder holder, int position) {
         Event event = eventList.get(position);
-        holder.txtDate.setText(event.getDate());
-        holder.txtType.setText("Event: " + event.getType());
-        if (event.getNum_vols() == event.getCap()){
-            holder.txtCapacity.setTextColor(Color.parseColor("#ff0000"));
-            holder.txtCapacity.setText("Capacity Full: " + String.valueOf(event.getNum_vols())+ " of " + String.valueOf(event.getCap()));
-        }else{
-            holder.txtCapacity.setText("Current Capacity: " + String.valueOf(event.getNum_vols())+ " of " + String.valueOf(event.getCap()));
-        }
-        holder.txtSlot.setText("Time: " + event.getSlot());
-
+        weekImage(holder,event.getDate_txt());
+        holder.txtDate.setText(event.getDate_txt());
+        holder.txtType.setText("Event: " + event.getEvent_type());
+        holder.txtSlot.setText("Time: " + event.getStart_time() + "-" + event.getEnd_time());
     }
 
+    public void weekImage(@NonNull EventViewHolder holder, String weekString){
+        if (weekString.contains("Sunday")){
+            holder.imgBar.setImageResource(R.drawable.sunday_bar);
+        } else if (weekString.contains("Monday")){
+            holder.imgBar.setImageResource(R.drawable.monday_bar);
+        } else if (weekString.contains("Tuesday")){
+            holder.imgBar.setImageResource(R.drawable.tuesday_bar);
+        } else if (weekString.contains("Wednesday")){
+            holder.imgBar.setImageResource(R.drawable.wednesday_bar);
+        } else if (weekString.contains("Thursday")){
+            holder.imgBar.setImageResource(R.drawable.thursday_bar);
+        } else if (weekString.contains("Friday")){
+            holder.imgBar.setImageResource(R.drawable.friday_bar);
+        } else if (weekString.contains("Saturday")){
+            holder.imgBar.setImageResource(R.drawable.saturday_bar);
+        } else {
+            holder.imgBar.setImageResource(R.drawable.complete_bar);
+        }
+
+    };
     @Override
     public int getItemCount() {
         return eventList.size();
@@ -64,13 +79,14 @@ public class EventAdapter extends RecyclerView.Adapter<EventAdapter.EventViewHol
 
     public static class EventViewHolder extends RecyclerView.ViewHolder {
 
-        TextView txtDate, txtSlot, txtCapacity, txtType;
+        TextView txtDate, txtSlot, txtType;
+        ImageView imgBar;
 
         public EventViewHolder(@NonNull View itemView, final OnItemClickListener listener) {
             super(itemView);
 
+            imgBar = itemView.findViewById(R.id.imgBar);
             txtSlot = itemView.findViewById(R.id.txtSlot);
-            txtCapacity = itemView.findViewById(R.id.txtCapacity);
             txtDate = itemView.findViewById(R.id.txtDate);
             txtType = itemView.findViewById(R.id.txtType);
 
@@ -89,5 +105,13 @@ public class EventAdapter extends RecyclerView.Adapter<EventAdapter.EventViewHol
 
 
     }
+
+    public String typeName (String event_type){
+        String properName = "";
+        if (event_type == "deliv"){
+            properName = "Meal Delivery";
+        }
+        return properName;
+    };
 
 }

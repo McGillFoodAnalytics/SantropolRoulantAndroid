@@ -19,18 +19,22 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
-public class RegistrationActivity extends AppCompatActivity {
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 
-    private EditText userFirstName,userLastName, userPassword, userEmail;
+public class CreateAccount extends AppCompatActivity {
+
+    private EditText userFirstName,userLastName, userPhoneNumber, userPassword, userEmail;
     private Button regButton;
     private TextView userLogin;
     private FirebaseAuth firebaseAuth;
-    String first_name, last_name, email, password;
+    String first_name, last_name, phone_number , email, password;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_registration);
+        setContentView(R.layout.activity_create_account);
         setupUIViews();
 
         firebaseAuth = FirebaseAuth.getInstance();
@@ -39,21 +43,18 @@ public class RegistrationActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 if(validate()){
-                    //Upload data to the database
-                    String user_email = userEmail.getText().toString().trim();
-                    String user_password = userPassword.getText().toString().trim();
 
-                    firebaseAuth.createUserWithEmailAndPassword(user_email,user_password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                    firebaseAuth.createUserWithEmailAndPassword(email,password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                         @Override
                         public void onComplete(@NonNull Task<AuthResult> task) {
 
                             if(task.isSuccessful()){
                                 sendUserData();
-                                Toast.makeText(RegistrationActivity.this, "Registration Successful!", Toast.LENGTH_SHORT).show();
-                                startActivity(new Intent(RegistrationActivity.this, MainActivity.class));
+                                Toast.makeText(CreateAccount.this, "Registration Successful!", Toast.LENGTH_SHORT).show();
+                                startActivity(new Intent(CreateAccount.this, MainActivity.class));
 
                             }else{
-                                Toast.makeText(RegistrationActivity.this, "Registration Failed", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(CreateAccount.this, "Registration Failed", Toast.LENGTH_SHORT).show();
                             }
 
                         }
@@ -65,7 +66,7 @@ public class RegistrationActivity extends AppCompatActivity {
         userLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(RegistrationActivity.this, MainActivity.class));
+                startActivity(new Intent(CreateAccount.this, MainActivity.class));
             }
         });
     }
@@ -74,6 +75,7 @@ public class RegistrationActivity extends AppCompatActivity {
         userFirstName = (EditText)findViewById(R.id.etUserF_Name);
         userLastName = (EditText)findViewById(R.id.etUserL_Name);
         userPassword = (EditText)findViewById(R.id.etUserPassword);
+        userPhoneNumber = (EditText)findViewById(R.id.etUserPhone);
         userEmail = (EditText)findViewById(R.id.etUserEmail);
         regButton = (Button)findViewById(R.id.btnRegister);
         userLogin = (TextView)findViewById(R.id.tvUserLogin);
@@ -82,10 +84,11 @@ public class RegistrationActivity extends AppCompatActivity {
     private Boolean validate(){
         Boolean result = false;
 
-        first_name = userFirstName.getText().toString();
-        last_name = userLastName.getText().toString();
-        password = userPassword.getText().toString();
-        email = userEmail.getText().toString();
+        first_name = userFirstName.getText().toString().trim();
+        last_name = userLastName.getText().toString().trim();
+        phone_number = userPhoneNumber.getText().toString().trim();
+        password = userPassword.getText().toString().trim();
+        email = userEmail.getText().toString().trim();
 
         if(first_name.isEmpty() || last_name.isEmpty() || password.isEmpty() || email.isEmpty()){
             Toast.makeText(this, "Please enter all the details", Toast.LENGTH_SHORT).show();
@@ -97,11 +100,23 @@ public class RegistrationActivity extends AppCompatActivity {
     }
 
     private void sendUserData(){
+        String first_twoletters = last_name.substring(0,2).toLowerCase();
+        String key = first_twoletters+phone_number;
+
+        Date c = Calendar.getInstance().getTime();
+        SimpleDateFormat df = new SimpleDateFormat("yy/MM/dd");
+        String formattedDate = df.format(c);
+
         FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
         DatabaseReference myRef = firebaseDatabase.getReference();
-        myRef.child("user").child(firebaseAuth.getUid()).child("first_name").setValue(first_name);
-        myRef.child("user").child(firebaseAuth.getUid()).child("last_name").setValue(last_name);
-        myRef.child("user").child(firebaseAuth.getUid()).child("email").setValue(email);
+        myRef.child("user").child(key).child("first_name").setValue(first_name);
+        myRef.child("user").child(key).child("last_name").setValue(last_name);
+        myRef.child("user").child(key).child("phone_number").setValue(phone_number);
+        myRef.child("user").child(key).child("email").setValue(email);
+        myRef.child("user").child(key).child("signup_date").setValue(formattedDate);
+        myRef.child("user").child(key).child("key").setValue(firebaseAuth.getUid());
+
+
         Log.d("sendingUserData",first_name + " " + last_name);
     }
 }

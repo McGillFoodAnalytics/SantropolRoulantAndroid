@@ -19,6 +19,14 @@
             android:orientation="vertical"
             android:padding="5dp">
 
+
+            <ImageView
+                android:id="@+id/imgBar"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:adjustViewBounds="true"
+                />
+
             <TextView
                 android:id="@+id/txtDate"
                 android:layout_width="match_parent"
@@ -29,13 +37,6 @@
 
             <TextView
                 android:id="@+id/txtType"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:padding="1dp"
-                android:textColor="#000000" />
-
-            <TextView
-                android:id="@+id/txtCapacity"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:padding="1dp"
