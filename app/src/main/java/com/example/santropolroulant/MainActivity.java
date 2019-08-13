@@ -30,33 +30,40 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_main); //Designates which layout XML to be used for this page
 
+        // Setting up UI
         Email = (EditText)findViewById(R.id.etEmail);
         Password = (EditText)findViewById(R.id.etPassword);
         Login = (Button)findViewById(R.id.btnLogin);
+        // The following are CardViews rather than buttons for design purpose. Same functionality
         userRegistration = (CardView) findViewById(R.id.crdRegister);
         forgotPassword = (CardView) findViewById(R.id.crdForgotPassword);
 
+        // Getting current app user from Firebase
         firebaseAuth = FirebaseAuth.getInstance();
         FirebaseUser user = firebaseAuth.getCurrentUser();
+        // Auto login for signed in user - Commented out below
 
         //if(user != null){
             //finish();
             //startActivity(new Intent(MainActivity.this, Home.class));
         //}
 
+        // Click listener for the Login button
         Login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                // On Click, run validate function*
                 validate(Email.getText().toString(), Password.getText().toString());
-
             }
         });
 
+        // userRegistration click listener
         userRegistration.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                // Go from this activity "MainActivity" to "CreateAccount" activity
                 startActivity(new Intent(MainActivity.this, CreateAccount.class));
             }
         });
@@ -64,18 +71,23 @@ public class MainActivity extends AppCompatActivity {
         forgotPassword.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                // Go from this activity "MainActivity" to "PasswordActivity" activity
                 startActivity(new Intent(MainActivity.this, PasswordActivity.class));
             }
         });
     }
 
+
+    // *Validate function
     private void validate(String userEmail, String userPassword){
 
+        // Firebase Authentication instance + built in function to sign in with Email and Password
         firebaseAuth.signInWithEmailAndPassword(userEmail, userPassword).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if(task.isSuccessful()){
                     Toast.makeText(MainActivity.this, "Login Successful", Toast.LENGTH_SHORT).show();
+                    // Go to Home activity
                     startActivity(new Intent(MainActivity.this, Home.class));
                 }else{
                     Toast.makeText(MainActivity.this, "Login Failed", Toast.LENGTH_SHORT).show();

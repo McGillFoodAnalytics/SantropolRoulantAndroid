@@ -35,20 +35,20 @@ public class CreateAccount extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_account);
-        setupUIViews();
+        setupUIViews(); // function way to set up UI elements
 
         firebaseAuth = FirebaseAuth.getInstance();
 
         regButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(validate()){
-
+                if(validate()){ // validate function as condition
                     firebaseAuth.createUserWithEmailAndPassword(email,password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                         @Override
                         public void onComplete(@NonNull Task<AuthResult> task) {
 
                             if(task.isSuccessful()){
+                                // if successful then enter user data into firebase
                                 sendUserData();
                                 Toast.makeText(CreateAccount.this, "Registration Successful!", Toast.LENGTH_SHORT).show();
                                 startActivity(new Intent(CreateAccount.this, MainActivity.class));
@@ -81,6 +81,7 @@ public class CreateAccount extends AppCompatActivity {
         userLogin = (TextView)findViewById(R.id.tvUserLogin);
     }
 
+    // Boolean function to check if all info is entered
     private Boolean validate(){
         Boolean result = false;
 
@@ -99,14 +100,20 @@ public class CreateAccount extends AppCompatActivity {
         return  result;
     }
 
+
     private void sendUserData(){
+        //Custom UserID (key) is first two letters of last name + phonenumber
         String first_twoletters = last_name.substring(0,2).toLowerCase();
         String key = first_twoletters+phone_number;
 
+        //Record date of signup
         Date c = Calendar.getInstance().getTime();
         SimpleDateFormat df = new SimpleDateFormat("yy/MM/dd");
         String formattedDate = df.format(c);
 
+        // Write Statement
+        // Call DatabaseReference
+        // Specify the Children --> user --> UserID(key) --> ____ --> setValue
         FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
         DatabaseReference myRef = firebaseDatabase.getReference();
         myRef.child("user").child(key).child("first_name").setValue(first_name);
@@ -114,7 +121,7 @@ public class CreateAccount extends AppCompatActivity {
         myRef.child("user").child(key).child("phone_number").setValue(phone_number);
         myRef.child("user").child(key).child("email").setValue(email);
         myRef.child("user").child(key).child("signup_date").setValue(formattedDate);
-        myRef.child("user").child(key).child("key").setValue(firebaseAuth.getUid());
+        myRef.child("user").child(key).child("key").setValue(firebaseAuth.getUid()); //this is the firebase's UID for the users
 
 
         Log.d("sendingUserData",first_name + " " + last_name);

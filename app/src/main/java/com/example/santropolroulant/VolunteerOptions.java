@@ -32,12 +32,13 @@ public class VolunteerOptions extends AppCompatActivity {
         crdDelivery.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                // Similar to the other 'startActivity' except here we add info across activities
                 Intent intent = new Intent(VolunteerOptions.this, CalanderSlots.class);
+                // add the event type of the card clicked
                 intent.putExtra("type", "deliv");
-                intent.putExtra("type2", "deldr");
+                intent.putExtra("type2", "deldr"); // adding additional event type for driving delivery (both needed)
 
                 startActivity(intent);
-
             }
         });
 
@@ -62,6 +63,11 @@ public class VolunteerOptions extends AppCompatActivity {
         });
 
     }
+
+
+    // toolbar functionalities below
+    // (imperfect)
+
 
     private void BackToMain(){
         finish();

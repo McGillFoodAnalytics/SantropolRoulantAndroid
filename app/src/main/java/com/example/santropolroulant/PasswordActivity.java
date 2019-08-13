@@ -29,14 +29,18 @@ public class PasswordActivity extends AppCompatActivity {
         resetPassword = (Button)findViewById(R.id.btnPasswordReset);
         firebaseAuth = FirebaseAuth.getInstance();
 
+        // Button listener
         resetPassword.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
                 String useremail = passwordEmail.getText().toString().trim();
 
-                if(useremail.equals("")){
+                if(useremail.equals("")){ // If empty
                     Toast.makeText(PasswordActivity.this, "Please enter your registered email", Toast.LENGTH_SHORT).show();
                 }else{
+                    // Built in reset password function
+                    // refer to firebase for more
                     firebaseAuth.sendPasswordResetEmail(useremail).addOnCompleteListener(new OnCompleteListener<Void>() {
                         @Override
                         public void onComplete(@NonNull Task<Void> task) {

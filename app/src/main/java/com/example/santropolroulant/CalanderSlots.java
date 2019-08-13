@@ -32,10 +32,9 @@ import devs.mulham.horizontalcalendar.utils.HorizontalCalendarListener;
 public class CalanderSlots extends AppCompatActivity {
 
     private RecyclerView recyclerView; // Recycler view to work with Custom Adapter
-    private UserAdapter adapter; // Custom adapter 'EventAdapter'
+    private UserAdapter adapter; // Custom adapter 'UserAdapter'
     private List<UserSlot> userList; // List that will be filled with Event classes from Firebase Query
     private Button btnSignUp;
-    private List<UserSlot> driverList;
     private String keyIntent;
 
 
@@ -50,24 +49,27 @@ public class CalanderSlots extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(CalanderSlots.this, RegisterEvent.class);
-                intent.putExtra("keyIntent", keyIntent);
+                intent.putExtra("keyIntent", keyIntent); //keyIntent is saved below, it brings the eventKey to the next activity
                 startActivity(intent);
             }
         });
 
-        recyclerView = findViewById(R.id.recyclerView3); //xml
+        recyclerView = findViewById(R.id.recyclerView3); //xml of recyclerview
         recyclerView.setHasFixedSize(true); // Fix size
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
         userList = new ArrayList<>();
-        driverList = new ArrayList<>();
 
-        adapter = new UserAdapter(this, userList); //
-        recyclerView.setAdapter(adapter);
+        adapter = new UserAdapter(this, userList); // The adapter is connected to the userList
+        recyclerView.setAdapter(adapter); // recyclerView is connected to the adapter
 
-        Intent intent = getIntent();
-        final String gtype = intent.getStringExtra("type");
+        Intent intent = getIntent(); // Getting the info from last activity's intent
+        final String gtype = intent.getStringExtra("type"); //eventType used inside later Query
 
+        // Setting up custom calendar view taken from github
+        // https://github.com/Mulham-Raee/Horizontal-Calendar
+
+        // Starts this month
         Calendar startDate = Calendar.getInstance();
         startDate.add(Calendar.MONTH, 0);
 
@@ -80,30 +82,43 @@ public class CalanderSlots extends AppCompatActivity {
                 .datesNumberOnScreen(7)
                 .build();
 
+        // on click listener for calendar dates
         horizontalCalendar.setCalendarListener(new HorizontalCalendarListener() {
             @Override
             public void onDateSelected(Calendar date, int position) {
+
+                // getting the date form yymmdd from the clicked date
                 String year = String.valueOf(date.get(Calendar.YEAR));
                 String yearSub = year.substring(Math.max(year.length() - 2, 0));
                 String month = String.valueOf(date.get(Calendar.MONTH)+1);
                 Integer weekday = date.get(Calendar.DAY_OF_WEEK);
+
+                // if the day of the month is single digit, add 0
                 if (month.length() == 1){
                     month = "0"+ month;
                 }
 
+                // if month is single digit add 0
                 String day = String.valueOf(date.get(Calendar.DAY_OF_MONTH));
                 if (day.length() == 1){
                     day = "0"+ day;
                 }
 
+                // Weekend condition vs weekday
                 if (weekday.equals(1) || weekday.equals(7)){
+                    // weekend query
+                    // event type being passed through wkndConverter
+                    // refer to queryFunction for more
                     queryFunction(wkndConverter(gtype), yearSub+month+day);
+
+                    // here keyIntent is made (currently imperfect and needs working)
                     keyIntent = yearSub+month+day+wkndConverter(gtype)+"01";
-                    Toast.makeText(CalanderSlots.this, "Weekend: " + keyIntent, Toast.LENGTH_SHORT).show();
+                    Toast.makeText(CalanderSlots.this, "Weekend: " + keyIntent, Toast.LENGTH_SHORT).show(); // not needed
                 } else {
+                    // weekday query
                     queryFunction(gtype, yearSub+month+day);
                     keyIntent = yearSub+month+day+gtype+"01";
-                    Toast.makeText(CalanderSlots.this, "Success: " + keyIntent, Toast.LENGTH_SHORT).show();
+                    Toast.makeText(CalanderSlots.this, "Success: " + keyIntent, Toast.LENGTH_SHORT).show(); // not needed
                 }
 
             }
@@ -113,39 +128,42 @@ public class CalanderSlots extends AppCompatActivity {
 
     private void queryFunction(String eventType, final String dateVal){
 
+        // Firebase query in event table looking for keys between values
         Query attendeeQuery = FirebaseDatabase.getInstance().getReference("event")
                 .orderByKey()
-                .startAt(dateVal+eventType+"01")
-                .endAt(dateVal+eventType+"99");
+                .startAt(dateVal+eventType+"01") //190830kitam01
+                .endAt(dateVal+eventType+"99"); // 190830kitam99
+        // This gets all slots of the particular event
 
         ValueEventListener countListener = new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                userList.clear();
+                userList.clear(); // clear the list when data is updated, then query/fill anew
                 for (DataSnapshot userSnap : dataSnapshot.getChildren()){
 
-                    String key = userSnap.getKey();
+                    String key = userSnap.getKey(); //need to get key of query == eg. 190830kitam01
                     Log.d("hey:","Key: "+key);
 
-                    final String slot = key.substring(Math.max(key.length() - 2, 0));
-                    final String first_name = userSnap.child("first_name").getValue(String.class);
+                    final String slot = key.substring(Math.max(key.length() - 2, 0)); //last two characters of the key = slot
+                    final String first_name = userSnap.child("first_name").getValue(String.class); // getting value from query
                     final String last_name = userSnap.child("last_name").getValue(String.class);
                     Log.d("hey:","Key: "+key);
 
+                    // adding the queried info to the userlist (which was cleared)
                     userList.add(
                             new UserSlot(slot,first_name,last_name, "9")
                     );
                 }
-                adapter.notifyDataSetChanged();
+                adapter.notifyDataSetChanged(); // after for loop goes through all items in for loop, notify adapter (very important)
 
             }
 
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
-
+                // never used
             }
         };
-        attendeeQuery.addValueEventListener(countListener);
+        attendeeQuery.addValueEventListener(countListener); //calls the actual query as listener
 
     }
 

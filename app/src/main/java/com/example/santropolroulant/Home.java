@@ -36,6 +36,7 @@ public class Home extends AppCompatActivity {
         infoCard = (CardView)findViewById(R.id.infosessionCard);
         contactCard = (CardView)findViewById(R.id.contactCard);
 
+        // Bunch of CardView listeners
         volunteerCard.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -50,6 +51,7 @@ public class Home extends AppCompatActivity {
             }
         });
 
+        // To be developed...
         profileCard.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -72,34 +74,10 @@ public class Home extends AppCompatActivity {
 
     }
 
+    // to be implemented somewhere on this page
     private void Logout(){
         mAuth.signOut();
         finish();
         startActivity(new Intent(Home.this, MainActivity.class));
     }
-
-
-    private void BackToMain(){
-        finish();
-        startActivity(new Intent(Home.this, Home.class));
-    }
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-
-        switch(item.getItemId()){
-            case R.id.homeMenu:
-                BackToMain();
-
-        }
-
-        return super.onOptionsItemSelected(item);
-    }
-
 }
