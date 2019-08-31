@@ -63,13 +63,26 @@ public class EventAdapter extends RecyclerView.Adapter<EventAdapter.EventViewHol
         } else if (weekString.contains("Thursday")){
             holder.imgBar.setImageResource(R.drawable.thursday_event);
         } else if (weekString.contains("Friday")){
+<<<<<<< HEAD
             holder.imgBar.setImageResource(R.drawable.friday_event);
+=======
+<<<<<<< HEAD
+            holder.imgBar.setImageResource(R.drawable.FridayEvent);
+>>>>>>> dev
         } else if (weekString.contains("Saturday")){
             holder.imgBar.setImageResource(R.drawable.saturday_event);
         } else {
+<<<<<<< HEAD
             holder.imgBar.setImageResource(R.drawable.sunday_event);
+=======
+            holder.imgBar.setImageResource(R.drawable.SundayEvent);
+=======
+            holder.imgBar.setImageResource(R.drawable.friday_event);
+        } else if (weekString.contains("Saturday")) {
+            holder.imgBar.setImageResource(R.drawable.saturday_event);
+>>>>>>> e60eb319a8f0533a23ba9a48fe1ef758d4bf3326
+>>>>>>> dev
         }
-
     };
     @Override
     public int getItemCount() {
