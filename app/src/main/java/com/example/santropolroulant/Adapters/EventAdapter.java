@@ -54,21 +54,21 @@ public class EventAdapter extends RecyclerView.Adapter<EventAdapter.EventViewHol
 
     public void weekImage(@NonNull EventViewHolder holder, String weekString){
         if (weekString.contains("Sunday")){
-            holder.imgBar.setImageResource(R.drawable.ic_calendar);
+            holder.imgBar.setImageResource(R.drawable.SundayEvent);
         } else if (weekString.contains("Monday")){
-            holder.imgBar.setImageResource(R.drawable.ic_calendar);
+            holder.imgBar.setImageResource(R.drawable.MondayEvent);
         } else if (weekString.contains("Tuesday")){
-            holder.imgBar.setImageResource(R.drawable.ic_calendar);
+            holder.imgBar.setImageResource(R.drawable.TuesdayEvent);
         } else if (weekString.contains("Wednesday")){
-            holder.imgBar.setImageResource(R.drawable.ic_calendar);
+            holder.imgBar.setImageResource(R.drawable.WednesdayEvent);
         } else if (weekString.contains("Thursday")){
-            holder.imgBar.setImageResource(R.drawable.ic_calendar);
+            holder.imgBar.setImageResource(R.drawable.ThursdayEvent);
         } else if (weekString.contains("Friday")){
-            holder.imgBar.setImageResource(R.drawable.ic_calendar);
+            holder.imgBar.setImageResource(R.drawable.FridayEvent;
         } else if (weekString.contains("Saturday")){
-            holder.imgBar.setImageResource(R.drawable.ic_calendar);
+            holder.imgBar.setImageResource(R.drawable.SaturdayEvent);
         } else {
-            holder.imgBar.setImageResource(R.drawable.ic_calendar);
+            holder.imgBar.setImageResource(R.drawable.SundayEvent);
         }
 
     };
