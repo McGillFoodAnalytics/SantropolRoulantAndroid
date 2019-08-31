@@ -19,48 +19,37 @@ import com.google.firebase.auth.FirebaseUser;
 
 public class MainActivity extends AppCompatActivity {
 
-    private EditText Email;
-    private EditText Password;
-    private Button Login;
-    private CardView userRegistration;
-    private FirebaseAuth firebaseAuth;
-    private CardView forgotPassword;
+    private Button loginButton;
+    private Button signupButton;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main); //Designates which layout XML to be used for this page
+        setContentView(R.layout.activity_main_page); //Designates which layout XML to be used for this page
 
         // Setting up UI
-        Email = (EditText)findViewById(R.id.etEmail);
-        Password = (EditText)findViewById(R.id.etPassword);
-        Login = (Button)findViewById(R.id.btnLogin);
-        // The following are CardViews rather than buttons for design purpose. Same functionality
-        userRegistration = (CardView) findViewById(R.id.crdRegister);
-        forgotPassword = (CardView) findViewById(R.id.crdForgotPassword);
+        loginButton = (Button)findViewById(R.id.Login_Button);
+        signupButton = (Button)findViewById(R.id.Create_Account_Button);
 
-        // Getting current app user from Firebase
-        firebaseAuth = FirebaseAuth.getInstance();
-        FirebaseUser user = firebaseAuth.getCurrentUser();
         // Auto login for signed in user - Commented out below
 
         //if(user != null){
-            //finish();
-            //startActivity(new Intent(MainActivity.this, Home.class));
+        //finish();
+        //startActivity(new Intent(MainActivity.this, Home.class));
         //}
 
         // Click listener for the Login button
-        Login.setOnClickListener(new View.OnClickListener() {
+        loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 // On Click, run validate function*
-                validate(Email.getText().toString(), Password.getText().toString());
+                startActivity(new Intent(MainActivity.this, Login.class));
             }
         });
 
-        // userRegistration click listener
-        userRegistration.setOnClickListener(new View.OnClickListener() {
+        //userRegistration click listener
+        signupButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 // Go from this activity "MainActivity" to "CreateAccount" activity
@@ -68,31 +57,6 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        forgotPassword.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                // Go from this activity "MainActivity" to "PasswordActivity" activity
-                startActivity(new Intent(MainActivity.this, PasswordActivity.class));
-            }
-        });
     }
 
-
-    // *Validate function
-    private void validate(String userEmail, String userPassword){
-
-        // Firebase Authentication instance + built in function to sign in with Email and Password
-        firebaseAuth.signInWithEmailAndPassword(userEmail, userPassword).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-            @Override
-            public void onComplete(@NonNull Task<AuthResult> task) {
-                if(task.isSuccessful()){
-                    Toast.makeText(MainActivity.this, "Login Successful", Toast.LENGTH_SHORT).show();
-                    // Go to Home activity
-                    startActivity(new Intent(MainActivity.this, Home.class));
-                }else{
-                    Toast.makeText(MainActivity.this, "Login Failed", Toast.LENGTH_SHORT).show();
-                }
-            }
-        });
-    }
 }
