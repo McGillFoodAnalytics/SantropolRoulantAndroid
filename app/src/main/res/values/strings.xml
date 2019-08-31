@@ -1,4 +1,9 @@
 <resources>
     <string name="app_name">RoulantLogin</string>
     <string name="title_activity_volunteer">VolunteerActivity</string>
+    <string name="santropol_roulant">Santropol Roulant!</string>
+    <string name="create_account">Create Account</string>
+    <string name="welcome_to">Welcome to</string>
+    <string name="santropol_logo">Santropol Logo</string>
+    <string name="log_in">Log in</string>
 </resources>
