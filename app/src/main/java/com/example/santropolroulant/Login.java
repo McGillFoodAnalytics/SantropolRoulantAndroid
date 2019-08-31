@@ -21,7 +21,7 @@ public class Login extends AppCompatActivity {
 
     private EditText Email;
     private EditText Password;
-    private Button Login;
+    private Button loginButton;
     private CardView userRegistration;
     private FirebaseAuth firebaseAuth;
     private CardView forgotPassword;
@@ -35,14 +35,14 @@ public class Login extends AppCompatActivity {
         // Setting up UI
         Email = (EditText)findViewById(R.id.etEmail);
         Password = (EditText)findViewById(R.id.etPassword);
-        Login = (Button)findViewById(R.id.btnLogin);
+        loginButton = (Button)findViewById(R.id.btnLogin);
         // The following are CardViews rather than buttons for design purpose. Same functionality
         //userRegistration = (CardView) findViewById(R.id.crdRegister);
         forgotPassword = (CardView) findViewById(R.id.crdForgotPassword);
 
         // Getting current app user from Firebase
-        firebaseAuth = FirebaseAuth.getInstance();
-        FirebaseUser user = firebaseAuth.getCurrentUser();
+        //firebaseAuth = FirebaseAuth.getInstance();
+        //FirebaseUser user = firebaseAuth.getCurrentUser();
         // Auto login for signed in user - Commented out below
 
         //if(user != null){
@@ -51,11 +51,11 @@ public class Login extends AppCompatActivity {
         //}
 
         // Click listener for the Login button
-        Login.setOnClickListener(new View.OnClickListener() {
+        loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 // On Click, run validate function*
-                validate(Email.getText().toString(), Password.getText().toString());
+                //validate(Email.getText().toString(), Password.getText().toString());
             }
         });
 /*
