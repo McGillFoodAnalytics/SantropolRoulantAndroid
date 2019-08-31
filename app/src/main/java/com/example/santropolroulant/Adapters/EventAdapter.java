@@ -64,11 +64,11 @@ public class EventAdapter extends RecyclerView.Adapter<EventAdapter.EventViewHol
         } else if (weekString.contains("Thursday")){
             holder.imgBar.setImageResource(R.drawable.thursday_event);
         } else if (weekString.contains("Friday")){
-            holder.imgBar.setImageResource(R.drawable.FridayEvent);
+            holder.imgBar.setImageResource(R.drawable.friday_event);
         } else if (weekString.contains("Saturday")){
-            holder.imgBar.setImageResource(R.drawable.SaturdayEvent);
+            holder.imgBar.setImageResource(R.drawable.saturday_event);
         } else {
-            holder.imgBar.setImageResource(R.drawable.SundayEvent);
+            holder.imgBar.setImageResource(R.drawable.sunday_event);
         }
     };
     @Override
