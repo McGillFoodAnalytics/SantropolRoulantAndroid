@@ -9,21 +9,32 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".RegisterEvent"></activity>
-        <activity android:name=".CalanderSlots" />
+        <activity android:name=".RegisterEvent"
+            android:screenOrientation="portrait" ></activity>
+        <activity android:name=".CalanderSlots"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".Confirmation_Page_MealDelivery"
-            android:windowSoftInputMode="adjustPan" />
+            android:windowSoftInputMode="adjustPan"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".Confirmation_Page"
-            android:windowSoftInputMode="adjustPan" />
-        <activity android:name=".Home" />
-        <activity android:name=".DisplayEvents" />
-        <activity android:name=".VolunteerOptions" />
-        <activity android:name=".PasswordActivity" />
-        <activity android:name=".CreateAccount" />
-        <activity android:name=".UserSchedule" />
-        <activity android:name=".MainActivity">
+            android:windowSoftInputMode="adjustPan"
+            android:screenOrientation="portrait" />
+        <activity android:name=".Home"
+            android:screenOrientation="portrait" />
+        <activity android:name=".DisplayEvents"
+            android:screenOrientation="portrait" />
+        <activity android:name=".VolunteerOptions"
+            android:screenOrientation="portrait" />
+        <activity android:name=".PasswordActivity"
+            android:screenOrientation="portrait" />
+        <activity android:name=".CreateAccount"
+            android:screenOrientation="portrait" />
+        <activity android:name=".UserSchedule"
+            android:screenOrientation="portrait" />
+        <activity android:name=".MainActivity"
+            android:screenOrientation="portrait" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
