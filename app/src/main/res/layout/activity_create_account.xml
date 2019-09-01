@@ -5,7 +5,9 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".CreateAccount"
-    android:background="@drawable/main_background">
+    android:background="@drawable/main_background"
+    android:clickable="true"
+    android:focusableInTouchMode="true" >
 
     <EditText
         android:id="@+id/etUserF_Name"
@@ -23,7 +25,8 @@
         app:layout_constraintHorizontal_bias="0.51"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.18" />
+        app:layout_constraintVertical_bias="0.18"
+        android:imeOptions="actionDone"/>
 
     <EditText
         android:id="@+id/etUserPhone"
@@ -41,7 +44,8 @@
         app:layout_constraintHorizontal_bias="0.51"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/etUserL_Name"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintVertical_bias="0.0"
+        android:imeOptions="actionDone"/>
 
     <EditText
         android:id="@+id/etUserEmail"
@@ -58,7 +62,8 @@
         app:layout_constraintHorizontal_bias="0.51"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/etUserPhone"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintVertical_bias="0.0"
+        android:imeOptions="actionDone"/>
 
     <EditText
         android:id="@+id/etUserPassword"
@@ -75,7 +80,8 @@
         app:layout_constraintHorizontal_bias="0.51"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/etUserEmail"
-        app:layout_constraintVertical_bias="0.026" />
+        app:layout_constraintVertical_bias="0.026"
+        android:imeOptions="actionDone" />
 
     <Button
         android:id="@+id/btnRegister"
@@ -130,6 +136,7 @@
         app:layout_constraintHorizontal_bias="0.51"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/etUserF_Name"
+        android:imeOptions="actionDone"
         app:layout_constraintVertical_bias="0.002" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
