@@ -31,7 +31,7 @@ public class CreateAccount extends AppCompatActivity {
     private Button regButton;
     private TextView userLogin;
     private FirebaseAuth firebaseAuth;
-    String first_name, last_name, phone_number , email, password;
+    String first_name, last_name, phone_number , email, password, confirm_password;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
