@@ -31,6 +31,7 @@ public class CreateAccount extends AppCompatActivity {
     private Button regButton;
     private TextView userLogin;
     private FirebaseAuth firebaseAuth;
+    private TextView username;
     String first_name, last_name, phone_number , email, password, confirm_password;
 
     @Override
@@ -53,6 +54,8 @@ public class CreateAccount extends AppCompatActivity {
                                 // if successful then enter user data into firebase
                                 sendUserData();
                                 Toast.makeText(CreateAccount.this, "Registration Successful!", Toast.LENGTH_SHORT).show();
+                                setContentView(R.layout.activity_username);
+                                setupUIViewsSuccess();
                                 startActivity(new Intent(CreateAccount.this, MainActivity.class));
 
                             }else{
@@ -72,7 +75,12 @@ public class CreateAccount extends AppCompatActivity {
             }
         });
     }
-
+    private void setupUIViewsSuccess(){
+        String first_two_letters = last_name.substring(0,2).toLowerCase();
+        String key = first_twoletters+phone_number;
+        username = (TextView) findViewById(R.id.username_view);
+        username.setText(key); //set text for text view
+    }
     private void setupUIViews(){
         userFirstName = (EditText)findViewById(R.id.etUserF_Name);
         userFirstName.setOnFocusChangeListener(new View.OnFocusChangeListener() {
