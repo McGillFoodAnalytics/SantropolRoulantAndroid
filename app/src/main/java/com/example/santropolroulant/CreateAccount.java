@@ -29,6 +29,7 @@ public class CreateAccount extends AppCompatActivity {
 
     private EditText userFirstName,userLastName, userPhoneNumber, userPassword, userEmail;
     private Button regButton;
+    private Button loginRedirectButton;
     private TextView userLogin;
     private FirebaseAuth firebaseAuth;
     private TextView username;
@@ -53,10 +54,10 @@ public class CreateAccount extends AppCompatActivity {
                             if(task.isSuccessful()){
                                 // if successful then enter user data into firebase
                                 sendUserData();
-                                Toast.makeText(CreateAccount.this, "Registration Successful!", Toast.LENGTH_SHORT).show();
+                                //Toast.makeText(CreateAccount.this, "Registration Successful!", Toast.LENGTH_SHORT).show();
                                 setContentView(R.layout.activity_username);
                                 setupUIViewsSuccess();
-                                startActivity(new Intent(CreateAccount.this, MainActivity.class));
+                                //startActivity(new Intent(CreateAccount.this, MainActivity.class));
 
                             }else{
                                 Toast.makeText(CreateAccount.this, "Registration Failed", Toast.LENGTH_SHORT).show();
@@ -65,6 +66,12 @@ public class CreateAccount extends AppCompatActivity {
                         }
                     });
                 }
+            }
+        });
+        loginRedirectButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(CreateAccount.this, MainActivity.class));
             }
         });
 
@@ -76,8 +83,10 @@ public class CreateAccount extends AppCompatActivity {
         });
     }
     private void setupUIViewsSuccess(){
+        loginRedirectButton = (Button)findViewById(R.id.go_to_login);
+
         String first_two_letters = last_name.substring(0,2).toLowerCase();
-        String key = first_twoletters+phone_number;
+        String key = first_two_letters+phone_number;
         username = (TextView) findViewById(R.id.username_view);
         username.setText(key); //set text for text view
     }
