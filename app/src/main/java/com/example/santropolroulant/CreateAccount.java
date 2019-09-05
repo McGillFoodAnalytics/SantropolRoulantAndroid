@@ -27,13 +27,13 @@ import java.util.Date;
 
 public class CreateAccount extends AppCompatActivity {
 
-    private EditText userFirstName,userLastName, userPhoneNumber, userPassword, userEmail;
+    private EditText userFirstName,userLastName, userPhoneNumber, userPassword, userEmail, userBirthDate;
     private Button regButton;
     private Button loginRedirectButton;
     private TextView userLogin;
     private FirebaseAuth firebaseAuth;
     private TextView username;
-    String first_name, last_name, phone_number , email, password, confirm_password;
+    String first_name, last_name, phone_number , email, password, birth_date;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,10 +54,10 @@ public class CreateAccount extends AppCompatActivity {
                             if(task.isSuccessful()){
                                 // if successful then enter user data into firebase
                                 sendUserData();
-                                //Toast.makeText(CreateAccount.this, "Registration Successful!", Toast.LENGTH_SHORT).show();
-                                setContentView(R.layout.activity_username);
-                                setupUIViewsSuccess();
-                                //startActivity(new Intent(CreateAccount.this, MainActivity.class));
+                                Toast.makeText(CreateAccount.this, "Registration Successful!", Toast.LENGTH_SHORT).show();
+                                //setContentView(R.layout.activity_username);
+                                //setupUIViewsSuccess();
+                                startActivity(new Intent(CreateAccount.this, MainActivity.class));
 
                             }else{
                                 Toast.makeText(CreateAccount.this, "Registration Failed", Toast.LENGTH_SHORT).show();
@@ -68,12 +68,12 @@ public class CreateAccount extends AppCompatActivity {
                 }
             }
         });
-        loginRedirectButton.setOnClickListener(new View.OnClickListener() {
+        /*loginRedirectButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(CreateAccount.this, MainActivity.class));
             }
-        });
+        });*/
 
         userLogin.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -82,14 +82,14 @@ public class CreateAccount extends AppCompatActivity {
             }
         });
     }
-    private void setupUIViewsSuccess(){
+    /*private void setupUIViewsSuccess(){
         loginRedirectButton = (Button)findViewById(R.id.go_to_login);
 
         String first_two_letters = last_name.substring(0,2).toLowerCase();
         String key = first_two_letters+phone_number;
         username = (TextView) findViewById(R.id.username_view);
         username.setText(key); //set text for text view
-    }
+    }*/
     private void setupUIViews(){
         userFirstName = (EditText)findViewById(R.id.etUserF_Name);
         userFirstName.setOnFocusChangeListener(new View.OnFocusChangeListener() {
@@ -136,8 +136,18 @@ public class CreateAccount extends AppCompatActivity {
                 }
             }
         });
+        userBirthDate = (EditText)findViewById(R.id.etUserBirthDate);
+        userBirthDate.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                if (!hasFocus) {
+                    hideKeyboard(v);
+                }
+            }
+        });
         regButton = (Button)findViewById(R.id.btnRegister);
         userLogin = (TextView)findViewById(R.id.tvUserLogin);
+
 
     }
 
@@ -151,6 +161,7 @@ public class CreateAccount extends AppCompatActivity {
 
         first_name = userFirstName.getText().toString().trim();
         last_name = userLastName.getText().toString().trim();
+        birth_date = userBirthDate.getText().toString().trim();
         phone_number = userPhoneNumber.getText().toString().trim();
         password = userPassword.getText().toString().trim();
         email = userEmail.getText().toString().trim();
@@ -167,14 +178,16 @@ public class CreateAccount extends AppCompatActivity {
 
     private void sendUserData(){
         //Custom UserID (key) is first two letters of last name + phonenumber
-        String first_twoletters = last_name.substring(0,2).toLowerCase();
-        String key = first_twoletters+phone_number;
+        String first_two_letters = last_name.substring(0,2).toLowerCase();
+        String key = first_two_letters+phone_number;
 
         //Record date of signup
         Date c = Calendar.getInstance().getTime();
         SimpleDateFormat df = new SimpleDateFormat("yy/MM/dd");
         String formattedDate = df.format(c);
 
+        SimpleDateFormat bd = new SimpleDateFormat("yyyyMMdd");
+        String formattedBirthDate = bd.format(bd);
         // Write Statement
         // Call DatabaseReference
         // Specify the Children --> user --> UserID(key) --> ____ --> setValue
@@ -182,6 +195,7 @@ public class CreateAccount extends AppCompatActivity {
         DatabaseReference myRef = firebaseDatabase.getReference();
         myRef.child("user").child(key).child("first_name").setValue(first_name);
         myRef.child("user").child(key).child("last_name").setValue(last_name);
+        myRef.child("user").child(key).child("birth_date").setValue(formattedBirthDate);
         myRef.child("user").child(key).child("phone_number").setValue(phone_number);
         myRef.child("user").child(key).child("email").setValue(email);
         myRef.child("user").child(key).child("signup_date").setValue(formattedDate);
