@@ -55,7 +55,7 @@ public class Login extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 // On Click, run validate function*
-                //validate(Email.getText().toString(), Password.getText().toString());
+                validate(Email.getText().toString(), Password.getText().toString());
             }
         });
 /*

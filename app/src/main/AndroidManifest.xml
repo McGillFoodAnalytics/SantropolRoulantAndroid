@@ -33,6 +33,8 @@
             android:screenOrientation="portrait" />
         <activity android:name=".UserSchedule"
             android:screenOrientation="portrait" />
+        <activity android:name=".Login"
+            android:screenOrientation="portrait" />
         <activity android:name=".MainActivity"
             android:screenOrientation="portrait" >
             <intent-filter>
