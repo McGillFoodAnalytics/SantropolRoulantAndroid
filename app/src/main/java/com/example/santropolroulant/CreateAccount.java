@@ -229,7 +229,7 @@ public class CreateAccount extends AppCompatActivity {
         String formattedDate = df.format(c);
 
         SimpleDateFormat bd = new SimpleDateFormat("yyyyMMdd");
-        String formattedBirthDate = bd.format(bd);
+        String formattedBirthDate = bd.format(birth_date);
         // Write Statement
         // Call DatabaseReference
         // Specify the Children --> user --> UserID(key) --> ____ --> setValue

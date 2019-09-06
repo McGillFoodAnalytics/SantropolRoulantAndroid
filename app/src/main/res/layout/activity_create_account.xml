@@ -149,11 +149,19 @@
         android:layout_width="213dp"
         android:layout_height="45dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="212dp"
+        android:layout_marginTop="216dp"
         android:layout_marginEnd="8dp"
         android:text="Birth Date"
-        android:textColor="#FFFFFF"
         android:textSize="18sp"
+        android:layout_gravity="center"
+
+
+        android:hint="Birth Date"
+        android:textColor="#FFFFFF"
+        android:background="?attr/editTextBackground"
+        android:gravity="center_vertical"
+        android:textAppearance="?android:attr/textAppearanceMediumInverse"
+
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.494"
         app:layout_constraintStart_toStartOf="parent"
