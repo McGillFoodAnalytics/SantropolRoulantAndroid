@@ -186,6 +186,7 @@ public class CreateAccount extends AppCompatActivity {
 
                 String date = month + "/" + day + "/" + year;
                 userBirthDate.setText(date);
+                birth_date = "" + year + month + day;
             }
         };
 
@@ -228,8 +229,6 @@ public class CreateAccount extends AppCompatActivity {
         SimpleDateFormat df = new SimpleDateFormat("yy/MM/dd");
         String formattedDate = df.format(c);
 
-        SimpleDateFormat bd = new SimpleDateFormat("yyyyMMdd");
-        String formattedBirthDate = bd.format(birth_date);
         // Write Statement
         // Call DatabaseReference
         // Specify the Children --> user --> UserID(key) --> ____ --> setValue
@@ -237,7 +236,7 @@ public class CreateAccount extends AppCompatActivity {
         DatabaseReference myRef = firebaseDatabase.getReference();
         myRef.child("user").child(key).child("first_name").setValue(first_name);
         myRef.child("user").child(key).child("last_name").setValue(last_name);
-        myRef.child("user").child(key).child("birth_date").setValue(formattedBirthDate);
+        myRef.child("user").child(key).child("birth_date").setValue(birth_date);
         myRef.child("user").child(key).child("phone_number").setValue(phone_number);
         myRef.child("user").child(key).child("email").setValue(email);
         myRef.child("user").child(key).child("signup_date").setValue(formattedDate);
