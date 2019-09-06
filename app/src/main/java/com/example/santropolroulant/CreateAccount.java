@@ -13,6 +13,12 @@ import android.widget.TextView;
 import android.widget.Toast;
 import android.view.inputmethod.InputMethodManager;
 import android.app.Activity;
+import java.util.Calendar;
+import android.widget.DatePicker;
+import android.app.DatePickerDialog;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
+import android.text.Html;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -27,13 +33,16 @@ import java.util.Date;
 
 public class CreateAccount extends AppCompatActivity {
 
-    private EditText userFirstName,userLastName, userPhoneNumber, userPassword, userEmail, userBirthDate;
+    private static final String TAG = "CreateAccount";
+
+    private EditText userFirstName,userLastName, userPhoneNumber, userPassword, userEmail;
     private Button regButton;
     private Button loginRedirectButton;
-    private TextView userLogin;
+    private TextView userLogin, userBirthDate;
     private FirebaseAuth firebaseAuth;
     private TextView username;
     String first_name, last_name, phone_number , email, password, birth_date;
+    private DatePickerDialog.OnDateSetListener mDateSetListener;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -90,8 +99,8 @@ public class CreateAccount extends AppCompatActivity {
         username = (TextView) findViewById(R.id.username_view);
         username.setText(key); //set text for text view
     }*/
-    private void setupUIViews(){
-        userFirstName = (EditText)findViewById(R.id.etUserF_Name);
+    private void setupUIViews() {
+        userFirstName = (EditText) findViewById(R.id.etUserF_Name);
         userFirstName.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
             public void onFocusChange(View v, boolean hasFocus) {
@@ -100,7 +109,7 @@ public class CreateAccount extends AppCompatActivity {
                 }
             }
         });
-        userLastName = (EditText)findViewById(R.id.etUserL_Name);
+        userLastName = (EditText) findViewById(R.id.etUserL_Name);
         userLastName.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
             public void onFocusChange(View v, boolean hasFocus) {
@@ -109,7 +118,7 @@ public class CreateAccount extends AppCompatActivity {
                 }
             }
         });
-        userPassword = (EditText)findViewById(R.id.etUserPassword);
+        userPassword = (EditText) findViewById(R.id.etUserPassword);
         userPassword.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
             public void onFocusChange(View v, boolean hasFocus) {
@@ -118,7 +127,7 @@ public class CreateAccount extends AppCompatActivity {
                 }
             }
         });
-        userPhoneNumber = (EditText)findViewById(R.id.etUserPhone);
+        userPhoneNumber = (EditText) findViewById(R.id.etUserPhone);
         userPhoneNumber.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
             public void onFocusChange(View v, boolean hasFocus) {
@@ -127,7 +136,7 @@ public class CreateAccount extends AppCompatActivity {
                 }
             }
         });
-        userEmail = (EditText)findViewById(R.id.etUserEmail);
+        userEmail = (EditText) findViewById(R.id.etUserEmail);
         userEmail.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
             public void onFocusChange(View v, boolean hasFocus) {
@@ -136,7 +145,7 @@ public class CreateAccount extends AppCompatActivity {
                 }
             }
         });
-        userBirthDate = (EditText)findViewById(R.id.etUserBirthDate);
+        /*userBirthDate = (EditText)findViewById(R.id.etUserBirthDate);
         userBirthDate.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
             public void onFocusChange(View v, boolean hasFocus) {
@@ -144,12 +153,41 @@ public class CreateAccount extends AppCompatActivity {
                     hideKeyboard(v);
                 }
             }
+        });*/
+        regButton = (Button) findViewById(R.id.btnRegister);
+        userLogin = (TextView) findViewById(R.id.tvUserLogin);
+
+
+        userBirthDate = (TextView) findViewById(R.id.etUserBirthDate);
+        userBirthDate.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Calendar cal = Calendar.getInstance();
+                int year = cal.get(Calendar.YEAR);
+                int month = cal.get(Calendar.MONTH);
+                int day = cal.get(Calendar.DAY_OF_MONTH);
+
+                DatePickerDialog dialog = new DatePickerDialog(
+                        CreateAccount.this,
+                        android.R.style.Theme_Holo_Light_Dialog_MinWidth,
+                        mDateSetListener,
+                        year, month, day);
+                dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+                dialog.show();
+            }
         });
-        regButton = (Button)findViewById(R.id.btnRegister);
-        userLogin = (TextView)findViewById(R.id.tvUserLogin);
+
+        mDateSetListener = new DatePickerDialog.OnDateSetListener() {
+            @Override
+            public void onDateSet(DatePicker datePicker, int year, int month, int day) {
+                month = month + 1;
+                Log.d(TAG, "onDateSet: mm/dd/yyy: " + month + "/" + day + "/" + year);
+            }
+        };
 
 
     }
+
 
     public void hideKeyboard(View view) {
         InputMethodManager inputMethodManager =(InputMethodManager)getSystemService(Activity.INPUT_METHOD_SERVICE);
