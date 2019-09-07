@@ -7,7 +7,9 @@
     tools:context=".CreateAccount"
     android:background="@drawable/main_background"
     android:clickable="true"
+    android:id="@+id/create_account"
     android:focusableInTouchMode="true">
+    <include layout="@layout/wheels"/>
 
     <EditText
         android:id="@+id/etUserF_Name"
