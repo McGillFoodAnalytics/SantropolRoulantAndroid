@@ -94,7 +94,6 @@ public class CreateAccount extends AppCompatActivity {
         regButton = (Button)findViewById(R.id.btnRegister);
         userLogin = (TextView)findViewById(R.id.tvUserLogin);
         progressOverlay = findViewById(R.id.progress_overlay);
-        progressOverlay.setVisibility(View.INVISIBLE);
     }
 
     // Boolean function to check if all info is entered
