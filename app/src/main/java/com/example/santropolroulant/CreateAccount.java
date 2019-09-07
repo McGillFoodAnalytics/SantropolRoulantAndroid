@@ -60,25 +60,30 @@ public class CreateAccount extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 if(validate()){ // validate function as condition
+                    createAccount.setClickable(false);
                     setVisible();
-
-
                     firebaseAuth.createUserWithEmailAndPassword(email,password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                         @Override
                         public void onComplete(@NonNull Task<AuthResult> task) {
 
                             if(task.isSuccessful()){
                                 // if successful then enter user data into firebase
-                                sendUserData();
-                                Toast.makeText(CreateAccount.this, "Registration Successful!", Toast.LENGTH_SHORT).show();
-                                //setContentView(R.layout.activity_username);
-                                //setupUIViewsSuccess();
+                                Task[] tasks = sendUserData();
+                                if (tasks[0].isSuccessful() && tasks[1].isSuccessful() && tasks[2].isSuccessful() && tasks[3].isSuccessful() &&tasks[4].isSuccessful() && tasks[5].isSuccessful() && tasks[6].isSuccessful()){
+                                    Toast.makeText(CreateAccount.this, "Registration Successful!", Toast.LENGTH_SHORT).show();
+                                }
+                                else{
+                                    Toast.makeText(CreateAccount.this, "Oops a monkey quit!", Toast.LENGTH_SHORT).show();
+                                }
                                 setInvisible();
+                                createAccount.setClickable(true);
                                 startActivity(new Intent(CreateAccount.this, MainActivity.class));
 
                             }else{
+                                String s = task.getException().getMessage();
                                 setInvisible();
-                                Toast.makeText(CreateAccount.this, "Registration Failed", Toast.LENGTH_SHORT).show();
+                                createAccount.setClickable(true);
+                                Toast.makeText(CreateAccount.this, s, Toast.LENGTH_SHORT).show();
                             }
 
                         }
@@ -229,7 +234,7 @@ public class CreateAccount extends AppCompatActivity {
     }
 
 
-    private void sendUserData(){
+    private Task[] sendUserData(){
         //Custom UserID (key) is first two letters of last name + phonenumber
         String first_two_letters = last_name.substring(0,2).toLowerCase();
         String key = first_two_letters+phone_number;
@@ -238,24 +243,22 @@ public class CreateAccount extends AppCompatActivity {
         Date c = Calendar.getInstance().getTime();
         SimpleDateFormat df = new SimpleDateFormat("yy/MM/dd");
         String formattedDate = df.format(c);
-
+        Task[] tasks = new Task[7];
         // Write Statement
         // Call DatabaseReference
         // Specify the Children --> user --> UserID(key) --> ____ --> setValue
         FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
         DatabaseReference myRef = firebaseDatabase.getReference();
-        myRef.child("user").child(key).child("first_name").setValue(first_name);
-        myRef.child("user").child(key).child("last_name").setValue(last_name);
-        myRef.child("user").child(key).child("birth_date").setValue(birth_date);
-        myRef.child("user").child(key).child("phone_number").setValue(phone_number);
-        myRef.child("user").child(key).child("email").setValue(email);
-        myRef.child("user").child(key).child("signup_date").setValue(formattedDate);
-        myRef.child("user").child(key).child("key").setValue(firebaseAuth.getUid()); //this is the firebase's UID for the users
+        tasks[0] = myRef.child("user").child(key).child("first_name").setValue(first_name);
+        tasks[1] = myRef.child("user").child(key).child("last_name").setValue(last_name);
+        tasks[2] = myRef.child("user").child(key).child("birth_date").setValue(birth_date);
+        tasks[3] = myRef.child("user").child(key).child("phone_number").setValue(phone_number);
+        tasks[4] = myRef.child("user").child(key).child("email").setValue(email);
+        tasks[5] = myRef.child("user").child(key).child("signup_date").setValue(formattedDate);
+        tasks[6] = myRef.child("user").child(key).child("key").setValue(firebaseAuth.getUid()); //this is the firebase's UID for the users
 
 
-        Log.d("sendingUserData",first_name + " " + last_name);
-
-
+        return tasks;
     }
     public void setInvisible() {
         progressOverlay.setVisibility(View.INVISIBLE);
