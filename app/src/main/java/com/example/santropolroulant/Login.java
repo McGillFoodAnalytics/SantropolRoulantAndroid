@@ -4,41 +4,37 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 
 public class Login extends AppCompatActivity {
 
-    private EditText Email;
-    private EditText Password;
-    private Button loginButton;
-    private CardView userRegistration;
+    private EditText userName, passWord;
+    private Button loginButton, forgotPassword;
+    private TextView loginHeader, usernameInfo;
+
     private FirebaseAuth firebaseAuth;
-    private CardView forgotPassword;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login); // Designates which layout XML to be used for this page
+        setupUIViews();
 
-        // Setting up UI
-        Email = (EditText)findViewById(R.id.etEmail);
-        Password = (EditText)findViewById(R.id.etPassword);
-        loginButton = (Button)findViewById(R.id.btnLogin);
-        // The following are CardViews rather than buttons for design purpose. Same functionality
-        //userRegistration = (CardView) findViewById(R.id.crdRegister);
-        forgotPassword = (CardView) findViewById(R.id.crdForgotPassword);
+
 
         // Getting current app user from Firebase
         //firebaseAuth = FirebaseAuth.getInstance();
@@ -50,12 +46,13 @@ public class Login extends AppCompatActivity {
             //startActivity(new Intent(MainActivity.this, Home.class));
         //}
 
+
         // Click listener for the Login button
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 // On Click, run validate function*
-                validate(Email.getText().toString(), Password.getText().toString());
+                validate(userName.getText().toString(), passWord.getText().toString());
             }
         });
 /*
@@ -76,6 +73,41 @@ public class Login extends AppCompatActivity {
             }
         });
     }
+
+    private void setupUIViews() {
+        userName = (EditText)findViewById(R.id.etUsername);
+        userName.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                if (!hasFocus) {
+                    hideKeyboard(v);
+                }
+            }
+        });
+
+        passWord = (EditText)findViewById(R.id.etPassword);
+        passWord.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                if (!hasFocus) {
+                    hideKeyboard(v);
+                }
+            }
+        });
+
+        loginButton = (Button)findViewById(R.id.btnLogin);
+        forgotPassword = (Button) findViewById(R.id.btnForgotPassword);
+
+        loginHeader = (TextView)findViewById(R.id.tvLogInHeader);
+        usernameInfo = (TextView)findViewById(R.id.tvUsernameInfo);
+    }
+
+
+    public void hideKeyboard(View view) {
+        InputMethodManager inputMethodManager =(InputMethodManager)getSystemService(Activity.INPUT_METHOD_SERVICE);
+        inputMethodManager.hideSoftInputFromWindow(view.getWindowToken(), 0);
+    }
+
 
 
     // *Validate function
