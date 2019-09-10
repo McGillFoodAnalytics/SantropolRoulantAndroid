@@ -32,7 +32,7 @@ public class Login extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login); // Designates which layout XML to be used for this page
-        setupUIViews();
+        setupUIViews();                          // Sets up UI using function
 
 
 
@@ -47,29 +47,20 @@ public class Login extends AppCompatActivity {
         //}
 
 
+
         // Click listener for the Login button
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                // On Click, run validate function*
+                // On Click, run validate function
                 validate(userName.getText().toString(), passWord.getText().toString());
             }
         });
-/*
-        // userRegistration click listener
-        userRegistration.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                // Go from this activity "MainActivity" to "CreateAccount" activity
-                startActivity(new Intent(Login.this, CreateAccount.class));
-            }
-        });
-*/
+
         forgotPassword.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                // Go from this activity "MainActivity" to "PasswordActivity" activity
-                startActivity(new Intent(Login.this, PasswordActivity.class));
+                startActivity(new Intent(Login.this, PasswordActivity.class));         // On click, go to PasswordActivity
             }
         });
     }
