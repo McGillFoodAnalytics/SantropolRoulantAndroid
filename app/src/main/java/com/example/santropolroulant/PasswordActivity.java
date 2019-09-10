@@ -3,10 +3,13 @@ package com.example.santropolroulant;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
+import android.widget.TextView;
 import android.widget.EditText;
 import android.widget.Toast;
 
@@ -14,8 +17,11 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 
+import org.w3c.dom.Text;
+
 public class PasswordActivity extends AppCompatActivity {
 
+    private TextView forgotPassword, resetInstructions;
     private EditText passwordEmail;
     private Button resetPassword;
     private FirebaseAuth firebaseAuth;
@@ -25,8 +31,6 @@ public class PasswordActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_password);
 
-        passwordEmail = (EditText)findViewById(R.id.etPasswordEmail);
-        resetPassword = (Button)findViewById(R.id.btnPasswordReset);
         firebaseAuth = FirebaseAuth.getInstance();
 
         // Button listener
@@ -58,4 +62,32 @@ public class PasswordActivity extends AppCompatActivity {
         });
 
     }
+
+
+    private void setupUIViews() {
+
+        forgotPassword = (TextView)findViewById(R.id.tvForgotPassword);
+        resetInstructions = (TextView)findViewById(R.id.tvResetInstructions);
+
+        passwordEmail = (EditText)findViewById(R.id.etPasswordEmail);
+        passwordEmail.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                if (!hasFocus) {
+                    hideKeyboard(v);
+                }
+            }
+        });
+
+        resetPassword = (Button)findViewById(R.id.btnPasswordReset);
+
+
+    }
+
+    public void hideKeyboard(View view) {
+        InputMethodManager inputMethodManager =(InputMethodManager)getSystemService(Activity.INPUT_METHOD_SERVICE);
+        inputMethodManager.hideSoftInputFromWindow(view.getWindowToken(), 0);
+    }
+
+
 }
