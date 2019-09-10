@@ -30,7 +30,7 @@ public class Login extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_login); //Designates which layout XML to be used for this page
+        setContentView(R.layout.activity_login); // Designates which layout XML to be used for this page
 
         // Setting up UI
         Email = (EditText)findViewById(R.id.etEmail);
