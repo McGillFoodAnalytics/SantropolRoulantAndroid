@@ -99,7 +99,15 @@ public class CreateAccount extends AppCompatActivity {
                 testBtn.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        startActivity(new Intent(CreateAccount.this, MainActivity.class));
+                        Intent intent = new Intent(CreateAccount.this, MainActivity.class);
+                        intent.putExtra("FIRST_NAME", first_name);
+                        startActivity(intent);
+
+                        /*
+                        Bundle extras = intent.getExtras();
+                        if(extras != null)
+                            String data = extras.getString("keyName"); // retrieve the data using keyName
+                        */
                     }
                 });
             }
