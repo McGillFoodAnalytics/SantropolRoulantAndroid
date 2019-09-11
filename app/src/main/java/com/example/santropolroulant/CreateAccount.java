@@ -36,8 +36,7 @@ public class CreateAccount extends AppCompatActivity {
     private static final String TAG = "CreateAccount";
 
     private EditText userFirstName,userLastName, userPhoneNumber, userPassword, userEmail;
-    private Button regButton;
-    private Button loginRedirectButton;
+    private Button next_1, regButton, testBtn;
     private TextView userLogin, userBirthDate;
     private FirebaseAuth firebaseAuth;
     private View progressOverlay;
@@ -50,13 +49,18 @@ public class CreateAccount extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_account);
+
         progressOverlay = (View) findViewById(R.id.progress_overlay);
-        createAccount = (View) findViewById(R.id.create_account);
         progressOverlay.setVisibility(View.INVISIBLE);
+
+        createAccount = (View) findViewById(R.id.create_account);
         setupUIViews(); // function way to set up UI elements
+
         firebaseAuth = FirebaseAuth.getInstance();
 
-        regButton.setOnClickListener(new View.OnClickListener() {
+
+
+       /* regButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 if(validate()){ // validate function as condition
@@ -85,13 +89,21 @@ public class CreateAccount extends AppCompatActivity {
                     });
                 }
             }
-        });
-        /*loginRedirectButton.setOnClickListener(new View.OnClickListener() {
+        });*/
+
+        next_1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(CreateAccount.this, MainActivity.class));
+                setContentView(R.layout.activity_username);
+                testBtn = (Button) findViewById(R.id.go_to_login);
+                testBtn.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        startActivity(new Intent(CreateAccount.this, MainActivity.class));
+                    }
+                });
             }
-        });*/
+        });
 
         userLogin.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -99,6 +111,7 @@ public class CreateAccount extends AppCompatActivity {
                 startActivity(new Intent(CreateAccount.this, MainActivity.class));
             }
         });
+
     }
     /*private void setupUIViewsSuccess(){
         loginRedirectButton = (Button)findViewById(R.id.go_to_login);
@@ -108,6 +121,9 @@ public class CreateAccount extends AppCompatActivity {
         username.setText(key); //set text for text view
     }*/
     private void setupUIViews() {
+
+        next_1 = (Button) findViewById(R.id.btn_next_about_you);
+
         userFirstName = (EditText) findViewById(R.id.etUserF_Name);
         userFirstName.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
@@ -126,7 +142,7 @@ public class CreateAccount extends AppCompatActivity {
                 }
             }
         });
-        userPassword = (EditText) findViewById(R.id.etUserPassword);
+        /*userPassword = (EditText) findViewById(R.id.etUserPassword);
         userPassword.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
             public void onFocusChange(View v, boolean hasFocus) {
@@ -153,6 +169,7 @@ public class CreateAccount extends AppCompatActivity {
                 }
             }
         });
+        */
         /*userBirthDate = (EditText)findViewById(R.id.etUserBirthDate);
         userBirthDate.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
@@ -162,7 +179,7 @@ public class CreateAccount extends AppCompatActivity {
                 }
             }
         });*/
-        regButton = (Button) findViewById(R.id.btnRegister);
+        //regButton = (Button) findViewById(R.id.btnRegister);
 
         userLogin = (TextView) findViewById(R.id.tvUserLogin);
 
@@ -247,10 +264,10 @@ public class CreateAccount extends AppCompatActivity {
         myRef.child("user").child(key).child("first_name").setValue(first_name);
         myRef.child("user").child(key).child("last_name").setValue(last_name);
         myRef.child("user").child(key).child("birth_date").setValue(birth_date);
-        myRef.child("user").child(key).child("phone_number").setValue(phone_number);
-        myRef.child("user").child(key).child("email").setValue(email);
-        myRef.child("user").child(key).child("signup_date").setValue(formattedDate);
-        myRef.child("user").child(key).child("key").setValue(firebaseAuth.getUid()); //this is the firebase's UID for the users
+       //myRef.child("user").child(key).child("phone_number").setValue(phone_number);
+        //myRef.child("user").child(key).child("email").setValue(email);
+        //myRef.child("user").child(key).child("signup_date").setValue(formattedDate);
+        //myRef.child("user").child(key).child("key").setValue(firebaseAuth.getUid()); //this is the firebase's UID for the users
 
 
         Log.d("sendingUserData",first_name + " " + last_name);
