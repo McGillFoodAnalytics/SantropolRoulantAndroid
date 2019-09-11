@@ -6,4 +6,6 @@
     <string name="welcome_to">Welcome to</string>
     <string name="santropol_logo">Santropol Logo</string>
     <string name="log_in">Log in</string>
+    <string name="first_name">First Name</string>
+    <string name="last_name">Last Name</string>
 </resources>
