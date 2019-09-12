@@ -99,22 +99,11 @@ public class CreateAccount extends AppCompatActivity {
         next_1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                setContentView(R.layout.activity_username);
-                testBtn = (Button) findViewById(R.id.go_to_login);
-                testBtn.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        Intent intent = new Intent(CreateAccount.this, MainActivity.class);
-                        intent.putExtra("FIRST_NAME", first_name);
-                        startActivity(intent);
-
-                        /*
-                        Bundle extras = intent.getExtras();
-                        if(extras != null)
-                            String data = extras.getString("keyName"); // retrieve the data using keyName
-                        */
-                    }
-                });
+                Intent intent = new Intent(CreateAccount.this, MainActivity.class);
+                intent.putExtra("FIRST_NAME", first_name);
+                intent.putExtra("LAST_NAME", last_name);
+                intent.putExtra("BIRTH_DATE", birth_date);
+                startActivity(intent);
             }
         });
 
