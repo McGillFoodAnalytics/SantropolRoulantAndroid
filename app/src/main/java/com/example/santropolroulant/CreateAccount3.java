@@ -11,9 +11,12 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
@@ -55,6 +58,42 @@ public class CreateAccount3 extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(CreateAccount3.this, activity_username.class ));
+            }
+        });
+
+        regButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(validate()){ // validate function as condition
+                    createAccount.setClickable(false);
+                    setVisible();
+                    firebaseAuth.createUserWithEmailAndPassword(email,password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                        @Override
+                        public void onComplete(@NonNull Task<AuthResult> task) {
+
+                            if(task.isSuccessful()){
+                                // if successful then enter user data into firebase
+                                Task[] tasks = sendUserData();
+                                if (tasks[0].isSuccessful() && tasks[1].isSuccessful() && tasks[2].isSuccessful() && tasks[3].isSuccessful() &&tasks[4].isSuccessful() && tasks[5].isSuccessful() && tasks[6].isSuccessful()){
+                                    Toast.makeText(CreateAccount.this, "Registration Successful!", Toast.LENGTH_SHORT).show();
+                                }
+                                else{
+                                    Toast.makeText(CreateAccount.this, "Oops a monkey quit!", Toast.LENGTH_SHORT).show();
+                                }
+                                setInvisible();
+                                createAccount.setClickable(true);
+                                startActivity(new Intent(CreateAccount.this, MainActivity.class));
+
+                            }else{
+                                String s = task.getException().getMessage();
+                                setInvisible();
+                                createAccount.setClickable(true);
+                                Toast.makeText(CreateAccount.this, s, Toast.LENGTH_SHORT).show();
+                            }
+
+                        }
+                    });
+                }
             }
         });
 
