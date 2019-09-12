@@ -31,7 +31,7 @@ import java.util.Date;
 //Phone, email, password, password
 public class CreateAccount3 extends AppCompatActivity {
 
-    private Button testBtn;
+    private Button next_3;
     String first_name, last_name, birth_date, address, city, postal_code, email, password, confPassword, phone_number;
     private EditText userEmail, userPassword, userConfPassword, userPhoneNumber;
     private FirebaseAuth firebaseAuth;
