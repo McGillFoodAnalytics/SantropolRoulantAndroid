@@ -31,7 +31,7 @@ import java.util.Date;
 //Phone, email, password, password
 public class CreateAccount3 extends AppCompatActivity {
 
-    private Button next_3;
+    private Button regButton;
     String first_name, last_name, birth_date, address, city, postal_code, email, password, confPassword, phone_number;
     private EditText userEmail, userPassword, userConfPassword, userPhoneNumber;
     private FirebaseAuth firebaseAuth;
@@ -40,7 +40,7 @@ public class CreateAccount3 extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_username);
+        setContentView(R.layout.activity_create_account_3);
         setupUIViews(); // function way to set up UI elements
         firebaseAuth = FirebaseAuth.getInstance();
 
@@ -54,19 +54,13 @@ public class CreateAccount3 extends AppCompatActivity {
             postal_code = extras.getString("POSTAL_CODE");
         }
 
-        next_3.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(CreateAccount3.this, activity_username.class ));
-            }
-        });
 
         regButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 if(validate()){ // validate function as condition
-                    createAccount.setClickable(false);
-                    setVisible();
+                    //createAccount.setClickable(false);
+                    //setVisible();
                     firebaseAuth.createUserWithEmailAndPassword(email,password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                         @Override
                         public void onComplete(@NonNull Task<AuthResult> task) {
@@ -75,20 +69,20 @@ public class CreateAccount3 extends AppCompatActivity {
                                 // if successful then enter user data into firebase
                                 Task[] tasks = sendUserData();
                                 if (tasks[0].isSuccessful() && tasks[1].isSuccessful() && tasks[2].isSuccessful() && tasks[3].isSuccessful() &&tasks[4].isSuccessful() && tasks[5].isSuccessful() && tasks[6].isSuccessful()){
-                                    Toast.makeText(CreateAccount.this, "Registration Successful!", Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(CreateAccount3.this, "Registration Successful!", Toast.LENGTH_SHORT).show();
                                 }
                                 else{
-                                    Toast.makeText(CreateAccount.this, "Oops a monkey quit!", Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(CreateAccount3.this, "Oops a monkey quit!", Toast.LENGTH_SHORT).show();
                                 }
-                                setInvisible();
-                                createAccount.setClickable(true);
-                                startActivity(new Intent(CreateAccount.this, MainActivity.class));
+                                //setInvisible();
+                               // createAccount.setClickable(true);
+                                startActivity(new Intent(CreateAccount3.this, MainActivity.class));
 
                             }else{
                                 String s = task.getException().getMessage();
-                                setInvisible();
-                                createAccount.setClickable(true);
-                                Toast.makeText(CreateAccount.this, s, Toast.LENGTH_SHORT).show();
+                                //setInvisible();
+                                //createAccount.setClickable(true);
+                                Toast.makeText(CreateAccount3.this, s, Toast.LENGTH_SHORT).show();
                             }
 
                         }
@@ -101,9 +95,9 @@ public class CreateAccount3 extends AppCompatActivity {
     }
 
     private void setupUIViews() {
-        next_3 = (Button) findViewById(R.id.register);
+        regButton = (Button) findViewById(R.id.register);
 
-        userEmail = (EditText) findViewById(R.id.etUser_Email;
+        userEmail = (EditText) findViewById(R.id.etUser_Email);
         userEmail.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
             public void onFocusChange(View v, boolean hasFocus) {
@@ -205,7 +199,7 @@ public class CreateAccount3 extends AppCompatActivity {
 
         return tasks;
     }
-
+/*
     public void setInvisible() {
         progressOverlay.setVisibility(View.INVISIBLE);
 
@@ -213,6 +207,6 @@ public class CreateAccount3 extends AppCompatActivity {
     public void setVisible() {
         progressOverlay.setVisibility(View.VISIBLE);
         createAccount.setClickable(false);
-    }
+    } */
 
 }

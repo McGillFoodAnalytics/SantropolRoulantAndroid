@@ -25,7 +25,7 @@ public class CreateAccount2 extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_username);
+        setContentView(R.layout.activity_create_account_2);
         setupUIViews(); // function way to set up UI elements
 
         Bundle extras = getIntent().getExtras();
@@ -38,14 +38,16 @@ public class CreateAccount2 extends AppCompatActivity {
         next_2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(CreateAccount2.this, CreateAccount3.class);
-                intent.putExtra("FIRST_NAME", first_name);
-                intent.putExtra("LAST_NAME", last_name);
-                intent.putExtra("BIRTH_DATE", birth_date);
-                intent.putExtra("ADDRESS", address);
-                intent.putExtra("CITY", city);
-                intent.putExtra("POSTAL_CODE", postal_code);
-                startActivity(intent);
+                if(validate()) {
+                    Intent intent = new Intent(CreateAccount2.this, CreateAccount3.class);
+                    intent.putExtra("FIRST_NAME", first_name);
+                    intent.putExtra("LAST_NAME", last_name);
+                    intent.putExtra("BIRTH_DATE", birth_date);
+                    intent.putExtra("ADDRESS", address);
+                    intent.putExtra("CITY", city);
+                    intent.putExtra("POSTAL_CODE", postal_code);
+                    startActivity(intent);
+                }
             }
         });
 
@@ -106,7 +108,7 @@ public class CreateAccount2 extends AppCompatActivity {
         inputMethodManager.hideSoftInputFromWindow(view.getWindowToken(), 0);
     }
 
-    public void setInvisible() {
+    /*public void setInvisible() {
         progressOverlay.setVisibility(View.INVISIBLE);
 
     }
@@ -114,5 +116,5 @@ public class CreateAccount2 extends AppCompatActivity {
         progressOverlay.setVisibility(View.VISIBLE);
         createAccount.setClickable(false);
     }
-
+*/
 }

@@ -29,9 +29,13 @@
             android:screenOrientation="portrait" />
         <activity android:name=".PasswordActivity"
             android:screenOrientation="portrait" />
-        <activity android:name=".CreateAccount"
+        <activity android:name=".CreateAccount2"
             android:screenOrientation="portrait" />
         <activity android:name=".UserSchedule"
+            android:screenOrientation="portrait" />
+        <activity android:name=".CreateAccount3"
+            android:screenOrientation="portrait" />
+        <activity android:name=".CreateAccount"
             android:screenOrientation="portrait" />
         <activity android:name=".Login"
             android:screenOrientation="portrait" />

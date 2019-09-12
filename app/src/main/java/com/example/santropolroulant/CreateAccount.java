@@ -62,7 +62,7 @@ public class CreateAccount extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 if(validate()) {
-                    Intent intent = new Intent(CreateAccount.this, MainActivity.class);
+                    Intent intent = new Intent(CreateAccount.this, CreateAccount2.class);
                     intent.putExtra("FIRST_NAME", first_name);
                     intent.putExtra("LAST_NAME", last_name);
                     intent.putExtra("BIRTH_DATE", birth_date);
