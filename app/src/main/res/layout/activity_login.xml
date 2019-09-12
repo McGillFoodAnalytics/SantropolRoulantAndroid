@@ -137,9 +137,10 @@
         android:textColor="#ffffff"
         android:textSize="15dp"
         app:layout_constraintBottom_toTopOf="@+id/btnLogin"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/etPassword"
-        app:layout_constraintVertical_bias="0.323"
-        tools:layout_editor_absoluteX="74dp" />
+        app:layout_constraintVertical_bias="0.323" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
