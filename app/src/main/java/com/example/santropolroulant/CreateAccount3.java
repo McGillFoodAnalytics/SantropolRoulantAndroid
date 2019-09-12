@@ -101,7 +101,7 @@ public class CreateAccount3 extends AppCompatActivity {
     }
 
     private void setupUIViews() {
-        next_3 = (Button) findViewById(R.id.go_to_login);
+        next_3 = (Button) findViewById(R.id.register);
 
         userEmail = (EditText) findViewById(R.id.etUser_Email;
         userEmail.setOnFocusChangeListener(new View.OnFocusChangeListener() {

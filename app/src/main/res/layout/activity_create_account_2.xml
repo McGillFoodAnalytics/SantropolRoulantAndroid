@@ -49,7 +49,7 @@
         app:layout_constraintTop_toBottomOf="@+id/etUser_City" />
 
     <Button
-        android:id="@+id/next_2"
+        android:id="@+id/etNext_2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
