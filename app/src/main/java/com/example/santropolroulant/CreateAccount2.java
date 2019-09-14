@@ -92,6 +92,7 @@ public class CreateAccount2 extends AppCompatActivity {
 
         city = userCity.getText().toString().trim();
         address = userAddress.getText().toString().trim();
+        address.replaceAll("\\s+","");
         postal_code = userPostalCode.getText().toString().trim();
 
         if(city.isEmpty() || address.isEmpty() || postal_code.isEmpty()){

@@ -79,13 +79,7 @@ public class CreateAccount extends AppCompatActivity {
         });
 
     }
-    /*private void setupUIViewsSuccess(){
-        loginRedirectButton = (Button)findViewById(R.id.go_to_login);
-        String first_two_letters = last_name.substring(0,2).toLowerCase();
-        String key = first_two_letters+phone_number;
-        username = (TextView) findViewById(R.id.username_view);
-        username.setText(key); //set text for text view
-    }*/
+
     private void setupUIViews() {
 
         next_1 = (Button) findViewById(R.id.btn_next_about_you);
@@ -156,7 +150,12 @@ public class CreateAccount extends AppCompatActivity {
 
         first_name = userFirstName.getText().toString().trim();
         last_name = userLastName.getText().toString().trim();
-        birth_date = userBirthDate.getText().toString().trim();
+
+        String[] birthDateRaw = userBirthDate.getText().toString().trim().split("/");
+
+        int monthRaw = Integer.parseInt(birthDateRaw[0]);
+        int dayRaw = Integer.parseInt(birthDateRaw[1]);
+        birth_date = birthDateRaw[2].trim() + String.format("%02d", monthRaw) + String.format("%02d", dayRaw);
 
         if(first_name.isEmpty() || last_name.isEmpty() || birth_date.isEmpty()){
             Toast.makeText(this, "Please enter all the details", Toast.LENGTH_SHORT).show();
