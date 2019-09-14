@@ -24,7 +24,7 @@ public class Login extends AppCompatActivity {
     private EditText userName, passWord;
     private Button loginButton, forgotPassword;
     private TextView loginHeader, usernameInfo;
-
+    String userEmail, userPassword;
     private FirebaseAuth firebaseAuth;
 
 
@@ -37,7 +37,7 @@ public class Login extends AppCompatActivity {
 
 
         // Getting current app user from Firebase
-        //firebaseAuth = FirebaseAuth.getInstance();
+        firebaseAuth = FirebaseAuth.getInstance();
       //  FirebaseUser user = firebaseAuth.getCurrentUser();
         // Auto login for signed in user - Commented out below
 
@@ -53,7 +53,7 @@ public class Login extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 // On Click, run validate function
-                validate(userName.getText().toString(), passWord.getText().toString());
+                validate(userName.getText().toString().trim(), passWord.getText().toString().trim());
             }
         });
 
@@ -103,7 +103,6 @@ public class Login extends AppCompatActivity {
 
     // *Validate function
     private void validate(String userEmail, String userPassword){
-
         // Firebase Authentication instance + built in function to sign in with Email and Password
         firebaseAuth.signInWithEmailAndPassword(userEmail, userPassword).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
             @Override

@@ -58,7 +58,7 @@ public class CreateAccount3 extends AppCompatActivity {
         regButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Log.d("start", "fuck")
+                Log.d("start", "fuck");
                 if(validate()){ // validate function as condition
                     //createAccount.setClickable(false);
                     //setVisible();
@@ -203,7 +203,7 @@ public class CreateAccount3 extends AppCompatActivity {
         Log.d("sendingUserData",first_name + "before " + last_name);
 
         tasks[0] = myRef.child("user").child(key).child("first_name").setValue(first_name);
-        Log.d("sendingUserData0", String.valueOf(tasks[0].isSuccessful()));
+        Log.d("sendingUserData0", String.valueOf(tasks[0].getResult()));
 
         tasks[1] = myRef.child("user").child(key).child("last_name").setValue(last_name);
         Log.d("sendingUserData1", String.valueOf(tasks[1].isSuccessful()));
