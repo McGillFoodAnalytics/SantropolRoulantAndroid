@@ -20,7 +20,6 @@ public class CreateAccount2 extends AppCompatActivity {
     private Button next_2;
     String first_name, last_name, birth_date, address, city, postal_code;
     private EditText userAddress, userCity, userPostalCode;
-    private View progressOverlay;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

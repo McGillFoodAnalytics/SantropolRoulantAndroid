@@ -36,11 +36,19 @@ public class CreateAccount3 extends AppCompatActivity {
     private EditText userEmail, userPassword, userConfPassword, userPhoneNumber;
     private FirebaseAuth firebaseAuth;
     private View progressOverlay;
+    private View createAccount;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_account_3);
+        createAccount = (View) findViewById(R.id.create_account_3);
+
+
+        progressOverlay = (View) findViewById(R.id.progress_overlay);
+        progressOverlay.setVisibility(View.INVISIBLE);
+
         setupUIViews(); // function way to set up UI elements
         firebaseAuth = FirebaseAuth.getInstance();
 
@@ -60,8 +68,8 @@ public class CreateAccount3 extends AppCompatActivity {
             public void onClick(View view) {
                 Log.d("start", "fuck");
                 if(validate()){ // validate function as condition
-                    //createAccount.setClickable(false);
-                    //setVisible();
+                    createAccount.setClickable(false);
+                    setVisible();
                     Log.d("wtv", "onDateSet: mm/dd/yyy: ");
                     firebaseAuth.createUserWithEmailAndPassword(email,password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
 
@@ -69,37 +77,31 @@ public class CreateAccount3 extends AppCompatActivity {
                         @Override
                         public void onComplete(@NonNull Task<AuthResult> task) {
                            Log.d("wtv", "FUCK");
-    /*
-                            Log.d("sendingUserData",first_name + "before3 " + last_name);
 
-                            FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
-                            Log.d("sendingUserData",first_name + "before2 " + last_name);
-
-                            DatabaseReference myRef = firebaseDatabase.getReference();
-                            Log.d("myRed", myRef.toString() + " " + myRef.getKey());
-                            Log.d("sendingUserData",first_name + "before " + last_name);
-
-                            myRef.child("user").child(key).child("first_name").setValue(first_name);
-                            Log.d("sendingUserData0", String.valueOf(tasks[0].isSuccessful()));
-*/
                             if(task.isSuccessful()){
                                 // if successful then enter user data into firebase
                                 Task[] tasks = sendUserData();
                                 if (tasks[0].isSuccessful() && tasks[1].isSuccessful() && tasks[2].isSuccessful() && tasks[3].isSuccessful() &&tasks[4].isSuccessful() && tasks[5].isSuccessful() && tasks[6].isSuccessful() && tasks[7].isSuccessful() && tasks[8].isSuccessful()){
                                     Toast.makeText(CreateAccount3.this, "Registration Successful!", Toast.LENGTH_SHORT).show();
+                                    setInvisible();
+                                    createAccount.setClickable(true);
+                                    startActivity(new Intent(CreateAccount3.this, Login.class));
                                 }
                                 else{
                                     Toast.makeText(CreateAccount3.this, "Oops a monkey quit!", Toast.LENGTH_SHORT).show();
+                                    startActivity(new Intent(CreateAccount3.this, CreateAccount.class));
+                                    setInvisible();
+                                    createAccount.setClickable(true);
+                                    startActivity(new Intent(CreateAccount3.this, CreateAccount.class));
                                 }
-                                //setInvisible();
-                               // createAccount.setClickable(true);
-                                startActivity(new Intent(CreateAccount3.this, MainActivity.class));
 
                             }else{
                                 String s = task.getException().getMessage();
-                                //setInvisible();
-                                //createAccount.setClickable(true);
                                 Toast.makeText(CreateAccount3.this, s, Toast.LENGTH_SHORT).show();
+                                setInvisible();
+                                createAccount.setClickable(true);
+                                startActivity(new Intent(CreateAccount3.this, MainActivity.class));
+
                             }
 
                         }
@@ -218,7 +220,7 @@ public class CreateAccount3 extends AppCompatActivity {
         //Log.d("sendingUserData4", String.valueOf(tasks[4].isSuccessful()));
 
         tasks[5] = myRef.child("user").child(key).child("signup_date").setValue(formattedDate);
-       // Log.d("sendingUserData5", String.valueOf(tasks[5].isSuccessful()));
+        //Log.d("sendingUserData5", String.valueOf(tasks[5].isSuccessful()));
 
         tasks[6] = myRef.child("user").child(key).child("address_city").setValue(city);
         //Log.d("sendingUserData6", String.valueOf(tasks[6].isSuccessful()));
@@ -234,7 +236,7 @@ public class CreateAccount3 extends AppCompatActivity {
 
         return tasks;
     }
-/*
+
     public void setInvisible() {
         progressOverlay.setVisibility(View.INVISIBLE);
 
@@ -242,6 +244,6 @@ public class CreateAccount3 extends AppCompatActivity {
     public void setVisible() {
         progressOverlay.setVisibility(View.VISIBLE);
         createAccount.setClickable(false);
-    } */
+    }
 
 }

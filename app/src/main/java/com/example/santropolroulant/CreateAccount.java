@@ -35,25 +35,17 @@ public class CreateAccount extends AppCompatActivity {
 
     private static final String TAG = "CreateAccount";
 
-    private EditText userFirstName,userLastName, userPhoneNumber, userPassword, userEmail;
-    private Button next_1, regButton, testBtn;
+    private EditText userFirstName,userLastName;
+    private Button next_1;
     private TextView userLogin, userBirthDate;
 
-    private View progressOverlay;
-    private TextView username;
-    private View createAccount;
-    String first_name, last_name, phone_number , email, password, birth_date;
+    String first_name, last_name, birth_date;
     private DatePickerDialog.OnDateSetListener mDateSetListener;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_account);
-
-        progressOverlay = (View) findViewById(R.id.progress_overlay);
-        progressOverlay.setVisibility(View.INVISIBLE);
-
-        createAccount = (View) findViewById(R.id.create_account);
 
         setupUIViews(); // function way to set up UI elements
 
