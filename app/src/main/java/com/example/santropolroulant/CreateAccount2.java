@@ -94,9 +94,16 @@ public class CreateAccount2 extends AppCompatActivity {
         address = userAddress.getText().toString().trim();
         postal_code = userPostalCode.getText().toString().trim();
         postal_code.replaceAll("\\s+","");
+
         String arr[] = address.split(" ", 2);
-        address_number = arr[0];
-        address_street = arr[1];
+        if(arr.length > 1) {
+            address_number = arr[0];
+            address_street = arr[1];
+        }
+        else {
+            address = "";
+        }
+
         if(city.isEmpty() || address.isEmpty() || postal_code.isEmpty() || !isInteger(address_number)){
             Toast.makeText(this, "Please enter all the details", Toast.LENGTH_SHORT).show();
 
