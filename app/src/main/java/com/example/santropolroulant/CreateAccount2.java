@@ -109,13 +109,4 @@ public class CreateAccount2 extends AppCompatActivity {
         inputMethodManager.hideSoftInputFromWindow(view.getWindowToken(), 0);
     }
 
-    /*public void setInvisible() {
-        progressOverlay.setVisibility(View.INVISIBLE);
-
-    }
-    public void setVisible() {
-        progressOverlay.setVisibility(View.VISIBLE);
-        createAccount.setClickable(false);
-    }
-*/
 }

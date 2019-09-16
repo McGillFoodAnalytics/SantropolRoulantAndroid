@@ -183,7 +183,7 @@ public class CreateAccount3 extends AppCompatActivity {
         String first_two_letters = last_name.substring(0,2).toLowerCase();
         String key = first_two_letters+phone_number;
         Log.d("sendingUserData",first_name + "start " + last_name);
-        key = "mc5144491200";
+        //key = "mc5144491200";
         //Record date of signup
         Date c = Calendar.getInstance().getTime();
         SimpleDateFormat df = new SimpleDateFormat("yy/MM/dd");
@@ -203,40 +203,31 @@ public class CreateAccount3 extends AppCompatActivity {
         Log.d("sendingUserData",first_name + "before " + last_name);
 
         tasks[0] = myRef.child("user").child(key).child("first_name").setValue(first_name);
-        Log.d("sendingUserData0", String.valueOf(tasks[0].getResult()));
+        //Log.d("sendingUserData0", String.valueOf(tasks[0].getResult()));
 
         tasks[1] = myRef.child("user").child(key).child("last_name").setValue(last_name);
-        Log.d("sendingUserData1", String.valueOf(tasks[1].isSuccessful()));
+        //Log.d("sendingUserData1", String.valueOf(tasks[1].isSuccessful()));
 
         tasks[2] = myRef.child("user").child(key).child("dob").setValue(birth_date);
-        Log.d("sendingUserData2", String.valueOf(tasks[2].isSuccessful()));
+        //Log.d("sendingUserData2", String.valueOf(tasks[2].isSuccessful()));
 
         tasks[3] = myRef.child("user").child(key).child("phone_number").setValue(phone_number);
-        Log.d("sendingUserData3", String.valueOf(tasks[3].isSuccessful()));
+        //Log.d("sendingUserData3", String.valueOf(tasks[3].isSuccessful()));
 
         tasks[4] = myRef.child("user").child(key).child("email").setValue(email);
-        Log.d("sendingUserData4", String.valueOf(tasks[4].isSuccessful()));
+        //Log.d("sendingUserData4", String.valueOf(tasks[4].isSuccessful()));
 
         tasks[5] = myRef.child("user").child(key).child("signup_date").setValue(formattedDate);
-        Log.d("sendingUserData5", String.valueOf(tasks[5].isSuccessful()));
+       // Log.d("sendingUserData5", String.valueOf(tasks[5].isSuccessful()));
 
         tasks[6] = myRef.child("user").child(key).child("address_city").setValue(city);
-        Log.d("sendingUserData6", String.valueOf(tasks[6].isSuccessful()));
+        //Log.d("sendingUserData6", String.valueOf(tasks[6].isSuccessful()));
 
         tasks[7] = myRef.child("user").child(key).child("address_postal_code").setValue(postal_code);
-        Log.d("sendingUserData7", String.valueOf(tasks[7].isSuccessful()));
+        //Log.d("sendingUserData7", String.valueOf(tasks[7].isSuccessful()));
 
         tasks[8] = myRef.child("user").child(key).child("key").setValue(firebaseAuth.getUid()); //this is the firebase's UID for the users
-        Log.d("sendingUserData8", String.valueOf(tasks[8].isSuccessful()));
-
-        //myRef.child("user").child(key).child("first_name").setValue(first_name);
-        //myRef.child("user").child(key).child("last_name").setValue(last_name);
-        //myRef.child("user").child(key).child("birth_date").setValue(birth_date);
-        //myRef.child("user").child(key).child("phone_number").setValue(phone_number);
-        //myRef.child("user").child(key).child("email").setValue(email);
-        //myRef.child("user").child(key).child("signup_date").setValue(formattedDate);
-        //myRef.child("user").child(key).child("key").setValue(firebaseAuth.getUid()); //this is the firebase's UID for the users
-
+        //Log.d("sendingUserData8", String.valueOf(tasks[8].isSuccessful()));
 
         Log.d("sendingUserData",first_name + " " + last_name);
 
