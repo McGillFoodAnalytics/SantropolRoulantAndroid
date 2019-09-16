@@ -32,7 +32,7 @@ import java.util.Date;
 public class CreateAccount3 extends AppCompatActivity {
 
     private Button regButton;
-    String first_name, last_name, birth_date, address, city, postal_code, email, password, confPassword, phone_number;
+    String first_name, last_name, birth_date, address_street, address_number, city, postal_code, email, password, confPassword, phone_number;
     private EditText userEmail, userPassword, userConfPassword, userPhoneNumber;
     private FirebaseAuth firebaseAuth;
     private View progressOverlay;
@@ -57,7 +57,8 @@ public class CreateAccount3 extends AppCompatActivity {
             first_name = extras.getString("FIRST_NAME"); // retrieve the data using keyName
             last_name = extras.getString("LAST_NAME");
             birth_date = extras.getString("BIRTH_DATE");
-            address = extras.getString("ADDRESS"); // retrieve the data using keyName
+            address_street = extras.getString("ADDRESS_STREET"); // retrieve the data using keyName
+            address_number = extras.getString("ADDRESS_NUMBER");
             city = extras.getString("CITY");
             postal_code = extras.getString("POSTAL_CODE");
         }
@@ -156,7 +157,6 @@ public class CreateAccount3 extends AppCompatActivity {
             }
         });
 
-
     }
 
     private Boolean validate(){
@@ -185,11 +185,13 @@ public class CreateAccount3 extends AppCompatActivity {
         String first_two_letters = last_name.substring(0,2).toLowerCase();
         String key = first_two_letters+phone_number;
         Log.d("sendingUserData",first_name + "start " + last_name);
-        //key = "mc5144491200";
+
         //Record date of signup
         Date c = Calendar.getInstance().getTime();
         SimpleDateFormat df = new SimpleDateFormat("yy/MM/dd");
         String formattedDate = df.format(c);
+
+        int address_number_int = Integer.parseInt(address_number);
 
         Task[] tasks = new Task[9];
         // Write Statement
@@ -225,6 +227,12 @@ public class CreateAccount3 extends AppCompatActivity {
         tasks[6] = myRef.child("user").child(key).child("address_city").setValue(city);
         //Log.d("sendingUserData6", String.valueOf(tasks[6].isSuccessful()));
 
+        tasks[6] = myRef.child("user").child(key).child("address_number").setValue(address_number_int);
+        //Log.d("sendingUserData6", String.valueOf(tasks[6].isSuccessful()));
+
+        tasks[6] = myRef.child("user").child(key).child("address_street").setValue(address_street);
+        //Log.d("sendingUserData6", String.valueOf(tasks[6].isSuccessful()));
+
         tasks[7] = myRef.child("user").child(key).child("address_postal_code").setValue(postal_code);
         //Log.d("sendingUserData7", String.valueOf(tasks[7].isSuccessful()));
 
@@ -245,5 +253,6 @@ public class CreateAccount3 extends AppCompatActivity {
         progressOverlay.setVisibility(View.VISIBLE);
         createAccount.setClickable(false);
     }
+
 
 }
