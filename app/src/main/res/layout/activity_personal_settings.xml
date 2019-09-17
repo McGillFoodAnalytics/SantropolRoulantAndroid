@@ -1,0 +1,238 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/linearLayout6"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/ps_background">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:layout_editor_absoluteX="96dp"
+        tools:layout_editor_absoluteY="-16dp">
+
+        <LinearLayout
+            android:id="@+id/prefgroups"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:divider="@drawable/ps_prefgroup_divider"
+            android:orientation="vertical"
+            android:padding="@dimen/ps_margin"
+            android:showDividers="middle"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="1.0">
+
+            <LinearLayout
+                android:id="@+id/prefgroup_personal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/prefgroup_personal_title"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/ps_prefgroup_height"
+                    android:background="@drawable/ps_shape_prefgroup"
+                    android:gravity="center"
+                    android:text="@string/ps_personal_title"
+                    android:textAlignment="gravity"
+                    android:textSize="@dimen/ps_prefgroup_font_size" />
+
+                <LinearLayout
+                    android:id="@+id/preferences_personal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:id="@+id/preferences_personal_firstname"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginTop="@dimen/ps_pref_topmargin"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/preftitle_personal_firstname"
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/ps_preftitle_height"
+                            android:src="@drawable/ps_shape_save"
+                            android:text="@string/ps_personal_firstname"
+                            android:textSize="@dimen/ps_preftitle_font_size" />
+
+                        <EditText
+                            android:id="@+id/prefinput_personal_firstname"
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/ps_prefinput_height"
+                            android:layout_marginTop="@dimen/ps_prefinput_topmargin"
+                            android:background="@drawable/ps_shape_prefinput"
+                            android:hint="@string/ps_personal_firstname" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/preference_personal_lastname"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginTop="@dimen/ps_pref_topmargin"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/preftitle_personal_lastname"
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/ps_preftitle_height"
+                            android:src="@drawable/ps_shape_save"
+                            android:text="@string/ps_personal_lastname"
+                            android:textSize="@dimen/ps_preftitle_font_size" />
+
+                        <EditText
+                            android:id="@+id/prefinput_personal_lastname"
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/ps_prefinput_height"
+                            android:layout_marginTop="@dimen/ps_prefinput_topmargin"
+                            android:background="@drawable/ps_shape_prefinput"
+                            android:hint="@string/ps_personal_lastname" />
+                    </LinearLayout>
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/prefgroup_birthday"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/prefgroup_birthday_title"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/ps_prefgroup_height"
+                    android:background="@drawable/ps_shape_prefgroup"
+                    android:gravity="center"
+                    android:text="@string/ps_birthday_title"
+                    android:textAlignment="gravity"
+                    android:textSize="@dimen/ps_prefgroup_font_size" />
+
+                <LinearLayout
+                    android:id="@+id/preferences_birthday"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:id="@+id/preference_birthday_dob"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginTop="@dimen/ps_pref_topmargin"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/preftitle_birthday_dob"
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/ps_preftitle_height"
+                            android:src="@drawable/ps_shape_save"
+                            android:text="@string/ps_birthday_dob"
+                            android:textSize="@dimen/ps_preftitle_font_size" />
+
+                        <EditText
+                            android:id="@+id/prefinput_birthday_dob"
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/ps_prefinput_height"
+                            android:layout_marginTop="@dimen/ps_prefinput_topmargin"
+                            android:background="@drawable/ps_shape_prefinput"
+                            android:inputType="date" />
+                    </LinearLayout>
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/prefgroup_contact"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/prefgroup_contact_title"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/ps_prefgroup_height"
+                    android:background="@drawable/ps_shape_prefgroup"
+                    android:gravity="center"
+                    android:text="@string/ps_contact_title"
+                    android:textAlignment="gravity"
+                    android:textSize="@dimen/ps_prefgroup_font_size" />
+
+                <LinearLayout
+                    android:id="@+id/preferences_contact"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:id="@+id/preference_contact_email"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginTop="@dimen/ps_pref_topmargin"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/preftitle_contact_email"
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/ps_preftitle_height"
+                            android:src="@drawable/ps_shape_save"
+                            android:text="@string/ps_contact_email"
+                            android:textSize="@dimen/ps_preftitle_font_size" />
+
+                        <EditText
+                            android:id="@+id/prefinput_contact_email"
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/ps_prefinput_height"
+                            android:layout_marginTop="@dimen/ps_prefinput_topmargin"
+                            android:background="@drawable/ps_shape_prefinput"
+                            android:hint="@string/ps_contact_email" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/preference_contact_phone"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginTop="@dimen/ps_pref_topmargin"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/preftitle_contact_phone"
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/ps_preftitle_height"
+                            android:src="@drawable/ps_shape_save"
+                            android:text="@string/ps_contact_phone"
+                            android:textSize="@dimen/ps_preftitle_font_size" />
+
+                        <EditText
+                            android:id="@+id/prefinput_contact_phone"
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/ps_prefinput_height"
+                            android:layout_marginTop="@dimen/ps_prefinput_topmargin"
+                            android:background="@drawable/ps_shape_prefinput"
+                            android:hint="@string/ps_contact_phone" />
+                    </LinearLayout>
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <Button
+                android:id="@+id/ps_save"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/ps_shape_save"
+                android:text="@string/ps_save_button"
+                android:textSize="@dimen/ps_save_font_size"
+                tools:layout_editor_absoluteX="30dp"
+                tools:layout_editor_absoluteY="722dp" />
+        </LinearLayout>
+
+
+    </ScrollView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

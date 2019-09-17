@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="rectangle" android:padding="10sp">
+    <solid android:color="@color/ps_pref_group"/>
+    <corners
+        android:bottomRightRadius="@dimen/ps_roundedbox_radius"
+        android:bottomLeftRadius="@dimen/ps_roundedbox_radius"
+        android:topLeftRadius="@dimen/ps_roundedbox_radius"
+        android:topRightRadius="@dimen/ps_roundedbox_radius"/>
+</shape>
