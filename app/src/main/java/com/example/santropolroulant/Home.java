@@ -55,7 +55,8 @@ public class Home extends AppCompatActivity {
         profileCard.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(Home.this, "Yet To Come", Toast.LENGTH_SHORT).show();
+                startActivity(new Intent(Home.this, PersonalSettings.class));
+                //Toast.makeText(Home.this, "Yet To Come", Toast.LENGTH_SHORT).show();
                 // startActivity(new Intent(Home.this, VolunteerOptions.class));
             }
         });

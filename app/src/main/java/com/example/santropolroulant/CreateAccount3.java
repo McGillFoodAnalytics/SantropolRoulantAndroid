@@ -36,11 +36,19 @@ public class CreateAccount3 extends AppCompatActivity {
     private EditText userEmail, userPassword, userConfPassword, userPhoneNumber;
     private FirebaseAuth firebaseAuth;
     private View progressOverlay;
+    private View createAccount;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_account_3);
+        createAccount = (View) findViewById(R.id.create_account_3);
+
+
+        progressOverlay = (View) findViewById(R.id.progress_overlay);
+        progressOverlay.setVisibility(View.INVISIBLE);
+
         setupUIViews(); // function way to set up UI elements
         firebaseAuth = FirebaseAuth.getInstance();
 
@@ -58,31 +66,42 @@ public class CreateAccount3 extends AppCompatActivity {
         regButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                Log.d("start", "fuck");
                 if(validate()){ // validate function as condition
-                    //createAccount.setClickable(false);
-                    //setVisible();
+                    createAccount.setClickable(false);
+                    setVisible();
+                    Log.d("wtv", "onDateSet: mm/dd/yyy: ");
                     firebaseAuth.createUserWithEmailAndPassword(email,password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+
+
                         @Override
                         public void onComplete(@NonNull Task<AuthResult> task) {
+                           Log.d("wtv", "FUCK");
 
                             if(task.isSuccessful()){
                                 // if successful then enter user data into firebase
                                 Task[] tasks = sendUserData();
-                                if (tasks[0].isSuccessful() && tasks[1].isSuccessful() && tasks[2].isSuccessful() && tasks[3].isSuccessful() &&tasks[4].isSuccessful() && tasks[5].isSuccessful() && tasks[6].isSuccessful()){
+                                if (tasks[0].isSuccessful() && tasks[1].isSuccessful() && tasks[2].isSuccessful() && tasks[3].isSuccessful() &&tasks[4].isSuccessful() && tasks[5].isSuccessful() && tasks[6].isSuccessful() && tasks[7].isSuccessful() && tasks[8].isSuccessful()){
                                     Toast.makeText(CreateAccount3.this, "Registration Successful!", Toast.LENGTH_SHORT).show();
+                                    setInvisible();
+                                    createAccount.setClickable(true);
+                                    startActivity(new Intent(CreateAccount3.this, Login.class));
                                 }
                                 else{
                                     Toast.makeText(CreateAccount3.this, "Oops a monkey quit!", Toast.LENGTH_SHORT).show();
+                                    startActivity(new Intent(CreateAccount3.this, CreateAccount.class));
+                                    setInvisible();
+                                    createAccount.setClickable(true);
+                                    startActivity(new Intent(CreateAccount3.this, CreateAccount.class));
                                 }
-                                //setInvisible();
-                               // createAccount.setClickable(true);
-                                startActivity(new Intent(CreateAccount3.this, MainActivity.class));
 
                             }else{
                                 String s = task.getException().getMessage();
-                                //setInvisible();
-                                //createAccount.setClickable(true);
                                 Toast.makeText(CreateAccount3.this, s, Toast.LENGTH_SHORT).show();
+                                setInvisible();
+                                createAccount.setClickable(true);
+                                startActivity(new Intent(CreateAccount3.this, MainActivity.class));
+
                             }
 
                         }
@@ -165,41 +184,59 @@ public class CreateAccount3 extends AppCompatActivity {
         //Custom UserID (key) is first two letters of last name + phonenumber
         String first_two_letters = last_name.substring(0,2).toLowerCase();
         String key = first_two_letters+phone_number;
-
+        Log.d("sendingUserData",first_name + "start " + last_name);
+        //key = "mc5144491200";
         //Record date of signup
         Date c = Calendar.getInstance().getTime();
         SimpleDateFormat df = new SimpleDateFormat("yy/MM/dd");
-        String formattedDate = df.format(birth_date);
+        String formattedDate = df.format(c);
 
-        Task[] tasks = new Task[7];
+        Task[] tasks = new Task[9];
         // Write Statement
         // Call DatabaseReference
         // Specify the Children --> user --> UserID(key) --> ____ --> setValue
+        Log.d("sendingUserData",first_name + "before3 " + last_name);
+
         FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
+        Log.d("sendingUserData",first_name + "before2 " + last_name);
+
         DatabaseReference myRef = firebaseDatabase.getReference();
+        Log.d("myRed", myRef.toString() + " " + myRef.getKey());
+        Log.d("sendingUserData",first_name + "before " + last_name);
+
         tasks[0] = myRef.child("user").child(key).child("first_name").setValue(first_name);
+        //Log.d("sendingUserData0", String.valueOf(tasks[0].getResult()));
+
         tasks[1] = myRef.child("user").child(key).child("last_name").setValue(last_name);
-        tasks[2] = myRef.child("user").child(key).child("birth_date").setValue(birth_date);
+        //Log.d("sendingUserData1", String.valueOf(tasks[1].isSuccessful()));
+
+        tasks[2] = myRef.child("user").child(key).child("dob").setValue(birth_date);
+        //Log.d("sendingUserData2", String.valueOf(tasks[2].isSuccessful()));
+
         tasks[3] = myRef.child("user").child(key).child("phone_number").setValue(phone_number);
+        //Log.d("sendingUserData3", String.valueOf(tasks[3].isSuccessful()));
+
         tasks[4] = myRef.child("user").child(key).child("email").setValue(email);
+        //Log.d("sendingUserData4", String.valueOf(tasks[4].isSuccessful()));
+
         tasks[5] = myRef.child("user").child(key).child("signup_date").setValue(formattedDate);
-        tasks[6] = myRef.child("user").child(key).child("key").setValue(firebaseAuth.getUid()); //this is the firebase's UID for the users
+        //Log.d("sendingUserData5", String.valueOf(tasks[5].isSuccessful()));
 
-        myRef.child("user").child(key).child("first_name").setValue(first_name);
-        myRef.child("user").child(key).child("last_name").setValue(last_name);
-        myRef.child("user").child(key).child("birth_date").setValue(birth_date);
-        //myRef.child("user").child(key).child("phone_number").setValue(phone_number);
-        //myRef.child("user").child(key).child("email").setValue(email);
-        //myRef.child("user").child(key).child("signup_date").setValue(formattedDate);
-        //myRef.child("user").child(key).child("key").setValue(firebaseAuth.getUid()); //this is the firebase's UID for the users
+        tasks[6] = myRef.child("user").child(key).child("address_city").setValue(city);
+        //Log.d("sendingUserData6", String.valueOf(tasks[6].isSuccessful()));
 
+        tasks[7] = myRef.child("user").child(key).child("address_postal_code").setValue(postal_code);
+        //Log.d("sendingUserData7", String.valueOf(tasks[7].isSuccessful()));
+
+        tasks[8] = myRef.child("user").child(key).child("key").setValue(firebaseAuth.getUid()); //this is the firebase's UID for the users
+        //Log.d("sendingUserData8", String.valueOf(tasks[8].isSuccessful()));
 
         Log.d("sendingUserData",first_name + " " + last_name);
 
 
         return tasks;
     }
-/*
+
     public void setInvisible() {
         progressOverlay.setVisibility(View.INVISIBLE);
 
@@ -207,6 +244,6 @@ public class CreateAccount3 extends AppCompatActivity {
     public void setVisible() {
         progressOverlay.setVisibility(View.VISIBLE);
         createAccount.setClickable(false);
-    } */
+    }
 
 }

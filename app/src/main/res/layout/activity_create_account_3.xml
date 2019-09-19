@@ -10,6 +10,7 @@
     android:background="@drawable/main_background"
     android:clickable="true"
     android:focusableInTouchMode="true">
+    <include layout="@layout/wheels"/>
 
 
     <EditText

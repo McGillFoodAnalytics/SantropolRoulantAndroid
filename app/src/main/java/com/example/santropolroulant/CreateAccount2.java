@@ -20,7 +20,6 @@ public class CreateAccount2 extends AppCompatActivity {
     private Button next_2;
     String first_name, last_name, birth_date, address, city, postal_code;
     private EditText userAddress, userCity, userPostalCode;
-    private View progressOverlay;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -92,6 +91,7 @@ public class CreateAccount2 extends AppCompatActivity {
 
         city = userCity.getText().toString().trim();
         address = userAddress.getText().toString().trim();
+        address.replaceAll("\\s+","");
         postal_code = userPostalCode.getText().toString().trim();
 
         if(city.isEmpty() || address.isEmpty() || postal_code.isEmpty()){
@@ -108,13 +108,4 @@ public class CreateAccount2 extends AppCompatActivity {
         inputMethodManager.hideSoftInputFromWindow(view.getWindowToken(), 0);
     }
 
-    /*public void setInvisible() {
-        progressOverlay.setVisibility(View.INVISIBLE);
-
-    }
-    public void setVisible() {
-        progressOverlay.setVisibility(View.VISIBLE);
-        createAccount.setClickable(false);
-    }
-*/
 }
