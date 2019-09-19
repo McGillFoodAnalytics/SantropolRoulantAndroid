@@ -18,7 +18,7 @@ import androidx.appcompat.app.AppCompatActivity;
 public class CreateAccount2 extends AppCompatActivity {
 
     private Button next_2;
-    String first_name, last_name, birth_date, address, city, postal_code;
+    String first_name, last_name, birth_date, address, address_number, address_street, city, postal_code;
     private EditText userAddress, userCity, userPostalCode;
 
     @Override
@@ -42,7 +42,8 @@ public class CreateAccount2 extends AppCompatActivity {
                     intent.putExtra("FIRST_NAME", first_name);
                     intent.putExtra("LAST_NAME", last_name);
                     intent.putExtra("BIRTH_DATE", birth_date);
-                    intent.putExtra("ADDRESS", address);
+                    intent.putExtra("ADDRESS_NUMBER", address_number);
+                    intent.putExtra("ADDRESS_STREET", address_street);
                     intent.putExtra("CITY", city);
                     intent.putExtra("POSTAL_CODE", postal_code);
                     startActivity(intent);
@@ -91,10 +92,19 @@ public class CreateAccount2 extends AppCompatActivity {
 
         city = userCity.getText().toString().trim();
         address = userAddress.getText().toString().trim();
-        address.replaceAll("\\s+","");
         postal_code = userPostalCode.getText().toString().trim();
+        postal_code.replaceAll("\\s+","");
 
-        if(city.isEmpty() || address.isEmpty() || postal_code.isEmpty()){
+        String arr[] = address.split(" ", 2);
+        if(arr.length > 1) {
+            address_number = arr[0];
+            address_street = arr[1];
+        }
+        else {
+            address = "";
+        }
+
+        if(city.isEmpty() || address.isEmpty() || postal_code.isEmpty() || !isInteger(address_number)){
             Toast.makeText(this, "Please enter all the details", Toast.LENGTH_SHORT).show();
 
         }else{
@@ -106,6 +116,14 @@ public class CreateAccount2 extends AppCompatActivity {
     public void hideKeyboard(View view) {
         InputMethodManager inputMethodManager =(InputMethodManager)getSystemService(Activity.INPUT_METHOD_SERVICE);
         inputMethodManager.hideSoftInputFromWindow(view.getWindowToken(), 0);
+    }
+    public boolean isInteger(String string) {
+        try {
+            Integer.valueOf(string);
+            return true;
+        } catch (NumberFormatException e) {
+            return false;
+        }
     }
 
 }
