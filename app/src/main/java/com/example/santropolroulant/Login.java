@@ -38,12 +38,12 @@ public class Login extends AppCompatActivity {
 
         // Getting current app user from Firebase
         firebaseAuth = FirebaseAuth.getInstance();
-      //  FirebaseUser user = firebaseAuth.getCurrentUser();
+        //  FirebaseUser user = firebaseAuth.getCurrentUser();
         // Auto login for signed in user - Commented out below
 
         //if(user != null){
-            //finish();
-            //startActivity(new Intent(MainActivity.this, Home.class));
+        //finish();
+        //startActivity(new Intent(MainActivity.this, Home.class));
         //}
 
 
