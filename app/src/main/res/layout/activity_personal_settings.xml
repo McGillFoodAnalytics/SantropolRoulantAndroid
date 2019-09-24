@@ -143,7 +143,11 @@
                             android:layout_height="@dimen/ps_prefinput_height"
                             android:layout_marginTop="@dimen/ps_prefinput_topmargin"
                             android:background="@drawable/ps_shape_prefinput"
-                            android:inputType="date" />
+                            android:inputType="date"
+                            android:longClickable="false"
+                            android:focusable="false"
+                            android:datePickerMode="spinner"
+                            android:calendarViewShown="false"/>
                     </LinearLayout>
                 </LinearLayout>
             </LinearLayout>
