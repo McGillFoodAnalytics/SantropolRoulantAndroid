@@ -81,19 +81,20 @@ public class CreateAccount3 extends AppCompatActivity {
                             if(task.isSuccessful()){
                                 // if successful then enter user data into firebase
                                 Task[] tasks = sendUserData();
-                                if (tasks[0].isSuccessful() && tasks[1].isSuccessful() && tasks[2].isSuccessful() && tasks[3].isSuccessful() &&tasks[4].isSuccessful() && tasks[5].isSuccessful() && tasks[6].isSuccessful() && tasks[7].isSuccessful() && tasks[8].isSuccessful()){
+
+                                //if (tasks[0].isSuccessful() && tasks[1].isSuccessful() && tasks[2].isSuccessful() && tasks[3].isSuccessful() &&tasks[4].isSuccessful() && tasks[5].isSuccessful() && tasks[6].isSuccessful() && tasks[7].isSuccessful() && tasks[8].isSuccessful()){
                                     Toast.makeText(CreateAccount3.this, "Registration Successful!", Toast.LENGTH_SHORT).show();
                                     setInvisible();
                                     createAccount.setClickable(true);
                                     startActivity(new Intent(CreateAccount3.this, Login.class));
-                                }
+                                /*}
                                 else{
                                     Toast.makeText(CreateAccount3.this, "Oops a monkey quit!", Toast.LENGTH_SHORT).show();
                                     startActivity(new Intent(CreateAccount3.this, CreateAccount.class));
                                     setInvisible();
                                     createAccount.setClickable(true);
                                     startActivity(new Intent(CreateAccount3.this, CreateAccount.class));
-                                }
+                                }*/
 
                             }else{
                                 String s = task.getException().getMessage();

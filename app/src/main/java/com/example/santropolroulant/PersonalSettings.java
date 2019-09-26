@@ -69,6 +69,7 @@ public class PersonalSettings extends AppCompatActivity {
             System.exit(-1);
         }
 
+        //Find UI elements from layout
         prefInputFirstname = findViewById(R.id.prefinput_personal_firstname);
         prefInputLastname = findViewById(R.id.prefinput_personal_lastname);
         prefInputDOB = findViewById(R.id.prefinput_birthday_dob);
@@ -76,6 +77,9 @@ public class PersonalSettings extends AppCompatActivity {
         prefInputPhone= findViewById(R.id.prefinput_contact_phone);
         saveButton = findViewById(R.id.ps_save);
 
+        /*
+           * This
+         */
         ValueEventListener saveChangesListener = new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
