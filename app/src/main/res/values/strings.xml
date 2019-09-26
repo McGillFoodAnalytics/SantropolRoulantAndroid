@@ -21,4 +21,5 @@
     <string name="ps_address_city">CITY</string>
     <string name="ps_address_postal">POSTAL CODE</string>
     <string name="ps_save_button">Save Changes</string>
+    <string name="title_activity_maps">Map</string>
 </resources>

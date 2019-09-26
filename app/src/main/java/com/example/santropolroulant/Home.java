@@ -61,17 +61,21 @@ public class Home extends AppCompatActivity {
             }
         });
 
+        contactCard.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(Home.this, ContactUs.class));
+            }
+            // Toast.makeText(Home.this, "Yet To Come", Toast.LENGTH_SHORT).show();            }
+        });
+
         infoCard.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Toast.makeText(Home.this, "Yet To Come", Toast.LENGTH_SHORT).show();            }
         });
 
-        contactCard.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Toast.makeText(Home.this, "Yet To Come", Toast.LENGTH_SHORT).show();            }
-        });
+
 
     }
 

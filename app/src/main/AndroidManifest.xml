@@ -2,53 +2,89 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.santropolroulant">
 
+    <!--
+         The ACCESS_COARSE/FINE_LOCATION permissions are not required to use
+         Google Maps Android API v2, but you must specify either coarse or fine
+         location permissions for the 'MyLocation' functionality.
+    -->
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
-        android:roundIcon="@mipmap/ic_launcher_round"
         android:label="Santropol Roulant test"
+        android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".RegisterEvent"
-            android:screenOrientation="portrait" ></activity>
-        <activity android:name=".CalanderSlots"
+
+        <!--
+             The API key for Google Maps-based APIs is defined as a string resource.
+             (See the file "res/values/google_maps_api.xml").
+             Note that the API key is linked to the encryption key used to sign the APK.
+             You need a different API key for each encryption key, including the release key that is used to
+             sign the APK for publishing.
+             You can define the keys for the debug and release targets in src/debug/ and src/release/.
+        -->
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="@string/google_maps_key" />
+
+        <activity
+            android:name=".MapsActivity"
+            android:label="@string/title_activity_maps"></activity>
+        <activity
+            android:name=".RegisterEvent"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".CalanderSlots"
             android:screenOrientation="portrait" />
         <activity
             android:name=".Confirmation_Page_MealDelivery"
-            android:windowSoftInputMode="adjustPan"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan" />
         <activity
             android:name=".Confirmation_Page"
-            android:windowSoftInputMode="adjustPan"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan" />
+        <activity
+            android:name=".Home"
             android:screenOrientation="portrait" />
-        <activity android:name=".Home"
+        <activity
+            android:name=".DisplayEvents"
             android:screenOrientation="portrait" />
-        <activity android:name=".DisplayEvents"
+        <activity
+            android:name=".VolunteerOptions"
             android:screenOrientation="portrait" />
-        <activity android:name=".VolunteerOptions"
+        <activity
+            android:name=".PasswordActivity"
             android:screenOrientation="portrait" />
-        <activity android:name=".PasswordActivity"
+        <activity
+            android:name=".CreateAccount2"
             android:screenOrientation="portrait" />
-        <activity android:name=".CreateAccount2"
+        <activity
+            android:name=".UserSchedule"
             android:screenOrientation="portrait" />
-        <activity android:name=".UserSchedule"
+        <activity
+            android:name=".CreateAccount3"
             android:screenOrientation="portrait" />
-        <activity android:name=".CreateAccount3"
+        <activity
+            android:name=".CreateAccount"
             android:screenOrientation="portrait" />
-        <activity android:name=".CreateAccount"
+        <activity
+            android:name=".Login"
             android:screenOrientation="portrait" />
-        <activity android:name=".Login"
-            android:screenOrientation="portrait" />
-        <activity android:name=".MainActivity"
-            android:screenOrientation="portrait" >
+        <activity
+            android:name=".MainActivity"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".PersonalSettings"
-            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".PersonalSettings"
+            android:screenOrientation="portrait" />
     </application>
 
 </manifest>
