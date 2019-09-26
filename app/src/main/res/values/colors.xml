@@ -12,4 +12,6 @@
     <color name="ps_save">#FF681469</color>
     <color name="ps_pref_input">#449C27B0</color>
     <color name="ps_pref_group">#88FFFFFF</color>
+    <color name="cu_title">#FF6b1264</color>
+    <color name="cu_info_boxes">#E9C5E9</color>
 </resources>
