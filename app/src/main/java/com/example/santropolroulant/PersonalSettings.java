@@ -38,7 +38,8 @@ import static android.R.style.Theme_Holo_Light_Dialog_MinWidth;
 public class PersonalSettings extends AppCompatActivity {
     final Calendar myCalendar = Calendar.getInstance();
     EditText prefInputFirstname, prefInputLastname, prefInputDOB,
-            prefInputEmail, prefInputPhone;
+            prefInputEmail, prefInputPhone, prefInputAdLine, prefInputAdCity,
+            prefInputAdPostal, prefInputUsername;
     Button saveButton;
     DatePickerDialog.OnDateSetListener date;
     List<User> users;
@@ -74,11 +75,16 @@ public class PersonalSettings extends AppCompatActivity {
         prefInputLastname = findViewById(R.id.prefinput_personal_lastname);
         prefInputDOB = findViewById(R.id.prefinput_birthday_dob);
         prefInputEmail = findViewById(R.id.prefinput_contact_email);
-        prefInputPhone= findViewById(R.id.prefinput_contact_phone);
+        prefInputPhone = findViewById(R.id.prefinput_contact_phone);
+        prefInputAdLine = findViewById(R.id.prefinput_address_line);
+        prefInputAdCity = findViewById(R.id.prefinput_address_city);
+        prefInputAdPostal = findViewById(R.id.prefinput_address_postal);
+        prefInputUsername = findViewById(R.id.prefinput_username_username);
+
         saveButton = findViewById(R.id.ps_save);
 
         /*
-           * This
+           * This is the event listener which will
          */
         ValueEventListener saveChangesListener = new ValueEventListener() {
             @Override
@@ -120,6 +126,8 @@ public class PersonalSettings extends AppCompatActivity {
         mDatabase = FirebaseDatabase.getInstance().getReference("userSample");
 
 
+        //Setting it to be called everytime the database is updated, (and of course once on creation)
+        //
         mDatabase.addValueEventListener(saveChangesListener);
 
 
@@ -149,30 +157,36 @@ public class PersonalSettings extends AppCompatActivity {
         saveButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                boolean editFirstname, editLastname, editEmail, editPhone, editSettings;
-                String inFirstname, inLastname, inEmail, inPhone;
+                String inFirstname, inLastname, inEmail, inPhone, inAdLine, inAdCity, inAdPostal,
+                        inUsername;
 
-                editFirstname = editLastname = editEmail = editPhone = editSettings = false;
-                inFirstname = prefInputFirstname.getText().toString();
+                inFirstname =  prefInputFirstname.getText().toString();
                 inLastname = prefInputLastname.getText().toString();
                 inEmail = prefInputEmail.getText().toString();
                 inPhone = prefInputPhone.getText().toString();
+                inAdLine = prefInputAdLine.getText().toString();
+                inAdCity = prefInputAdCity.getText().toString();
+                inAdPostal = prefInputAdPostal.getText().toString();
+                inUsername = prefInputUsername.getText().toString();
+
 
                 String key = myUser.getKey();
 
                 ArrayList<Task> tasks = new ArrayList<Task>();
 
                 //Check if user put any info into fields
-                if(!inFirstname.equals("")){ editFirstname = true; }
-
-                if(!inLastname.equals("")){ editLastname = true; }
-
-                if(!inEmail.equals("")){ editEmail = true; }
-
-                if(!inPhone.equals("")){ editPhone = true; }
+                boolean editFirstname  = !inFirstname.equals("") ? true : false;
+                boolean editLastname  = !inLastname.equals("") ? true : false;
+                boolean editEmail = !inEmail.equals("") ? true : false;
+                boolean editPhone = !inLastname.equals("") ? true : false;
+                boolean editAdLine  = !inAdLine.equals("") ? true : false;
+                boolean editAdCity  = !inAdCity.equals("") ? true : false;
+                boolean editAdPostal = !inAdPostal.equals("") ? true : false;
+                boolean editUsername  = !inUsername.equals("") ? true : false;
 
                 //if so, upload new info
-                if(editFirstname || editLastname || editEmail || editPhone){
+                if( editFirstname || editLastname || editEmail || editPhone || editAdLine ||
+                        editAdCity ||editAdPostal || editUsername ) {
                     if(editFirstname){
                         tasks.add(mDatabase.child(key).child("first_name").setValue(inFirstname));
                     }
@@ -189,10 +203,25 @@ public class PersonalSettings extends AppCompatActivity {
                         tasks.add(mDatabase.child(key).child("phone").setValue(inPhone));
                     }
 
+                    if(editAdLine){
+                        tasks.add(mDatabase.child(key).child("address_street").setValue(editAdLine));
+                    }
+
+                    if(editAdCity){
+                        tasks.add(mDatabase.child(key).child("address_city").setValue(editAdCity));
+                    }
+
+                    if(editAdPostal){
+                        tasks.add(mDatabase.child(key).child("address_postal_code").setValue(editAdPostal));
+                    }
+
                     prefInputFirstname.getText().clear();
                     prefInputLastname.getText().clear();
                     prefInputEmail.getText().clear();
                     prefInputPhone.getText().clear();
+                    prefInputAdLine.getText().clear();
+                    prefInputAdCity.getText().clear();
+                    prefInputAdPostal.getText().clear();
 
                     Toast.makeText(PersonalSettings.this, "Changes have been saved!", Toast.LENGTH_SHORT).show();
                 } else { //if not, prompt user for input
@@ -216,6 +245,9 @@ public class PersonalSettings extends AppCompatActivity {
         prefInputLastname.setHint(myUser.getLast_name());
         prefInputEmail.setHint(myUser.getEmail());
         prefInputPhone.setHint(myUser.getPhone_number());
+        prefInputAdLine.setHint(myUser.getAddress_street());
+        prefInputAdCity.setHint(myUser.getAddress_city());
+        prefInputAdPostal.setHint(myUser.getAddress_postal_code());
     }
 
 }
