@@ -26,6 +26,8 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -37,9 +39,11 @@ import static android.R.style.Theme_Holo_Light_Dialog_MinWidth;
 
 public class PersonalSettings extends AppCompatActivity {
     final Calendar myCalendar = Calendar.getInstance();
+    //TODO Remove EditText
     EditText prefInputFirstname, prefInputLastname, prefInputDOB,
             prefInputEmail, prefInputPhone, prefInputAdLine, prefInputAdCity,
             prefInputAdPostal, prefInputUsername;
+    ArrayList<InputField> inputFields;
     Button saveButton;
     DatePickerDialog.OnDateSetListener date;
     List<User> users;
@@ -60,7 +64,17 @@ public class PersonalSettings extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_personal_settings);
+        inputFields = new ArrayList<>();
 
+        date = new DatePickerDialog.OnDateSetListener() {
+            @Override
+            public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
+                myCalendar.set(Calendar.YEAR, year);
+                myCalendar.set(Calendar.MONTH, month);
+                myCalendar.set(Calendar.DAY_OF_MONTH, dayOfMonth);
+                updateLabel();
+            }
+        };
 
         firebaseAuth = FirebaseAuth.getInstance();
         final FirebaseUser user = firebaseAuth.getCurrentUser();
@@ -70,22 +84,28 @@ public class PersonalSettings extends AppCompatActivity {
             System.exit(-1);
         }
 
+
         //Find UI elements from layout
-        prefInputFirstname = findViewById(R.id.prefinput_personal_firstname);
-        prefInputLastname = findViewById(R.id.prefinput_personal_lastname);
-        prefInputDOB = findViewById(R.id.prefinput_birthday_dob);
-        prefInputEmail = findViewById(R.id.prefinput_contact_email);
-        prefInputPhone = findViewById(R.id.prefinput_contact_phone);
-        prefInputAdLine = findViewById(R.id.prefinput_address_line);
-        prefInputAdCity = findViewById(R.id.prefinput_address_city);
-        prefInputAdPostal = findViewById(R.id.prefinput_address_postal);
-        prefInputUsername = findViewById(R.id.prefinput_username_username);
+        try {
+            inputFields.add(new InputField((EditText) findViewById(R.id.prefinput_personal_firstname), "first_name", User.class.getDeclaredMethod("getFirst_name")));
+            inputFields.add(new InputField((EditText) findViewById(R.id.prefinput_personal_lastname), "last_name", User.class.getDeclaredMethod("getLast_name")));
+            //inputFields.add(new DateField((EditText) findViewById(R.id.prefinput_birthday_dob), "dob", User.class.getDeclaredMethod("getDob")));
+            inputFields.add(new InputField((EditText) findViewById(R.id.prefinput_contact_email), "email", User.class.getDeclaredMethod("getEmail")));
+            inputFields.add(new InputField((EditText) findViewById(R.id.prefinput_contact_phone), "phone", User.class.getDeclaredMethod("getPhone")));
+            inputFields.add(new InputField((EditText) findViewById(R.id.prefinput_address_line), "address_street", User.class.getDeclaredMethod("getAddress_street")));
+            inputFields.add(new InputField((EditText) findViewById(R.id.prefinput_address_city), "address_city", User.class.getDeclaredMethod("getAddress_city")));
+            inputFields.add(new InputField((EditText) findViewById(R.id.prefinput_address_postal), "address_postal", User.class.getDeclaredMethod("getAddress_postal_code")));
+            inputFields.add(new InputField((EditText) findViewById(R.id.prefinput_username_username), "key", User.class.getDeclaredMethod("getKey")));
+        }catch(NoSuchMethodException e){
+            System.exit(-1);
+        }
 
         saveButton = findViewById(R.id.ps_save);
 
         /*
            * This is the event listener which will
          */
+        /*
         ValueEventListener saveChangesListener = new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -104,15 +124,12 @@ public class PersonalSettings extends AppCompatActivity {
                 }
 
                 if (myUser != null) {
-                    setHintStrings(
-                            myUser.getFirst_name(),
-                            myUser.getLast_name(),
-                            myUser.getEmail(),
-                            myUser.getPhone_number());
-                    setHints();
-
+                    for(int i = 0; i < inputFields.size(); i++){
+                        inputFields.get(i).setHint(myUser);
+                    }
                 } else {
                     Log.e("User Selection", "User not Found");
+                    System.exit(-1);
                 }
             }
 
@@ -130,29 +147,6 @@ public class PersonalSettings extends AppCompatActivity {
         //
         mDatabase.addValueEventListener(saveChangesListener);
 
-
-        date = new DatePickerDialog.OnDateSetListener() {
-            @Override
-            public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
-                myCalendar.set(Calendar.YEAR, year);
-                myCalendar.set(Calendar.MONTH, month);
-                myCalendar.set(Calendar.DAY_OF_MONTH, dayOfMonth);
-                updateLabel();
-            }
-        };
-
-        prefInputDOB.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View v) {
-                new DatePickerDialog(
-                        PersonalSettings.this,
-                        Theme_Holo_Light_Dialog_MinWidth,
-                        date,
-                        myCalendar.get(Calendar.YEAR),
-                        myCalendar.get(Calendar.MONTH),
-                        myCalendar.get(Calendar.DAY_OF_MONTH)).show();
-            }
-        });
 
         saveButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -174,81 +168,94 @@ public class PersonalSettings extends AppCompatActivity {
 
                 ArrayList<Task> tasks = new ArrayList<Task>();
 
-                //Check if user put any info into fields
-                boolean editFirstname  = !inFirstname.equals("") ? true : false;
-                boolean editLastname  = !inLastname.equals("") ? true : false;
-                boolean editEmail = !inEmail.equals("") ? true : false;
-                boolean editPhone = !inLastname.equals("") ? true : false;
-                boolean editAdLine  = !inAdLine.equals("") ? true : false;
-                boolean editAdCity  = !inAdCity.equals("") ? true : false;
-                boolean editAdPostal = !inAdPostal.equals("") ? true : false;
-                boolean editUsername  = !inUsername.equals("") ? true : false;
+                //Have any of the values been changed? Is the text not ""?
+                boolean editSettings = false;
 
-                //if so, upload new info
-                if( editFirstname || editLastname || editEmail || editPhone || editAdLine ||
-                        editAdCity ||editAdPostal || editUsername ) {
-                    if(editFirstname){
-                        tasks.add(mDatabase.child(key).child("first_name").setValue(inFirstname));
+                for(int i = 0; i < inputFields.size(); i++){
+                    editSettings = !inputFields.get(i).getEditText().getText().toString().equals("");
+                }
+
+                if( editSettings ) {
+                    for(int i = 0; i < inputFields.size(); i++){
+                        String dbEntry = inputFields.get(i).getDbReference();
+                        String fieldText = inputFields.get(i).getEditText().getText().toString();
+                        if(!fieldText.equals("")){
+                            tasks.add(mDatabase.child(key).child(dbEntry).setValue(fieldText));
+                        }
+                        inputFields.get(i).clearText();
                     }
-
-                    if(editLastname){
-                        tasks.add(mDatabase.child(key).child("first_name").setValue(inLastname));
-                    }
-
-                    if(editEmail){
-                        tasks.add(mDatabase.child(key).child("email").setValue(inEmail));
-                    }
-
-                    if(editPhone){
-                        tasks.add(mDatabase.child(key).child("phone").setValue(inPhone));
-                    }
-
-                    if(editAdLine){
-                        tasks.add(mDatabase.child(key).child("address_street").setValue(editAdLine));
-                    }
-
-                    if(editAdCity){
-                        tasks.add(mDatabase.child(key).child("address_city").setValue(editAdCity));
-                    }
-
-                    if(editAdPostal){
-                        tasks.add(mDatabase.child(key).child("address_postal_code").setValue(editAdPostal));
-                    }
-
-                    prefInputFirstname.getText().clear();
-                    prefInputLastname.getText().clear();
-                    prefInputEmail.getText().clear();
-                    prefInputPhone.getText().clear();
-                    prefInputAdLine.getText().clear();
-                    prefInputAdCity.getText().clear();
-                    prefInputAdPostal.getText().clear();
-
                     Toast.makeText(PersonalSettings.this, "Changes have been saved!", Toast.LENGTH_SHORT).show();
                 } else { //if not, prompt user for input
                     Toast.makeText(PersonalSettings.this, "Please Change Something!", Toast.LENGTH_SHORT).show();
                 }
 
             }
-        });
+        });*/
 
     }
 
-    private void setHintStrings(String firstname, String lastname, String email, String phone){
-        this.firstname = firstname;
-        this.lastname = lastname;
-        this.email = email;
-        this.phone = phone;
+    private class InputField{
+        private EditText editText;
+        private String dbReference;
+        private Method getHint;
+
+
+        public InputField(EditText editText, String dbReference, Method getHint){
+            this.editText = editText;
+            this.dbReference = dbReference;
+            this.getHint = getHint;
+        }
+
+        public void clearText(){
+            editText.getText().clear();
+        }
+
+        public void setHint(User myUser){
+            try {
+                editText.setHint((String)getHint.invoke(myUser));
+            } catch (IllegalAccessException e){
+                e.printStackTrace();
+                System.exit(-1);
+            } catch (InvocationTargetException e){
+                e.printStackTrace();
+                System.exit(-1);
+            }
+        }
+
+        public void setEditText(EditText editText) {
+            this.editText = editText;
+        }
+
+        public void setDbReference(String dbReference) {
+            this.dbReference = dbReference;
+        }
+
+        public EditText getEditText() {
+            return editText;
+        }
+
+        public String getDbReference() {
+            return dbReference;
+        }
     }
 
-    private void setHints(){
-        prefInputFirstname.setHint(myUser.getFirst_name());
-        prefInputLastname.setHint(myUser.getLast_name());
-        prefInputEmail.setHint(myUser.getEmail());
-        prefInputPhone.setHint(myUser.getPhone_number());
-        prefInputAdLine.setHint(myUser.getAddress_street());
-        prefInputAdCity.setHint(myUser.getAddress_city());
-        prefInputAdPostal.setHint(myUser.getAddress_postal_code());
-    }
+    private class DateField extends InputField{
+        public DateField(EditText editText, String dbReference, Method getHint){
+            super(editText, dbReference, getHint);
+            editText.setOnClickListener(new View.OnClickListener(){
+                @Override
+                public void onClick(View v) {
+                    new DatePickerDialog(
+                            PersonalSettings.this,
+                            Theme_Holo_Light_Dialog_MinWidth,
+                            date,
+                            myCalendar.get(Calendar.YEAR),
+                            myCalendar.get(Calendar.MONTH),
+                            myCalendar.get(Calendar.DAY_OF_MONTH)).show();
+                }
+            });
+        }
 
+    }
 }
 
