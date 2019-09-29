@@ -38,7 +38,6 @@ import java.util.concurrent.Executor;
 import static android.R.style.Theme_Holo_Light_Dialog_MinWidth;
 
 public class PersonalSettings extends AppCompatActivity {
-    final Calendar myCalendar = Calendar.getInstance();
     //TODO Remove EditText
     EditText prefInputFirstname, prefInputLastname, prefInputDOB,
             prefInputEmail, prefInputPhone, prefInputAdLine, prefInputAdCity,
@@ -48,33 +47,19 @@ public class PersonalSettings extends AppCompatActivity {
     DatePickerDialog.OnDateSetListener date;
     List<User> users;
     User myUser;
-    String firstname, lastname, dob, email, phone;
 
     private FirebaseAuth firebaseAuth;
     private DatabaseReference mDatabase;
 
-    private void updateLabel() {
-        String myFormat = "MM/dd/yy"; //In which you need put here
-        SimpleDateFormat sdf = new SimpleDateFormat(myFormat, Locale.US);
-
-        prefInputDOB.setText(sdf.format(myCalendar.getTime()));
-    }
     //private PreferenceGroup[] settings;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_personal_settings);
-        inputFields = new ArrayList<>();
 
-        date = new DatePickerDialog.OnDateSetListener() {
-            @Override
-            public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
-                myCalendar.set(Calendar.YEAR, year);
-                myCalendar.set(Calendar.MONTH, month);
-                myCalendar.set(Calendar.DAY_OF_MONTH, dayOfMonth);
-                updateLabel();
-            }
-        };
+        inputFields = new ArrayList<>();
+        users = new ArrayList<User>();
+
 
         firebaseAuth = FirebaseAuth.getInstance();
         final FirebaseUser user = firebaseAuth.getCurrentUser();
@@ -84,6 +69,7 @@ public class PersonalSettings extends AppCompatActivity {
             System.exit(-1);
         }
 
+        mDatabase = FirebaseDatabase.getInstance().getReference("userSample");
 
         //Find UI elements from layout
         try {
@@ -91,12 +77,13 @@ public class PersonalSettings extends AppCompatActivity {
             inputFields.add(new InputField((EditText) findViewById(R.id.prefinput_personal_lastname), "last_name", User.class.getDeclaredMethod("getLast_name")));
             //inputFields.add(new DateField((EditText) findViewById(R.id.prefinput_birthday_dob), "dob", User.class.getDeclaredMethod("getDob")));
             inputFields.add(new InputField((EditText) findViewById(R.id.prefinput_contact_email), "email", User.class.getDeclaredMethod("getEmail")));
-            inputFields.add(new InputField((EditText) findViewById(R.id.prefinput_contact_phone), "phone", User.class.getDeclaredMethod("getPhone")));
+            inputFields.add(new InputField((EditText) findViewById(R.id.prefinput_contact_phone), "phone", User.class.getDeclaredMethod("getPhone_number")));
             inputFields.add(new InputField((EditText) findViewById(R.id.prefinput_address_line), "address_street", User.class.getDeclaredMethod("getAddress_street")));
             inputFields.add(new InputField((EditText) findViewById(R.id.prefinput_address_city), "address_city", User.class.getDeclaredMethod("getAddress_city")));
             inputFields.add(new InputField((EditText) findViewById(R.id.prefinput_address_postal), "address_postal", User.class.getDeclaredMethod("getAddress_postal_code")));
             inputFields.add(new InputField((EditText) findViewById(R.id.prefinput_username_username), "key", User.class.getDeclaredMethod("getKey")));
         }catch(NoSuchMethodException e){
+            e.printStackTrace();
             System.exit(-1);
         }
 
@@ -105,7 +92,7 @@ public class PersonalSettings extends AppCompatActivity {
         /*
            * This is the event listener which will
          */
-        /*
+
         ValueEventListener saveChangesListener = new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -139,30 +126,12 @@ public class PersonalSettings extends AppCompatActivity {
             }
         };
 
-        users = new ArrayList<User>();
-        mDatabase = FirebaseDatabase.getInstance().getReference("userSample");
-
-
         //Setting it to be called everytime the database is updated, (and of course once on creation)
-        //
         mDatabase.addValueEventListener(saveChangesListener);
-
 
         saveButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String inFirstname, inLastname, inEmail, inPhone, inAdLine, inAdCity, inAdPostal,
-                        inUsername;
-
-                inFirstname =  prefInputFirstname.getText().toString();
-                inLastname = prefInputLastname.getText().toString();
-                inEmail = prefInputEmail.getText().toString();
-                inPhone = prefInputPhone.getText().toString();
-                inAdLine = prefInputAdLine.getText().toString();
-                inAdCity = prefInputAdCity.getText().toString();
-                inAdPostal = prefInputAdPostal.getText().toString();
-                inUsername = prefInputUsername.getText().toString();
-
 
                 String key = myUser.getKey();
 
@@ -172,7 +141,11 @@ public class PersonalSettings extends AppCompatActivity {
                 boolean editSettings = false;
 
                 for(int i = 0; i < inputFields.size(); i++){
-                    editSettings = !inputFields.get(i).getEditText().getText().toString().equals("");
+                    Log.i("dasde inputfield", inputFields.get(i).getDbReference()+ "--->"+inputFields.get(i).getEditText().getText().toString());
+
+                    if(!inputFields.get(i).getEditText().getText().toString().equals("")){
+                        editSettings = true;
+                    }
                 }
 
                 if( editSettings ) {
@@ -190,7 +163,7 @@ public class PersonalSettings extends AppCompatActivity {
                 }
 
             }
-        });*/
+        });
 
     }
 
@@ -240,6 +213,8 @@ public class PersonalSettings extends AppCompatActivity {
     }
 
     private class DateField extends InputField{
+        final Calendar myCalendar = Calendar.getInstance();
+        DatePickerDialog.OnDateSetListener date;
         public DateField(EditText editText, String dbReference, Method getHint){
             super(editText, dbReference, getHint);
             editText.setOnClickListener(new View.OnClickListener(){
@@ -254,7 +229,24 @@ public class PersonalSettings extends AppCompatActivity {
                             myCalendar.get(Calendar.DAY_OF_MONTH)).show();
                 }
             });
+
+            date = new DatePickerDialog.OnDateSetListener() {
+                @Override
+                public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
+                    myCalendar.set(Calendar.YEAR, year);
+                    myCalendar.set(Calendar.MONTH, month);
+                    myCalendar.set(Calendar.DAY_OF_MONTH, dayOfMonth);
+                    updateLabel();
+                }
+            };
         }
+        private void updateLabel() {
+            String myFormat = "MM/dd/yy"; //In which you need put here
+            SimpleDateFormat sdf = new SimpleDateFormat(myFormat, Locale.US);
+
+            getEditText().setText(sdf.format(myCalendar.getTime()));
+        }
+
 
     }
 }
