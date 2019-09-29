@@ -134,8 +134,6 @@ public class PersonalSettings extends AppCompatActivity {
                 boolean editSettings = false;
 
                 for(int i = 0; i < inputFields.size(); i++){
-                    Log.i("dasde inputfield", inputFields.get(i).getDbReference()+ "--->"+inputFields.get(i).getEditText().getText().toString());
-
                     if(!inputFields.get(i).getEditText().getText().toString().equals("")){
                         editSettings = true;
                     }
