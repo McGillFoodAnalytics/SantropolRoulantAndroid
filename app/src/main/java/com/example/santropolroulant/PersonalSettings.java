@@ -38,10 +38,6 @@ import java.util.concurrent.Executor;
 import static android.R.style.Theme_Holo_Light_Dialog_MinWidth;
 
 public class PersonalSettings extends AppCompatActivity {
-    //TODO Remove EditText
-    EditText prefInputFirstname, prefInputLastname, prefInputDOB,
-            prefInputEmail, prefInputPhone, prefInputAdLine, prefInputAdCity,
-            prefInputAdPostal, prefInputUsername;
     ArrayList<InputField> inputFields;
     Button saveButton;
     DatePickerDialog.OnDateSetListener date;
@@ -101,10 +97,7 @@ public class PersonalSettings extends AppCompatActivity {
                     users.add(userCurr);
                 }
 
-                Log.i("User Email", user.getEmail());
-
                 for (User userTemp : users) {
-                    Log.i("Current Email", userTemp.getEmail());
                     if (userTemp.getEmail().equals(user.getEmail())) {
                         myUser = userTemp;
                     }
