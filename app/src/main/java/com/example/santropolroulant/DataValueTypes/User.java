@@ -16,21 +16,6 @@ public class User {
 
     public User(){}
 
-    public User(String address_city, Long address_number, String address_postal_code, String address_street, String dob, String email, String first_name, String key, String last_name, Long no_show, String phone_number, String signup_date) {
-        this.address_city = address_city;
-        this.address_number = address_number;
-        this.address_postal_code = address_postal_code;
-        this.address_street = address_street;
-        this.dob = dob;
-        this.email = email;
-        this.first_name = first_name;
-        this.key = key;
-        this.last_name = last_name;
-        this.no_show = no_show;
-        this.phone_number = phone_number;
-        this.signup_date = signup_date;
-    }
-
     public String getAddress_city() {
         return address_city;
     }

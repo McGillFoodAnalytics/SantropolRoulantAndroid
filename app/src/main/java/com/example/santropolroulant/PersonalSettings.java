@@ -56,7 +56,7 @@ public class PersonalSettings extends AppCompatActivity {
         inputFields = new ArrayList<>();
         users = new ArrayList<User>();
 
-
+        //Ensuring we are logged in to firebase
         firebaseAuth = FirebaseAuth.getInstance();
         final FirebaseUser user = firebaseAuth.getCurrentUser();
         // Auto login for signed in user - Commented out below
@@ -65,9 +65,12 @@ public class PersonalSettings extends AppCompatActivity {
             System.exit(-1);
         }
 
+        //Pointing reference to the users in the database
         mDatabase = FirebaseDatabase.getInstance().getReference("userSample");
 
         //Find UI elements from layout
+        //each InputField takes the editText from the layout, the name of the field in the database, and the User method which gets that value from a User object
+
         try {
             inputFields.add(new InputField((EditText) findViewById(R.id.prefinput_personal_firstname), "first_name", User.class.getDeclaredMethod("getFirst_name")));
             inputFields.add(new InputField((EditText) findViewById(R.id.prefinput_personal_lastname), "last_name", User.class.getDeclaredMethod("getLast_name")));
@@ -86,7 +89,10 @@ public class PersonalSettings extends AppCompatActivity {
         saveButton = findViewById(R.id.ps_save);
 
         /*
-           * This is the event listener which will
+           * This is the event listener which will get all the Users from the database. These Users
+           * are stored in the ArrayList "users". Then it will find the User with the same email as
+           * the email my firebaseAuth (user) has. Once the correct User is found and saved as
+           * myUser, it will set the hints for each InputField.
          */
 
         ValueEventListener saveChangesListener = new ValueEventListener() {
@@ -122,17 +128,21 @@ public class PersonalSettings extends AppCompatActivity {
         //Setting it to be called everytime the database is updated, (and of course once on creation)
         mDatabase.addValueEventListener(saveChangesListener);
 
+        //Occurs when save button is selected
         saveButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
                 String key = myUser.getKey();
 
+                //A task is a call to set a value in firebase
                 ArrayList<Task> tasks = new ArrayList<Task>();
 
                 //Have any of the values been changed? Is the text not ""?
                 boolean editSettings = false;
 
+                //If atleast one of the EditTexts have been changed, we want to tell firebase we
+                //have new info.
                 for(int i = 0; i < inputFields.size(); i++){
                     if(!inputFields.get(i).getEditText().getText().toString().equals("")){
                         editSettings = true;
@@ -143,6 +153,7 @@ public class PersonalSettings extends AppCompatActivity {
                     for(int i = 0; i < inputFields.size(); i++){
                         String dbEntry = inputFields.get(i).getDbReference();
                         String fieldText = inputFields.get(i).getEditText().getText().toString();
+                        // If this field has been changed
                         if(!fieldText.equals("")){
                             tasks.add(mDatabase.child(key).child(dbEntry).setValue(fieldText));
                         }
@@ -170,10 +181,12 @@ public class PersonalSettings extends AppCompatActivity {
             this.getHint = getHint;
         }
 
+        //Clear the text in the UI
         public void clearText(){
             editText.getText().clear();
         }
 
+        //Applies the User method we obtained on creation on the given User parameter (myUser)
         public void setHint(User myUser){
             try {
                 editText.setHint((String)getHint.invoke(myUser));
@@ -208,6 +221,8 @@ public class PersonalSettings extends AppCompatActivity {
         DatePickerDialog.OnDateSetListener date;
         public DateField(EditText editText, String dbReference, Method getHint){
             super(editText, dbReference, getHint);
+
+            //This sets the appearance of the DatePicker
             editText.setOnClickListener(new View.OnClickListener(){
                 @Override
                 public void onClick(View v) {
@@ -221,6 +236,8 @@ public class PersonalSettings extends AppCompatActivity {
                 }
             });
 
+            //updates the date saved in myCalendar, then calls update label, which changes the date
+            //that appears in text field
             date = new DatePickerDialog.OnDateSetListener() {
                 @Override
                 public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
