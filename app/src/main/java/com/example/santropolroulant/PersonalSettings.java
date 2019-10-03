@@ -26,6 +26,8 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -36,31 +38,25 @@ import java.util.concurrent.Executor;
 import static android.R.style.Theme_Holo_Light_Dialog_MinWidth;
 
 public class PersonalSettings extends AppCompatActivity {
-    final Calendar myCalendar = Calendar.getInstance();
-    EditText prefInputFirstname, prefInputLastname, prefInputDOB,
-            prefInputEmail, prefInputPhone;
+    ArrayList<InputField> inputFields;
     Button saveButton;
     DatePickerDialog.OnDateSetListener date;
     List<User> users;
     User myUser;
-    String firstname, lastname, dob, email, phone;
 
     private FirebaseAuth firebaseAuth;
     private DatabaseReference mDatabase;
 
-    private void updateLabel() {
-        String myFormat = "MM/dd/yy"; //In which you need put here
-        SimpleDateFormat sdf = new SimpleDateFormat(myFormat, Locale.US);
-
-        prefInputDOB.setText(sdf.format(myCalendar.getTime()));
-    }
     //private PreferenceGroup[] settings;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_personal_settings);
 
+        inputFields = new ArrayList<>();
+        users = new ArrayList<User>();
 
+        //Ensuring we are logged in to firebase
         firebaseAuth = FirebaseAuth.getInstance();
         final FirebaseUser user = firebaseAuth.getCurrentUser();
         // Auto login for signed in user - Commented out below
@@ -69,17 +65,36 @@ public class PersonalSettings extends AppCompatActivity {
             System.exit(-1);
         }
 
+        //Pointing reference to the users in the database
+        mDatabase = FirebaseDatabase.getInstance().getReference("userSample");
+
         //Find UI elements from layout
-        prefInputFirstname = findViewById(R.id.prefinput_personal_firstname);
-        prefInputLastname = findViewById(R.id.prefinput_personal_lastname);
-        prefInputDOB = findViewById(R.id.prefinput_birthday_dob);
-        prefInputEmail = findViewById(R.id.prefinput_contact_email);
-        prefInputPhone= findViewById(R.id.prefinput_contact_phone);
+        //each InputField takes the editText from the layout, the name of the field in the database, and the User method which gets that value from a User object
+
+        try {
+            inputFields.add(new InputField((EditText) findViewById(R.id.prefinput_personal_firstname), "first_name", User.class.getDeclaredMethod("getFirst_name")));
+            inputFields.add(new InputField((EditText) findViewById(R.id.prefinput_personal_lastname), "last_name", User.class.getDeclaredMethod("getLast_name")));
+            //inputFields.add(new DateField((EditText) findViewById(R.id.prefinput_birthday_dob), "dob", User.class.getDeclaredMethod("getDob")));
+            inputFields.add(new InputField((EditText) findViewById(R.id.prefinput_contact_email), "email", User.class.getDeclaredMethod("getEmail")));
+            inputFields.add(new InputField((EditText) findViewById(R.id.prefinput_contact_phone), "phone", User.class.getDeclaredMethod("getPhone_number")));
+            inputFields.add(new InputField((EditText) findViewById(R.id.prefinput_address_line), "address_street", User.class.getDeclaredMethod("getAddress_street")));
+            inputFields.add(new InputField((EditText) findViewById(R.id.prefinput_address_city), "address_city", User.class.getDeclaredMethod("getAddress_city")));
+            inputFields.add(new InputField((EditText) findViewById(R.id.prefinput_address_postal), "address_postal", User.class.getDeclaredMethod("getAddress_postal_code")));
+            inputFields.add(new InputField((EditText) findViewById(R.id.prefinput_username_username), "key", User.class.getDeclaredMethod("getKey")));
+        }catch(NoSuchMethodException e){
+            e.printStackTrace();
+            System.exit(-1);
+        }
+
         saveButton = findViewById(R.id.ps_save);
 
         /*
-           * This
+           * This is the event listener which will get all the Users from the database. These Users
+           * are stored in the ArrayList "users". Then it will find the User with the same email as
+           * the email my firebaseAuth (user) has. Once the correct User is found and saved as
+           * myUser, it will set the hints for each InputField.
          */
+
         ValueEventListener saveChangesListener = new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -88,25 +103,19 @@ public class PersonalSettings extends AppCompatActivity {
                     users.add(userCurr);
                 }
 
-                Log.i("User Email", user.getEmail());
-
                 for (User userTemp : users) {
-                    Log.i("Current Email", userTemp.getEmail());
                     if (userTemp.getEmail().equals(user.getEmail())) {
                         myUser = userTemp;
                     }
                 }
 
                 if (myUser != null) {
-                    setHintStrings(
-                            myUser.getFirst_name(),
-                            myUser.getLast_name(),
-                            myUser.getEmail(),
-                            myUser.getPhone_number());
-                    setHints();
-
+                    for(int i = 0; i < inputFields.size(); i++){
+                        inputFields.get(i).setHint(myUser);
+                    }
                 } else {
                     Log.e("User Selection", "User not Found");
+                    System.exit(-1);
                 }
             }
 
@@ -116,84 +125,40 @@ public class PersonalSettings extends AppCompatActivity {
             }
         };
 
-        users = new ArrayList<User>();
-        mDatabase = FirebaseDatabase.getInstance().getReference("userSample");
-
-
+        //Setting it to be called everytime the database is updated, (and of course once on creation)
         mDatabase.addValueEventListener(saveChangesListener);
 
-
-        date = new DatePickerDialog.OnDateSetListener() {
-            @Override
-            public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
-                myCalendar.set(Calendar.YEAR, year);
-                myCalendar.set(Calendar.MONTH, month);
-                myCalendar.set(Calendar.DAY_OF_MONTH, dayOfMonth);
-                updateLabel();
-            }
-        };
-
-        prefInputDOB.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View v) {
-                new DatePickerDialog(
-                        PersonalSettings.this,
-                        Theme_Holo_Light_Dialog_MinWidth,
-                        date,
-                        myCalendar.get(Calendar.YEAR),
-                        myCalendar.get(Calendar.MONTH),
-                        myCalendar.get(Calendar.DAY_OF_MONTH)).show();
-            }
-        });
-
+        //Occurs when save button is selected
         saveButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                boolean editFirstname, editLastname, editEmail, editPhone, editSettings;
-                String inFirstname, inLastname, inEmail, inPhone;
-
-                editFirstname = editLastname = editEmail = editPhone = editSettings = false;
-                inFirstname = prefInputFirstname.getText().toString();
-                inLastname = prefInputLastname.getText().toString();
-                inEmail = prefInputEmail.getText().toString();
-                inPhone = prefInputPhone.getText().toString();
 
                 String key = myUser.getKey();
 
+                //A task is a call to set a value in firebase
                 ArrayList<Task> tasks = new ArrayList<Task>();
 
-                //Check if user put any info into fields
-                if(!inFirstname.equals("")){ editFirstname = true; }
+                //Have any of the values been changed? Is the text not ""?
+                boolean editSettings = false;
 
-                if(!inLastname.equals("")){ editLastname = true; }
-
-                if(!inEmail.equals("")){ editEmail = true; }
-
-                if(!inPhone.equals("")){ editPhone = true; }
-
-                //if so, upload new info
-                if(editFirstname || editLastname || editEmail || editPhone){
-                    if(editFirstname){
-                        tasks.add(mDatabase.child(key).child("first_name").setValue(inFirstname));
+                //If atleast one of the EditTexts have been changed, we want to tell firebase we
+                //have new info.
+                for(int i = 0; i < inputFields.size(); i++){
+                    if(!inputFields.get(i).getEditText().getText().toString().equals("")){
+                        editSettings = true;
                     }
+                }
 
-                    if(editLastname){
-                        tasks.add(mDatabase.child(key).child("first_name").setValue(inLastname));
+                if( editSettings ) {
+                    for(int i = 0; i < inputFields.size(); i++){
+                        String dbEntry = inputFields.get(i).getDbReference();
+                        String fieldText = inputFields.get(i).getEditText().getText().toString();
+                        // If this field has been changed
+                        if(!fieldText.equals("")){
+                            tasks.add(mDatabase.child(key).child(dbEntry).setValue(fieldText));
+                        }
+                        inputFields.get(i).clearText();
                     }
-
-                    if(editEmail){
-                        tasks.add(mDatabase.child(key).child("email").setValue(inEmail));
-                    }
-
-                    if(editPhone){
-                        tasks.add(mDatabase.child(key).child("phone").setValue(inPhone));
-                    }
-
-                    prefInputFirstname.getText().clear();
-                    prefInputLastname.getText().clear();
-                    prefInputEmail.getText().clear();
-                    prefInputPhone.getText().clear();
-
                     Toast.makeText(PersonalSettings.this, "Changes have been saved!", Toast.LENGTH_SHORT).show();
                 } else { //if not, prompt user for input
                     Toast.makeText(PersonalSettings.this, "Please Change Something!", Toast.LENGTH_SHORT).show();
@@ -204,19 +169,93 @@ public class PersonalSettings extends AppCompatActivity {
 
     }
 
-    private void setHintStrings(String firstname, String lastname, String email, String phone){
-        this.firstname = firstname;
-        this.lastname = lastname;
-        this.email = email;
-        this.phone = phone;
+    private class InputField{
+        private EditText editText;
+        private String dbReference;
+        private Method getHint;
+
+
+        public InputField(EditText editText, String dbReference, Method getHint){
+            this.editText = editText;
+            this.dbReference = dbReference;
+            this.getHint = getHint;
+        }
+
+        //Clear the text in the UI
+        public void clearText(){
+            editText.getText().clear();
+        }
+
+        //Applies the User method we obtained on creation on the given User parameter (myUser)
+        public void setHint(User myUser){
+            try {
+                editText.setHint((String)getHint.invoke(myUser));
+            } catch (IllegalAccessException e){
+                e.printStackTrace();
+                System.exit(-1);
+            } catch (InvocationTargetException e){
+                e.printStackTrace();
+                System.exit(-1);
+            }
+        }
+
+        public void setEditText(EditText editText) {
+            this.editText = editText;
+        }
+
+        public void setDbReference(String dbReference) {
+            this.dbReference = dbReference;
+        }
+
+        public EditText getEditText() {
+            return editText;
+        }
+
+        public String getDbReference() {
+            return dbReference;
+        }
     }
 
-    private void setHints(){
-        prefInputFirstname.setHint(myUser.getFirst_name());
-        prefInputLastname.setHint(myUser.getLast_name());
-        prefInputEmail.setHint(myUser.getEmail());
-        prefInputPhone.setHint(myUser.getPhone_number());
-    }
+    private class DateField extends InputField{
+        final Calendar myCalendar = Calendar.getInstance();
+        DatePickerDialog.OnDateSetListener date;
+        public DateField(EditText editText, String dbReference, Method getHint){
+            super(editText, dbReference, getHint);
 
+            //This sets the appearance of the DatePicker
+            editText.setOnClickListener(new View.OnClickListener(){
+                @Override
+                public void onClick(View v) {
+                    new DatePickerDialog(
+                            PersonalSettings.this,
+                            Theme_Holo_Light_Dialog_MinWidth,
+                            date,
+                            myCalendar.get(Calendar.YEAR),
+                            myCalendar.get(Calendar.MONTH),
+                            myCalendar.get(Calendar.DAY_OF_MONTH)).show();
+                }
+            });
+
+            //updates the date saved in myCalendar, then calls update label, which changes the date
+            //that appears in text field
+            date = new DatePickerDialog.OnDateSetListener() {
+                @Override
+                public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
+                    myCalendar.set(Calendar.YEAR, year);
+                    myCalendar.set(Calendar.MONTH, month);
+                    myCalendar.set(Calendar.DAY_OF_MONTH, dayOfMonth);
+                    updateLabel();
+                }
+            };
+        }
+        private void updateLabel() {
+            String myFormat = "MM/dd/yy"; //In which you need put here
+            SimpleDateFormat sdf = new SimpleDateFormat(myFormat, Locale.US);
+
+            getEditText().setText(sdf.format(myCalendar.getTime()));
+        }
+
+
+    }
 }
 

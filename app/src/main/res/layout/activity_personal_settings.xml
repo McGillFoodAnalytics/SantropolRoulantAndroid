@@ -10,8 +10,8 @@
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:layout_editor_absoluteX="96dp"
-        tools:layout_editor_absoluteY="-16dp">
+        tools:layout_editor_absoluteX="-16dp"
+        tools:layout_editor_absoluteY="-160dp">
 
         <LinearLayout
             android:id="@+id/prefgroups"
@@ -143,11 +143,11 @@
                             android:layout_height="@dimen/ps_prefinput_height"
                             android:layout_marginTop="@dimen/ps_prefinput_topmargin"
                             android:background="@drawable/ps_shape_prefinput"
-                            android:inputType="date"
-                            android:longClickable="false"
-                            android:focusable="false"
+                            android:calendarViewShown="false"
                             android:datePickerMode="spinner"
-                            android:calendarViewShown="false"/>
+                            android:focusable="false"
+                            android:inputType="date"
+                            android:longClickable="false" />
                     </LinearLayout>
                 </LinearLayout>
             </LinearLayout>
@@ -223,6 +223,142 @@
                     </LinearLayout>
                 </LinearLayout>
 
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/prefgroup_address"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/prefgroup_address_title"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/ps_prefgroup_height"
+                    android:background="@drawable/ps_shape_prefgroup"
+                    android:gravity="center"
+                    android:text="@string/ps_address_title"
+                    android:textAlignment="gravity"
+                    android:textSize="@dimen/ps_prefgroup_font_size" />
+
+                <LinearLayout
+                    android:id="@+id/preferences_address"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:id="@+id/preferences_personal_address"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginTop="@dimen/ps_pref_topmargin"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/preftitle_address_line"
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/ps_preftitle_height"
+                            android:src="@drawable/ps_shape_save"
+                            android:text="@string/ps_address_line"
+                            android:textSize="@dimen/ps_preftitle_font_size" />
+
+                        <EditText
+                            android:id="@+id/prefinput_address_line"
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/ps_prefinput_height"
+                            android:layout_marginTop="@dimen/ps_prefinput_topmargin"
+                            android:background="@drawable/ps_shape_prefinput"
+                            android:hint="@string/ps_address_line" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/preference_address_city"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginTop="@dimen/ps_pref_topmargin"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/preftitle_address_city"
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/ps_preftitle_height"
+                            android:src="@drawable/ps_shape_save"
+                            android:text="@string/ps_address_city"
+                            android:textSize="@dimen/ps_preftitle_font_size" />
+
+                        <EditText
+                            android:id="@+id/prefinput_address_city"
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/ps_prefinput_height"
+                            android:layout_marginTop="@dimen/ps_prefinput_topmargin"
+                            android:background="@drawable/ps_shape_prefinput"
+                            android:hint="@string/ps_address_city" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/preference_address_postal"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginTop="@dimen/ps_pref_topmargin"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/preftitle_address_postal"
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/ps_preftitle_height"
+                            android:src="@drawable/ps_shape_save"
+                            android:text="@string/ps_address_postal"
+                            android:textSize="@dimen/ps_preftitle_font_size" />
+
+                        <EditText
+                            android:id="@+id/prefinput_address_postal"
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/ps_prefinput_height"
+                            android:layout_marginTop="@dimen/ps_prefinput_topmargin"
+                            android:background="@drawable/ps_shape_prefinput"
+                            android:hint="@string/ps_address_postal" />
+                    </LinearLayout>
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/prefgroup_username"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/prefgroup_username_title"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/ps_prefgroup_height"
+                    android:background="@drawable/ps_shape_prefgroup"
+                    android:gravity="center"
+                    android:text="@string/ps_username_title"
+                    android:textAlignment="gravity"
+                    android:textSize="@dimen/ps_prefgroup_font_size" />
+
+                <LinearLayout
+                    android:id="@+id/preferences_username"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:id="@+id/preferences_username_input"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginTop="@dimen/ps_pref_topmargin"
+                        android:orientation="vertical">
+
+                        <EditText
+                            android:id="@+id/prefinput_username_username"
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/ps_prefinput_height"
+                            android:layout_marginTop="@dimen/ps_prefinput_topmargin"
+                            android:background="@drawable/ps_shape_prefinput"
+                            android:hint="@string/ps_username_title" />
+                    </LinearLayout>
+                </LinearLayout>
             </LinearLayout>
 
             <Button
