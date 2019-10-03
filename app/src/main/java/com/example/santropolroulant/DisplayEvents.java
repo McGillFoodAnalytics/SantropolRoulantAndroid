@@ -54,14 +54,8 @@ public class DisplayEvents extends AppCompatActivity{
 
         setUpUIViews();
 
-        
 
-
-        adapter = new EventAdapter(this, eventList); //
-        recyclerView.setAdapter(adapter);
-
-        // Access global variable set in 'Volunteer Options' button
-        Intent intent = getIntent();
+        Intent intent = getIntent();                                 // Access global variable set in 'Volunteer Options' button
         final String gtype = intent.getStringExtra("type");
 
         //Switch wkndSwitch = (Switch)findViewById(R.id.swtchWknd);
@@ -76,7 +70,6 @@ public class DisplayEvents extends AppCompatActivity{
                     Intent intent = new Intent(DisplayEvents.this, Confirmation_Page_MealDelivery.class);
                     intent.putExtra("type", eventList.get(position).getEvent_type());
                     intent.putExtra("date", eventList.get(position).getDate());
-
                     startActivity(intent);
                 } else {
                     Intent intent = new Intent(DisplayEvents.this, Confirmation_Page.class);
@@ -114,11 +107,12 @@ public class DisplayEvents extends AppCompatActivity{
         title = findViewById(R.id.tvTitle);
         signUp = findViewById(R.id.btnSignUp);
 
-        recyclerView = findViewById(R.id.recyclerView); //xml
-        recyclerView.setHasFixedSize(true); // Fix size
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        eventList = new ArrayList<>();
-        uniqueRefList = new ArrayList<>();
+        recyclerView = findViewById(R.id.recyclerView);
+        recyclerView.setHasFixedSize(true);                                        // Fixes size
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));      // Sets linear layout to Recycler View
+
+        adapter = new EventAdapter(this, eventList);
+        recyclerView.setAdapter(adapter);
 
     }
 
