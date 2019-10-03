@@ -14,12 +14,13 @@
     <string name="ps_birthday_title">BIRTHDAY</string>
     <string name="ps_birthday_dob">DATE OF BIRTH</string>
     <string name="ps_contact_title">CONTACT</string>
-    <string name="ps_contact_email">EMAIL_ADDRESS</string>
+    <string name="ps_contact_email">EMAIL ADDRESS</string>
     <string name="ps_contact_phone">PHONE NUMBER</string>
     <string name="ps_address_title">ADDRESS</string>
     <string name="ps_address_line">ADDRESS LINE</string>
     <string name="ps_address_city">CITY</string>
     <string name="ps_address_postal">POSTAL CODE</string>
+    <string name="ps_username_title">YOUR ROULANT USER NAME</string>
     <string name="ps_save_button">Save Changes</string>
     <string name="title_activity_maps">Map</string>
 </resources>
