@@ -86,7 +86,7 @@ public class CreateAccount3 extends AppCompatActivity {
                                     Toast.makeText(CreateAccount3.this, "Registration Successful!", Toast.LENGTH_SHORT).show();
                                     setInvisible();
                                     createAccount.setClickable(true);
-                                    startActivity(new Intent(CreateAccount3.this, Login.class));
+                                    startActivity(new Intent(CreateAccount3.this, Main.class));
                                 }
                                 else{
                                     Toast.makeText(CreateAccount3.this, "Oops a monkey quit!", Toast.LENGTH_SHORT).show();
