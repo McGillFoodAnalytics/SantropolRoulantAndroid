@@ -47,6 +47,7 @@ public class PersonalSettings extends AppCompatActivity {
     private FirebaseAuth firebaseAuth;
     private DatabaseReference mDatabase;
 
+
     //private PreferenceGroup[] settings;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -254,6 +255,7 @@ public class PersonalSettings extends AppCompatActivity {
 
             getEditText().setText(sdf.format(myCalendar.getTime()));
         }
+
 
 
     }
