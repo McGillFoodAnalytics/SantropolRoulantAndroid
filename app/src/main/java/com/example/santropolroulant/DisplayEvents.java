@@ -9,6 +9,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.widget.Button;
+import android.widget.TextView;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -35,12 +37,14 @@ import java.util.List;
 
 public class DisplayEvents extends AppCompatActivity{
 
-    private FirebaseAuth mAuth; // Authentication for UserID
-    private RecyclerView recyclerView; // Recycler view to work with Custom Adapter
-    private EventAdapter adapter; // Custom adapter 'EventAdapter'
-    private List<Event> eventList; // List that will be filled with Event classes from Firebase Query
+    private FirebaseAuth mAuth;         // Authentication for UserID
+    private RecyclerView recyclerView;  // Recycler view to work with Custom Adapter
+    private EventAdapter adapter;       // Custom adapter 'EventAdapter'
+    private List<Event> eventList;      // List that will be filled with Event classes from Firebase Query
     private List<String> uniqueRefList;
     private Integer currentCap;
+    private TextView title;
+    private Button signUp;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,12 +52,9 @@ public class DisplayEvents extends AppCompatActivity{
         setContentView(R.layout.activity_display_events);
         mAuth = FirebaseAuth.getInstance();
 
-        recyclerView = findViewById(R.id.recyclerView); //xml
-        recyclerView.setHasFixedSize(true); // Fix size
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        eventList = new ArrayList<>();
-        uniqueRefList = new ArrayList<>();
+        setUpUIViews();
 
+        
 
 
         adapter = new EventAdapter(this, eventList); //
@@ -106,6 +107,19 @@ public class DisplayEvents extends AppCompatActivity{
                 //}
             //}
         //});
+    }
+
+    private void setUpUIViews(){
+
+        title = findViewById(R.id.tvTitle);
+        signUp = findViewById(R.id.btnSignUp);
+
+        recyclerView = findViewById(R.id.recyclerView); //xml
+        recyclerView.setHasFixedSize(true); // Fix size
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        eventList = new ArrayList<>();
+        uniqueRefList = new ArrayList<>();
+
     }
 
 
