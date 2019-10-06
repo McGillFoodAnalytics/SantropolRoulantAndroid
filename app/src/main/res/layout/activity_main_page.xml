@@ -23,7 +23,7 @@
             app:layout_constraintHorizontal_bias="0.49"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/santropol_logo" />
+            app:srcCompat="@drawable/santropol_logo_white" />
 
         <Button
             android:id="@+id/Create_Account_Button"
