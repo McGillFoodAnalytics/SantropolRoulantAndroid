@@ -38,7 +38,7 @@ import java.util.List;
 public class DisplayEvents extends AppCompatActivity{
 
     private FirebaseAuth mAuth;         // Authentication for UserID
-    private RecyclerView recyclerView;  // Recycler view to work with Custom Adapter
+    private RecyclerView recyclerView;  // Recycler view to work with Custom EventAdapter
     private EventAdapter adapter;       // Custom adapter 'EventAdapter'
     private List<Event> eventList;      // List that will be filled with Event classes from Firebase Query
     private List<String> uniqueRefList;
@@ -54,14 +54,13 @@ public class DisplayEvents extends AppCompatActivity{
 
         setUpUIViews();
 
-        
-
         Intent intent = getIntent();                                 // Access global variable set in 'Volunteer Options' button
         final String gtype = intent.getStringExtra("type");
 
         //Switch wkndSwitch = (Switch)findViewById(R.id.swtchWknd);
 
-        // Building pop up dialog for when you click on the cardview
+
+        // Building pop up dialog for when you click on the CardView
         adapter.setOnItemClickListener(new EventAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(final int position) {
@@ -104,25 +103,18 @@ public class DisplayEvents extends AppCompatActivity{
     }
 
     private void setUpUIViews(){
-
         title = findViewById(R.id.tvTitle);
         signUp = findViewById(R.id.btnSignUp);
 
-<<<<<<< HEAD
         recyclerView = findViewById(R.id.recyclerView);
         recyclerView.setHasFixedSize(true);                                        // Fixes size
         recyclerView.setLayoutManager(new LinearLayoutManager(this));      // Sets linear layout to Recycler View
 
-        adapter = new EventAdapter(this, eventList);
-        recyclerView.setAdapter(adapter);
-=======
-        recyclerView = findViewById(R.id.recyclerView); //xml
-        recyclerView.setHasFixedSize(true); // Fix size
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
         eventList = new ArrayList<>();
         uniqueRefList = new ArrayList<>();
->>>>>>> d1e08199322125fe5149a0c4266e13e4db2e0759
 
+        adapter = new EventAdapter(this, eventList);
+        recyclerView.setAdapter(adapter);
     }
 
 
@@ -170,9 +162,8 @@ public class DisplayEvents extends AppCompatActivity{
                                     return e1.getDate().compareTo(e2.getDate());
                                 }
                             });
-                        };
+                        }
                         uniqueRefList.add(date_txt);
-
                     }
                 }
                 adapter.notifyDataSetChanged();
