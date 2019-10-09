@@ -19,6 +19,12 @@ public class Event {
     public Event(){
     }
 
+    public Event(int event_date, String event_date_txt, String event_id) {
+        this.event_date = event_date;
+        this.event_date_txt = event_date_txt;
+        this.event_id = event_id;
+    }
+
     public int getEvent_date() {
         return event_date;
     }

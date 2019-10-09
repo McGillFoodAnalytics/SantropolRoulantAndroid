@@ -50,6 +50,8 @@
 
         <activity android:name=".PersonalSettings"
             android:screenOrientation="portrait"/>
+        <activity android:name=".EventRegisterConfirmation"
+            android:screenOrientation="portrait"/>
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="AIzaSyDHPXY-kRutTgPNo3ZfS6bEji5NTJtqUPE"/>
