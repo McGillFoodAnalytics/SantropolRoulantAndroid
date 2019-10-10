@@ -107,21 +107,15 @@ public class DisplayEvents extends AppCompatActivity{
 
         title = findViewById(R.id.tvTitle);
         signUp = findViewById(R.id.btnSignUp);
-
-<<<<<<< HEAD
-        recyclerView = findViewById(R.id.recyclerView);
-        recyclerView.setHasFixedSize(true);                                        // Fixes size
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));      // Sets linear layout to Recycler View
+        recyclerView = findViewById(R.id.recyclerView); // Sets linear layout to Recycler View
 
         adapter = new EventAdapter(this, eventList);
         recyclerView.setAdapter(adapter);
-=======
-        recyclerView = findViewById(R.id.recyclerView); //xml
         recyclerView.setHasFixedSize(true); // Fix size
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         eventList = new ArrayList<>();
         uniqueRefList = new ArrayList<>();
->>>>>>> d1e08199322125fe5149a0c4266e13e4db2e0759
+
 
     }
 
