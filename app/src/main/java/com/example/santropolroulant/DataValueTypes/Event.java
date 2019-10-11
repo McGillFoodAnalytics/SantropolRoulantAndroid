@@ -1,6 +1,12 @@
 package com.example.santropolroulant.DataValueTypes;
 
-public class Event {
+import android.os.Build;
+import android.os.Parcel;
+import android.os.Parcelable;
+
+import androidx.annotation.RequiresApi;
+
+public class Event{
     private int event_date;
     private String event_date_txt;
     private String event_id;
@@ -80,4 +86,56 @@ public class Event {
     public String getUid() {
         return uid;
     }
+/*
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @RequiresApi(api = Build.VERSION_CODES.Q)
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeInt(event_date);
+        dest.writeString(event_date_txt);
+        dest.writeString(event_id);
+        dest.writeString(event_time_start);
+        dest.writeString(event_time_end);
+        dest.writeString(event_type);
+        dest.writeBoolean(is_important_event);
+        dest.writeString(is_current);
+        dest.writeString(first_name);
+        dest.writeString(key);
+        dest.writeString(last_name);
+        dest.writeString(note);
+        dest.writeString(uid);
+
+    }
+
+    public static final Parcelable.Creator<Event> CREATOR
+            = new Parcelable.Creator<Event>(){
+        public Event createFromParcel(Parcel in){
+            return new Event(in);
+        }
+
+        public Event[] newArray(int size){
+            return new Event[size];
+        }
+    };
+
+    @RequiresApi(api = Build.VERSION_CODES.Q)
+    private Event(Parcel in){
+     event_date = in.readInt();
+     event_date_txt = in.readString();
+     event_id = in.readString();
+     event_time_start = in.readString();
+     event_time_end =in.readString();
+     event_type = in.readString();
+     is_important_event = in.readBoolean();
+     is_current = in.readString();
+     first_name = in.readString();
+     key = in.readString();
+     last_name = in.readString();
+     note = in.readString();
+     uid = in.readString();
+    }*/
 }
