@@ -1,14 +1,11 @@
 package com.example.santropolroulant;
 
 import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.View;
-import android.view.Window;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
@@ -19,7 +16,6 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.santropolroulant.R;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -28,10 +24,8 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-import org.w3c.dom.Text;
 
 public class UnlockApplication extends AppCompatActivity{
-    DataStorage dataStorage;
     private FirebaseAuth firebaseAuth;
     private DatabaseReference ref;
     private TextView accessCodeView;
@@ -133,7 +127,6 @@ public class UnlockApplication extends AppCompatActivity{
     }
 
     private void setupUIViews() {
-        //infoSessionBox = (LinearLayout) findViewById(R.id.info_session_info1);
         accessCodeView = (TextView) findViewById(R.id.accessCode);
         logo = (ImageView) findViewById(R.id.unlock_logo);
         welcome = (TextView) findViewById(R.id.unlock_welcome);
