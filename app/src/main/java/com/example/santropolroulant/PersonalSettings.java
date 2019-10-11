@@ -40,9 +40,8 @@ import static android.R.style.Theme_Holo_Light_Dialog_MinWidth;
 public class PersonalSettings extends AppCompatActivity {
     ArrayList<InputField> inputFields;
     Button saveButton;
-    DatePickerDialog.OnDateSetListener date;
-    List<User> users;
     User myUser;
+    String uid;
 
     private FirebaseAuth firebaseAuth;
     private DatabaseReference mDatabase;
@@ -54,7 +53,6 @@ public class PersonalSettings extends AppCompatActivity {
         setContentView(R.layout.activity_personal_settings);
 
         inputFields = new ArrayList<>();
-        users = new ArrayList<User>();
 
         //Ensuring we are logged in to firebase
         firebaseAuth = FirebaseAuth.getInstance();
@@ -102,12 +100,9 @@ public class PersonalSettings extends AppCompatActivity {
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 for (DataSnapshot userDS : dataSnapshot.getChildren()) {
                     User userCurr = userDS.getValue(User.class);
-                    users.add(userCurr);
-                }
-
-                for (User userTemp : users) {
-                    if (userTemp.getEmail().equals(user.getEmail())) {
-                        myUser = userTemp;
+                    if (userCurr.getEmail().equals(user.getEmail())) {
+                        myUser = userCurr;
+                        uid = userDS.getKey();
                     }
                 }
 
