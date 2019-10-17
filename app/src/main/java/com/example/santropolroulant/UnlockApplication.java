@@ -54,21 +54,22 @@ public class UnlockApplication extends AppCompatActivity{
         final FirebaseUser user = firebaseAuth.getCurrentUser();
         // Auto login for signed in user - Commented out below
 
-        if(user == null){
-            System.exit(-1);
-        }
+        //if(user == null){
+        //    System.exit(-1);
+        //}
 
-        /* TO SET BACK TO LOCKED
+        /*TO SET BACK TO LOCKED
         SharedPreferences.Editor editor = getSharedPreferences(MY_PREFS_NAME, MODE_PRIVATE).edit();
         editor.putBoolean("unlocked", false);
-        editor.apply();
-        */
+        editor.apply();*/
+
 
         SharedPreferences prefs = getSharedPreferences(MY_PREFS_NAME, MODE_PRIVATE);
         isUnlocked = prefs.getBoolean("unlocked", false);//"No name defined" is the default value.
 
         if(isUnlocked == true){
             startActivity(new Intent(UnlockApplication.this, MainActivity.class));
+            finish();
         }
 
 
@@ -109,6 +110,7 @@ public class UnlockApplication extends AppCompatActivity{
                     editor.putBoolean("unlocked", true);
                     editor.apply();
                     startActivity(new Intent(UnlockApplication.this, MainActivity.class));
+                    finish();
                 }
             }
         });

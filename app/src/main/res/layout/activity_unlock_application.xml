@@ -111,7 +111,8 @@
                     android:layout_height="match_parent"
                     android:ems="10"
                     android:importantForAutofill="no"
-                    android:inputType="textPersonName" />
+                    android:inputType="textPersonName"
+                    android:textColor="#FFFFFF" />
 
                 <Button
                     android:id="@+id/enter_code_button"

@@ -9,7 +9,7 @@
     <LinearLayout
         android:id="@+id/info_session_info1"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:divider="@drawable/ps_prefgroup_divider"
         android:orientation="vertical"
         android:padding="@dimen/ps_margin"
@@ -29,7 +29,7 @@
             <ImageView
                 android:id="@+id/unlock_logo"
                 android:layout_width="match_parent"
-                android:layout_height="122dp"
+                android:layout_height="96dp"
                 android:layout_gravity="start|left"
                 android:contentDescription="@string/santropol_logo"
                 app:srcCompat="@drawable/santropol_logo" />
@@ -110,7 +110,8 @@
                     android:layout_height="match_parent"
                     android:ems="10"
                     android:importantForAutofill="no"
-                    android:inputType="textPersonName" />
+                    android:inputType="textPersonName"
+                    android:textColor="#FFFFFF" />
 
                 <Button
                     android:id="@+id/enter_code_button"
