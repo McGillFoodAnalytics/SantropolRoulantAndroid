@@ -35,6 +35,8 @@
             android:screenOrientation="portrait" />
         <activity android:name=".CreateAccount3"
             android:screenOrientation="portrait" />
+        <activity android:name=".ContactUs"
+            android:screenOrientation="portrait" />
         <activity android:name=".CreateAccount"
             android:screenOrientation="portrait" />
         <activity android:name=".Login"
@@ -54,11 +56,7 @@
             android:screenOrientation="portrait"/>
         <meta-data
             android:name="com.google.android.geo.API_KEY"
-            android:value="AIzaSyDHPXY-kRutTgPNo3ZfS6bEji5NTJtqUPE"/>
-
-        <meta-data
-            android:name="com.google.android.geo.API_KEY"
-            android:value="AIzaSyDHPXY-kRutTgPNo3ZfS6bEji5NTJtqUPE"/>
+            android:value="AIzaSyALmASF-czV39bmGkST_15oViky6Pab6gY"/>
     </application>
 
 </manifest>
