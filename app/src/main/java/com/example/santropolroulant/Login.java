@@ -141,6 +141,11 @@ public class Login extends AppCompatActivity {
             }*/
     private void performLogin(String emailId, String password){
 
+        if(emailId==null){
+            Toast.makeText(Login.this, "Login Failed: Incorrect Username", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
         //Firebase Authentication instance + built in function to sign in with Email and Password
         firebaseAuth.signInWithEmailAndPassword(emailId, userPassword).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
             @Override
@@ -150,7 +155,7 @@ public class Login extends AppCompatActivity {
                     // Go to Home activity
                     startActivity(new Intent(Login.this, Home.class));
                 }else{
-                    Toast.makeText(Login.this, "Login Failed", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(Login.this, "Login Failed: Incorrect Password", Toast.LENGTH_SHORT).show();
                 }
             }
         });
