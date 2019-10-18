@@ -56,7 +56,6 @@ public class Login extends AppCompatActivity {
         //}
 
 
-
         // Click listener for the Login button
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -154,6 +153,7 @@ public class Login extends AppCompatActivity {
                     Toast.makeText(Login.this, "Login Successful", Toast.LENGTH_SHORT).show();
                     // Go to Home activity
                     startActivity(new Intent(Login.this, Home.class));
+                    finish();
                 }else{
                     Toast.makeText(Login.this, "Login Failed: Incorrect Password", Toast.LENGTH_SHORT).show();
                 }

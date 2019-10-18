@@ -23,6 +23,8 @@
             android:screenOrientation="portrait" />
         <activity android:name=".Home"
             android:screenOrientation="portrait" />
+        <activity android:name=".PersonalSettings"
+            android:screenOrientation="portrait" />
         <activity android:name=".DisplayEvents"
             android:screenOrientation="portrait" />
         <activity android:name=".VolunteerOptions"
