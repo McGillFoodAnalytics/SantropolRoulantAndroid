@@ -1,4 +1,4 @@
- <?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
 xmlns:app="http://schemas.android.com/apk/res-auto"
 xmlns:tools="http://schemas.android.com/tools"
@@ -6,164 +6,155 @@ android:layout_width="match_parent"
 android:layout_height="match_parent"
 tools:context=".VolunteerType">
 
-<LinearLayout
-    android:id="@+id/linearLayout5"
-    android:layout_width="374dp"
-    android:layout_height="120dp"
-    android:layout_marginStart="8dp"
-    android:layout_marginTop="8dp"
-    android:layout_marginEnd="8dp"
-    android:layout_marginBottom="8dp"
-    android:clipToPadding="false"
-    android:gravity="center"
-    android:orientation="horizontal"
-    app:layout_constraintBottom_toBottomOf="parent"
-    app:layout_constraintEnd_toEndOf="parent"
-    app:layout_constraintHorizontal_bias="0.619"
-    app:layout_constraintStart_toStartOf="parent"
-    app:layout_constraintTop_toTopOf="parent"
-    app:layout_constraintVertical_bias="0.191">
+
+    <LinearLayout
+        android:id="@+id/linearLayout5"
+        android:layout_width="374dp"
+        android:layout_height="120dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:clipToPadding="false"
+        android:gravity="center"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.619"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.291">
 
 
-    <androidx.cardview.widget.CardView
-        android:id="@+id/crdKitchen"
-        android:layout_width="323dp"
-        android:layout_height="100dp"
-        android:layout_margin="4dp"
-        android:clickable="true"
-        android:foreground="?android:selectableItemBackground">
+        <androidx.cardview.widget.CardView
+            android:id="@+id/crdKitchen"
+            android:layout_width="323dp"
+            android:layout_height="100dp"
+            android:layout_margin="4dp"
+            android:clickable="true"
+            android:foreground="?android:selectableItemBackground">
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:gravity="center"
-            android:orientation="horizontal">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:orientation="horizontal">
 
-            <ImageView
-                android:layout_width="65dp"
-                android:layout_height="65dp"
-                android:layout_marginRight="45dp"
-                android:src="@drawable/ic_recipe_book"></ImageView>
+                <ImageView
+                    android:layout_width="65dp"
+                    android:layout_height="65dp"
+                    android:layout_marginRight="45dp"
+                    android:src="@drawable/ic_recipe_book"></ImageView>
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Kitchen"
-                android:textSize="18dp"
-                android:textStyle="bold" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Kitchen"
+                    android:textSize="18dp"
+                    android:textStyle="bold" />
 
-        </LinearLayout>
-    </androidx.cardview.widget.CardView>
-</LinearLayout>
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+    </LinearLayout>
 
-<LinearLayout
-    android:id="@+id/linearLayout7"
-    android:layout_width="374dp"
-    android:layout_height="120dp"
-    android:layout_marginStart="8dp"
-    android:layout_marginTop="8dp"
-    android:layout_marginEnd="8dp"
-    android:layout_marginBottom="8dp"
-    android:clipToPadding="false"
-    android:gravity="center"
-    android:orientation="horizontal"
-    app:layout_constraintBottom_toBottomOf="parent"
-    app:layout_constraintEnd_toEndOf="parent"
-    app:layout_constraintHorizontal_bias="0.619"
-    app:layout_constraintStart_toStartOf="parent"
-    app:layout_constraintTop_toBottomOf="@+id/linearLayout5"
-    app:layout_constraintVertical_bias="0.059">
+    <LinearLayout
+        android:id="@+id/linearLayout7"
+        android:layout_width="374dp"
+        android:layout_height="120dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:clipToPadding="false"
+        android:gravity="center"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.619"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout5"
+        app:layout_constraintVertical_bias="0.047">
 
 
-    <androidx.cardview.widget.CardView
-        android:id="@+id/crdDelivery"
-        android:layout_width="323dp"
-        android:layout_height="100dp"
-        android:layout_margin="4dp"
-        android:clickable="true"
-        android:foreground="?android:selectableItemBackground">
+        <androidx.cardview.widget.CardView
+            android:id="@+id/crdDelivery"
+            android:layout_width="323dp"
+            android:layout_height="100dp"
+            android:layout_margin="4dp"
+            android:clickable="true"
+            android:foreground="?android:selectableItemBackground">
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:gravity="center"
-            android:orientation="horizontal">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:orientation="horizontal">
 
-            <ImageView
-                android:layout_width="70dp"
-                android:layout_height="70dp"
-                android:layout_marginRight="50dp"
-                android:src="@drawable/ic_bicycle"></ImageView>
+                <ImageView
+                    android:layout_width="70dp"
+                    android:layout_height="70dp"
+                    android:layout_marginRight="50dp"
+                    android:src="@drawable/ic_bicycle"></ImageView>
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginRight="10dp"
-                android:text="Meal Delivery"
-                android:textSize="18dp"
-                android:textStyle="bold" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="10dp"
+                    android:text="Meal Delivery"
+                    android:textSize="18dp"
+                    android:textStyle="bold" />
 
-        </LinearLayout>
-    </androidx.cardview.widget.CardView>
-</LinearLayout>
-
-
-<LinearLayout
-    android:layout_width="374dp"
-    android:layout_height="120dp"
-    android:layout_marginStart="8dp"
-    android:layout_marginTop="8dp"
-    android:layout_marginEnd="8dp"
-    android:layout_marginBottom="8dp"
-    android:clipToPadding="false"
-    android:gravity="center"
-    android:orientation="horizontal"
-    app:layout_constraintBottom_toBottomOf="parent"
-    app:layout_constraintEnd_toEndOf="parent"
-    app:layout_constraintHorizontal_bias="0.619"
-    app:layout_constraintStart_toStartOf="parent"
-    app:layout_constraintTop_toBottomOf="@+id/linearLayout7"
-    app:layout_constraintVertical_bias="0.125">
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+    </LinearLayout>
 
 
-    <androidx.cardview.widget.CardView
-        android:id="@+id/crdOther"
-        android:layout_width="323dp"
-        android:layout_height="100dp"
-        android:layout_margin="4dp"
-        android:clickable="true"
-        android:foreground="?android:selectableItemBackground">
+    <LinearLayout
+        android:layout_width="374dp"
+        android:layout_height="120dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:clipToPadding="false"
+        android:gravity="center"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.619"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout7"
+        app:layout_constraintVertical_bias="0.078">
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:gravity="center"
-            android:orientation="horizontal">
 
-            <ImageView
-                android:layout_width="65dp"
-                android:layout_height="65dp"
-                android:layout_marginRight="65dp"
-                android:src="@drawable/ic_harvest"></ImageView>
+        <androidx.cardview.widget.CardView
+            android:id="@+id/crdOther"
+            android:layout_width="323dp"
+            android:layout_height="100dp"
+            android:layout_margin="4dp"
+            android:clickable="true"
+            android:foreground="?android:selectableItemBackground">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginRight="10dp"
-                android:text="Other Events"
-                android:textSize="18dp"
-                android:textStyle="bold" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:orientation="horizontal">
 
-        </LinearLayout>
-    </androidx.cardview.widget.CardView>
-</LinearLayout>
+                <ImageView
+                    android:layout_width="65dp"
+                    android:layout_height="65dp"
+                    android:layout_marginRight="65dp"
+                    android:src="@drawable/ic_harvest"></ImageView>
 
-<LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="10dp"
+                    android:text="Other Events"
+                    android:textSize="18dp"
+                    android:textStyle="bold" />
+
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+    </LinearLayout>
 
     <Button
-        android:id="@+id/btnNext"
+        android:id="@+id/btnNext2"
         android:layout_width="418sp"
         android:layout_height="78sp"
         android:layout_marginStart="8sp"
@@ -176,11 +167,25 @@ tools:context=".VolunteerType">
         app:layout_constraintHorizontal_bias="0.8"
         app:layout_constraintStart_toStartOf="parent" />
 
-</LinearLayout>
+    <TextView
+        android:id="@+id/tvTitle2"
+        android:layout_width="295dp"
+        android:layout_height="55dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
+        android:gravity="center"
+        android:text="What type of activity would you like to sign up for?"
+        android:textSize="22sp"
+        app:layout_constraintBottom_toTopOf="@+id/linearLayout5"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.682" />
 
 
-
-//        android:id="@+id/btnKam"
+    //        android:id="@+id/btnKam"
 //        android:id="@+id/btnKpm"
 //        android:id="@+id/btnDelivery"
 
