@@ -4,7 +4,6 @@
     <string name="santropol_roulant">Santropol Roulant!</string>
     <string name="create_account">Create Account</string>
     <string name="welcome_to">Welcome to</string>
-    <string name="santropol_logo">Santropol Logo</string>
     <string name="log_in">Log in</string>
     <string name="first_name">First Name</string>
     <string name="last_name">Last Name</string>
@@ -23,4 +22,10 @@
     <string name="ps_username_title">YOUR ROULANT USER NAME</string>
     <string name="ps_save_button">Save Changes</string>
     <string name="title_activity_maps">Map</string>
+    <string name="Welcome">Welcome to\nSantropol Roulant</string>
+    <string name="unlock_body_text1">To use our app, you need to attend on of our info sessions for volunteers. You will be given an access code that you can input below</string>
+    <string name="unlock_body_text2">Call us at (514) 284-9335 for information about our next info sessions</string>
+    <string name="unlock_login_text">I already have an account</string>
+    <string name="enter_code_text">Enter Code</string>
+    <string name="santropol_logo">Santropol Logo</string>
 </resources>

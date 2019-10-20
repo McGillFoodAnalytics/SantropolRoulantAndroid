@@ -47,7 +47,6 @@ public class PersonalSettings extends AppCompatActivity {
     private FirebaseAuth firebaseAuth;
     private DatabaseReference mDatabase;
 
-
     //private PreferenceGroup[] settings;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,6 +62,8 @@ public class PersonalSettings extends AppCompatActivity {
         // Auto login for signed in user - Commented out below
 
         if(user == null){
+            String userName = user.toString();
+            Log.d("LOGGED IN", userName);
             System.exit(-1);
         }
 

@@ -6,12 +6,14 @@ import androidx.cardview.widget.CardView;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 
 public class Home extends AppCompatActivity {
@@ -29,6 +31,7 @@ public class Home extends AppCompatActivity {
         setContentView(R.layout.activity_home);
 
         mAuth = FirebaseAuth.getInstance();
+        FirebaseUser user = mAuth.getCurrentUser();
 
         volunteerCard = (CardView)findViewById(R.id.volunteerCard);
         scheduleCard = (CardView)findViewById(R.id.scheduleCard);
@@ -78,7 +81,11 @@ public class Home extends AppCompatActivity {
 
 
     }
+    @Override
+    public void onBackPressed() {
 
+        return;
+    }
     // to be implemented somewhere on this page
     private void Logout(){
         mAuth.signOut();

@@ -84,11 +84,11 @@ public class CreateAccount3 extends AppCompatActivity {
                                 Task[] tasks = sendUserData();
 
                                 //if (tasks[0].isSuccessful() && tasks[1].isSuccessful() && tasks[2].isSuccessful() && tasks[3].isSuccessful() &&tasks[4].isSuccessful() && tasks[5].isSuccessful() && tasks[6].isSuccessful() && tasks[7].isSuccessful() && tasks[8].isSuccessful()){
-                                    Toast.makeText(CreateAccount3.this, "Registration Successful!", Toast.LENGTH_SHORT).show();
-                                    setInvisible();
-                                    createAccount.setClickable(true);
+                                Toast.makeText(CreateAccount3.this, "Registration Successful!", Toast.LENGTH_SHORT).show();
+                                setInvisible();
+                                createAccount.setClickable(true);
 
-                                    startActivity(new Intent(CreateAccount3.this, Login.class));
+                                startActivity(new Intent(CreateAccount3.this, Login.class));
                                 /*}
                                 else{
                                     Toast.makeText(CreateAccount3.this, "Oops a monkey quit!", Toast.LENGTH_SHORT).show();
@@ -231,39 +231,26 @@ public class CreateAccount3 extends AppCompatActivity {
         myRef.child("user").child(key).setValue("key");
 
         tasks[0] = myRef.child("user").child(key).child("first_name").setValue(first_name);
-        Log.d("sendingUserData0", String.valueOf(tasks[0].getResult()));
 
         tasks[1] = myRef.child("user").child(key).child("last_name").setValue(last_name);
-        Log.d("sendingUserData1", String.valueOf(tasks[1].isSuccessful()));
 
         tasks[2] = myRef.child("user").child(key).child("dob").setValue(birth_date);
-        Log.d("sendingUserData2", String.valueOf(tasks[2].isSuccessful()));
 
         tasks[3] = myRef.child("user").child(key).child("phone_number").setValue(phone_number);
-        Log.d("sendingUserData3", String.valueOf(tasks[3].isSuccessful()));
 
         tasks[4] = myRef.child("user").child(key).child("email").setValue(email);
-        Log.d("sendingUserData4", String.valueOf(tasks[4].isSuccessful()));
 
         tasks[5] = myRef.child("user").child(key).child("signup_date").setValue(formattedDate);
-        Log.d("sendingUserData5", String.valueOf(tasks[5].isSuccessful()));
 
         tasks[6] = myRef.child("user").child(key).child("address_city").setValue(city);
-        Log.d("sendingUserData6", String.valueOf(tasks[6].isSuccessful()));
 
         tasks[7] = myRef.child("user").child(key).child("address_number").setValue(address_number_int);
-        Log.d("sendingUserData6", String.valueOf(tasks[6].isSuccessful()));
 
         tasks[8] = myRef.child("user").child(key).child("address_street").setValue(address_street);
-        Log.d("sendingUserData6", String.valueOf(tasks[6].isSuccessful()));
 
         tasks[9] = myRef.child("user").child(key).child("address_postal_code").setValue(postal_code);
-        Log.d("sendingUserData7", String.valueOf(tasks[7].isSuccessful()));
 
         tasks[10] = myRef.child("user").child(key).child("key").setValue(firebaseAuth.getUid()); //this is the firebase's UID for the users
-        Log.d("sendingUserData8", String.valueOf(tasks[8].isSuccessful()));
-
-        Log.d("sendingUserData",first_name + " " + last_name);
 
 
         return tasks;

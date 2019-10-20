@@ -6,7 +6,9 @@ import androidx.cardview.widget.CardView;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
@@ -18,6 +20,11 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 public class Login extends AppCompatActivity {
 
@@ -26,6 +33,8 @@ public class Login extends AppCompatActivity {
     private TextView loginHeader, usernameInfo;
     String userEmail, userPassword;
     private FirebaseAuth firebaseAuth;
+    private DatabaseReference ref;
+    String key;
 
 
     @Override
@@ -47,13 +56,14 @@ public class Login extends AppCompatActivity {
         //}
 
 
-
         // Click listener for the Login button
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 // On Click, run validate function
-                validate(userName.getText().toString().trim(), passWord.getText().toString().trim());
+                String username = userName.getText().toString().trim();
+                userPassword = passWord.getText().toString().trim();
+                validate(username, userPassword);
             }
         });
 
@@ -102,17 +112,51 @@ public class Login extends AppCompatActivity {
 
 
     // *Validate function
-    private void validate(String userEmail, String userPassword){
-        // Firebase Authentication instance + built in function to sign in with Email and Password
-        firebaseAuth.signInWithEmailAndPassword(userEmail, userPassword).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+    //TODO: Parse username, as ref.child(username) will crash if there is '.', which may be put by someone if they put there email.
+    private void validate(String username, String usersPassword){
+        ref = FirebaseDatabase.getInstance().getReference();
+        ref.child("user").child(username).addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot snapshot) {
+                if(snapshot!=null){
+                    Log.d("inDataChange", "true");
+                    String userEmail =  snapshot.child("email").getValue(String.class);
+                    performLogin(userEmail,userPassword);
+                }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+               Log.d( "inDataChange","false");
+
+            }
+        });
+
+    }
+
+/*
+                SharedPreferences.Editor editor = getSharedPreferences(MY_PREFS_NAME, MODE_PRIVATE).edit();
+                editor.putString("code", access_code);
+                editor.apply();
+            }*/
+    private void performLogin(String emailId, String password){
+
+        if(emailId==null){
+            Toast.makeText(Login.this, "Login Failed: Incorrect Username", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        //Firebase Authentication instance + built in function to sign in with Email and Password
+        firebaseAuth.signInWithEmailAndPassword(emailId, userPassword).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if(task.isSuccessful()){
                     Toast.makeText(Login.this, "Login Successful", Toast.LENGTH_SHORT).show();
                     // Go to Home activity
                     startActivity(new Intent(Login.this, Home.class));
+                    finish();
                 }else{
-                    Toast.makeText(Login.this, "Login Failed", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(Login.this, "Login Failed: Incorrect Password", Toast.LENGTH_SHORT).show();
                 }
             }
         });

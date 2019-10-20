@@ -22,7 +22,7 @@ public class MainActivity extends AppCompatActivity {
     private Button loginButton;
     private Button signupButton;
 
-
+    private FirebaseAuth firebaseAuth;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -33,11 +33,12 @@ public class MainActivity extends AppCompatActivity {
         signupButton = (Button)findViewById(R.id.Create_Account_Button);
 
         // Auto login for signed in user - Commented out below
-
-        //if(user != null){
-        //finish();
-        //startActivity(new Intent(MainActivity.this, Home.class));
-        //}
+        /*firebaseAuth = FirebaseAuth.getInstance();
+        FirebaseUser user = firebaseAuth.getCurrentUser();
+        if(user != null){
+            finish();
+            startActivity(new Intent(MainActivity.this, Home.class));
+        }//Have to implement logout before doing this*/
 
         // Click listener for the Login button
         loginButton.setOnClickListener(new View.OnClickListener() {
