@@ -14,7 +14,7 @@ import com.google.firebase.auth.FirebaseAuth;
 public class VolunteerType extends AppCompatActivity {
 
     private FirebaseAuth mAuth;
-    private CardView crdKitchen, crdDelivery, crdOther;
+    private CardView crdKitchen, crdDelivery;
     private TextView tvTitle;
     private Button btnNext;
     String volunteerType;
@@ -43,15 +43,6 @@ public class VolunteerType extends AppCompatActivity {
             }
         });
 
-     /*   crdOther.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(VolunteerType.this, CalanderSlots.class);
-                intent.putExtra("type", "kitam");
-                startActivity(intent);
-            }
-        });*/
-
         btnNext.setOnClickListener(new View.OnClickListener() {
         @Override
         public void onClick(View view) {
@@ -77,7 +68,6 @@ public class VolunteerType extends AppCompatActivity {
         btnNext = (Button) findViewById(R.id.btnNext2);
         crdKitchen = (CardView) findViewById(R.id.crdKitchen);
         crdDelivery = (CardView) findViewById(R.id.crdDelivery);
-        crdOther = (CardView) findViewById(R.id.crdOther);
 
     }
 

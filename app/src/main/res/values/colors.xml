@@ -14,4 +14,6 @@
     <color name="ps_pref_group">#88FFFFFF</color>
     <color name="cu_title">#FF6b1264</color>
     <color name="cu_info_boxes">#E9C5E9</color>
+    <color name="er_info_boxes">#dbabdb</color>
+    <color name="next_button"> #68166a </color>
 </resources>
