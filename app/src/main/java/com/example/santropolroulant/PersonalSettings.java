@@ -2,6 +2,7 @@ package com.example.santropolroulant;
 
 import android.app.Activity;
 import android.app.DatePickerDialog;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -14,6 +15,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.santropolroulant.DataValueTypes.Event;
 import com.example.santropolroulant.DataValueTypes.User;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -40,21 +42,18 @@ import static android.R.style.Theme_Holo_Light_Dialog_MinWidth;
 public class PersonalSettings extends AppCompatActivity {
     ArrayList<InputField> inputFields;
     Button saveButton;
-    DatePickerDialog.OnDateSetListener date;
-    List<User> users;
     User myUser;
+    String uid;
 
     private FirebaseAuth firebaseAuth;
     private DatabaseReference mDatabase;
 
-    //private PreferenceGroup[] settings;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_personal_settings);
 
         inputFields = new ArrayList<>();
-        users = new ArrayList<User>();
 
         //Ensuring we are logged in to firebase
         firebaseAuth = FirebaseAuth.getInstance();
@@ -66,9 +65,11 @@ public class PersonalSettings extends AppCompatActivity {
             Log.d("LOGGED IN", userName);
             System.exit(-1);
         }
+        SharedPreferences pref = getApplicationContext().getSharedPreferences("MyPref", 0);
+        final String uid = pref.getString("uid", "notFound");
 
         //Pointing reference to the users in the database
-        mDatabase = FirebaseDatabase.getInstance().getReference("userSample");
+        mDatabase = FirebaseDatabase.getInstance().getReference("userSample/" + uid);
 
         //Find UI elements from layout
         //each InputField takes the editText from the layout, the name of the field in the database, and the User method which gets that value from a User object
@@ -97,27 +98,19 @@ public class PersonalSettings extends AppCompatActivity {
            * myUser, it will set the hints for each InputField.
          */
 
+
+
         ValueEventListener saveChangesListener = new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                for (DataSnapshot userDS : dataSnapshot.getChildren()) {
-                    User userCurr = userDS.getValue(User.class);
-                    users.add(userCurr);
-                }
-
-                for (User userTemp : users) {
-                    if (userTemp.getEmail().equals(user.getEmail())) {
-                        myUser = userTemp;
-                    }
-                }
-
-                if (myUser != null) {
+                if(dataSnapshot == null){
+                    Log.e("User Selection", "User not Found");
+                    System.exit(-1);
+                } else {
+                    myUser = dataSnapshot.getValue(User.class);
                     for(int i = 0; i < inputFields.size(); i++){
                         inputFields.get(i).setHint(myUser);
                     }
-                } else {
-                    Log.e("User Selection", "User not Found");
-                    System.exit(-1);
                 }
             }
 
@@ -157,7 +150,7 @@ public class PersonalSettings extends AppCompatActivity {
                         String fieldText = inputFields.get(i).getEditText().getText().toString();
                         // If this field has been changed
                         if(!fieldText.equals("")){
-                            tasks.add(mDatabase.child(key).child(dbEntry).setValue(fieldText));
+                            tasks.add(mDatabase.child(dbEntry).setValue(fieldText));
                         }
                         inputFields.get(i).clearText();
                     }
