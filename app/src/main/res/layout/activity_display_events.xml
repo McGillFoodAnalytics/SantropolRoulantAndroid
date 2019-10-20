@@ -1,14 +1,35 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/display_events"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+
+    <TextView
+        android:id="@+id/tvTitle"
+        android:layout_width="match_parent"
+        android:layout_height="120sp"
+        android:layout_marginTop="60dp"
+        android:fontFamily="avenir next"
+        android:gravity="center"
+        android:text="Your upcoming volunteering activities"
+        android:textColor="@color/cu_title"
+        android:textSize="28sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerView"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="361dp"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
@@ -18,4 +39,14 @@
         android:layout_marginEnd="0dp"
         android:layout_marginBottom="0dp"></androidx.recyclerview.widget.RecyclerView>
 
-</RelativeLayout>
+    <Button
+        android:id="@+id/btnSignUp"
+        android:layout_width="200sp"
+        android:layout_height="wrap_content"
+        android:background="@color/cu_title"
+        android:text="Sign Up"
+        android:textColor="#ffffff"
+        android:layout_gravity="center_horizontal"/>
+
+
+</LinearLayout>
