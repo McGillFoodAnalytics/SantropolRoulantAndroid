@@ -7,6 +7,7 @@
     android:layout_height="match_parent"
     tools:context=".TransportType">
 
+<<<<<<< HEAD
 
 
     <LinearLayout
@@ -102,6 +103,8 @@
 
     </LinearLayout>
 
+=======
+>>>>>>> b84ad596ea4e4ec4cdd2e47eab382f8852e6a6a4
     <TextView
         android:id="@+id/tvTitle2"
         android:layout_width="346dp"
@@ -111,10 +114,17 @@
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="8dp"
         android:gravity="center"
+<<<<<<< HEAD
         android:text="Which mode of transportation would you prefer for delivery?"
         android:textColor="@color/cu_title"
         android:textSize="24sp"
         android:fontFamily="@font/avenir_next_demi"
+=======
+        android:text="What type of activity would you like to sign up for?"
+        android:textColor="@color/cu_title"
+        android:textSize="24sp"
+        android:textStyle="bold"
+>>>>>>> b84ad596ea4e4ec4cdd2e47eab382f8852e6a6a4
         app:layout_constraintBottom_toTopOf="@+id/btnNext2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.489"
@@ -132,7 +142,10 @@
         android:text="NEXT"
         android:textColor="#FFFFFF"
         android:textSize="24sp"
+<<<<<<< HEAD
         android:fontFamily="@font/avenir_next_demi"
+=======
+>>>>>>> b84ad596ea4e4ec4cdd2e47eab382f8852e6a6a4
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.8"

@@ -56,11 +56,11 @@ public class TimePreference extends AppCompatActivity {
 
 
     private void setupUIViews(){
-        tvTitle3 = (TextView) findViewById(R.id.tvTitle3);
-        btnNext3 = (Button) findViewById(R.id.btnNext3);
+        tvTitle3 = findViewById(R.id.tvTitle3);
+        btnNext3 = findViewById(R.id.btnNext3);
 
-        crdMorning = (CardView) findViewById(R.id.crdMorning);
-        crdAfternoon = (CardView) findViewById(R.id.crdAfternoon);
+        crdMorning = findViewById(R.id.crdMorning);
+        crdAfternoon = findViewById(R.id.crdAfternoon);
 
     }
 
