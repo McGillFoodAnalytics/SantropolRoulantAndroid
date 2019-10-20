@@ -56,12 +56,7 @@ tools:context=".VolunteerType">
                     android:text="Kitchen"
                     android:textSize="21dp"
                     android:textColor="#000000"
-<<<<<<< HEAD
-                    android:fontFamily="@font/avenir_next_regular"
-=======
-                    android:fontFamily="avenir next"
->>>>>>> b84ad596ea4e4ec4cdd2e47eab382f8852e6a6a4
-                    android:textStyle="bold" />
+                    android:fontFamily="@font/avenir_next_regular"/>
 
             </LinearLayout>
         </androidx.cardview.widget.CardView>
@@ -95,17 +90,9 @@ tools:context=".VolunteerType">
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Meal Delivery"
-<<<<<<< HEAD
                     android:textSize="20dp"
                     android:textColor="#000000"
-                    android:fontFamily="@font/avenir_next_regular"
-=======
-                    android:textSize="21dp"
-                    android:textColor="#000000"
-                    android:fontFamily="avenir next"
->>>>>>> b84ad596ea4e4ec4cdd2e47eab382f8852e6a6a4
-                    android:textStyle="bold" />
-
+                    android:fontFamily="@font/avenir_next_regular"/>
             </LinearLayout>
         </androidx.cardview.widget.CardView>
 
@@ -119,10 +106,7 @@ tools:context=".VolunteerType">
         android:layout_marginStart="8sp"
         android:background="@color/next_button"
         android:text="NEXT"
-<<<<<<< HEAD
         android:fontFamily="@font/avenir_next_demi"
-=======
->>>>>>> b84ad596ea4e4ec4cdd2e47eab382f8852e6a6a4
         android:textColor="#FFFFFF"
         android:textSize="24sp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -132,39 +116,22 @@ tools:context=".VolunteerType">
 
     <TextView
         android:id="@+id/tvTitle2"
-<<<<<<< HEAD
-        android:layout_width="332dp"
-        android:layout_height="87dp"
-=======
         android:layout_width="311dp"
         android:layout_height="90dp"
->>>>>>> b84ad596ea4e4ec4cdd2e47eab382f8852e6a6a4
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="8dp"
-<<<<<<< HEAD
         android:fontFamily="@font/avenir_next_demi"
-=======
-        android:fontFamily="avenir next"
->>>>>>> b84ad596ea4e4ec4cdd2e47eab382f8852e6a6a4
         android:gravity="center"
         android:text="What type of activity would you like to sign up for?"
         android:textColor="@color/cu_title"
         android:textSize="24sp"
-<<<<<<< HEAD
-=======
-        android:textStyle="bold"
->>>>>>> b84ad596ea4e4ec4cdd2e47eab382f8852e6a6a4
         app:layout_constraintBottom_toTopOf="@+id/linearLayout5"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.682" />
 
-
-    //        android:id="@+id/btnKam"
-//        android:id="@+id/btnKpm"
-//        android:id="@+id/btnDelivery"
 
 </androidx.constraintlayout.widget.ConstraintLayout>
