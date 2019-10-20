@@ -112,6 +112,7 @@ public class Login extends AppCompatActivity {
 
 
     // *Validate function
+    //TODO: Parse username, as ref.child(username) will crash if there is '.', which may be put by someone if they put there email.
     private void validate(String username, String usersPassword){
         ref = FirebaseDatabase.getInstance().getReference();
         ref.child("user").child(username).addListenerForSingleValueEvent(new ValueEventListener() {
