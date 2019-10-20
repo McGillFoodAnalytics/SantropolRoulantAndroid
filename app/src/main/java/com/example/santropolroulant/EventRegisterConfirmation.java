@@ -1,10 +1,12 @@
 package com.example.santropolroulant;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -28,8 +30,10 @@ public class EventRegisterConfirmation extends AppCompatActivity {
     private FirebaseAuth firebaseAuth;
     private DatabaseReference mEventDatabase, mUserDataBase;
     private User userObj;
+    private Event eventObj;
     private Button registerEvent;
     private String eventID;
+    private TextView viewStart, viewEnd, viewType, viewDate;
 
     private final String USER_LOCATION = "userSample";
 
@@ -40,8 +44,13 @@ public class EventRegisterConfirmation extends AppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_personal_settings);
-        registerEvent = (Button) findViewById(R.id.ps_save);
+        setContentView(R.layout.activity_eventregister_confirmation);
+        registerEvent = (Button) findViewById(R.id.erc_confirm);
+
+        viewStart = (TextView) findViewById(R.id.event_time_start_value);
+        viewEnd = (TextView) findViewById(R.id.event_time_end_value);
+        viewType = (TextView) findViewById(R.id.event_type_value);
+        viewDate = (TextView) findViewById(R.id.event_date_value);
 
         firebaseAuth = FirebaseAuth.getInstance();
 
@@ -81,9 +90,11 @@ public class EventRegisterConfirmation extends AppCompatActivity {
         if (extras != null) {
             eventID = extras.getString("EventID");
 
+
         } else {
             //TODO Redirect to main page, because we have nothing to send
             Log.e("Error", "no EventID was passed");
+            System.exit(-1);
         }
 
         //Set Reference to point to specific Event
@@ -91,6 +102,25 @@ public class EventRegisterConfirmation extends AppCompatActivity {
                 EVENT_LOCATION
                         +"/" + eventID
         );
+
+        ValueEventListener getEventListener = new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                eventObj = dataSnapshot.getValue(Event.class);
+                viewDate.setText(eventObj.getEvent_date_txt());
+                viewStart.setText(eventObj.getEvent_time_start());
+                viewEnd.setText(eventObj.getEvent_time_end());
+                viewType.setText(eventObj.getEvent_type());
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        };
+
+        mEventDatabase.addListenerForSingleValueEvent(getEventListener);
 
         registerEvent.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -100,6 +130,8 @@ public class EventRegisterConfirmation extends AppCompatActivity {
                 tasks.add(mEventDatabase.child(EVENT_LASTNAME).setValue(userObj.getLast_name()));
                 tasks.add(mEventDatabase.child(EVENT_UID).setValue(uid));
                 Toast.makeText(EventRegisterConfirmation.this, "Successfully Registered!",Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(EventRegisterConfirmation.this, Home.class);
+                startActivity(intent);
             }
         });
     }

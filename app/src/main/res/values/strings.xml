@@ -7,6 +7,7 @@
     <string name="log_in">Log in</string>
     <string name="first_name">First Name</string>
     <string name="last_name">Last Name</string>
+
     <string name="ps_personal_title">PERSONAL</string>
     <string name="ps_personal_firstname">FIRST NAME</string>
     <string name="ps_personal_lastname">LAST NAME</string>
@@ -21,6 +22,13 @@
     <string name="ps_address_postal">POSTAL CODE</string>
     <string name="ps_username_title">YOUR ROULANT USER NAME</string>
     <string name="ps_save_button">Save Changes</string>
+
+    <string name="erc_confirm_button">Sign Up For Event</string>
+    <string name="erc_date_header">Date</string>
+    <string name="erc_start_header">Time Start</string>
+    <string name="erc_end_header">Time End</string>
+    <string name="erc_type_header">Date</string>
+
     <string name="title_activity_maps">Map</string>
     <string name="Welcome">Welcome to\nSantropol Roulant</string>
     <string name="unlock_body_text1">To use our app, you need to attend on of our info sessions for volunteers. You will be given an access code that you can input below</string>
