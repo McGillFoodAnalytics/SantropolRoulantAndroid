@@ -43,6 +43,7 @@ public class PersonalSettings extends AppCompatActivity {
     ArrayList<InputField> inputFields;
     Button saveButton;
     User myUser;
+    String uid;
 
     private FirebaseAuth firebaseAuth;
     private DatabaseReference mDatabase;
@@ -97,29 +98,7 @@ public class PersonalSettings extends AppCompatActivity {
            * myUser, it will set the hints for each InputField.
          */
 
-        /*
-        final ArrayList<Event> events = new ArrayList<>();
-        final Event eventFormat;
 
-        ValueEventListener saveChangesListener = new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                for (DataSnapshot eventDS : dataSnapshot.getChildren()) {
-                    String eventKey = eventDS.getKey();
-                    Event eventCurr = eventDS.getValue(Event.class);
-                    if(
-                            eventCurr.getEvent_type() = eventFormat.getEvent_type()
-                    && eventCurr.getFirst_name().equals("")){
-                        events.add(eventCurr);
-                    }
-                }
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-
-            }
-        };*/
 
         ValueEventListener saveChangesListener = new ValueEventListener() {
             @Override

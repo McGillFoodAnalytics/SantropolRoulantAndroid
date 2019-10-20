@@ -28,6 +28,7 @@ import java.util.ArrayList;
 
 public class EventRegisterConfirmation extends AppCompatActivity {
     private FirebaseAuth firebaseAuth;
+
     private DatabaseReference mEventDatabase, mUserDataBase;
     private User userObj;
     private Event eventObj;
@@ -132,6 +133,7 @@ public class EventRegisterConfirmation extends AppCompatActivity {
                 Toast.makeText(EventRegisterConfirmation.this, "Successfully Registered!",Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(EventRegisterConfirmation.this, Home.class);
                 startActivity(intent);
+
             }
         });
     }

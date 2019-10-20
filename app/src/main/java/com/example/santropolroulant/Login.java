@@ -161,11 +161,7 @@ public class Login extends AppCompatActivity {
                     editor.putString("uid", username);
                     editor.commit();
                     // Go to Home activity
-                    //TODO: Put it back to Home.class
-                    //startActivity(new Intent(Login.this, Home.class));
-                    Intent intent = new Intent(Login.this, EventRegisterConfirmation.class);
-                    intent.putExtra("EventID","190930deldr01");
-                    startActivity(intent);
+                    startActivity(new Intent(Login.this, EventRegisterConfirmation.class));
                 }else{
                     Toast.makeText(Login.this, "Login Failed: Incorrect Password", Toast.LENGTH_SHORT).show();
                 }
