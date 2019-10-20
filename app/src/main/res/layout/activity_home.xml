@@ -9,19 +9,20 @@
     android:padding="10dp"
     android:background="#fff">
 
+
     <LinearLayout
-        android:id="@+id/linearLayout"
+        android:id="@+id/linearLayout1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="12dp"
         android:clipToPadding="false"
         android:gravity="center"
         android:orientation="horizontal"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/linearLayout2"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.32"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.041">
+        app:layout_constraintHorizontal_bias="0.272"
+        app:layout_constraintStart_toStartOf="parent">
 
         <androidx.cardview.widget.CardView
             android:id="@+id/volunteerCard"
@@ -45,24 +46,22 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
+                    android:layout_marginTop="10sp"
+                    android:layout_marginBottom="10sp"
+                    android:fontFamily="@font/avenir_next_demi"
                     android:text="Volunteer"
-                    android:fontFamily="@font/avenir_next_demi"/>
+                    android:textColor="#000000"
+                    android:textSize="18sp" />
 
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:layout_margin="1dp"
-                    android:background="@color/cardview_light_background" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:padding="3dp"
                     android:fontFamily="@font/avenir_next_regular"
+                    android:gravity="center"
+                    android:padding="5sp"
                     android:text="Do Good &amp; Feel Good"
-                    android:textColor="@color/lightgrey" />
+                    android:textColor="@color/darkgrey" />
             </LinearLayout>
         </androidx.cardview.widget.CardView>
 
@@ -81,31 +80,29 @@
                 android:orientation="vertical">
 
                 <ImageView
-                    android:layout_width="60dp"
-                    android:layout_height="60dp"
+                    android:layout_width="65dp"
+                    android:layout_height="65dp"
                     android:src="@drawable/ic_calendar"></ImageView>
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
+                    android:layout_marginTop="10sp"
+                    android:layout_marginBottom="10sp"
                     android:fontFamily="@font/avenir_next_demi"
-                    android:text="My Schedule" />
+                    android:text="My Schedule"
+                    android:textColor="#000000"
+                    android:textSize="18sp" />
 
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:layout_margin="1dp"
-                    android:background="@color/cardview_light_background" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:padding="5dp"
                     android:fontFamily="@font/avenir_next_regular"
-                    android:text="Check you schedule"
-                    android:textColor="@color/lightgrey" />
+                    android:gravity="center"
+                    android:padding="5sp"
+                    android:text="Check your schedule"
+                    android:textColor="@color/darkgrey" />
             </LinearLayout>
         </androidx.cardview.widget.CardView>
     </LinearLayout>
@@ -117,14 +114,14 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginEnd="8dp"
+        android:layout_marginBottom="108dp"
         android:clipToPadding="false"
         android:gravity="center"
         android:orientation="horizontal"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout"
-        app:layout_constraintVertical_bias="0.082">
+        app:layout_constraintHorizontal_bias="0.666"
+        app:layout_constraintStart_toStartOf="parent">
 
         <androidx.cardview.widget.CardView
             android:id="@+id/profileCard"
@@ -141,31 +138,29 @@
                 android:orientation="vertical">
 
                 <ImageView
-                    android:layout_width="64dp"
-                    android:layout_height="64dp"
+                    android:layout_width="65dp"
+                    android:layout_height="65dp"
                     android:src="@drawable/ic_user"></ImageView>
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
+                    android:layout_marginTop="10sp"
+                    android:layout_marginBottom="10sp"
                     android:fontFamily="@font/avenir_next_demi"
-                    android:text="Profile" />
+                    android:text="Profile"
+                    android:textColor="#000000"
+                    android:textSize="18sp" />
 
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:layout_margin="1dp"
-                    android:background="@color/cardview_light_background" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:padding="5dp"
                     android:fontFamily="@font/avenir_next_regular"
+                    android:gravity="center"
+                    android:padding="5sp"
                     android:text="Update Information"
-                    android:textColor="@color/lightgrey" />
+                    android:textColor="@color/darkgrey" />
             </LinearLayout>
         </androidx.cardview.widget.CardView>
 
@@ -184,35 +179,70 @@
                 android:orientation="vertical">
 
                 <ImageView
-                    android:layout_width="64dp"
-                    android:layout_height="64dp"
+                    android:layout_width="65dp"
+                    android:layout_height="65dp"
                     android:src="@drawable/ic_smartphone"></ImageView>
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
+                    android:layout_marginTop="10sp"
+                    android:layout_marginBottom="10sp"
                     android:fontFamily="@font/avenir_next_demi"
-                    android:text="Contact Us" />
-
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:layout_margin="1dp"
-                    android:background="@color/cardview_light_background" />
+                    android:text="Contact Us"
+                    android:textColor="#000000"
+                    android:textSize="18sp" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:padding="5dp"
                     android:fontFamily="@font/avenir_next_regular"
+                    android:gravity="center"
+                    android:padding="5sp"
                     android:text="Inqueries and More"
-                    android:textColor="@color/lightgrey" />
+                    android:textColor="@color/darkgrey" />
+
             </LinearLayout>
         </androidx.cardview.widget.CardView>
 
     </LinearLayout>
+
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="8dp"
+        android:fontFamily="@font/avenir_next_demi"
+        android:text="Hello!"
+        android:textColor="@color/cu_title"
+        android:textSize="50sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+    <TextView
+        android:layout_width="318dp"
+        android:layout_height="69dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="36dp"
+        android:fontFamily="@font/avenir_next_demi"
+        android:text="What good fortune brings you here?"
+        android:textColor="@color/cu_title"
+        android:textSize="25sp"
+        app:layout_constraintBottom_toTopOf="@+id/linearLayout1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.493"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView3"
+        app:layout_constraintVertical_bias="0.0" />
+
 
 
 

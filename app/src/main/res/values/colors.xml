@@ -7,6 +7,7 @@
     <color name="yello">#FFC107</color>
     <color name="green">#4E9751</color>
     <color name="lightgrey">#D8D7D7</color>
+    <color name="darkgrey"> #696969</color>
     <color name="backgroundcolor">#fcfcfc</color>
     <color name="heartback">#B988FD</color>
     <color name="ps_save">#FF681469</color>
