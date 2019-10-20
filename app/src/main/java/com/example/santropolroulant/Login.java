@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -113,15 +114,18 @@ public class Login extends AppCompatActivity {
 
     // *Validate function
     //TODO: Parse username, as ref.child(username) will crash if there is '.', which may be put by someone if they put there email.
-    private void validate(String username, String usersPassword){
-        ref = FirebaseDatabase.getInstance().getReference();
-        ref.child("user").child(username).addListenerForSingleValueEvent(new ValueEventListener() {
+    //TODO: Save UID as sharedPreferences
+    private void validate(final String username, String usersPassword){
+        ref = FirebaseDatabase.getInstance().getReference("user");
+        ref.child(username).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot snapshot) {
                 if(snapshot!=null){
+
+
                     Log.d("inDataChange", "true");
                     String userEmail =  snapshot.child("email").getValue(String.class);
-                    performLogin(userEmail,userPassword);
+                    performLogin(userEmail,userPassword, username);
                 }
             }
 
@@ -139,7 +143,7 @@ public class Login extends AppCompatActivity {
                 editor.putString("code", access_code);
                 editor.apply();
             }*/
-    private void performLogin(String emailId, String password){
+    private void performLogin(String emailId, String password, final String username){
 
         if(emailId==null){
             Toast.makeText(Login.this, "Login Failed: Incorrect Username", Toast.LENGTH_SHORT).show();
@@ -152,10 +156,16 @@ public class Login extends AppCompatActivity {
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if(task.isSuccessful()){
                     Toast.makeText(Login.this, "Login Successful", Toast.LENGTH_SHORT).show();
+                    SharedPreferences pref = getApplicationContext().getSharedPreferences("MyPref", 0);
+                    SharedPreferences.Editor editor = pref.edit();
+                    editor.putString("uid", username);
+                    editor.commit();
                     // Go to Home activity
                     //TODO: Put it back to Home.class
                     //startActivity(new Intent(Login.this, Home.class));
-                    startActivity(new Intent(Login.this, EventRegisterConfirmation.class));
+                    Intent intent = new Intent(Login.this, EventRegisterConfirmation.class);
+                    intent.putExtra("EventID","190930deldr01");
+                    startActivity(intent);
                 }else{
                     Toast.makeText(Login.this, "Login Failed: Incorrect Password", Toast.LENGTH_SHORT).show();
                 }

@@ -1,5 +1,6 @@
 package com.example.santropolroulant;
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -20,20 +21,15 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-import com.google.gson.Gson;
 
 import java.util.ArrayList;
 
 public class EventRegisterConfirmation extends AppCompatActivity {
     private FirebaseAuth firebaseAuth;
-    private DatabaseReference mDatabase;
-    private String jsonEvent;
-    private String jsonUser;
-    private Event event;
+    private DatabaseReference mEventDatabase, mUserDataBase;
     private User userObj;
     private Button registerEvent;
     private String eventID;
-    private String userID;
 
     private final String USER_LOCATION = "userSample";
 
@@ -48,32 +44,61 @@ public class EventRegisterConfirmation extends AppCompatActivity {
         registerEvent = (Button) findViewById(R.id.ps_save);
 
         firebaseAuth = FirebaseAuth.getInstance();
-        mDatabase = FirebaseDatabase.getInstance().getReference();
 
+        //Get Saved uid from shared preferences
+        SharedPreferences pref = getApplicationContext().getSharedPreferences("MyPref", 0);
+        final String uid = pref.getString("uid", "notFound");
+
+        //set reference to point to specific user
+        mUserDataBase = FirebaseDatabase.getInstance().getReference(
+                USER_LOCATION
+                + "/" + uid
+        );
+
+        //Get user info from reference in to a User class
+        ValueEventListener getUserListener = new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                if(dataSnapshot == null){
+                    Log.e("User Selection", "User not Found");
+                    System.exit(-1);
+                } else {
+                    userObj = dataSnapshot.getValue(User.class);
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        };
+
+        mUserDataBase.addListenerForSingleValueEvent(getUserListener);
+
+        //get eventID from previous Activity
         Bundle extras = getIntent().getExtras();
 
-        final FirebaseUser user = firebaseAuth.getCurrentUser();
-
         if (extras != null) {
-            extras.getString("EventID");
-            jsonEvent = extras.getString("Event");
-            jsonUser = extras.getString("User");
-
-            event = new Gson().fromJson(jsonEvent, Event.class);
-            userObj = new Gson().fromJson(jsonUser, User.class);
-            userID = extras.getString("UID");
+            eventID = extras.getString("EventID");
 
         } else {
             //TODO Redirect to main page, because we have nothing to send
+            Log.e("Error", "no EventID was passed");
         }
+
+        //Set Reference to point to specific Event
+        mEventDatabase = FirebaseDatabase.getInstance().getReference(
+                EVENT_LOCATION
+                        +"/" + eventID
+        );
 
         registerEvent.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 ArrayList<Task> tasks = new ArrayList<Task>();
-                tasks.add(mDatabase.child(EVENT_LOCATION).child(eventID).child(EVENT_FIRSTNAME).setValue(userObj.getFirst_name()));
-                tasks.add(mDatabase.child(EVENT_LOCATION).child(eventID).child(EVENT_LASTNAME).setValue(userObj.getLast_name()));
-                tasks.add(mDatabase.child(EVENT_LOCATION).child(eventID).child(EVENT_UID).setValue(userID));
+                tasks.add(mEventDatabase.child(EVENT_FIRSTNAME).setValue(userObj.getFirst_name()));
+                tasks.add(mEventDatabase.child(EVENT_LASTNAME).setValue(userObj.getLast_name()));
+                tasks.add(mEventDatabase.child(EVENT_UID).setValue(uid));
                 Toast.makeText(EventRegisterConfirmation.this, "Successfully Registered!",Toast.LENGTH_SHORT).show();
             }
         });
