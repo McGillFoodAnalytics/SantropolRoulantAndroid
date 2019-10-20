@@ -40,7 +40,7 @@ public class Home extends AppCompatActivity {
         volunteerCard.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(Home.this, VolunteerOptions.class));
+                startActivity(new Intent(Home.this, VolunteerType.class));
             }
         });
 

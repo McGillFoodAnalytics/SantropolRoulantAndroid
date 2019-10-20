@@ -31,9 +31,9 @@ import devs.mulham.horizontalcalendar.utils.HorizontalCalendarListener;
 
 public class CalanderSlots extends AppCompatActivity {
 
-    private RecyclerView recyclerView; // Recycler view to work with Custom Adapter
-    private UserAdapter adapter; // Custom adapter 'UserAdapter'
-    private List<UserSlot> userList; // List that will be filled with Event classes from Firebase Query
+    private RecyclerView recyclerView;      // Recycler View to work with Custom Adapter
+    private UserAdapter adapter;            // Custom adapter 'UserAdapter'
+    private List<UserSlot> userList;        // List that will be filled with Event classes from Firebase Query
     private Button btnSignUp;
     private String keyIntent;
 
@@ -63,8 +63,8 @@ public class CalanderSlots extends AppCompatActivity {
         adapter = new UserAdapter(this, userList); // The adapter is connected to the userList
         recyclerView.setAdapter(adapter); // recyclerView is connected to the adapter
 
-        Intent intent = getIntent(); // Getting the info from last activity's intent
-        final String gtype = intent.getStringExtra("type"); //eventType used inside later Query
+        Intent intent = getIntent();                                  // Getting the info from last activity's intent
+        final String gtype = intent.getStringExtra("type");     // eventType used inside later Query
 
         // Setting up custom calendar view taken from github
         // https://github.com/Mulham-Raee/Horizontal-Calendar
@@ -126,25 +126,25 @@ public class CalanderSlots extends AppCompatActivity {
 
     }
 
-    private void queryFunction(String eventType, final String dateVal){
+    private void queryFunction(String eventType, final String dateVal) {
 
         // Firebase query in event table looking for keys between values
         Query attendeeQuery = FirebaseDatabase.getInstance().getReference("event")
                 .orderByKey()
-                .startAt(dateVal+eventType+"01") //190830kitam01
-                .endAt(dateVal+eventType+"99"); // 190830kitam99
-        // This gets all slots of the particular event
+                .startAt(dateVal+eventType+"01") // 190830kitam01
+                .endAt(dateVal+eventType+"99");  // 190830kitam99
 
+        // This gets all slots of the particular event
         ValueEventListener countListener = new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 userList.clear(); // clear the list when data is updated, then query/fill anew
                 for (DataSnapshot userSnap : dataSnapshot.getChildren()){
 
-                    String key = userSnap.getKey(); //need to get key of query == eg. 190830kitam01
+                    String key = userSnap.getKey(); // need to get key of query == eg. 190830kitam01
                     Log.d("hey:","Key: "+key);
 
-                    final String slot = key.substring(Math.max(key.length() - 2, 0)); //last two characters of the key = slot
+                    final String slot = key.substring(Math.max(key.length() - 2, 0)); // last two characters of the key = slot
                     final String first_name = userSnap.child("first_name").getValue(String.class); // getting value from query
                     final String last_name = userSnap.child("last_name").getValue(String.class);
                     Log.d("hey:","Key: "+key);
