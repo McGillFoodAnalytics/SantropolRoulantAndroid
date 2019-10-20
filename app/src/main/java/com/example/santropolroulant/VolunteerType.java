@@ -12,9 +12,12 @@ import android.view.View;
 
 import com.google.firebase.auth.FirebaseAuth;
 
-public class VolunteerOptions extends AppCompatActivity {
+public class VolunteerType extends AppCompatActivity {
 
     private FirebaseAuth mAuth;
+    private CardView crdKitchen;
+
+
     private CardView crdKam;
     private CardView crdKpm;
     private CardView crdDelivery;
@@ -22,12 +25,10 @@ public class VolunteerOptions extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_volunteer_options);
+        setContentView(R.layout.activity_volunteer_type);
         mAuth = FirebaseAuth.getInstance();
+        setupUIViews();
 
-        crdDelivery = (CardView) findViewById(R.id.crdDelivery);
-        crdKam = (CardView)findViewById(R.id.crdKam);
-        crdKpm = (CardView) findViewById(R.id.crdKpm);
 
         crdDelivery.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -61,6 +62,15 @@ public class VolunteerOptions extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+    }
+
+    private void setupUIViews() {
+
+        crdKitchen = (CardView) findViewById(R.id.crdKitchen);
+        crdDelivery = (CardView) findViewById(R.id.crdDelivery);
+
+
 
     }
 
