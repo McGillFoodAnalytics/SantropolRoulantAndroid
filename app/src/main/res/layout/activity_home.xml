@@ -10,28 +10,24 @@
     android:background="#fff">
 
     <LinearLayout
-        android:id="@+id/linearLayout3"
-        android:layout_width="370dp"
-        android:layout_height="145dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginBottom="8dp"
+        android:id="@+id/linearLayout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:clipToPadding="false"
         android:gravity="center"
         android:orientation="horizontal"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.32"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.056">
-
+        app:layout_constraintVertical_bias="0.041">
 
         <androidx.cardview.widget.CardView
             android:id="@+id/volunteerCard"
-            android:layout_width="323dp"
-            android:layout_height="match_parent"
-            android:layout_margin="4dp"
+            android:layout_width="175dp"
+            android:layout_height="175dp"
+            android:layout_margin="11dp"
             android:clickable="true"
             android:foreground="?android:selectableItemBackground">
 
@@ -51,7 +47,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
                     android:text="Volunteer"
-                    android:textStyle="bold" />
+                    android:fontFamily="@font/avenir_next_demi"/>
 
                 <View
                     android:layout_width="match_parent"
@@ -64,36 +60,17 @@
                     android:layout_height="wrap_content"
                     android:gravity="center"
                     android:padding="3dp"
+                    android:fontFamily="@font/avenir_next_regular"
                     android:text="Do Good &amp; Feel Good"
                     android:textColor="@color/lightgrey" />
             </LinearLayout>
         </androidx.cardview.widget.CardView>
 
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/linearLayout"
-        android:layout_width="370dp"
-        android:layout_height="140dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginBottom="8dp"
-        android:clipToPadding="false"
-        android:gravity="center"
-        android:orientation="horizontal"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.32"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout3"
-        app:layout_constraintVertical_bias="0.041">
-
         <androidx.cardview.widget.CardView
             android:id="@+id/scheduleCard"
-            android:layout_width="157dp"
-            android:layout_height="match_parent"
-            android:layout_margin="4dp"
+            android:layout_width="175dp"
+            android:layout_height="175dp"
+            android:layout_margin="11dp"
             android:clickable="true"
             android:foreground="?android:selectableItemBackground">
 
@@ -112,8 +89,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
-                    android:text="My Schedule"
-                    android:textStyle="bold" />
+                    android:fontFamily="@font/avenir_next_demi"
+                    android:text="My Schedule" />
 
                 <View
                     android:layout_width="match_parent"
@@ -126,63 +103,20 @@
                     android:layout_height="wrap_content"
                     android:gravity="center"
                     android:padding="5dp"
+                    android:fontFamily="@font/avenir_next_regular"
                     android:text="Check you schedule"
                     android:textColor="@color/lightgrey" />
             </LinearLayout>
         </androidx.cardview.widget.CardView>
-
-        <androidx.cardview.widget.CardView
-            android:id="@+id/profileCard"
-            android:layout_width="157dp"
-            android:layout_height="match_parent"
-            android:layout_margin="4dp"
-            android:clickable="true"
-            android:foreground="?android:selectableItemBackground">
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:gravity="center"
-                android:orientation="vertical">
-
-                <ImageView
-                    android:layout_width="60dp"
-                    android:layout_height="60dp"
-                    android:src="@drawable/ic_user"></ImageView>
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
-                    android:text="Profile"
-                    android:textStyle="bold" />
-
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:layout_margin="1dp"
-                    android:background="@color/cardview_light_background" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:padding="5dp"
-                    android:text="Update Information"
-                    android:textColor="@color/lightgrey" />
-            </LinearLayout>
-        </androidx.cardview.widget.CardView>
-
     </LinearLayout>
+
 
     <LinearLayout
         android:id="@+id/linearLayout2"
-        android:layout_width="370dp"
-        android:layout_height="140dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
-        android:layout_marginBottom="8dp"
         android:clipToPadding="false"
         android:gravity="center"
         android:orientation="horizontal"
@@ -193,10 +127,10 @@
         app:layout_constraintVertical_bias="0.082">
 
         <androidx.cardview.widget.CardView
-            android:id="@+id/infosessionCard"
-            android:layout_width="157dp"
-            android:layout_height="match_parent"
-            android:layout_margin="4dp"
+            android:id="@+id/profileCard"
+            android:layout_width="175dp"
+            android:layout_height="175dp"
+            android:layout_margin="11dp"
             android:clickable="true"
             android:foreground="?android:selectableItemBackground">
 
@@ -207,16 +141,16 @@
                 android:orientation="vertical">
 
                 <ImageView
-                    android:layout_width="60dp"
-                    android:layout_height="60dp"
-                    android:src="@drawable/ic_notebook"></ImageView>
+                    android:layout_width="64dp"
+                    android:layout_height="64dp"
+                    android:src="@drawable/ic_user"></ImageView>
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
-                    android:text="Info Sessions"
-                    android:textStyle="bold" />
+                    android:fontFamily="@font/avenir_next_demi"
+                    android:text="Profile" />
 
                 <View
                     android:layout_width="match_parent"
@@ -229,16 +163,17 @@
                     android:layout_height="wrap_content"
                     android:gravity="center"
                     android:padding="5dp"
-                    android:text="Book To Verify Your Profile"
+                    android:fontFamily="@font/avenir_next_regular"
+                    android:text="Update Information"
                     android:textColor="@color/lightgrey" />
             </LinearLayout>
         </androidx.cardview.widget.CardView>
 
         <androidx.cardview.widget.CardView
             android:id="@+id/contactCard"
-            android:layout_width="157dp"
-            android:layout_height="match_parent"
-            android:layout_margin="4dp"
+            android:layout_width="175dp"
+            android:layout_height="175dp"
+            android:layout_margin="11dp"
             android:clickable="true"
             android:foreground="?android:selectableItemBackground">
 
@@ -257,8 +192,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
-                    android:text="Contact Us"
-                    android:textStyle="bold" />
+                    android:fontFamily="@font/avenir_next_demi"
+                    android:text="Contact Us" />
 
                 <View
                     android:layout_width="match_parent"
@@ -271,6 +206,7 @@
                     android:layout_height="wrap_content"
                     android:gravity="center"
                     android:padding="5dp"
+                    android:fontFamily="@font/avenir_next_regular"
                     android:text="Inqueries and More"
                     android:textColor="@color/lightgrey" />
             </LinearLayout>
