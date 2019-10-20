@@ -2,15 +2,12 @@ package com.example.santropolroulant;
 
 import android.os.Bundle;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 import androidx.fragment.app.FragmentActivity;
 
-import android.app.Activity;
-import android.content.Intent;
+
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -44,7 +41,7 @@ public class ContactUs extends FragmentActivity implements OnMapReadyCallback {
 
     private void setupUIViews() {
 
-        title = findViewById(R.id.tvTitle);
+        title = findViewById(R.id.tvTitle2);
         phone = findViewById(R.id.tvPhoneNumber);
         email = findViewById(R.id.tvEmail);
         address = findViewById(R.id.tvAddress);

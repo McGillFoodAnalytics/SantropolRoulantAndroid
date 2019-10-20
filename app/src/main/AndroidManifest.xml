@@ -27,7 +27,7 @@
             android:screenOrientation="portrait" />
         <activity android:name=".DisplayEvents"
             android:screenOrientation="portrait" />
-        <activity android:name=".VolunteerOptions"
+        <activity android:name=".VolunteerType"
             android:screenOrientation="portrait" />
         <activity android:name=".PasswordActivity"
             android:screenOrientation="portrait" />
