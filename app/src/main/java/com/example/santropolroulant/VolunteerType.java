@@ -8,8 +8,11 @@ import android.widget.Button;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
+
+import java.util.Objects;
 
 public class VolunteerType extends AppCompatActivity {
 
@@ -48,15 +51,16 @@ public class VolunteerType extends AppCompatActivity {
         public void onClick(View view) {
 
             Intent intent = new Intent();
+            if (volunteerType!=null) {
+                if (volunteerType.equals("kitchen")) {
+                    intent = new Intent(VolunteerType.this, TimePreference.class);
+                } else if (volunteerType.equals("delivery")) {
+                    intent = new Intent(VolunteerType.this, TransportType.class);
+                }
 
-            if (volunteerType=="kitchen") {
-                intent = new Intent(VolunteerType.this, TimePreference.class);
-            } else if (volunteerType=="delivery") {
-                intent = new Intent(VolunteerType.this, TransportType.class);
+                intent.putExtra("event_type", volunteerType);
+                startActivity(intent);
             }
-
-            intent.putExtra("event_type", volunteerType);
-            startActivity(intent);
         }
 
         });

@@ -43,6 +43,10 @@
             android:screenOrientation="portrait" />
         <activity android:name=".Login"
             android:screenOrientation="portrait" />
+        <activity android:name=".TransportType"
+            android:screenOrientation="portrait" />
+        <activity android:name=".TimePreference"
+            android:screenOrientation="portrait" />
         <activity android:name=".MainActivity"
             android:screenOrientation="portrait" />
         <activity android:name=".UnlockApplication"

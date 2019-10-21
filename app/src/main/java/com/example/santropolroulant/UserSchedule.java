@@ -85,7 +85,7 @@ public class UserSchedule extends AppCompatActivity {
         VolunteerButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(UserSchedule.this, VolunteerOptions.class));
+                startActivity(new Intent(UserSchedule.this, VolunteerType.class));
             }
         });
     }
