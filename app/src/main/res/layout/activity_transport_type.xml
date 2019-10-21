@@ -31,14 +31,15 @@
             android:layout_height="170dp"
             android:layout_margin="10dp"
             android:clickable="true"
-            app:cardElevation="0dp"
-            android:foreground="?android:selectableItemBackground">
+            android:foreground="@drawable/mdtp_material_button_background"
+            app:cardBackgroundColor="#D3D163DA"
+            app:cardElevation="0dp">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:background="@drawable/mdtp_month_arrow_background"
                 android:gravity="center"
-                android:background="@drawable/radius"
                 android:orientation="vertical">
 
                 <ImageView
@@ -52,10 +53,10 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Driver"
-                    android:textSize="21dp"
-                    android:textColor="#000000"
                     android:fontFamily="@font/avenir_next_regular"
+                    android:text="Driver"
+                    android:textColor="#000000"
+                    android:textSize="21dp"
                     android:textStyle="bold" />
 
             </LinearLayout>
@@ -68,14 +69,15 @@
             android:layout_height="170dp"
             android:layout_margin="10dp"
             android:clickable="true"
-            app:cardElevation="0dp"
-            android:foreground="?android:selectableItemBackground">
+            android:foreground="?android:selectableItemBackground"
+            app:cardBackgroundColor="#D3D163DA"
+            app:cardElevation="0dp">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:background="@drawable/mdtp_material_button_background"
                 android:gravity="center"
-                android:background="@drawable/radius"
                 android:orientation="vertical">
 
                 <ImageView
@@ -89,10 +91,10 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Non-Driver"
-                    android:textSize="21dp"
-                    android:textColor="#000000"
                     android:fontFamily="@font/avenir_next_regular"
+                    android:text="Non-Driver"
+                    android:textColor="#000000"
+                    android:textSize="21dp"
                     android:textStyle="bold" />
 
             </LinearLayout>

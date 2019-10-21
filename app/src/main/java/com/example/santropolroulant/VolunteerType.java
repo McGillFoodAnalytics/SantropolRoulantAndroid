@@ -2,6 +2,9 @@ package com.example.santropolroulant;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
+
+import android.graphics.Color;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Button;
 
@@ -18,7 +21,8 @@ public class VolunteerType extends AppCompatActivity {
 
     private FirebaseAuth mAuth;
     private CardView crdKitchen, crdDelivery;
-    private TextView tvTitle;
+    private ImageView imagedelivery, imagekitchen;
+    private TextView tvTitle, text1delivery,text2delivery, text1kitchen, text2kitchen;
     private Button btnNext;
     String volunteerType;
 
@@ -34,7 +38,14 @@ public class VolunteerType extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 volunteerType = "kitchen";
-                // Write pop up with information
+                crdKitchen.setCardBackgroundColor(Color.parseColor("#B128B8"));
+                crdDelivery.setCardBackgroundColor(Color.parseColor("#D3D163DA"));
+                imagedelivery.setVisibility(View.INVISIBLE);
+                text1delivery.setVisibility(View.INVISIBLE);
+                text2delivery.setVisibility(View.INVISIBLE);
+                imagekitchen.setVisibility(View.VISIBLE);
+                text1kitchen.setVisibility(View.VISIBLE);
+                text2kitchen.setVisibility(View.VISIBLE);
             }
         });
 
@@ -42,7 +53,14 @@ public class VolunteerType extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 volunteerType = "delivery";
-                // Write pop up with information
+                crdDelivery.setCardBackgroundColor(Color.parseColor("#B128B8"));
+                crdKitchen.setCardBackgroundColor(Color.parseColor("#D3D163DA"));
+                imagedelivery.setVisibility(View.VISIBLE);
+                text1delivery.setVisibility(View.VISIBLE);
+                text2delivery.setVisibility(View.VISIBLE);
+                imagekitchen.setVisibility(View.INVISIBLE);
+                text1kitchen.setVisibility(View.INVISIBLE);
+                text2kitchen.setVisibility(View.INVISIBLE);
             }
         });
 
@@ -57,7 +75,6 @@ public class VolunteerType extends AppCompatActivity {
                 } else if (volunteerType.equals("delivery")) {
                     intent = new Intent(VolunteerType.this, TransportType.class);
                 }
-
                 intent.putExtra("event_type", volunteerType);
                 startActivity(intent);
             }
@@ -72,7 +89,18 @@ public class VolunteerType extends AppCompatActivity {
         btnNext = (Button) findViewById(R.id.btnNext2);
         crdKitchen = (CardView) findViewById(R.id.crdKitchen);
         crdDelivery = (CardView) findViewById(R.id.crdDelivery);
-
+        imagedelivery = (ImageView) findViewById(R.id.meal_delivery_image);
+        text1delivery = (TextView) findViewById(R.id.meal_delivery_text_1);
+        text2delivery = (TextView) findViewById(R.id.meal_delivery_text_2);
+        imagekitchen = (ImageView) findViewById(R.id.kitchen_image);
+        text1kitchen = (TextView) findViewById(R.id.kitchen_text_1);
+        text2kitchen = (TextView) findViewById(R.id.kitchen_text_2);
+        imagedelivery.setVisibility(View.INVISIBLE);
+        text1delivery.setVisibility(View.INVISIBLE);
+        text2delivery.setVisibility(View.INVISIBLE);
+        imagekitchen.setVisibility(View.INVISIBLE);
+        text1kitchen.setVisibility(View.INVISIBLE);
+        text2kitchen.setVisibility(View.INVISIBLE);
     }
 
 

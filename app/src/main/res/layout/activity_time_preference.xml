@@ -19,10 +19,9 @@
         android:orientation="horizontal"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.619"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.291">
+        app:layout_constraintVertical_bias="0.383">
 
 
         <androidx.cardview.widget.CardView
@@ -32,7 +31,7 @@
             android:layout_margin="10dp"
             android:clickable="true"
             android:foreground="?android:selectableItemBackground"
-            app:cardBackgroundColor="#B128B8"
+            app:cardBackgroundColor="#D3D163DA"
             app:cardElevation="0dp">
 
             <LinearLayout
@@ -70,7 +69,7 @@
             android:layout_margin="10dp"
             android:clickable="true"
             android:foreground="?android:selectableItemBackground"
-            app:cardBackgroundColor="#B128B8"
+            app:cardBackgroundColor="#D3D163DA"
             app:cardElevation="0dp">
 
             <LinearLayout
@@ -102,6 +101,7 @@
 
     </LinearLayout>
 
+
     <TextView
         android:id="@+id/tvTitle3"
         android:layout_width="346dp"
@@ -118,16 +118,14 @@
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/btnNext3"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.489"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.053" />
-
+        app:layout_constraintVertical_bias="0.123" />
 
     <Button
         android:id="@+id/btnNext3"
         android:layout_width="432dp"
-        android:layout_height="72dp"
+        android:layout_height="78dp"
         android:background="@color/next_button"
         android:fontFamily="@font/avenir_next_demi"
         android:text="NEXT"

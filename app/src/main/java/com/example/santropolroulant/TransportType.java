@@ -1,5 +1,6 @@
 package com.example.santropolroulant;
 
+import android.graphics.Color;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.TextView;
@@ -12,8 +13,6 @@ import com.google.firebase.auth.FirebaseAuth;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-
-
 
 public class TransportType extends AppCompatActivity {
 
@@ -28,13 +27,18 @@ public class TransportType extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_transport_type);
         mAuth = FirebaseAuth.getInstance();
-        setupUIViews();
+        tvTitle2 = (TextView) findViewById(R.id.tvTitle2);
+        btnNext2 = (Button) findViewById(R.id.btnNext2);
 
+        crdDriver = (CardView) findViewById(R.id.crdDriver);
+        crdNonDriver = (CardView) findViewById(R.id.crdNonDriver);
 
         crdDriver.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 transportType = "deldr";
+                crdDriver.setCardBackgroundColor(Color.parseColor("#B128B8"));
+                crdNonDriver.setCardBackgroundColor(Color.parseColor("#D3D163DA"));
             }
         });
 
@@ -42,14 +46,18 @@ public class TransportType extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 transportType = "deliv";
+                crdNonDriver.setCardBackgroundColor(Color.parseColor("#B128B8"));
+                crdDriver.setCardBackgroundColor(Color.parseColor("#D3D163DA"));
             }
         });
 
         btnNext2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(TransportType.this, EventsCalendar.class);
-                intent.putExtra("event_type", transportType);
+                if(transportType!=null) {
+                    Intent intent = new Intent(TransportType.this, EventsCalendar.class);
+                    intent.putExtra("event_type", transportType);
+                }
             }
         });
 
@@ -57,16 +65,6 @@ public class TransportType extends AppCompatActivity {
 
     }
 
-
-    private void setupUIViews() {
-
-        tvTitle2 = (TextView) findViewById(R.id.tvTitle2);
-        btnNext2 = (Button) findViewById(R.id.btnNext2);
-
-        crdDriver = (CardView) findViewById(R.id.crdDriver);
-        crdNonDriver = (CardView) findViewById(R.id.crdNonDriver);
-
-    }
 
 
 

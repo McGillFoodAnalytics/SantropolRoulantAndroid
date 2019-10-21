@@ -45,8 +45,8 @@ public class TimePreference extends AppCompatActivity implements DatePickerDialo
             @Override
             public void onClick(View view) {
                 timePref = "kitam";
-                crdMorning.setCardBackgroundColor(Color.parseColor("#FF350536"));
-                crdAfternoon.setCardBackgroundColor(Color.parseColor("#B128B8"));
+                crdMorning.setCardBackgroundColor(Color.parseColor("#B128B8"));
+                crdAfternoon.setCardBackgroundColor(Color.parseColor("#D3D163DA"));
             }
         });
 
@@ -54,36 +54,39 @@ public class TimePreference extends AppCompatActivity implements DatePickerDialo
             @Override
             public void onClick(View view) {
                 timePref = "kitpm";
-                crdAfternoon.setCardBackgroundColor(Color.parseColor("#FF350536"));
-                crdMorning.setCardBackgroundColor(Color.parseColor("#B128B8"));
+                crdAfternoon.setCardBackgroundColor(Color.parseColor("#B128B8"));
+                crdMorning.setCardBackgroundColor(Color.parseColor("#D3D163DA"));
             }
         });
 
         btnNext3.setOnClickListener(new View.OnClickListener() {
+
             public void onClick(View view) {
-                datePickerDialog = DatePickerDialog.newInstance(TimePreference.this, year, month, day);
-                datePickerDialog.setThemeDark(true);
-                datePickerDialog.showYearPickerFirst(false);
-                datePickerDialog.setOkText("Done");
-                c.add(Calendar.DAY_OF_YEAR, 0);
-                datePickerDialog.setMaxDate(c);
-                c.add(Calendar.DAY_OF_YEAR, 21);
-                datePickerDialog.setMaxDate(c);
+                if (timePref != null) {
+                    datePickerDialog = DatePickerDialog.newInstance(TimePreference.this, year, month, day);
+                    datePickerDialog.setThemeDark(true);
+                    datePickerDialog.showYearPickerFirst(false);
+                    datePickerDialog.setOkText("Done");
+                    c.add(Calendar.DAY_OF_YEAR, 0);
+                    datePickerDialog.setMaxDate(c);
+                    c.add(Calendar.DAY_OF_YEAR, 21);
+                    datePickerDialog.setMaxDate(c);
 
-                datePickerDialog.setOnCancelListener(new DialogInterface.OnCancelListener() {
+                    datePickerDialog.setOnCancelListener(new DialogInterface.OnCancelListener() {
 
-                    @Override
-                    public void onCancel(DialogInterface dialogInterface) {
+                        @Override
+                        public void onCancel(DialogInterface dialogInterface) {
 
-                        Toast.makeText(TimePreference.this, "Datepicker Canceled", Toast.LENGTH_SHORT).show();
-                    }
-                });
+                            Toast.makeText(TimePreference.this, "Datepicker Canceled", Toast.LENGTH_SHORT).show();
+                        }
+                    });
 
-                datePickerDialog.show(getSupportFragmentManager(), "DatePickerDialog");
+                    datePickerDialog.show(getSupportFragmentManager(), "DatePickerDialog");
 
-                Intent intent = new Intent(TimePreference.this, EventsCalendar.class);
-                intent.putExtra("event_type", timePref);
+                    Intent intent = new Intent(TimePreference.this, EventsCalendar.class);
+                    intent.putExtra("event_type", timePref);
 
+                }
             }
         });
 
