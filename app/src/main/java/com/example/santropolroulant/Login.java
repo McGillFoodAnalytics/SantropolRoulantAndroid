@@ -163,6 +163,7 @@ public class Login extends AppCompatActivity {
 
         if(emailId==null){
             Toast.makeText(Login.this, "Login Failed: Incorrect Username", Toast.LENGTH_SHORT).show();
+            setInvisible();
             return;
         }
 
