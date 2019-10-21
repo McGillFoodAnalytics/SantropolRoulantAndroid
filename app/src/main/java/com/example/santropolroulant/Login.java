@@ -35,6 +35,8 @@ public class Login extends AppCompatActivity {
     private FirebaseAuth firebaseAuth;
     private DatabaseReference ref;
     String key;
+    private View progressOverlay;
+    private View loginView;
 
 
     @Override
@@ -43,6 +45,11 @@ public class Login extends AppCompatActivity {
         setContentView(R.layout.activity_login); // Designates which layout XML to be used for this page
         setupUIViews();                          // Sets up UI using function
 
+        loginView = (View) findViewById(R.id.activity_login);
+
+
+        progressOverlay = (View) findViewById(R.id.progress_overlay);
+        progressOverlay.setVisibility(View.INVISIBLE);
 
 
         // Getting current app user from Firebase
@@ -61,6 +68,7 @@ public class Login extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 // On Click, run validate function
+                setVisible();
                 String username = userName.getText().toString().trim();
                 userPassword = passWord.getText().toString().trim();
                 validate(username, userPassword);
@@ -152,13 +160,24 @@ public class Login extends AppCompatActivity {
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if(task.isSuccessful()){
                     Toast.makeText(Login.this, "Login Successful", Toast.LENGTH_SHORT).show();
+                    setInvisible();
                     // Go to Home activity
                     startActivity(new Intent(Login.this, Home.class));
                     finish();
                 }else{
+                    setInvisible();
                     Toast.makeText(Login.this, "Login Failed: Incorrect Password", Toast.LENGTH_SHORT).show();
                 }
             }
         });
+    }
+
+    public void setInvisible() {
+        progressOverlay.setVisibility(View.INVISIBLE);
+
+    }
+    public void setVisible() {
+        progressOverlay.setVisibility(View.VISIBLE);
+        loginView.setClickable(false);
     }
 }
