@@ -140,13 +140,12 @@ tools:context=".VolunteerType">
         android:id="@+id/meal_delivery_image"
         android:layout_width="183dp"
         android:layout_height="144dp"
-        android:layout_marginBottom="100dp"
+        android:layout_marginBottom="72dp"
         app:layout_constraintBottom_toTopOf="@+id/btnNext2"
         app:layout_constraintEnd_toStartOf="@+id/meal_delivery_text_1"
-        app:layout_constraintHorizontal_bias="0.457"
+        app:layout_constraintHorizontal_bias="0.473"
         app:layout_constraintStart_toStartOf="parent"
-        app:srcCompat="@drawable/foodbringer"
-        />
+        app:srcCompat="@drawable/foodbringer" />
 
     <TextView
         android:id="@+id/meal_delivery_text_2"
@@ -181,7 +180,7 @@ tools:context=".VolunteerType">
         android:layout_width="178dp"
         android:layout_height="76dp"
         android:layout_marginEnd="12dp"
-        android:layout_marginBottom="120dp"
+        android:layout_marginBottom="100dp"
         android:text="Help deliver a warm meal and a smiling greeting that can help make our clients day!"
         app:layout_constraintBottom_toTopOf="@+id/btnNext2"
         app:layout_constraintEnd_toEndOf="parent" />
@@ -191,7 +190,7 @@ tools:context=".VolunteerType">
         android:layout_width="178dp"
         android:layout_height="76dp"
         android:layout_marginEnd="12dp"
-        android:layout_marginBottom="120dp"
+        android:layout_marginBottom="100dp"
         android:text="Work with a chef to bring together all of the elements to prepare the meal of the day!"
         app:layout_constraintBottom_toTopOf="@+id/btnNext2"
         app:layout_constraintEnd_toEndOf="parent" />
@@ -200,10 +199,10 @@ tools:context=".VolunteerType">
         android:id="@+id/kitchen_image"
         android:layout_width="179dp"
         android:layout_height="142dp"
-        android:layout_marginBottom="100dp"
+        android:layout_marginBottom="76dp"
         app:layout_constraintBottom_toTopOf="@+id/btnNext2"
         app:layout_constraintEnd_toStartOf="@+id/kitchen_text_2"
-        app:layout_constraintHorizontal_bias="0.476"
+        app:layout_constraintHorizontal_bias="0.428"
         app:layout_constraintStart_toStartOf="parent"
         app:srcCompat="@drawable/foodmaker" />
 
