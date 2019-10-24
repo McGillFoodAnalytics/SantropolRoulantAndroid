@@ -4,9 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 
-import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
@@ -38,6 +36,7 @@ public class Home extends AppCompatActivity {
         volunteerCard = (CardView)findViewById(R.id.volunteerCard);
         scheduleCard = (CardView)findViewById(R.id.scheduleCard);
         profileCard = (CardView)findViewById(R.id.profileCard);
+        infoCard = (CardView)findViewById(R.id.infosessionCard);
         contactCard = (CardView)findViewById(R.id.contactCard);
 
         // Bunch of CardView listeners
@@ -47,9 +46,6 @@ public class Home extends AppCompatActivity {
                 startActivity(new Intent(Home.this, VolunteerType.class));
             }
         });
-
-        SharedPreferences pref = getApplicationContext().getSharedPreferences("MyPref", 0);
-        String username = pref.getString("uid", "notFound");
 
         scheduleCard.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -76,6 +72,11 @@ public class Home extends AppCompatActivity {
             // Toast.makeText(Home.this, "Yet To Come", Toast.LENGTH_SHORT).show();            }
         });
 
+        infoCard.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(Home.this, "Yet To Come", Toast.LENGTH_SHORT).show();            }
+        });
 
 
 

@@ -30,12 +30,14 @@
             android:layout_height="175dp"
             android:layout_margin="11dp"
             android:clickable="true"
+            app:cardElevation="0dp"
             android:foreground="?android:selectableItemBackground">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:gravity="center"
+                android:background="@drawable/radius2"
                 android:orientation="vertical">
 
                 <ImageView
@@ -71,12 +73,14 @@
             android:layout_height="175dp"
             android:layout_margin="11dp"
             android:clickable="true"
+            app:cardElevation="0dp"
             android:foreground="?android:selectableItemBackground">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:gravity="center"
+                android:background="@drawable/radius2"
                 android:orientation="vertical">
 
                 <ImageView
@@ -129,12 +133,14 @@
             android:layout_height="175dp"
             android:layout_margin="11dp"
             android:clickable="true"
+            app:cardElevation="0dp"
             android:foreground="?android:selectableItemBackground">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:gravity="center"
+                android:background="@drawable/radius2"
                 android:orientation="vertical">
 
                 <ImageView
@@ -170,12 +176,14 @@
             android:layout_height="175dp"
             android:layout_margin="11dp"
             android:clickable="true"
+            app:cardElevation="0dp"
             android:foreground="?android:selectableItemBackground">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:gravity="center"
+                android:background="@drawable/radius2"
                 android:orientation="vertical">
 
                 <ImageView
