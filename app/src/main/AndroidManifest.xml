@@ -43,6 +43,8 @@
             android:screenOrientation="portrait" />
         <activity android:name=".Login"
             android:screenOrientation="portrait" />
+        <activity android:name=".EventRegisterConfirmation"
+            android:screenOrientation="portrait"/>
         <activity android:name=".MainActivity"
             android:screenOrientation="portrait" />
         <activity android:name=".UnlockApplication"
@@ -53,6 +55,18 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+<<<<<<< HEAD
+=======
+
+        <activity android:name=".PersonalSettings"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".EventRegisterConfirmation"
+            android:screenOrientation="portrait"/>
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="AIzaSyDHPXY-kRutTgPNo3ZfS6bEji5NTJtqUPE"/>
+
+>>>>>>> 034b204f92802fe74255302e96af71e86e5865ef
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="AIzaSyALmASF-czV39bmGkST_15oViky6Pab6gY"/>
