@@ -17,4 +17,7 @@
     <color name="cu_info_boxes">#E9C5E9</color>
     <color name="er_info_boxes">#dbabdb</color>
     <color name="next_button"> #68166a </color>
+    <color name="colorAccentAlpha60">#96ff4081</color>
+    <color name="colorPrimaryText">#FFFFFF</color>
+
 </resources>

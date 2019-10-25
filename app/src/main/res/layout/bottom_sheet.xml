@@ -15,8 +15,7 @@
         android:layout_width="match_parent"
         android:layout_height="?actionBarSize"
         android:background="@color/colorAccent"
-        android:paddingStart="@dimen/activity_horizontal_margin"
-        android:paddingEnd="@dimen/activity_horizontal_margin">
+       >
 
         <TextView
             android:id="@+id/bottom_sheet_heading_txt"
@@ -38,7 +37,6 @@
             android:id="@+id/bottom_sheet_left_arrow"
             android:layout_width="wrap_content"
             android:layout_height="0dp"
-            app:srcCompat="@drawable/ic_arrow_up"
             android:layout_marginBottom="8dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintTop_toTopOf="parent"
@@ -49,7 +47,6 @@
             android:id="@+id/bottom_sheet_right_arrow"
             android:layout_width="wrap_content"
             android:layout_height="0dp"
-            app:srcCompat="@drawable/ic_arrow_up"
             android:layout_marginBottom="8dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintTop_toTopOf="parent"

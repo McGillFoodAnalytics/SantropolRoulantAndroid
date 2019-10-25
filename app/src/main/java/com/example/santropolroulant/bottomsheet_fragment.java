@@ -11,11 +11,10 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 
-https://github.com/ogasimli/BottomSheetDemo/tree/master/app/src/main/res/drawable
 
 public class bottomsheet_fragment extends Fragment {
 
-    private LinearLayout mBottomShee
+    private LinearLayout mBottomSheet;
     private ImageView mLeftArrow;
 
     private ImageView mRightArrow;

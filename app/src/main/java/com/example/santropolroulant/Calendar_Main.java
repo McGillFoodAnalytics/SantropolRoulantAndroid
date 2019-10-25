@@ -2,6 +2,7 @@ package com.example.santropolroulant;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentActivity;
+import androidx.fragment.app.FragmentTransaction;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -17,20 +18,23 @@ import java.util.Date;
 
 import static android.widget.Toast.LENGTH_SHORT;
 
-public class Calendar_Main extends AppCompatActivity implements FragmentCalendar.FragmentCalendarListener {
+public class Calendar_Main extends FragmentActivity {
     private FragmentCalendar fragmentCalendar;
+    FragmentTransaction transaction;
+    bottomsheet_fragment bottomsheetfragment;
     private Button b;
     private String selected_date;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        fragmentCalendar = new FragmentCalendar();
+        bottomsheetfragment = new bottomsheet_fragment();
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.calendar);
-        bottomsheet_fragment fragment = bottomsheet_fragment.newInstance();
         getSupportFragmentManager()
                 .beginTransaction()
-                .replace(R.id.main_fragment_container, fragment)
+                .replace(R.id.main_fragment_container, bottomsheetfragment)
                 .commit();
-        fragmentCalendar = new FragmentCalendar();
         getSupportFragmentManager().beginTransaction()
                 .replace(R.id.container_calendar, fragmentCalendar)
                 .commit();
@@ -48,8 +52,4 @@ public class Calendar_Main extends AppCompatActivity implements FragmentCalendar
         });
     }
 
-    @Override
-    public void onInputASent(String date) {
-        selected_date = date;
-    }
 }
