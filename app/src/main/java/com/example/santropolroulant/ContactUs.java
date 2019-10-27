@@ -8,8 +8,11 @@ import android.net.Uri;
 import android.util.Log;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
+import androidx.core.content.ContextCompat;
+import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.FragmentActivity;
 import android.content.ActivityNotFoundException;
+import android.content.pm.PackageManager;
 
 import android.view.View;
 import android.widget.TextView;
@@ -56,6 +59,9 @@ public class ContactUs extends FragmentActivity implements OnMapReadyCallback {
             @Override
             public void onClick(View view) {
                 try {
+                    if (ContextCompat.checkSelfPermission( ContactUs.this, android.Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
+                        ActivityCompat.requestPermissions( ContactUs.this, new String[] {android.Manifest.permission.CALL_PHONE},1);
+                    }
                     Intent callIntent = new Intent(Intent.ACTION_CALL);
                     callIntent.setData(Uri.parse("tel:+15142849335"));
                     startActivity(callIntent);
@@ -65,9 +71,22 @@ public class ContactUs extends FragmentActivity implements OnMapReadyCallback {
             }
         });
 
-
-
         email = findViewById(R.id.tvEmail);
+
+        email.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                try{
+                    Intent intent = new Intent (Intent.ACTION_VIEW , Uri.parse("mailto:" + "info@santropolroulant.org"));
+                    intent.putExtra(Intent.EXTRA_SUBJECT, "Hello!");
+                    intent.putExtra(Intent.EXTRA_TEXT, "(Insert text here)");
+                    startActivity(intent);
+                }catch(ActivityNotFoundException e){
+                    Log.e("Sending an email", "Email failed");
+                }
+            }
+        });
+
         address = findViewById(R.id.tvAddress);
 
         phone.setOnClickListener(new View.OnClickListener() {
