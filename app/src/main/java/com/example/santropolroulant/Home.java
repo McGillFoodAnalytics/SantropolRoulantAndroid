@@ -29,6 +29,7 @@ public class Home extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
+        setUpUIViews();
 
         mAuth = FirebaseAuth.getInstance();
         FirebaseUser user = mAuth.getCurrentUser();
@@ -36,7 +37,6 @@ public class Home extends AppCompatActivity {
         volunteerCard = (CardView)findViewById(R.id.volunteerCard);
         scheduleCard = (CardView)findViewById(R.id.scheduleCard);
         profileCard = (CardView)findViewById(R.id.profileCard);
-        infoCard = (CardView)findViewById(R.id.infosessionCard);
         contactCard = (CardView)findViewById(R.id.contactCard);
 
         // Bunch of CardView listeners
@@ -81,9 +81,18 @@ public class Home extends AppCompatActivity {
 
 
     }
+
+    private void setUpUIViews() {
+        volunteerCard = (CardView)findViewById(R.id.volunteerCard);
+        scheduleCard = (CardView)findViewById(R.id.scheduleCard);
+        profileCard = (CardView)findViewById(R.id.profileCard);
+        contactCard = (CardView)findViewById(R.id.contactCard);
+    }
+
+
+
     @Override
     public void onBackPressed() {
-
         return;
     }
     // to be implemented somewhere on this page
