@@ -216,30 +216,48 @@ public class UserSchedule extends AppCompatActivity {
     private void enableSwipeToDeleteAndUndo() {
         SwipeToDeleteCallback swipeToDeleteCallback = new SwipeToDeleteCallback(this) {
             @Override
-            public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int i) {
+            public void onSwiped(@NonNull final RecyclerView.ViewHolder viewHolder, int i) {
+                AlertDialog.Builder builder = new AlertDialog.Builder(UserSchedule.this);
 
+                builder.setCancelable(true);
+                builder.setTitle("Unregister?");
+                builder.setMessage("Would you like to unregister from this volunteering event? :(");
 
-                final int position = viewHolder.getAdapterPosition();
-               // final String item = adapter.getData().get(position);
-
-                //adapter.removeItem(position);
-                eventList.remove(viewHolder.getAdapterPosition());
-                adapter.notifyDataSetChanged();
-
-
-                Snackbar snackbar = Snackbar
-                        .make(relativeLayout, "Item was removed from the list.", Snackbar.LENGTH_LONG);
-                snackbar.setAction("UNDO", new View.OnClickListener() {
+                builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
                     @Override
-                    public void onClick(View view) {
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        dialogInterface.cancel();
+                        adapter.notifyDataSetChanged();
 
-                       // adapter.restoreItem(item, position);
-                        recyclerView.scrollToPosition(position);
                     }
                 });
+                builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        final int position = viewHolder.getAdapterPosition();
+                        // final String item = adapter.getData().get(position);
 
-                snackbar.setActionTextColor(Color.YELLOW);
-                snackbar.show();
+                        //adapter.removeItem(position);
+                        eventList.remove(viewHolder.getAdapterPosition());
+                        adapter.notifyDataSetChanged();
+
+
+                        Snackbar snackbar = Snackbar
+                                .make(relativeLayout, "Item was removed from the list.", Snackbar.LENGTH_LONG);
+                        snackbar.setAction("UNDO", new View.OnClickListener() {
+                            @Override
+                            public void onClick(View view) {
+
+                                // adapter.restoreItem(item, position);
+                                recyclerView.scrollToPosition(position);
+                            }
+                        });
+
+                        snackbar.setActionTextColor(Color.YELLOW);
+                        snackbar.show();
+                    }
+                });
+                builder.show();
 
             }
         };
