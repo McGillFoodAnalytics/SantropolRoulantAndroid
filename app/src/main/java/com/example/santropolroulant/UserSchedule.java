@@ -9,6 +9,8 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -37,6 +39,7 @@ public class UserSchedule extends AppCompatActivity {
     private FirebaseAuth mAuth;
     private Button VolunteerButton;
 
+    RelativeLayout relativeLayout;
 
     private RecyclerView recyclerView;
     private EventAdapter adapter;
@@ -49,6 +52,8 @@ public class UserSchedule extends AppCompatActivity {
         setContentView(R.layout.activity_user_schedule);
         VolunteerButton = (Button)findViewById(R.id.btnVolunteer);
         mAuth = FirebaseAuth.getInstance();
+        relativeLayout = (RelativeLayout)findViewById(R.id.user_schedule);
+
 
         recyclerView = findViewById(R.id.recyclerViewUser);
         recyclerView.setHasFixedSize(true);
@@ -91,6 +96,8 @@ public class UserSchedule extends AppCompatActivity {
                 startActivity(new Intent(UserSchedule.this, VolunteerOptions.class));
             }
         });
+
+        enableSwipeToDeleteAndUndo();
     }
 
     private void querySchedule(String user_UID){
@@ -213,18 +220,20 @@ public class UserSchedule extends AppCompatActivity {
 
 
                 final int position = viewHolder.getAdapterPosition();
-                final String item = adapter.getData().get(position);
+               // final String item = adapter.getData().get(position);
 
-                adapter.removeItem(position);
+                //adapter.removeItem(position);
+                eventList.remove(viewHolder.getAdapterPosition());
+                adapter.notifyDataSetChanged();
 
 
                 Snackbar snackbar = Snackbar
-                        .make(coordinatorLayout, "Item was removed from the list.", Snackbar.LENGTH_LONG);
+                        .make(relativeLayout, "Item was removed from the list.", Snackbar.LENGTH_LONG);
                 snackbar.setAction("UNDO", new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
 
-                        adapter.restoreItem(item, position);
+                       // adapter.restoreItem(item, position);
                         recyclerView.scrollToPosition(position);
                     }
                 });

@@ -4,7 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".UserSchedule">
+    tools:context=".UserSchedule"
+    android:id="@+id/user_schedule">
+
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerViewUser"
