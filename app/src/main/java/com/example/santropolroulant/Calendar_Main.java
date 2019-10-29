@@ -18,7 +18,8 @@ import java.util.Date;
 
 import static android.widget.Toast.LENGTH_SHORT;
 
-public class Calendar_Main extends FragmentActivity {
+public class Calendar_Main extends AppCompatActivity implements FragmentCalendar.FragmentCalendarListener {
+
     private FragmentCalendar fragmentCalendar;
     FragmentTransaction transaction;
     bottomsheet_fragment bottomsheetfragment;
@@ -38,18 +39,12 @@ public class Calendar_Main extends FragmentActivity {
         getSupportFragmentManager().beginTransaction()
                 .replace(R.id.container_calendar, fragmentCalendar)
                 .commit();
-        b = (Button) findViewById(R.id.done_button);
-        b.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (!selected_date.isEmpty()){
-                    Toast.makeText(Calendar_Main.this, selected_date, LENGTH_SHORT).show();
-                    Intent intent = new Intent(Calendar_Main.this, Home.class);
-                    intent.putExtra("message", selected_date);
-                    startActivity(intent);
-                }
-            }
-        });
     }
+
+    @Override
+    public void onInputASent(String input) {
+        bottomsheetfragment.updateEditText(input);
+    }
+
 
 }

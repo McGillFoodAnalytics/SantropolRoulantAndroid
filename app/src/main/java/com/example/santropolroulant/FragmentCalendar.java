@@ -15,6 +15,7 @@ import androidx.fragment.app.Fragment;
 
 import com.savvi.rangedatepicker.CalendarPickerView;
 
+import java.text.DateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
@@ -55,14 +56,7 @@ public class FragmentCalendar extends Fragment {
         calendar.setOnDateSelectedListener(new CalendarPickerView.OnDateSelectedListener() {
             @Override
             public void onDateSelected(Date date) {
-                //String selectedDate = DateFormat.getDateInstance(DateFormat.FULL).format(date);
-
-                Calendar calSelected = Calendar.getInstance();
-                calSelected.setTime(date);
-
-                String selectedDate = "" + calSelected.get(Calendar.DAY_OF_MONTH)
-                        + " " + (calSelected.get(Calendar.MONTH) + 1)
-                        + " " + calSelected.get(Calendar.YEAR);
+                String selectedDate = DateFormat.getDateInstance(DateFormat.FULL).format(date);
                 listener.onInputASent(selectedDate);
             }
             @Override
@@ -72,15 +66,14 @@ public class FragmentCalendar extends Fragment {
         });
         return v;
     }
-
     @Override
-    public void onAttach(@NonNull Context context) {
+    public void onAttach(Context context) {
         super.onAttach(context);
         if (context instanceof FragmentCalendarListener) {
             listener = (FragmentCalendarListener) context;
-        }
-        else{
-            throw new RuntimeException(context.toString()+" must implement FragmentCalendarListener");
+        } else {
+            throw new RuntimeException(context.toString()
+                    + " must implement FragmentAListener");
         }
     }
 
