@@ -27,6 +27,7 @@ import android.widget.LinearLayout;
 import androidx.coordinatorlayout.widget.CoordinatorLayout;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.appcompat.widget.AppCompatTextView;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 
@@ -60,8 +61,10 @@ public class bottomsheet_fragment extends Fragment {
         mBottomSheet = view.findViewById(R.id.bottom_sheet);
         userList = new ArrayList<>();
         adapter = new UserAdapter(getActivity() ,userList);
+        recyclerView = view.findViewById(R.id.recyclerViewUsers);
+        recyclerView.setHasFixedSize(true); // Fix size
+        recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         recyclerView.setAdapter(adapter);
-        recyclerView = view.findViewWithTag(R.id.recyclerViewUsers);
         mLeftArrow = view.findViewById(R.id.bottom_sheet_left_arrow);
         mRightArrow = view.findViewById(R.id.bottom_sheet_right_arrow);
 
@@ -135,8 +138,7 @@ public class bottomsheet_fragment extends Fragment {
     }
 
     public void updateEditText(CharSequence newText) {
-
-        //queryFunction(,);
+        queryFunction("deliv",191030);
         dateText.setText(newText);
     }
 
