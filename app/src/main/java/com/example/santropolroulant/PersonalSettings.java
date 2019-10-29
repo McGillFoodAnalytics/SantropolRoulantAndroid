@@ -30,9 +30,12 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 import java.util.concurrent.Executor;
@@ -77,7 +80,7 @@ public class PersonalSettings extends AppCompatActivity {
         try {
             inputFields.add(new InputField((EditText) findViewById(R.id.prefinput_personal_firstname), "first_name", User.class.getDeclaredMethod("getFirst_name")));
             inputFields.add(new InputField((EditText) findViewById(R.id.prefinput_personal_lastname), "last_name", User.class.getDeclaredMethod("getLast_name")));
-            //inputFields.add(new DateField((EditText) findViewById(R.id.prefinput_birthday_dob), "dob", User.class.getDeclaredMethod("getDob")));
+            inputFields.add(new DateField((EditText) findViewById(R.id.prefinput_birthday_dob), "dob", User.class.getDeclaredMethod("getDob")));
             inputFields.add(new InputField((EditText) findViewById(R.id.prefinput_contact_email), "email", User.class.getDeclaredMethod("getEmail")));
             inputFields.add(new InputField((EditText) findViewById(R.id.prefinput_contact_phone), "phone", User.class.getDeclaredMethod("getPhone_number")));
             inputFields.add(new InputField((EditText) findViewById(R.id.prefinput_address_line), "address_street", User.class.getDeclaredMethod("getAddress_street")));
@@ -147,7 +150,7 @@ public class PersonalSettings extends AppCompatActivity {
                 if( editSettings ) {
                     for(int i = 0; i < inputFields.size(); i++){
                         String dbEntry = inputFields.get(i).getDbReference();
-                        String fieldText = inputFields.get(i).getEditText().getText().toString();
+                        String fieldText = inputFields.get(i).getText();
                         // If this field has been changed
                         if(!fieldText.equals("")){
                             tasks.add(mDatabase.child(dbEntry).setValue(fieldText));
@@ -174,6 +177,10 @@ public class PersonalSettings extends AppCompatActivity {
             this.editText = editText;
             this.dbReference = dbReference;
             this.getHint = getHint;
+        }
+
+        public String getText(){
+            return editText.getText().toString();
         }
 
         //Clear the text in the UI
@@ -209,11 +216,18 @@ public class PersonalSettings extends AppCompatActivity {
         public String getDbReference() {
             return dbReference;
         }
+
+        public Method getGetHint() {
+            return getHint;
+        }
     }
 
     private class DateField extends InputField{
         final Calendar myCalendar = Calendar.getInstance();
         DatePickerDialog.OnDateSetListener date;
+        private String displayFormat = "dd-MM-yyyy";
+        private String databaseFormat = "yyyyMMdd";
+
         public DateField(EditText editText, String dbReference, Method getHint){
             super(editText, dbReference, getHint);
 
@@ -243,15 +257,36 @@ public class PersonalSettings extends AppCompatActivity {
                 }
             };
         }
-        private void updateLabel() {
-            String myFormat = "MM/dd/yy"; //In which you need put here
-            SimpleDateFormat sdf = new SimpleDateFormat(myFormat, Locale.US);
+
+        @Override
+        public void setHint(User myUser) {
+            SimpleDateFormat formatter = new SimpleDateFormat(databaseFormat, Locale.ENGLISH);
+            try {
+                myCalendar.setTime(formatter.parse((String) getGetHint().invoke(myUser)));
+                updateLabel();
+            } catch (IllegalAccessException e){
+                e.printStackTrace();
+                System.exit(-1);
+            } catch (InvocationTargetException e){
+                e.printStackTrace();
+                System.exit(-1);
+            } catch (ParseException e){
+                e.printStackTrace();
+                System.exit(-1);
+            }
+        }
+
+        private void updateLabel() {//In which you need put here
+            SimpleDateFormat sdf = new SimpleDateFormat(displayFormat, Locale.US);
 
             getEditText().setText(sdf.format(myCalendar.getTime()));
         }
 
-
-
+        @Override
+        public String getText() {
+            SimpleDateFormat dbFormatter = new SimpleDateFormat(databaseFormat, Locale.US);
+            return dbFormatter.format(myCalendar.getTime());
+        }
     }
 }
 
