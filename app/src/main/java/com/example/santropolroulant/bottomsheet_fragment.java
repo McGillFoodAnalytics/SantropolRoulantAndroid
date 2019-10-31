@@ -151,21 +151,25 @@ public class bottomsheet_fragment extends Fragment {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 userList.clear();
+                Integer i=1;
                 for (DataSnapshot userSnap : dataSnapshot.getChildren()){
                     String key = userSnap.getKey();
                     Log.d("hey:","For loop key: " + key);
 
                     if (key.contains(String.valueOf(dateVal) + eventType)){
                         Log.d("hey:","For contained");
-                        final String slot = userSnap.child("slot").getValue(String.class);
+                        //final String slot = userSnap.child("slot").getValue(String.class);
                         final String first_name = userSnap.child("first_name").getValue(String.class);
                         final String last_name = userSnap.child("last_name").getValue(String.class);
 
-                        Log.d("hey:","Whats" +slot + " : " + first_name + " " + last_name);
+                        Log.d("hey:","Whats"  + " : " + first_name + " " + last_name);
 
-                        userList.add(
-                                new UserSlot(slot,first_name,last_name, key)
-                        );
+                        if (!first_name.isEmpty() && !last_name.isEmpty()) {
+                            userList.add(
+                                    new UserSlot(i.toString(), first_name, last_name, key)
+                            );
+                            i = i + 1;
+                        }
                     }
                 }
                 adapter.notifyDataSetChanged();
