@@ -27,6 +27,8 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.util.regex.Pattern;
+
 public class Login extends AppCompatActivity {
 
     private EditText userName, passWord;
@@ -113,9 +115,14 @@ public class Login extends AppCompatActivity {
 
 
     // *Validate function
-    //TODO: Parse username, as ref.child(username) will crash if there is '.', which may be put by someone if they put there email.
-    //TODO: Save UID as sharedPreferences
+    //TODO: Parse username, as ref.child(username) will crash if there is '.', which may be put by someone if they put there email
     private void validate(final String username, String usersPassword){
+
+        Pattern p = Pattern.compile("[^A-zÀ-ú]");
+        if(p.matcher(username).find()){
+            Toast.makeText(Login.this, "Username should be alphanumeric.", Toast.LENGTH_SHORT).show();
+            return;
+        }
         ref = FirebaseDatabase.getInstance().getReference("user");
         ref.child(username).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
