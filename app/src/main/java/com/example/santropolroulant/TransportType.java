@@ -56,7 +56,7 @@ public class TransportType extends AppCompatActivity {
             public void onClick(View view) {
                 if(transportType!=null) {
                     Intent intent = new Intent(TransportType.this, Calendar_Main.class);
-                    intent.putExtra("event_type", transportType);
+                    intent.putExtra("two", transportType);
                     startActivity(intent);
                 }
             }

@@ -1,6 +1,7 @@
 package com.example.santropolroulant;
 
 import android.content.Context;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -11,11 +12,16 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.annotation.RequiresApi;
 import androidx.fragment.app.Fragment;
 
 import com.savvi.rangedatepicker.CalendarPickerView;
 
 import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
@@ -27,7 +33,7 @@ public class FragmentCalendar extends Fragment {
     private FragmentCalendarListener listener;
 
     public interface FragmentCalendarListener{
-        void onInputASent(String date);
+        void onInputASent(String date, Integer dateVal);
     }
 
     @Nullable
@@ -57,7 +63,13 @@ public class FragmentCalendar extends Fragment {
             @Override
             public void onDateSelected(Date date) {
                 String selectedDate = DateFormat.getDateInstance(DateFormat.FULL).format(date);
-                listener.onInputASent(selectedDate);
+                Calendar cal = Calendar.getInstance();
+                cal.setTime(date);
+                int month = cal.get(Calendar.MONTH)+1;
+                int year  = cal.get(Calendar.YEAR);
+                int day   = cal.get(Calendar.DAY_OF_MONTH);
+                Integer dateVal = Integer.valueOf(Integer.toString(year).substring(1)+Integer.toString(month)+Integer.toString(day));
+                listener.onInputASent(selectedDate,dateVal);
             }
             @Override
             public void onDateUnselected(Date date) {

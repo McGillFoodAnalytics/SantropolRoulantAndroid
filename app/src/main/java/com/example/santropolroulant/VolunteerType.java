@@ -75,7 +75,7 @@ public class VolunteerType extends AppCompatActivity {
                 } else if (volunteerType.equals("delivery")) {
                     intent = new Intent(VolunteerType.this, TransportType.class);
                 }
-                intent.putExtra("event_type", volunteerType);
+                intent.putExtra("one", volunteerType);
                 startActivity(intent);
             }
         }

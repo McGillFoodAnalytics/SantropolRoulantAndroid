@@ -1,4 +1,5 @@
 package com.example.santropolroulant;
+import android.content.DialogInterface;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -6,12 +7,15 @@ import androidx.annotation.NonNull;
 import com.example.santropolroulant.Adapters.UserAdapter;
 import com.example.santropolroulant.FirebaseClasses.UserSlot;
 import com.google.android.material.bottomsheet.BottomSheetBehavior;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
 
 import android.util.DisplayMetrics;
@@ -21,9 +25,14 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.content.Context;
+import android.widget.Button;
+import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.Switch;
+import android.widget.Toast;
+
 import androidx.coordinatorlayout.widget.CoordinatorLayout;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.appcompat.widget.AppCompatTextView;
@@ -44,6 +53,11 @@ public class bottomsheet_fragment extends Fragment {
     private RecyclerView recyclerView;
     private UserAdapter adapter;        // Custom adapter 'EventAdapter'
     private List<UserSlot> userList;
+    private FirebaseAuth mAuth;
+    private EditText txtNote;
+    private Switch swtchNew;
+    private Boolean isNew;
+    private Button signUp;
     public bottomsheet_fragment() {
         // Required empty public constructor
     }
@@ -67,8 +81,30 @@ public class bottomsheet_fragment extends Fragment {
         recyclerView.setAdapter(adapter);
         mLeftArrow = view.findViewById(R.id.bottom_sheet_left_arrow);
         mRightArrow = view.findViewById(R.id.bottom_sheet_right_arrow);
+        swtchNew = view.findViewById(R.id.swtchNew);
+        txtNote = view.findViewById(R.id.txtNote);
+        signUp = view.findViewById(R.id.signUp);
+        mAuth = FirebaseAuth.getInstance();
 
         initializeBottomSheet();
+        swtchNew.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton compoundButton, boolean isChecked) {
+                if (isChecked) {
+                    isNew = true;
+                }else{
+                    isNew = false;
+                }
+            }
+        });
+
+        signUp.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                popUpClick("");
+            }
+        });
+
 
         return view;
     }
@@ -99,7 +135,6 @@ public class bottomsheet_fragment extends Fragment {
             @Override
             public void onSlide(@NonNull View bottomSheet, float slideOffset) {
                 if (isAdded()) {
-                    transitionBottomSheetBackgroundColor(slideOffset);
                     animateBottomSheetArrows(slideOffset);
                 }
                 //if (slideOffset>=0.0 && slideOffset<=0.5){
@@ -109,37 +144,52 @@ public class bottomsheet_fragment extends Fragment {
         });
     }
 
-    private void transitionBottomSheetBackgroundColor(float slideOffset) {
-        int colorFrom = getResources().getColor(R.color.colorAccent);
-        int colorTo = getResources().getColor(R.color.colorAccentAlpha60);
-        mBottomSheet.setBackgroundColor(interpolateColor(slideOffset,
-                colorFrom, colorTo));
-    }
 
     private void animateBottomSheetArrows(float slideOffset) {
         mLeftArrow.setRotation(slideOffset * -180);
         mRightArrow.setRotation(slideOffset * 180);
     }
 
-    // Helper method to interpolate colors
-    private int interpolateColor(float fraction, int startValue, int endValue) {
-        int startA = (startValue >> 24) & 0xff;
-        int startR = (startValue >> 16) & 0xff;
-        int startG = (startValue >> 8) & 0xff;
-        int startB = startValue & 0xff;
-        int endA = (endValue >> 24) & 0xff;
-        int endR = (endValue >> 16) & 0xff;
-        int endG = (endValue >> 8) & 0xff;
-        int endB = endValue & 0xff;
-        return ((startA + (int) (fraction * (endA - startA))) << 24) |
-                ((startR + (int) (fraction * (endR - startR))) << 16) |
-                ((startG + (int) (fraction * (endG - startG))) << 8) |
-                ((startB + (int) (fraction * (endB - startB))));
-    }
 
-    public void updateEditText(CharSequence newText) {
-        queryFunction("deliv",191030);
+    public void updateEditText(CharSequence newText,Integer dateval, String eventType) {
+        queryFunction(eventType,dateval);
         dateText.setText(newText);
+    }
+    private void popUpClick(final String key){
+        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+        builder.setCancelable(true);
+        builder.setTitle("Sign Up"); // Title
+        builder.setMessage("Would you like to sign up to volunteer?"); // Message of pop up
+
+        // Negative Button
+        builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                dialogInterface.cancel(); // Cancel pop up
+            }
+        });
+        // Positive Button
+        builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+
+                String clickedUid = mAuth.getUid(); // Get mAuth UID
+                String note = txtNote.getText().toString().trim();
+                FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
+                DatabaseReference myRef = firebaseDatabase.getReference(); // Get raw reference
+
+                // Creating key from EID and UID which IS the key for the attendee instance
+
+                // Writing attendee instance to the firebase db
+                //myRef.child("event").child(key).child("uid").setValue(clickedUid);
+                //myRef.child("event").child(key).child("note").setValue(note);
+                //myRef.child("event").child(key).child("new").setValue(isNew);
+
+                // Print Success message
+                Toast.makeText(getActivity(), "Success", Toast.LENGTH_SHORT).show();
+            }
+        });
+        builder.show();
     }
 
     private void queryFunction(final String eventType, final Integer dateVal){

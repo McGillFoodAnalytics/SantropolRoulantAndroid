@@ -84,7 +84,7 @@ public class TimePreference extends AppCompatActivity implements DatePickerDialo
                     datePickerDialog.show(getSupportFragmentManager(), "DatePickerDialog");
 
                     Intent intent = new Intent(TimePreference.this, EventsCalendar.class);
-                    intent.putExtra("event_type", timePref);
+                    intent.putExtra("two", timePref);
 
                 }
             }

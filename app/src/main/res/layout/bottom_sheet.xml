@@ -5,7 +5,7 @@
     android:id="@+id/bottom_sheet"
     android:layout_width="match_parent"
     android:layout_height="445dp"
-    android:background="@color/colorAccent"
+    android:background="#B29C27B0"
     android:orientation="vertical"
     app:behavior_hideable="false"
     app:behavior_peekHeight="?actionBarSize"
@@ -16,14 +16,14 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.0" />
+        app:layout_constraintGuide_percent="0.88" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/toprecycle_guideline"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.13" />
+        app:layout_constraintGuide_percent="0.11" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/right_guideline"
@@ -31,6 +31,13 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         app:layout_constraintGuide_percent="1.0" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/rightswitch_guideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.64" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/left_guideline"
@@ -44,8 +51,14 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.89" />
+        app:layout_constraintGuide_percent="0.77" />
 
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/topbutton_guideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.0" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/bottom_guideline"
@@ -92,15 +105,15 @@
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/signUp"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:text="Button"
+        android:background="#9C27B0"
+        android:text="Sign Up"
         app:layout_constraintBottom_toBottomOf="@id/bottom_guideline"
         app:layout_constraintLeft_toLeftOf="@+id/left_guideline"
         app:layout_constraintRight_toRightOf="@+id/right_guideline"
-        app:layout_constraintTop_toTopOf="@+id/top_guideline"
-        />
+        app:layout_constraintTop_toTopOf="@+id/topcalender_guideline" />
 
     <TextView
         android:id="@+id/bottom_sheet_heading_txt"
@@ -114,9 +127,19 @@
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="@+id/left_guideline"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.078"
+        app:layout_constraintVertical_bias="0.04"
         tools:layout_conversion_absoluteHeight="19dp"
         tools:layout_conversion_absoluteWidth="86dp" />
+
+    <Switch
+        android:id="@+id/swtchNew"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:text="First Shift?"
+        app:layout_constraintBottom_toBottomOf="@id/topcalender_guideline"
+        app:layout_constraintLeft_toLeftOf="@+id/rightswitch_guideline"
+        app:layout_constraintRight_toRightOf="@+id/right_guideline"
+        app:layout_constraintTop_toTopOf="@+id/top_guideline" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerViewUsers"
@@ -128,5 +151,16 @@
         app:layout_constraintRight_toRightOf="@+id/right_guideline"
         app:layout_constraintTop_toTopOf="@+id/toprecycle_guideline"
         app:layout_constraintVertical_bias="0.0" />
+
+    <EditText
+        android:id="@+id/txtNote"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:hint="Write a Note"
+        android:inputType="textPersonName"
+        app:layout_constraintBottom_toBottomOf="@id/topcalender_guideline"
+        app:layout_constraintLeft_toLeftOf="@+id/left_guideline"
+        app:layout_constraintRight_toRightOf="@+id/rightswitch_guideline"
+        app:layout_constraintTop_toTopOf="@+id/top_guideline" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
