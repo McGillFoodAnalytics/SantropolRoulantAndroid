@@ -143,7 +143,9 @@ public class DisplayEvents extends AppCompatActivity{
 
                             final String event_type = scheduleSnap.child("event_type").getValue(String.class);
                             final String uid = scheduleSnap.child("uid").getValue(String.class);
+
                             final String note = scheduleSnap.child("note").getValue(String.class);
+                            final String event_id = scheduleSnap.child("event_id").getValue(String.class);
 
                             eventList.add(
                                     new Event(
@@ -155,7 +157,8 @@ public class DisplayEvents extends AppCompatActivity{
                                             uid,
                                             note,
                                             is_current,
-                                            first_shift
+                                            first_shift,
+                                            event_id
                                     )
                             );
                             Collections.sort(eventList, new Comparator<Event>() {
