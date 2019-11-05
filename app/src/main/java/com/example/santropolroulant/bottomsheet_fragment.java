@@ -158,37 +158,23 @@ public class bottomsheet_fragment extends Fragment {
     private void popUpClick(final String key){
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         builder.setCancelable(true);
-        builder.setTitle("Sign Up"); // Title
-        builder.setMessage("Would you like to sign up to volunteer?"); // Message of pop up
+        builder.setView(getLayoutInflater().inflate(R.layout.btn_share, null))
+                .setPositiveButton("Yes!",
+                        new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int id) {
+                                dialog.cancel();//
+                            }
+                        })
+                .setNegativeButton( "Cancel",
+                        new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int id) {
+                                dialog.cancel(); // Cancel pop up
 
-        // Negative Button
-        builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialogInterface, int i) {
-                dialogInterface.cancel(); // Cancel pop up
-            }
-        });
-        // Positive Button
-        builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialogInterface, int i) {
+                            }
+                        });
 
-                String clickedUid = mAuth.getUid(); // Get mAuth UID
-                String note = txtNote.getText().toString().trim();
-                FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
-                DatabaseReference myRef = firebaseDatabase.getReference(); // Get raw reference
-
-                // Creating key from EID and UID which IS the key for the attendee instance
-
-                // Writing attendee instance to the firebase db
-                //myRef.child("event").child(key).child("uid").setValue(clickedUid);
-                //myRef.child("event").child(key).child("note").setValue(note);
-                //myRef.child("event").child(key).child("new").setValue(isNew);
-
-                // Print Success message
-                Toast.makeText(getActivity(), "Success", Toast.LENGTH_SHORT).show();
-            }
-        });
         builder.show();
     }
 
