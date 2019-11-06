@@ -45,20 +45,18 @@ public class FragmentCalendar extends Fragment {
         Date today = new Date();
         List<Date> dates = new ArrayList<Date>();
 
-        Date dt = new Date();
-        Calendar c = Calendar.getInstance();
-        c.setTime(dt);
-        c.add(Calendar.DATE, 5);
-        dt = c.getTime();
-        dates.add(dt);
-        ArrayList<Integer> list = new ArrayList<>();
-        list.add(2);
-
-
+        String todayDate = DateFormat.getDateInstance(DateFormat.FULL).format(today);
+        Calendar todaycal = Calendar.getInstance();
+        todaycal.setTime(today);
+        int month = todaycal.get(Calendar.MONTH)+1;
+        int year  = todaycal.get(Calendar.YEAR);
+        int day   = todaycal.get(Calendar.DAY_OF_MONTH);
+        Integer dateVal = Integer.valueOf(Integer.toString(year).substring(1)+Integer.toString(month)+Integer.toString(day));
+        listener.onInputASent(todayDate,dateVal);
 
 
         final CalendarPickerView calendar = (CalendarPickerView) v.findViewById(R.id.calendar);
-        calendar.init(today, nextYear.getTime()).withSelectedDate(today).withDeactivateDates(list);
+        calendar.init(today, nextYear.getTime()).withSelectedDate(today);
         calendar.setOnDateSelectedListener(new CalendarPickerView.OnDateSelectedListener() {
             @Override
             public void onDateSelected(Date date) {

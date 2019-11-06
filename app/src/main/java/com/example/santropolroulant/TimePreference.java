@@ -21,25 +21,22 @@ import com.wdullaer.materialdatetimepicker.date.DatePickerDialog;
 import java.util.Calendar;
 
 
-public class TimePreference extends AppCompatActivity implements DatePickerDialog.OnDateSetListener {
-    DatePickerDialog datePickerDialog;
-    private FirebaseAuth mAuth;
+public class TimePreference extends AppCompatActivity  {
     private CardView crdMorning, crdAfternoon;
     private TextView tvTitle3;
     private Button btnNext3;
     String timePref;
 
-    Calendar c = Calendar.getInstance();
-    int year = c.get(Calendar.YEAR);
-    int month = c.get(Calendar.MONTH);
-    int day = c.get(Calendar.DAY_OF_MONTH);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_time_preference);
-        mAuth = FirebaseAuth.getInstance();
-        setupUIViews();
+
+        tvTitle3 = findViewById(R.id.tvTitle3);
+        btnNext3 = findViewById(R.id.btnNext3);
+        crdMorning = findViewById(R.id.crdMorning);
+        crdAfternoon = findViewById(R.id.crdAfternoon);
 
         crdMorning.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -62,54 +59,17 @@ public class TimePreference extends AppCompatActivity implements DatePickerDialo
         btnNext3.setOnClickListener(new View.OnClickListener() {
 
             public void onClick(View view) {
-                if (timePref != null) {
-                    datePickerDialog = DatePickerDialog.newInstance(TimePreference.this, year, month, day);
-                    datePickerDialog.setThemeDark(true);
-                    datePickerDialog.showYearPickerFirst(false);
-                    datePickerDialog.setOkText("Done");
-                    c.add(Calendar.DAY_OF_YEAR, 0);
-                    datePickerDialog.setMaxDate(c);
-                    c.add(Calendar.DAY_OF_YEAR, 21);
-                    datePickerDialog.setMaxDate(c);
-
-                    datePickerDialog.setOnCancelListener(new DialogInterface.OnCancelListener() {
-
-                        @Override
-                        public void onCancel(DialogInterface dialogInterface) {
-
-                            Toast.makeText(TimePreference.this, "Datepicker Canceled", Toast.LENGTH_SHORT).show();
-                        }
-                    });
-
-                    datePickerDialog.show(getSupportFragmentManager(), "DatePickerDialog");
-
-                    Intent intent = new Intent(TimePreference.this, EventsCalendar.class);
+                    Intent intent = new Intent(TimePreference.this, Calendar_Main.class);
                     intent.putExtra("two", timePref);
+                    startActivity(intent);
 
-                }
+
             }
         });
 
     }
 
 
-    private void setupUIViews() {
-        tvTitle3 = findViewById(R.id.tvTitle3);
-        btnNext3 = findViewById(R.id.btnNext3);
-
-        crdMorning = findViewById(R.id.crdMorning);
-        crdAfternoon = findViewById(R.id.crdAfternoon);
-
-    }
-
-    @Override
-    public void onDateSet(DatePickerDialog view, int Year, int Month, int Day) {
-
-        String date = "Date: " + Day + "/" + (Month + 1) + "/" + Year;
-
-        Toast.makeText(TimePreference.this, date, Toast.LENGTH_LONG).show();
-
-    }
 
 }
 

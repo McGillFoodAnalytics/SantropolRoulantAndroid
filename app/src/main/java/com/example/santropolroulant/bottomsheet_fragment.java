@@ -55,9 +55,10 @@ public class bottomsheet_fragment extends Fragment {
     private List<UserSlot> userList;
     private FirebaseAuth mAuth;
     private EditText txtNote;
-    private Switch swtchNew;
     private Boolean isNew;
     private Button signUp;
+    private Switch swtchNew;
+
     public bottomsheet_fragment() {
         // Required empty public constructor
     }
@@ -81,22 +82,10 @@ public class bottomsheet_fragment extends Fragment {
         recyclerView.setAdapter(adapter);
         mLeftArrow = view.findViewById(R.id.bottom_sheet_left_arrow);
         mRightArrow = view.findViewById(R.id.bottom_sheet_right_arrow);
-        swtchNew = view.findViewById(R.id.swtchNew);
-        txtNote = view.findViewById(R.id.txtNote);
         signUp = view.findViewById(R.id.signUp);
         mAuth = FirebaseAuth.getInstance();
 
         initializeBottomSheet();
-        swtchNew.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton compoundButton, boolean isChecked) {
-                if (isChecked) {
-                    isNew = true;
-                }else{
-                    isNew = false;
-                }
-            }
-        });
 
         signUp.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -158,15 +147,26 @@ public class bottomsheet_fragment extends Fragment {
     private void popUpClick(final String key){
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         builder.setCancelable(true);
-        builder.setView(getLayoutInflater().inflate(R.layout.btn_share, null))
-                .setPositiveButton("Yes!",
+        builder.setTitle("Confirmation");
+        final View customLayout = getLayoutInflater().inflate(R.layout.btn_share, null);
+        txtNote = customLayout.findViewById(R.id.txtNote);
+        String[] info = {"First Shift"};
+        boolean[] checkedItems = {false};
+        builder.setView(customLayout)
+                .setPositiveButton("Sign up!",
                         new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int id) {
                                 dialog.cancel();//
                             }
                         })
-                .setNegativeButton( "Cancel",
+                .setMultiChoiceItems(info,checkedItems,new DialogInterface.OnMultiChoiceClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which, boolean isChecked) {
+                                // user checked an item
+                            }
+                })
+                .setNegativeButton("Cancel",
                         new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int id) {
@@ -175,7 +175,10 @@ public class bottomsheet_fragment extends Fragment {
                             }
                         });
 
-        builder.show();
+
+
+        AlertDialog dialog = builder.create();
+        dialog.show();
     }
 
     private void queryFunction(final String eventType, final Integer dateVal){
