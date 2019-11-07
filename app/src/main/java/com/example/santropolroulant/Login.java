@@ -118,7 +118,7 @@ public class Login extends AppCompatActivity {
     //TODO: Parse username, as ref.child(username) will crash if there is '.', which may be put by someone if they put there email
     private void validate(final String username, String usersPassword){
 
-        Pattern p = Pattern.compile("[^A-zÀ-ú]");
+        Pattern p = Pattern.compile("[^0-9A-zÀ-ú]");
         if(p.matcher(username).find()){
             Toast.makeText(Login.this, "Username should be alphanumeric.", Toast.LENGTH_SHORT).show();
             return;
