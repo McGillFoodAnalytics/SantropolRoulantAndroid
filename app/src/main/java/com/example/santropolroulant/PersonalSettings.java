@@ -2,6 +2,7 @@ package com.example.santropolroulant;
 
 import android.app.Activity;
 import android.app.DatePickerDialog;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
@@ -51,6 +52,15 @@ public class PersonalSettings extends AppCompatActivity {
     private FirebaseAuth firebaseAuth;
     private DatabaseReference mDatabase;
 
+    private void redirectToLogin(){
+        Toast.makeText(PersonalSettings.this,
+                "Something went wrong with your Login information.\nPlease login again",
+                Toast.LENGTH_LONG
+        ).show();
+        // Go to Login activity
+        startActivity(new Intent(PersonalSettings.this, Login.class));
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -65,8 +75,7 @@ public class PersonalSettings extends AppCompatActivity {
 
         if(user == null){
             String userName = user.toString();
-            Log.d("LOGGED IN", userName);
-            System.exit(-1);
+            redirectToLogin();
         }
         SharedPreferences pref = getApplicationContext().getSharedPreferences("MyPref", 0);
         final String uid = pref.getString("uid", "notFound");
@@ -106,9 +115,10 @@ public class PersonalSettings extends AppCompatActivity {
         ValueEventListener saveChangesListener = new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                if(dataSnapshot == null){
+
+                if(!dataSnapshot.exists()){
                     Log.e("User Selection", "User not Found");
-                    System.exit(-1);
+                    redirectToLogin();
                 } else {
                     myUser = dataSnapshot.getValue(User.class);
                     for(int i = 0; i < inputFields.size(); i++){
@@ -121,6 +131,7 @@ public class PersonalSettings extends AppCompatActivity {
             public void onCancelled(@NonNull DatabaseError databaseError) {
 
             }
+
         };
 
         //Setting it to be called everytime the database is updated, (and of course once on creation)
