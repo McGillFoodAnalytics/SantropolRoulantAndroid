@@ -54,7 +54,6 @@ public class bottomsheet_fragment extends Fragment {
     private RecyclerView recyclerView;
     private UserAdapter adapter;        // Custom adapter 'EventAdapter'
     private List<UserSlot> userList;
-    private FirebaseAuth mAuth;
     private EditText txtNote;
     private Boolean isNew;
     private Button signUp;
@@ -86,7 +85,6 @@ public class bottomsheet_fragment extends Fragment {
         mLeftArrow = view.findViewById(R.id.bottom_sheet_left_arrow);
         mRightArrow = view.findViewById(R.id.bottom_sheet_right_arrow);
         signUp = view.findViewById(R.id.signUp);
-        mAuth = FirebaseAuth.getInstance();
 
         initializeBottomSheet();
 
@@ -162,9 +160,21 @@ public class bottomsheet_fragment extends Fragment {
                         new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int id) {
-                                final String email = mAuth.getCurrentUser().getEmail();
+                                FirebaseAuth.AuthStateListener mAuth = new FirebaseAuth.AuthStateListener() {
+                                    @Override
+                                    public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
+                                        String email = firebaseAuth.getCurrentUser().getEmail();
+                                        if (email != null) {
+                                            Log.d("email", email);
+                                                registerFunction(email);
+                                        } else { //user is not logged in
 
-                                registerFunction("jacobbob@gmail.com");
+                                        }
+
+                                    }
+                                };
+                                FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
+                                firebaseAuth.addAuthStateListener(mAuth);
                                 dialog.cancel();//
                             }
                         })
@@ -276,11 +286,16 @@ public class bottomsheet_fragment extends Fragment {
                 for (DataSnapshot event : dataSnapshot.getChildren()) {
                     String key = event.getKey();
                     String uid_ = event.child("uid").getValue(String.class);
-                    if (key.contains(String.valueOf(datevalInfo)) && key.contains(eventTypeInfo) && !uid_.contentEquals(uid)) {
-                        String event_name_ = event.getKey();
-                        Log.d("funTIMES", event_name_);
-                        registerFunction3(event_name_,first_name,last_name,uid);
-                        break;
+                    if (key.contains(String.valueOf(datevalInfo)) && key.contains(eventTypeInfo)) {
+                        if (uid_.contentEquals(uid)){
+                            break;
+                        }
+                        else {
+                            String event_name_ = event.getKey();
+                            Log.d("funTIMES", event_name_);
+                            registerFunction3(event_name_, first_name, last_name, uid);
+                            break;
+                        }
                     }
                 }
 

@@ -49,6 +49,7 @@ public class Confirmation_Page extends AppCompatActivity {
     private String selectedFirstName;
     private String selectedLastName;
     private String selectedUID;
+    private String email;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
