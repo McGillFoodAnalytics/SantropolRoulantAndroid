@@ -60,6 +60,8 @@ public class bottomsheet_fragment extends Fragment {
     private Switch swtchNew;
     private Integer datevalInfo;
     private String eventTypeInfo;
+    boolean[] checkedItems = {false};
+    private AppCompatTextView infoText;
 
     public bottomsheet_fragment() {
         // Required empty public constructor
@@ -84,6 +86,7 @@ public class bottomsheet_fragment extends Fragment {
         recyclerView.setAdapter(adapter);
         mLeftArrow = view.findViewById(R.id.bottom_sheet_left_arrow);
         mRightArrow = view.findViewById(R.id.bottom_sheet_right_arrow);
+        infoText = view.findViewById(R.id.bottom_sheet_heading_txt_info);
         signUp = view.findViewById(R.id.signUp);
 
         initializeBottomSheet();
@@ -141,11 +144,48 @@ public class bottomsheet_fragment extends Fragment {
     }
 
 
-    public void updateEditText(CharSequence newText,Integer dateval, String eventType) {
+    public void updateEditText(String newText,Integer dateval, String eventType) {
         eventTypeInfo = eventType;
         datevalInfo = dateval;
         queryFunction(eventType,dateval);
         dateText.setText(newText);
+        String eventLongInfo;
+        if (eventType.contains("kitam")) {
+            if (newText.contains("saturday")) {
+                eventLongInfo = "Kitchen 9:00am-12:00pm";
+            }
+            else{
+                eventLongInfo = "Kitchen 9:30-12:30pm";
+            }
+        }
+        else if (eventType.contains("kitpm")){
+            if (newText.contains("saturday")) {
+                eventLongInfo = "Kitchen 1:00-3:30pm";
+            }
+            else{
+                eventLongInfo = "Kitchen 1:30-4:00pm";
+            }
+        }
+        else if (eventType.contains("deldr")){
+            if (newText.contains("saturday")) {
+                eventLongInfo = "Meal Delivery 2:15-5:30pm";
+            }
+            else{
+                eventLongInfo = "Meal Delivery 2:45-6:00pm";
+            }
+        }
+        else if (eventType.contains("deliv")){
+            if (newText.contains("saturday")) {
+                eventLongInfo = "Meal Delivery 2:15-5:30pm";
+            }
+            else{
+                eventLongInfo = "Meal Delivery 2:45-6:00pm";
+            }
+        }
+        else{
+            eventLongInfo = "";
+        }
+        infoText.setText(eventLongInfo);
     }
     private void popUpClick(final String key){
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
@@ -154,7 +194,6 @@ public class bottomsheet_fragment extends Fragment {
         final View customLayout = getLayoutInflater().inflate(R.layout.btn_share, null);
         txtNote = customLayout.findViewById(R.id.txtNote);
         String[] info = {"First Shift"};
-        boolean[] checkedItems = {false};
         builder.setView(customLayout)
                 .setPositiveButton("Sign up!",
                         new DialogInterface.OnClickListener() {
@@ -163,10 +202,10 @@ public class bottomsheet_fragment extends Fragment {
                                 FirebaseAuth.AuthStateListener mAuth = new FirebaseAuth.AuthStateListener() {
                                     @Override
                                     public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
-                                        String email = firebaseAuth.getCurrentUser().getEmail();
-                                        if (email != null) {
-                                            Log.d("email", email);
-                                                registerFunction(email);
+                                        String userUid = firebaseAuth.getCurrentUser().getUid();
+                                        if (userUid != null) {
+                                            Log.d("email", userUid);
+                                                registerFunction(userUid);
                                         } else { //user is not logged in
 
                                         }
@@ -181,7 +220,7 @@ public class bottomsheet_fragment extends Fragment {
                 .setMultiChoiceItems(info,checkedItems,new DialogInterface.OnMultiChoiceClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which, boolean isChecked) {
-                                // user checked an item
+                                checkedItems[which] = isChecked;
                             }
                 })
                 .setNegativeButton("Cancel",
@@ -243,28 +282,25 @@ public class bottomsheet_fragment extends Fragment {
     }
 
 
-    private void registerFunction(String email){
+    private void registerFunction(String userUid){
         //find user information
 
-        Query userQuery = FirebaseDatabase.getInstance().getReference("user");
+        Query userQuery = FirebaseDatabase.getInstance().getReference("user").orderByChild("key")
+                .equalTo(userUid);
 
 
         ValueEventListener userListener = new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 for (DataSnapshot userInfo : dataSnapshot.getChildren()) {
-                    final String confirm_email = userInfo.child("email").getValue(String.class);
-                    if (confirm_email.contains(email))
-                    {
-                        final String first_name_ = userInfo.child("first_name").getValue(String.class);
-                        final String last_name_ = userInfo.child("last_name").getValue(String.class);
-                        final String uid_ = userInfo.getKey();
-                        Log.d("funTIMES", uid_);
-                        registerFunction2(first_name_,last_name_,uid_);
-                    }
+                    final String first_name_ = userInfo.child("first_name").getValue(String.class);
+                    final String last_name_ = userInfo.child("last_name").getValue(String.class);
+                    final String uid_ = userInfo.getKey();
+                    registerFunction2(first_name_,last_name_,uid_);
+                    break;
                 }
-
             }
+
 
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
@@ -279,13 +315,18 @@ public class bottomsheet_fragment extends Fragment {
         Query eventQuery = FirebaseDatabase.getInstance().getReference("event")
                 .orderByChild("event_date")
                 .equalTo(datevalInfo);
-
+        Log.d("fun", String.valueOf(datevalInfo));
+        Log.d("fun", eventTypeInfo);
+        Log.d("fun", first_name);
+        Log.d("fun", last_name);
+        Log.d("fun", uid);
         ValueEventListener eventListener = new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 for (DataSnapshot event : dataSnapshot.getChildren()) {
                     String key = event.getKey();
                     String uid_ = event.child("uid").getValue(String.class);
+                    Log.d("fun", key);
                     if (key.contains(String.valueOf(datevalInfo)) && key.contains(eventTypeInfo)) {
                         if (uid_.contentEquals(uid)){
                             break;
@@ -293,7 +334,7 @@ public class bottomsheet_fragment extends Fragment {
                         else {
                             String event_name_ = event.getKey();
                             Log.d("funTIMES", event_name_);
-                            registerFunction3(event_name_, first_name, last_name, uid);
+                            registerFunction3(key, first_name, last_name, uid);
                             break;
                         }
                     }
@@ -311,6 +352,7 @@ public class bottomsheet_fragment extends Fragment {
 
     private void registerFunction3(String event_name, String first_name , String last_name, String uid){
         String note = txtNote.getText().toString().trim();
+        Boolean isNew =  checkedItems[0];
         DatabaseReference myRef = FirebaseDatabase.getInstance().getReference();
         if (event_name != null) {
             // Writing attendee instance to the firebase db
@@ -318,6 +360,7 @@ public class bottomsheet_fragment extends Fragment {
             myRef.child("event").child(event_name).child("note").setValue(note);
             myRef.child("event").child(event_name).child("last_name").setValue(last_name);
             myRef.child("event").child(event_name).child("first_name").setValue(first_name);
+            myRef.child("event").child(event_name).child("first_shift").setValue(isNew);
         }
     }
 }

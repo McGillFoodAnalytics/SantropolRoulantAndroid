@@ -23,8 +23,14 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.12" />
+        app:layout_constraintGuide_percent="0.16" />
 
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/topheadtext_guideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.09" />
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/right_guideline"
         android:layout_width="wrap_content"
@@ -132,10 +138,26 @@
         android:textColor="@color/colorPrimaryText"
         android:textSize="18sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="@id/toprecycle_guideline"
+        app:layout_constraintBottom_toBottomOf="@id/topheadtext_guideline"
         app:layout_constraintLeft_toLeftOf="@id/left_guideline"
         app:layout_constraintRight_toRightOf="@id/right_guideline"
         app:layout_constraintTop_toTopOf="@id/topbutton_guideline" />
+
+    <TextView
+        android:id="@+id/bottom_sheet_heading_txt_info"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginLeft="16dp"
+        android:text="Event Information"
+        android:textAlignment="viewStart"
+        android:textAllCaps="false"
+        android:textColor="@color/colorPrimaryText"
+        android:textSize="14sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@id/toprecycle_guideline"
+        app:layout_constraintLeft_toLeftOf="@id/left_guideline"
+        app:layout_constraintRight_toRightOf="@id/right_guideline"
+        app:layout_constraintTop_toTopOf="@id/topheadtext_guideline" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerViewUsers"
