@@ -1,5 +1,6 @@
 package com.example.santropolroulant;
 
+import android.net.Uri;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -9,6 +10,7 @@ import androidx.fragment.app.FragmentActivity;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -48,6 +50,24 @@ public class ContactUs extends FragmentActivity implements OnMapReadyCallback {
         phone = findViewById(R.id.tvPhoneNumber);
         email = findViewById(R.id.tvEmail);
         address = findViewById(R.id.tvAddress);
+
+        phone.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent phoneIntent = new Intent(Intent.ACTION_DIAL);
+                phoneIntent.setData(Uri.parse("tel:" + phone.getText().toString()));
+                startActivity(phoneIntent);
+            }
+        });
+
+        email.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent emailIntent = new Intent(Intent.ACTION_SENDTO);
+                emailIntent.setData(Uri.parse("mailto:" +email.getText().toString()));
+                startActivity(emailIntent);
+            }
+        });
 
         MapFragment mapFragment = (MapFragment) getFragmentManager()
                 .findFragmentById(R.id.map);
