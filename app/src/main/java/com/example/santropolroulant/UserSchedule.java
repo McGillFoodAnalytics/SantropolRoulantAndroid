@@ -75,7 +75,7 @@ public class UserSchedule extends AppCompatActivity {
         recyclerView.setAdapter(adapter);
 
 
-        adapter.setOnItemClickListener(new EventAdapter.OnItemClickListener() {
+       /* adapter.setOnItemClickListener(new EventAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(final int position) {
                 AlertDialog.Builder builder = new AlertDialog.Builder(UserSchedule.this);
@@ -98,16 +98,17 @@ public class UserSchedule extends AppCompatActivity {
                 });
                 builder.show();
             }
-        });
+        });*/
 
         recyclerView.setVisibility(View.INVISIBLE);
-        setVisible();
+        //setVisible();
         getUserInfo();
 
         VolunteerButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(UserSchedule.this, VolunteerOptions.class));
+                finish();
             }
         });
 
@@ -116,7 +117,6 @@ public class UserSchedule extends AppCompatActivity {
 
     private void querySchedule(String user_UID){
         Log.d("@ @ : snapshot here:", "hey : " + user_UID);
-
         Query querySchedule = FirebaseDatabase.getInstance().getReference("event")
                 .orderByChild("uid")
                 .equalTo(user_UID);
@@ -125,6 +125,7 @@ public class UserSchedule extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 if (dataSnapshot.exists()){
+                    setVisible();
                     for(DataSnapshot scheduleSnap : dataSnapshot.getChildren()){
                         String key = scheduleSnap.getKey();
                         final Integer date = scheduleSnap.child("event_date").getValue(Integer.class);
@@ -196,6 +197,7 @@ public class UserSchedule extends AppCompatActivity {
                         String user_UID = userSnap.getKey();
                         Log.d("hey:","Key: "+user_UID);
                         querySchedule(user_UID);
+                        break;
                     }
                 }else{
                     Toast.makeText(UserSchedule.this, "Unable to Fetch Events", Toast.LENGTH_SHORT).show();
@@ -235,7 +237,7 @@ public class UserSchedule extends AppCompatActivity {
     @Override
     public void onRestart() {
         super.onRestart();
-        startActivity(new Intent(UserSchedule.this, UserSchedule.class));
+        startActivity(new Intent(UserSchedule.this, Home.class));
         //When BACK BUTTON is pressed, the activity on the stack is restarted
         //Do what you want on the refresh procedure here
     }
@@ -272,15 +274,15 @@ public class UserSchedule extends AppCompatActivity {
 
 
                         Snackbar snackbar = Snackbar
-                                .make(relativeLayout, "Item was removed from the list.", Snackbar.LENGTH_LONG);
-                        snackbar.setAction("UNDO", new View.OnClickListener() {
+                                .make(relativeLayout, "You have been removed from the list.", Snackbar.LENGTH_LONG);
+                        /*snackbar.setAction("UNDO", new View.OnClickListener() {
                             @Override
                             public void onClick(View view) {
 
                                 // adapter.restoreItem(item, position);
                                 recyclerView.scrollToPosition(position);
                             }
-                        });
+                        });*/
 
                         snackbar.setActionTextColor(Color.YELLOW);
                         snackbar.show();

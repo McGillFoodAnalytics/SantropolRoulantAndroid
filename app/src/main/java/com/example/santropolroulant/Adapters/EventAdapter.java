@@ -47,7 +47,7 @@ public class EventAdapter extends RecyclerView.Adapter<EventAdapter.EventViewHol
         Event event = eventList.get(position);
         weekImage(holder,event.getDate_txt());
         holder.txtDate.setText(event.getDate_txt());
-        holder.txtType.setText("Event: " + event.getEvent_type());
+        holder.txtType.setText("Event: " + typeName(event.getEvent_type()));
         holder.txtSlot.setText("Time: " + event.getStart_time() + "-" + event.getEnd_time());
     }
 
@@ -106,9 +106,25 @@ public class EventAdapter extends RecyclerView.Adapter<EventAdapter.EventViewHol
 
     public String typeName (String event_type){
         String properName = "";
-        if (event_type == "deliv"){
-            properName = "Meal Delivery";
+        switch(event_type) {
+            case "deliv":
+                properName = "Meal Delivery";
+                break;
+            case "deldr":
+                properName = "Driving Delivery";
+                break;
+            case "kitam":
+                properName = "Kitchen";
+                break;
+            case "kitpm":
+                properName = "Kitchen";
+                break;
+            default:
         }
+
+        /*if (event_type.equals("deliv")){
+            properName = "Meal Delivery";
+        }*/
         return properName;
     };
 
