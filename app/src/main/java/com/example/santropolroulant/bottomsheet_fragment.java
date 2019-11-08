@@ -8,6 +8,7 @@ import com.example.santropolroulant.Adapters.UserAdapter;
 import com.example.santropolroulant.FirebaseClasses.UserSlot;
 import com.google.android.material.bottomsheet.BottomSheetBehavior;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -58,6 +59,8 @@ public class bottomsheet_fragment extends Fragment {
     private Boolean isNew;
     private Button signUp;
     private Switch swtchNew;
+    private Integer datevalInfo;
+    private String eventTypeInfo;
 
     public bottomsheet_fragment() {
         // Required empty public constructor
@@ -141,6 +144,8 @@ public class bottomsheet_fragment extends Fragment {
 
 
     public void updateEditText(CharSequence newText,Integer dateval, String eventType) {
+        eventTypeInfo = eventType;
+        datevalInfo = dateval;
         queryFunction(eventType,dateval);
         dateText.setText(newText);
     }
@@ -157,6 +162,9 @@ public class bottomsheet_fragment extends Fragment {
                         new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int id) {
+                                final String email = mAuth.getCurrentUser().getEmail();
+
+                                registerFunction("jacobbob@gmail.com");
                                 dialog.cancel();//
                             }
                         })
@@ -222,5 +230,79 @@ public class bottomsheet_fragment extends Fragment {
         };
         attendeeQuery.addValueEventListener(countListener);
 
+    }
+
+
+    private void registerFunction(String email){
+        //find user information
+
+        Query userQuery = FirebaseDatabase.getInstance().getReference("user");
+
+
+        ValueEventListener userListener = new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                for (DataSnapshot userInfo : dataSnapshot.getChildren()) {
+                    final String confirm_email = userInfo.child("email").getValue(String.class);
+                    if (confirm_email.contains(email))
+                    {
+                        final String first_name_ = userInfo.child("first_name").getValue(String.class);
+                        final String last_name_ = userInfo.child("last_name").getValue(String.class);
+                        final String uid_ = userInfo.getKey();
+                        Log.d("funTIMES", uid_);
+                        registerFunction2(first_name_,last_name_,uid_);
+                    }
+                }
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+                //
+            }
+        };
+        userQuery.addValueEventListener(userListener);
+        // find event_name
+
+    }
+    private void registerFunction2(String first_name, String last_name, String uid){
+        Query eventQuery = FirebaseDatabase.getInstance().getReference("event")
+                .orderByChild("event_date")
+                .equalTo(datevalInfo);
+
+        ValueEventListener eventListener = new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                for (DataSnapshot event : dataSnapshot.getChildren()) {
+                    String key = event.getKey();
+                    String uid_ = event.child("uid").getValue(String.class);
+                    if (key.contains(String.valueOf(datevalInfo)) && key.contains(eventTypeInfo) && !uid_.contentEquals(uid)) {
+                        String event_name_ = event.getKey();
+                        Log.d("funTIMES", event_name_);
+                        registerFunction3(event_name_,first_name,last_name,uid);
+                        break;
+                    }
+                }
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+                //
+            }
+        };
+        eventQuery.addValueEventListener(eventListener);
+    }
+
+    private void registerFunction3(String event_name, String first_name , String last_name, String uid){
+        String note = txtNote.getText().toString().trim();
+        DatabaseReference myRef = FirebaseDatabase.getInstance().getReference();
+        if (event_name != null) {
+            // Writing attendee instance to the firebase db
+            myRef.child("event").child(event_name).child("uid").setValue(uid);
+            myRef.child("event").child(event_name).child("note").setValue(note);
+            myRef.child("event").child(event_name).child("last_name").setValue(last_name);
+            myRef.child("event").child(event_name).child("first_name").setValue(first_name);
+        }
     }
 }
