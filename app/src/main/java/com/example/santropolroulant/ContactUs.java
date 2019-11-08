@@ -37,7 +37,6 @@ public class ContactUs extends FragmentActivity implements OnMapReadyCallback {
     /*
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_contact_us); // Designates which layout XML to be used for this page
         setupUIViews();
@@ -46,7 +45,7 @@ public class ContactUs extends FragmentActivity implements OnMapReadyCallback {
 
     private void setupUIViews() {
 
-        title = findViewById(R.id.tvTitle);
+        title = findViewById(R.id.tvTitle2);
         phone = findViewById(R.id.tvPhoneNumber);
         email = findViewById(R.id.tvEmail);
         address = findViewById(R.id.tvAddress);

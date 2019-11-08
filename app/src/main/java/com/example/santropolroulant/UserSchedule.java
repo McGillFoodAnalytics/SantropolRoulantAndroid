@@ -79,11 +79,9 @@ public class UserSchedule extends AppCompatActivity {
             @Override
             public void onItemClick(final int position) {
                 AlertDialog.Builder builder = new AlertDialog.Builder(UserSchedule.this);
-
                 builder.setCancelable(true);
                 builder.setTitle("Unregister?");
                 builder.setMessage("Would you like to unregister from this volunteering event? :(");
-
                 builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
@@ -107,7 +105,7 @@ public class UserSchedule extends AppCompatActivity {
         VolunteerButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(UserSchedule.this, VolunteerOptions.class));
+                startActivity(new Intent(UserSchedule.this, VolunteerType.class));
                 finish();
             }
         });
@@ -140,8 +138,8 @@ public class UserSchedule extends AppCompatActivity {
                         final String event_id = scheduleSnap.child("event_id").getValue(String.class);
 
                         Log.d("@ @ : snapshot here:", "hey : BRaaaa1" + key);
-                            // Make manual entry to eventList
-                            // Use default 'Capacity' capVar from the type table
+                        // Make manual entry to eventList
+                        // Use default 'Capacity' capVar from the type table
 
                         Log.d("@ @ : snapshot here:", "hey : after" + date_txt+ start_time + end_time +String.valueOf(first_shift));
                         Boolean isDuplicate = false;
@@ -278,7 +276,6 @@ public class UserSchedule extends AppCompatActivity {
                         /*snackbar.setAction("UNDO", new View.OnClickListener() {
                             @Override
                             public void onClick(View view) {
-
                                 // adapter.restoreItem(item, position);
                                 recyclerView.scrollToPosition(position);
                             }

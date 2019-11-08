@@ -16,11 +16,18 @@ import com.example.santropolroulant.R;
 import java.util.List;
 
 
+// Creates views for data items + replaces content of some views with new data items when original is no longer visible
 public class EventAdapter extends RecyclerView.Adapter<EventAdapter.EventViewHolder> {
 
     private Context mCtx;
-    private List<Event> eventList;
+    private List<Event> eventList;          // Accesses event data through ArrayList
     private OnItemClickListener mListener;
+
+    // Constructor
+    public EventAdapter(Context mCtx, List<Event> eventList) {
+        this.mCtx = mCtx;
+        this.eventList = eventList;
+    }
 
     public interface OnItemClickListener{
         void onItemClick(int position);
@@ -30,53 +37,9 @@ public class EventAdapter extends RecyclerView.Adapter<EventAdapter.EventViewHol
         mListener = listener;
     }
 
-    public EventAdapter(Context mCtx, List<Event> eventList) {
-        this.mCtx = mCtx;
-        this.eventList = eventList;
-    }
 
-    @NonNull
-    @Override
-    public EventViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(mCtx).inflate(R.layout.list_layout, parent, false);
-        return new EventViewHolder(view, mListener);
-    }
-
-    @Override
-    public void onBindViewHolder(@NonNull EventViewHolder holder, int position) {
-        Event event = eventList.get(position);
-        weekImage(holder,event.getDate_txt());
-        holder.txtDate.setText(event.getDate_txt());
-        holder.txtType.setText("Event: " + typeName(event.getEvent_type()));
-        holder.txtSlot.setText("Time: " + event.getStart_time() + "-" + event.getEnd_time());
-    }
-
-    public void weekImage(@NonNull EventViewHolder holder, String weekString){
-        if (weekString.contains("Sunday")){
-            holder.imgBar.setImageResource(R.drawable.sunday_event);
-        } else if (weekString.contains("Monday")){
-            holder.imgBar.setImageResource(R.drawable.monday_event);
-        } else if (weekString.contains("Tuesday")){
-            holder.imgBar.setImageResource(R.drawable.tuesday_event);
-        } else if (weekString.contains("Wednesday")){
-            holder.imgBar.setImageResource(R.drawable.wednesday_event);
-        } else if (weekString.contains("Thursday")){
-            holder.imgBar.setImageResource(R.drawable.thursday_event);
-        } else if (weekString.contains("Friday")){
-            holder.imgBar.setImageResource(R.drawable.friday_event);
-        } else if (weekString.contains("Saturday")){
-            holder.imgBar.setImageResource(R.drawable.saturday_event);
-        } else {
-            holder.imgBar.setImageResource(R.drawable.sunday_event);
-        }
-    };
-    @Override
-    public int getItemCount() {
-        return eventList.size();
-    }
-
+    // Provides a reference to the views for each data item
     public static class EventViewHolder extends RecyclerView.ViewHolder {
-
         TextView txtDate, txtSlot, txtType;
         ImageView imgBar;
 
@@ -100,10 +63,54 @@ public class EventAdapter extends RecyclerView.Adapter<EventAdapter.EventViewHol
                 }
             });
         }
-
-
     }
 
+    // Creates new views (called by/through layout manager)
+    @NonNull
+    @Override
+    public EventViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {     // Instantiates an EventViewHolder objec
+        View view = LayoutInflater.from(mCtx).inflate(R.layout.list_layout, parent, false);
+        return new EventViewHolder(view, mListener);
+    }
+
+    // Binds the view holder to the data + replaces the contents of a view (called by/through the layout manager)
+    @Override
+    public void onBindViewHolder(@NonNull EventViewHolder holder, int position) {
+        Event event = eventList.get(position);                       // Get element from dataset at this position
+        weekImage(holder,event.getDate_txt());
+        holder.txtType.setText("Event: " + typeName(event.getEvent_type()));
+        holder.txtDate.setText(event.getDate_txt());                 // Change contents of view with new element
+        holder.txtSlot.setText("Time: " + event.getStart_time() + "-" + event.getEnd_time());
+    }
+
+    // Set image in list depending on day of the week
+    public void weekImage(@NonNull EventViewHolder holder, String weekString){
+        if (weekString.contains("Sunday")){
+            holder.imgBar.setImageResource(R.drawable.sunday_event);
+        } else if (weekString.contains("Monday")){
+            holder.imgBar.setImageResource(R.drawable.monday_event);
+        } else if (weekString.contains("Tuesday")){
+            holder.imgBar.setImageResource(R.drawable.tuesday_event);
+        } else if (weekString.contains("Wednesday")){
+            holder.imgBar.setImageResource(R.drawable.wednesday_event);
+        } else if (weekString.contains("Thursday")){
+            holder.imgBar.setImageResource(R.drawable.thursday_event);
+        } else if (weekString.contains("Friday")){
+            holder.imgBar.setImageResource(R.drawable.friday_event);
+        } else if (weekString.contains("Saturday")){
+            holder.imgBar.setImageResource(R.drawable.saturday_event);
+        } else {
+            holder.imgBar.setImageResource(R.drawable.sunday_event);
+        }
+    }
+
+    // Counts number of events in Event ArrayList
+    @Override
+    public int getItemCount() {
+        return eventList.size();
+    }
+
+    // Returns name of event type
     public String typeName (String event_type){
         String properName = "";
         switch(event_type) {
@@ -126,6 +133,8 @@ public class EventAdapter extends RecyclerView.Adapter<EventAdapter.EventViewHol
             properName = "Meal Delivery";
         }*/
         return properName;
-    };
+    }
+
+
 
 }

@@ -35,10 +35,10 @@ import java.util.List;
 
 public class Confirmation_Page_MealDelivery extends AppCompatActivity {
 
-    private FirebaseAuth mAuth; // Authentication for UserID
-    private RecyclerView recyclerView; // Recycler view to work with Custom Adapter
-    private UserAdapter adapter; // Custom adapter 'EventAdapter'
-    private List<UserSlot> userList; // List that will be filled with Event classes from Firebase Query
+    private FirebaseAuth mAuth;         // Authentication for UserID
+    private RecyclerView recyclerView;  // Recycler view to work with Custom Adapter
+    private UserAdapter adapter;        // Custom adapter 'EventAdapter'
+    private List<UserSlot> userList;    // List that will be filled with Event classes from Firebase Query
     private Button btnSignUp;
     private EditText txtNote;
     private Switch swtchNew;

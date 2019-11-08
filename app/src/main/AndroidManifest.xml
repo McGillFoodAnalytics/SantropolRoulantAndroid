@@ -27,7 +27,7 @@
             android:screenOrientation="portrait" />
         <activity android:name=".DisplayEvents"
             android:screenOrientation="portrait" />
-        <activity android:name=".VolunteerOptions"
+        <activity android:name=".VolunteerType"
             android:screenOrientation="portrait" />
         <activity android:name=".PasswordActivity"
             android:screenOrientation="portrait" />
@@ -45,7 +45,15 @@
             android:screenOrientation="portrait" />
         <activity android:name=".EventRegisterConfirmation"
             android:screenOrientation="portrait"/>
+        <activity android:name=".TransportType"
+            android:screenOrientation="portrait" />
+        <activity android:name=".TimePreference"
+            android:screenOrientation="portrait" />
         <activity android:name=".MainActivity"
+            android:screenOrientation="portrait" />
+        <activity android:name=".Calendar_Main"
+            android:screenOrientation="portrait" />
+        <activity android:name=".FragmentCalendar"
             android:screenOrientation="portrait" />
         <activity android:name=".UnlockApplication"
             android:screenOrientation="portrait" >

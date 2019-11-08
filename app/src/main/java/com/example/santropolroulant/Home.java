@@ -38,14 +38,13 @@ public class Home extends AppCompatActivity {
         volunteerCard = (CardView)findViewById(R.id.volunteerCard);
         scheduleCard = (CardView)findViewById(R.id.scheduleCard);
         profileCard = (CardView)findViewById(R.id.profileCard);
-        infoCard = (CardView)findViewById(R.id.infosessionCard);
         contactCard = (CardView)findViewById(R.id.contactCard);
 
         // Bunch of CardView listeners
         volunteerCard.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(Home.this, VolunteerOptions.class));
+                startActivity(new Intent(Home.this, VolunteerType.class));
             }
         });
 
@@ -77,11 +76,6 @@ public class Home extends AppCompatActivity {
             // Toast.makeText(Home.this, "Yet To Come", Toast.LENGTH_SHORT).show();            }
         });
 
-        infoCard.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Toast.makeText(Home.this, "Yet To Come", Toast.LENGTH_SHORT).show();            }
-        });
 
 
 
