@@ -11,9 +11,10 @@ public class Event {
     String note;
     Boolean first_shift;
     String is_current;
+    String event_id;
 
 
-    public Event(String date_txt, Integer date, String start_time, String end_time, String event_type, String uid, String note, String is_current, Boolean first_shift) {
+    public Event(String date_txt, Integer date, String start_time, String end_time, String event_type, String uid, String note, String is_current, Boolean first_shift, String event_id) {
 
         this.date = date;
         this.date_txt = date_txt;
@@ -24,6 +25,7 @@ public class Event {
         this.note = note;
         this.first_shift = first_shift;
         this.is_current = is_current;
+        this.event_id = event_id;
     }
 
     public Event() {
@@ -101,4 +103,6 @@ public class Event {
     public void setIs_current(String is_current) {
         this.is_current = is_current;
     }
+
+    public String getEventId() { return event_id; }
 }

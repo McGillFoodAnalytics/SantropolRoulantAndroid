@@ -252,7 +252,6 @@ public class CreateAccount3 extends AppCompatActivity {
 
         tasks[10] = myRef.child("user").child(key).child("key").setValue(firebaseAuth.getUid()); //this is the firebase's UID for the users
 
-
         return tasks;
     }
 
