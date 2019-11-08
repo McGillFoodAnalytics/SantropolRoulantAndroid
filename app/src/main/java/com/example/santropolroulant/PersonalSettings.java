@@ -57,6 +57,7 @@ public class PersonalSettings extends AppCompatActivity {
                 "Something went wrong with your Login information.\nPlease login again",
                 Toast.LENGTH_LONG
         ).show();
+        firebaseAuth.signOut();
         // Go to Login activity
         startActivity(new Intent(PersonalSettings.this, Login.class));
     }
