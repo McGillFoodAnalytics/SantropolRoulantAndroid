@@ -80,7 +80,7 @@ public class CreateAccount3 extends AppCompatActivity {
                            Log.d("wtv", "FUCK");
 
                             if(task.isSuccessful()){
-                                // if successful then enter user data into firebase
+                                // if successful then entersendUser user data into firebase
                                 Task[] tasks = sendUserData();
 
                                 //if (tasks[0].isSuccessful() && tasks[1].isSuccessful() && tasks[2].isSuccessful() && tasks[3].isSuccessful() &&tasks[4].isSuccessful() && tasks[5].isSuccessful() && tasks[6].isSuccessful() && tasks[7].isSuccessful() && tasks[8].isSuccessful()){
@@ -217,18 +217,6 @@ public class CreateAccount3 extends AppCompatActivity {
         DatabaseReference myRef = firebaseDatabase.getReference();
         Log.d("myRed", myRef.toString() + " " + myRef.getKey());
         Log.d("sendingUserData",first_name + "before " + last_name);
-        //myRef.child("user").setValue(key);
-        myRef.child("user").child(key).setValue("first_name");
-        myRef.child("user").child(key).setValue("last_name");
-        myRef.child("user").child(key).setValue("dob");
-        myRef.child("user").child(key).setValue("phone_number");
-        myRef.child("user").child(key).setValue("email");
-        myRef.child("user").child(key).setValue("signup_date");
-        myRef.child("user").child(key).setValue("address_city");
-        myRef.child("user").child(key).setValue("address_number");
-        myRef.child("user").child(key).setValue("address_street");
-        myRef.child("user").child(key).setValue("address_postal_code");
-        myRef.child("user").child(key).setValue("key");
 
         tasks[0] = myRef.child("user").child(key).child("first_name").setValue(first_name);
 
