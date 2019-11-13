@@ -217,7 +217,7 @@ public class CreateAccount3 extends AppCompatActivity {
         DatabaseReference myRef = firebaseDatabase.getReference();
         Log.d("myRed", myRef.toString() + " " + myRef.getKey());
         Log.d("sendingUserData",first_name + "before " + last_name);
-        myRef.child("user").setValue(key);
+        //myRef.child("user").setValue(key);
         myRef.child("user").child(key).setValue("first_name");
         myRef.child("user").child(key).setValue("last_name");
         myRef.child("user").child(key).setValue("dob");
