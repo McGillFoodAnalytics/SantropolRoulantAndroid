@@ -44,10 +44,11 @@ import java.util.concurrent.Executor;
 import static android.R.style.Theme_Holo_Light_Dialog_MinWidth;
 
 public class PersonalSettings extends AppCompatActivity {
-    ArrayList<InputField> inputFields;
-    Button saveButton;
-    User myUser;
-    String uid;
+    private ArrayList<InputField> inputFields;
+    private Button saveButton;
+    private User myUser;
+    private String uid;
+    private ValueEventListener saveChangesListener;
 
     private FirebaseAuth firebaseAuth;
     private DatabaseReference mDatabase;
@@ -113,7 +114,7 @@ public class PersonalSettings extends AppCompatActivity {
 
 
 
-        ValueEventListener saveChangesListener = new ValueEventListener() {
+        saveChangesListener = new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
@@ -136,7 +137,7 @@ public class PersonalSettings extends AppCompatActivity {
         };
 
         //Setting it to be called everytime the database is updated, (and of course once on creation)
-        mDatabase.addValueEventListener(saveChangesListener);
+        saveChangesListener = mDatabase.addValueEventListener(saveChangesListener);
 
         //Occurs when save button is selected
         saveButton.setOnClickListener(new View.OnClickListener() {
@@ -231,6 +232,16 @@ public class PersonalSettings extends AppCompatActivity {
 
         public Method getGetHint() {
             return getHint;
+        }
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        if(mDatabase != null) {
+            if(saveChangesListener != null){
+                mDatabase.removeEventListener(saveChangesListener);
+            }
         }
     }
 
