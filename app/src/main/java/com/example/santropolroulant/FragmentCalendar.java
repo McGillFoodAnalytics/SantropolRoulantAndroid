@@ -32,6 +32,7 @@ import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.List;
 
 import static android.widget.Toast.LENGTH_SHORT;
@@ -70,6 +71,9 @@ public class FragmentCalendar extends Fragment {
         Calendar nextDay2 = Calendar.getInstance();
         nextDay2.add(Calendar.DATE, 5);
 
+        ArrayList<Date> calendarList =  getDatesBetween(today, nextYear.getTime());
+        Log.d("calendarList", calendarList.get(0).toString());
+
         Integer dateVal = Integer.valueOf(Integer.toString(year).substring(1)+Integer.toString(month)+Integer.toString(day));
         listener.onInputASent(todayDate,dateVal);
         final CalendarPickerView calendar = (CalendarPickerView) v.findViewById(R.id.calendar);
@@ -107,25 +111,31 @@ public class FragmentCalendar extends Fragment {
                         java.util.Date emptyDay = cal.getTime();
 
                         if(!emptyDates.contains(emptyDay) && !emptyDay.before(today)) {
-                            emptyDates.add(i, emptyDay);
+                            //emptyDates.add(i, emptyDay);
+                           // Log.d("calendarListInside", calendarList.get(0).toString());
+                           // emptyDay.setHours(0);
+                           // emptyDay.setMinutes(0);
+                          //  emptyDay.setSeconds(0);
+                            for(Date potentialRemoval : calendarList){
+                                if(potentialRemoval.getDate() == emptyDay.getDate()){
+                                    calendarList.remove(potentialRemoval);
+                                    break;
+                                }
+                            }
+                            //calendarList.remove(emptyDay);
                             Log.d("addition:",emptyDay.toString());
+                            Log.d("is 15 gone", calendarList.get(1).toString());
                             i++;
                         }
 
                         if(i == 1) { break; }
                     }
                 }
-                // updateCalendar(emptyDates, inflater, container);
-               /* Date today = new Date();
-                Calendar nextDay = Calendar.getInstance();
-                nextDay.add(Calendar.DATE, 5);
-                Calendar nextYear = Calendar.getInstance();
-                nextYear.add(Calendar.YEAR, 1);
-*/
-                Log.d("updateCalendar", emptyDates.get(0).toString());
+
+
                 final CalendarPickerView calendar = (CalendarPickerView) v.findViewById(R.id.calendar);
                 //calendar.highlightDates(emptyDates);
-                calendar.init(today, nextYear.getTime()).withSelectedDate(today).withHighlightedDates(emptyDates);
+                calendar.init(today, nextYear.getTime()).withSelectedDate(today).withHighlightedDates(calendarList);
             }
 
             @Override
@@ -230,7 +240,10 @@ public class FragmentCalendar extends Fragment {
                 nextDay.add(Calendar.DATE, 5);
                 Calendar nextYear = Calendar.getInstance();
                 nextYear.add(Calendar.YEAR, 1);
+
+
 */
+
                 Log.d("updateCalendar", emptyDates.get(0).toString());
                 View v = inflater.inflate(R.layout.fragment_calendar, container,false);
                 final CalendarPickerView calendar = (CalendarPickerView) v.findViewById(R.id.calendar);
@@ -264,6 +277,26 @@ public class FragmentCalendar extends Fragment {
         calendar.highlightDates(emptyDates);
 
 
+    }
+
+    public static ArrayList<Date> getDatesBetween(Date startDate, Date endDate) {
+        ArrayList<Date> datesInRange = new ArrayList<>();
+        Calendar calendar = new GregorianCalendar();
+        calendar.setTime(startDate);
+
+        Calendar endCalendar = new GregorianCalendar();
+        endCalendar.setTime(endDate);
+
+        while (calendar.before(endCalendar)) {
+            Date result = calendar.getTime();
+            result.setHours(0);
+            result.setMinutes(0);
+            result.setSeconds(0);
+            datesInRange.add(result);
+            calendar.add(Calendar.DATE, 1);
+        }
+
+        return datesInRange;
     }
 
 }
