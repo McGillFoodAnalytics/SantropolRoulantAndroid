@@ -236,6 +236,7 @@ public class UserSchedule extends AppCompatActivity {
     public void onRestart() {
         super.onRestart();
         startActivity(new Intent(UserSchedule.this, Home.class));
+        finish();
         //When BACK BUTTON is pressed, the activity on the stack is restarted
         //Do what you want on the refresh procedure here
     }

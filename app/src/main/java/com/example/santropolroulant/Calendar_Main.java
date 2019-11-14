@@ -33,8 +33,6 @@ public class Calendar_Main extends AppCompatActivity implements FragmentCalendar
     String eventType;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        fragmentCalendar = new FragmentCalendar();
-        bottomsheetfragment = new bottomsheet_fragment();
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.calendar);
@@ -42,6 +40,9 @@ public class Calendar_Main extends AppCompatActivity implements FragmentCalendar
         if (extras != null) {
             eventType = extras.getString("two");
         }
+
+        fragmentCalendar = new FragmentCalendar(eventType);
+        bottomsheetfragment = new bottomsheet_fragment();
         getSupportFragmentManager()
                 .beginTransaction()
                 .replace(R.id.main_fragment_container, bottomsheetfragment)
@@ -49,6 +50,16 @@ public class Calendar_Main extends AppCompatActivity implements FragmentCalendar
         getSupportFragmentManager().beginTransaction()
                 .replace(R.id.container_calendar, fragmentCalendar)
                 .commit();
+    }
+
+
+    @Override
+    public void onBackPressed()
+    {
+        super.onBackPressed();
+        startActivity(new Intent(Calendar_Main.this, Home.class));
+        finish();
+
     }
 
     @Override

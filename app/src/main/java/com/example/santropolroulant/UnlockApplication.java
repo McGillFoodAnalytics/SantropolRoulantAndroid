@@ -58,11 +58,11 @@ public class UnlockApplication extends AppCompatActivity{
         //    System.exit(-1);
         //}
 
-        /*TO SET BACK TO LOCKED
+        /*TO SET BACK TO LOCKED*/
         SharedPreferences.Editor editor = getSharedPreferences(MY_PREFS_NAME, MODE_PRIVATE).edit();
         editor.putBoolean("unlocked", false);
         editor.apply();
-        */
+
 
         SharedPreferences prefs = getSharedPreferences(MY_PREFS_NAME, MODE_PRIVATE);
         isUnlocked = prefs.getBoolean("unlocked", false);//"No name defined" is the default value.
