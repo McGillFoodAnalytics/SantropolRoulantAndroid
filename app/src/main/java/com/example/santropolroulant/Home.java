@@ -11,9 +11,16 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
+import android.widget.TextView;
 
+import com.example.santropolroulant.DataValueTypes.User;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 
 public class Home extends AppCompatActivity {
@@ -23,21 +30,39 @@ public class Home extends AppCompatActivity {
     private CardView profileCard;
     private CardView infoCard;
     private CardView contactCard;
+    private String name;
+    private TextView tvGreeting, tvHello;
     private FirebaseAuth mAuth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
-        setUpUIViews();
 
+
+        // Gets name of current user to add to greeting
         mAuth = FirebaseAuth.getInstance();
-        FirebaseUser user = mAuth.getCurrentUser();
+        final FirebaseUser user = mAuth.getCurrentUser();      // Ensuring we are currently logged in
+
+        if (user==null){
+            String userName = user.toString();
+            Log.d("LOGGED IN", userName);
+            System.exit(-1);
+        }
+
+        try {
+            name = (String) User.class.getDeclaredMethod("getFirst_name").invoke(user);
+        } catch(Exception e){
+            e.printStackTrace();
+            System.exit(-1);
+        }
 
         volunteerCard = (CardView)findViewById(R.id.volunteerCard);
         scheduleCard = (CardView)findViewById(R.id.scheduleCard);
         profileCard = (CardView)findViewById(R.id.profileCard);
         contactCard = (CardView)findViewById(R.id.contactCard);
+
+        setUpUIViews();
 
         // Bunch of CardView listeners
         volunteerCard.setOnClickListener(new View.OnClickListener() {
@@ -83,6 +108,11 @@ public class Home extends AppCompatActivity {
     }
 
     private void setUpUIViews() {
+
+        tvGreeting = (TextView) findViewById(R.id.tvGreeting);
+        tvHello = (TextView) findViewById(R.id.tvHello);
+        tvHello.setText(tvHello + ", " + name + "!");
+
         volunteerCard = (CardView)findViewById(R.id.volunteerCard);
         scheduleCard = (CardView)findViewById(R.id.scheduleCard);
         profileCard = (CardView)findViewById(R.id.profileCard);

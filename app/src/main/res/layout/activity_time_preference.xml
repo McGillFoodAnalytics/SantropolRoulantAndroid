@@ -10,24 +10,26 @@
 
     <LinearLayout
         android:id="@+id/linearLayout5"
-        android:layout_width="388dp"
-        android:layout_height="206dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginEnd="8dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="16dp"
         android:clipToPadding="false"
         android:gravity="center"
         android:orientation="horizontal"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.383">
+        app:layout_constraintBottom_toTopOf="@+id/guideline6"
+        app:layout_constraintEnd_toStartOf="@+id/guideline4"
+        app:layout_constraintStart_toStartOf="@+id/guideline3"
+        app:layout_constraintTop_toBottomOf="@+id/tvTitle3"
+        app:layout_constraintVertical_bias="0.073">
 
 
         <androidx.cardview.widget.CardView
             android:id="@+id/crdMorning"
-            android:layout_width="170dp"
-            android:layout_height="170dp"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
             android:layout_margin="10dp"
             android:clickable="true"
             android:foreground="?android:selectableItemBackground"
@@ -55,7 +57,7 @@
                     android:fontFamily="@font/avenir_next_regular"
                     android:text="Morning Shift"
                     android:textColor="#000000"
-                    android:textSize="21dp"
+                    android:textSize="17dp"
                     android:textStyle="bold" />
 
             </LinearLayout>
@@ -64,8 +66,8 @@
 
         <androidx.cardview.widget.CardView
             android:id="@+id/crdAfternoon"
-            android:layout_width="170dp"
-            android:layout_height="170dp"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
             android:layout_margin="10dp"
             android:clickable="true"
             android:foreground="?android:selectableItemBackground"
@@ -93,7 +95,7 @@
                     android:fontFamily="@font/avenir_next_regular"
                     android:text="Afternoon Shift"
                     android:textColor="#000000"
-                    android:textSize="20dp"
+                    android:textSize="17dp"
                     android:textStyle="bold" />
 
             </LinearLayout>
@@ -106,21 +108,22 @@
         android:id="@+id/tvTitle3"
         android:layout_width="346dp"
         android:layout_height="99dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginBottom="8dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="16dp"
         android:fontFamily="@font/avenir_next_demi"
         android:gravity="center"
         android:text="Which time of the day would you prefer?"
         android:textColor="@color/next_button"
         android:textSize="24sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/btnNext3"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.123" />
+        app:layout_constraintBottom_toTopOf="@+id/guideline6"
+        app:layout_constraintEnd_toStartOf="@+id/guideline4"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="@+id/guideline3"
+        app:layout_constraintTop_toTopOf="@+id/guideline5"
+        app:layout_constraintVertical_bias="0" />
 
     <Button
         android:id="@+id/btnNext3"
@@ -135,6 +138,34 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_begin="30dp" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_end="30dp" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_begin="30dp" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_end="30dp" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

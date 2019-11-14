@@ -10,41 +10,42 @@
 
     <LinearLayout
         android:id="@+id/linearLayout5"
-        android:layout_width="388dp"
-        android:layout_height="206dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginEnd="8dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="16dp"
         android:clipToPadding="false"
         android:gravity="center"
         android:orientation="horizontal"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.619"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.291">
+        app:layout_constraintBottom_toTopOf="@+id/guideline6"
+        app:layout_constraintEnd_toStartOf="@+id/guideline4"
+        app:layout_constraintStart_toStartOf="@+id/guideline3"
+        app:layout_constraintTop_toBottomOf="@+id/tvTitle2"
+        app:layout_constraintVertical_bias="0.073">
 
 
         <androidx.cardview.widget.CardView
             android:id="@+id/crdDriver"
-            android:layout_width="170dp"
-            android:layout_height="170dp"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
             android:layout_margin="10dp"
             android:clickable="true"
-            app:cardElevation="0dp"
-            android:foreground="?android:selectableItemBackground">
+            app:background="@drawable/radius"
+            app:cardElevation="0dp">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:gravity="center"
                 android:background="@drawable/radius"
+                android:gravity="center"
                 android:orientation="vertical">
 
                 <ImageView
                     android:layout_width="65dp"
                     android:layout_height="65dp"
-                    android:layout_marginTop="2sp"
+                    android:layout_marginTop="1dp"
                     android:layout_marginBottom="7dp"
                     android:gravity="center"
                     android:src="@drawable/driver"></ImageView>
@@ -52,11 +53,11 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:fontFamily="@font/avenir_next_demi"
                     android:layout_marginTop="12dp"
+                    android:fontFamily="@font/avenir_next_demi"
                     android:text="Driver"
                     android:textColor="#000000"
-                    android:textSize="21dp"
+                    android:textSize="17dp"
                     android:textStyle="bold" />
 
             </LinearLayout>
@@ -65,37 +66,35 @@
 
         <androidx.cardview.widget.CardView
             android:id="@+id/crdNonDriver"
-            android:layout_width="170dp"
-            android:layout_height="170dp"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
             android:layout_margin="10dp"
             android:clickable="true"
-            app:cardElevation="0dp"
-            android:foreground="?android:selectableItemBackground">
+            android:foreground="?android:selectableItemBackground"
+            app:cardElevation="0dp">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:gravity="center"
                 android:background="@drawable/radius"
+                android:gravity="center"
                 android:orientation="vertical">
 
                 <ImageView
-                    android:layout_width="150dp"
-                    android:layout_height="84dp"
-                    android:layout_marginTop="2sp"
-                    android:layout_marginBottom="2sp"
+                    android:layout_width="109dp"
+                    android:layout_height="76dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginBottom="2dp"
                     android:gravity="center"
                     android:src="@drawable/non_driver"></ImageView>
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Non-Driver"
-                    android:textSize="21dp"
-                    android:textColor="#000000"
                     android:fontFamily="@font/avenir_next_demi"
-                    android:textStyle="bold" />
-
+                    android:text="Non-Driver"
+                    android:textColor="#000000"
+                    android:textSize="17dp" />
             </LinearLayout>
         </androidx.cardview.widget.CardView>
 
@@ -105,21 +104,21 @@
         android:id="@+id/tvTitle2"
         android:layout_width="346dp"
         android:layout_height="99dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginBottom="8dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="16dp"
+        android:fontFamily="@font/avenir_next_demi"
         android:gravity="center"
         android:text="Which mode of transportation would you prefer for delivery?"
         android:textColor="@color/cu_title"
         android:textSize="24sp"
-        android:fontFamily="@font/avenir_next_demi"
-        app:layout_constraintBottom_toTopOf="@+id/btnNext2"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.489"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.053" />
+        app:layout_constraintBottom_toTopOf="@+id/guideline6"
+        app:layout_constraintEnd_toStartOf="@+id/guideline4"
+        app:layout_constraintHorizontal_bias="0.571"
+        app:layout_constraintStart_toStartOf="@+id/guideline3"
+        app:layout_constraintTop_toTopOf="@+id/guideline5"
+        app:layout_constraintVertical_bias="0.0" />
 
 
     <Button
@@ -133,7 +132,38 @@
         android:textSize="24sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.571"
         app:layout_constraintStart_toStartOf="parent" />
+
+
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_begin="30dp" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_end="30dp" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_begin="30dp" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_end="30dp" />
 
 
 

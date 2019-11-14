@@ -1,80 +1,104 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+
+
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/contact_us"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
-
-    <TextView
-        android:id="@+id/tvTitle2"
-        android:layout_width="match_parent"
-        android:layout_height="80dp"
-        android:layout_marginTop="60dp"
-        android:fontFamily="@font/avenir_next_bold"
-        android:gravity="center"
-        android:text="Let's get in touch!"
-        android:textColor="@color/cu_title"
-        android:textSize="40sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/tvPhoneNumber"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/cu_infobox_height"
-        android:background="@color/cu_info_boxes"
-        android:text="(514) 284-9335"
-        android:gravity="center_vertical"
-        android:fontFamily="@font/avenir_next_regular"
-        android:paddingLeft="@dimen/cu_infobox_paddingleft"
-        android:drawablePadding="25sp"
-        android:drawableLeft="@drawable/phone"
-        android:textSize="@dimen/cu_infobox_font_size"
-        tools:layout_editor_absoluteX="146dp"
-        tools:layout_editor_absoluteY="-10dp" />
-
-    <TextView
-        android:id="@+id/tvEmail"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/cu_infobox_height"
-        android:background="@color/cu_info_boxes"
-        android:text="info@santropolroulant.org"
-        android:gravity="center_vertical"
-        android:paddingLeft="@dimen/cu_infobox_paddingleft"
-        android:fontFamily="@font/avenir_next_regular"
-        android:drawablePadding="25sp"
-        android:drawableLeft="@drawable/email"
-        android:textSize="@dimen/cu_infobox_font_size"
-        tools:layout_editor_absoluteX="146dp"
-        tools:layout_editor_absoluteY="-10dp" />
-
-    <TextView
-        android:id="@+id/tvAddress"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/cu_infobox_height"
-        android:background="@color/cu_info_boxes"
-        android:text="111, Roy East, Montreal (QC) H2W 1M1"
-        android:gravity="center_vertical"
-        android:fontFamily="@font/avenir_next_regular"
-        android:paddingLeft="@dimen/cu_infobox_paddingleft"
-        android:textSize="18sp"
-        android:drawablePadding="25sp"
-        android:drawableLeft="@drawable/location"
-        tools:layout_editor_absoluteX="146dp"
-        tools:layout_editor_absoluteY="-10dp" />
+    tools:context=".TimePreference">
 
 
-    <fragment xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:map="http://schemas.android.com/apk/res-auto"
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools"
-        android:name="com.google.android.gms.maps.MapFragment"
-        android:id="@+id/map"
+        android:id="@+id/contact_us"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        tools:context=".ContactUs" />
+        android:layout_height="700dp"
+        android:layout_marginTop="2dp"
+        android:layout_marginBottom="2dp"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/guideline5">
 
-</LinearLayout>
+        <TextView
+            android:id="@+id/tvTitle2"
+            android:layout_width="match_parent"
+            android:layout_height="80dp"
+            android:layout_marginTop="2dp"
+            android:fontFamily="@font/avenir_next_bold"
+            android:gravity="center"
+            android:text="Let's get in touch!"
+            android:textColor="@color/cu_title"
+            android:textSize="40sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tvPhoneNumber"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/cu_infobox_height"
+            android:background="@color/cu_info_boxes"
+            android:drawableLeft="@drawable/phone"
+            android:drawablePadding="25sp"
+            android:fontFamily="@font/avenir_next_regular"
+            android:gravity="center_vertical"
+            android:paddingLeft="@dimen/cu_infobox_paddingleft"
+            android:text="(514) 284-9335"
+            android:textSize="@dimen/cu_infobox_font_size"
+            tools:layout_editor_absoluteX="146dp"
+            tools:layout_editor_absoluteY="-10dp" />
+
+        <TextView
+            android:id="@+id/tvEmail"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/cu_infobox_height"
+            android:background="@color/cu_info_boxes"
+            android:drawableLeft="@drawable/email"
+            android:drawablePadding="25sp"
+            android:fontFamily="@font/avenir_next_regular"
+            android:gravity="center_vertical"
+            android:paddingLeft="@dimen/cu_infobox_paddingleft"
+            android:text="info@santropolroulant.org"
+            android:textSize="@dimen/cu_infobox_font_size"
+            tools:layout_editor_absoluteX="146dp"
+            tools:layout_editor_absoluteY="-10dp" />
+
+        <TextView
+            android:id="@+id/tvAddress"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/cu_infobox_height"
+            android:background="@color/cu_info_boxes"
+            android:drawableLeft="@drawable/location"
+            android:drawablePadding="25sp"
+            android:fontFamily="@font/avenir_next_regular"
+            android:gravity="center_vertical"
+            android:paddingLeft="@dimen/cu_infobox_paddingleft"
+            android:text="111, Roy East, Montreal (QC) H2W 1M1"
+            android:textSize="18sp"
+            tools:layout_editor_absoluteX="146dp"
+            tools:layout_editor_absoluteY="-10dp" />
+
+
+        <fragment xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:map="http://schemas.android.com/apk/res-auto"
+            xmlns:tools="http://schemas.android.com/tools"
+            android:id="@+id/map"
+            android:name="com.google.android.gms.maps.MapFragment"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            tools:context=".ContactUs" />
+
+    </LinearLayout>
+
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_begin="30dp" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
