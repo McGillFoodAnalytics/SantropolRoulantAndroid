@@ -62,6 +62,9 @@ public class bottomsheet_fragment extends Fragment {
     private String eventTypeInfo;
     boolean[] checkedItems = {false};
     private AppCompatTextView infoText;
+    private Query attendeeQuery, eventQuery, userQuery;
+    private DatabaseReference myRef;
+    private ValueEventListener countListener, userListener, eventListener;
 
     public bottomsheet_fragment() {
         // Required empty public constructor
@@ -205,7 +208,7 @@ public class bottomsheet_fragment extends Fragment {
                                         String userUid = firebaseAuth.getCurrentUser().getUid();
                                         if (userUid != null) {
                                             Log.d("email", userUid);
-                                                registerFunction(userUid);
+                                            registerFunction(userUid);
                                         } else { //user is not logged in
 
                                         }
@@ -239,11 +242,11 @@ public class bottomsheet_fragment extends Fragment {
     }
 
     private void queryFunction(final String eventType, final Integer dateVal){
-        Query attendeeQuery = FirebaseDatabase.getInstance().getReference("event")
+        attendeeQuery = FirebaseDatabase.getInstance().getReference("event")
                 .orderByChild("event_date")
                 .equalTo(dateVal);
 
-        ValueEventListener countListener = new ValueEventListener() {
+        countListener = new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 userList.clear();
@@ -277,19 +280,18 @@ public class bottomsheet_fragment extends Fragment {
 
             }
         };
-        attendeeQuery.addValueEventListener(countListener);
+        countListener = attendeeQuery.addValueEventListener(countListener);
 
     }
 
 
     private void registerFunction(String userUid){
         //find user information
-
-        Query userQuery = FirebaseDatabase.getInstance().getReference("user").orderByChild("key")
+        userQuery = FirebaseDatabase.getInstance().getReference("user").orderByChild("key")
                 .equalTo(userUid);
 
 
-        ValueEventListener userListener = new ValueEventListener() {
+        userListener = new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 for (DataSnapshot userInfo : dataSnapshot.getChildren()) {
@@ -307,12 +309,12 @@ public class bottomsheet_fragment extends Fragment {
                 //
             }
         };
-        userQuery.addValueEventListener(userListener);
+        userListener = userQuery.addValueEventListener(userListener);
         // find event_name
 
     }
     private void registerFunction2(String first_name, String last_name, String uid){
-        Query eventQuery = FirebaseDatabase.getInstance().getReference("event")
+        eventQuery = FirebaseDatabase.getInstance().getReference("event")
                 .orderByChild("event_date")
                 .equalTo(datevalInfo);
         Log.d("fun", String.valueOf(datevalInfo));
@@ -320,7 +322,7 @@ public class bottomsheet_fragment extends Fragment {
         Log.d("fun", first_name);
         Log.d("fun", last_name);
         Log.d("fun", uid);
-        ValueEventListener eventListener = new ValueEventListener() {
+        eventListener = new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 for (DataSnapshot event : dataSnapshot.getChildren()) {
@@ -347,13 +349,13 @@ public class bottomsheet_fragment extends Fragment {
                 //
             }
         };
-        eventQuery.addValueEventListener(eventListener);
+        eventListener = eventQuery.addValueEventListener(eventListener);
     }
 
     private void registerFunction3(String event_name, String first_name , String last_name, String uid){
         String note = txtNote.getText().toString().trim();
         Boolean isNew =  checkedItems[0];
-        DatabaseReference myRef = FirebaseDatabase.getInstance().getReference();
+        myRef = FirebaseDatabase.getInstance().getReference();
         if (event_name != null) {
             // Writing attendee instance to the firebase db
             myRef.child("event").child(event_name).child("uid").setValue(uid);
@@ -361,6 +363,30 @@ public class bottomsheet_fragment extends Fragment {
             myRef.child("event").child(event_name).child("last_name").setValue(last_name);
             myRef.child("event").child(event_name).child("first_name").setValue(first_name);
             myRef.child("event").child(event_name).child("first_shift").setValue(isNew);
+        }
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+
+        //Remove Listeners
+        if(attendeeQuery != null){
+            if (countListener != null){
+                attendeeQuery.removeEventListener(countListener);
+            }
+        }
+
+        if(userQuery != null){
+            if(userListener != null){
+                userQuery.removeEventListener(userListener);
+            }
+        }
+
+        if(eventQuery != null){
+            if(eventListener != null){
+                eventQuery.removeEventListener(eventListener);
+            }
         }
     }
 }
