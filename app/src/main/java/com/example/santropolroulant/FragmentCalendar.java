@@ -41,6 +41,8 @@ public class FragmentCalendar extends Fragment {
     private FragmentCalendarListener listener;
     ArrayList<Date> emptyDates = new ArrayList<Date>();
     String event_type;
+    private final String EVENT_LOC = "eventSample";
+
 
     public FragmentCalendar(String event_type){
         this.event_type = event_type;
@@ -81,7 +83,7 @@ public class FragmentCalendar extends Fragment {
 
         //queryFunction(event_type, inflater, container);
         //**********************
-        Query attendeeQuery = FirebaseDatabase.getInstance().getReference("event")
+        Query attendeeQuery = FirebaseDatabase.getInstance().getReference(EVENT_LOC)
                 .orderByChild("event_date");
 
         ValueEventListener countListener = new ValueEventListener() {
@@ -128,7 +130,7 @@ public class FragmentCalendar extends Fragment {
                             i++;
                         }
 
-                        if(i == 1) { break; }
+                        if(i == 100) { break; }
                     }
                 }
 
@@ -196,7 +198,7 @@ public class FragmentCalendar extends Fragment {
     }
 
     private void queryFunction(final String eventType, LayoutInflater inflater, ViewGroup container){
-        Query attendeeQuery = FirebaseDatabase.getInstance().getReference("event")
+        Query attendeeQuery = FirebaseDatabase.getInstance().getReference(EVENT_LOC)
                 .orderByChild("event_date");
 
         ValueEventListener countListener = new ValueEventListener() {

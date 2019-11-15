@@ -29,6 +29,8 @@ public class RegisterEvent extends AppCompatActivity {
     private FirebaseAuth firebaseAuth;
     private EditText txtNote;
     private String note;
+    private final String EVENT_LOC = MainActivity.EVENT_LOC;
+    private final String USER_LOC = MainActivity.USER_LOC;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,7 +54,7 @@ public class RegisterEvent extends AppCompatActivity {
         firebaseAuth = FirebaseAuth.getInstance();
         final FirebaseUser user = firebaseAuth.getCurrentUser();
         String userKey = user.getUid();
-        Query myRef = FirebaseDatabase.getInstance().getReference("user")
+        Query myRef = FirebaseDatabase.getInstance().getReference(USER_LOC)
                 .orderByChild("key")
                 .equalTo(userKey);
         ValueEventListener userListener = new ValueEventListener() {
@@ -80,7 +82,7 @@ public class RegisterEvent extends AppCompatActivity {
 
     private void writeSignUp(String uid, String firstName, String lastName){
         FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
-        DatabaseReference eventRef = firebaseDatabase.getReference("event");
+        DatabaseReference eventRef = firebaseDatabase.getReference(EVENT_LOC);
         Intent intent = getIntent();
         final String keyIntent = intent.getStringExtra("keyIntent");
         eventRef.child(keyIntent).child("first_name").setValue(firstName);

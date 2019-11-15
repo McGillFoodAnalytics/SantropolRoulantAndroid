@@ -8,7 +8,6 @@ import com.example.santropolroulant.Adapters.UserAdapter;
 import com.example.santropolroulant.FirebaseClasses.UserSlot;
 import com.google.android.material.bottomsheet.BottomSheetBehavior;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -24,17 +23,11 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.WindowManager;
-import android.content.Context;
 import android.widget.Button;
-import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.Switch;
-import android.widget.Toast;
 
-import androidx.coordinatorlayout.widget.CoordinatorLayout;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.appcompat.widget.AppCompatTextView;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -43,8 +36,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import static android.content.Context.WINDOW_SERVICE;
 
 public class bottomsheet_fragment extends Fragment {
     private ConstraintLayout mBottomSheet;
@@ -65,6 +56,8 @@ public class bottomsheet_fragment extends Fragment {
     private Query attendeeQuery, eventQuery, userQuery;
     private DatabaseReference myRef;
     private ValueEventListener countListener, userListener, eventListener;
+    private final String EVENT_LOC = MainActivity.EVENT_LOC;
+    private final String USER_LOC = MainActivity.USER_LOC;
 
     public bottomsheet_fragment() {
         // Required empty public constructor
@@ -242,7 +235,7 @@ public class bottomsheet_fragment extends Fragment {
     }
 
     private void queryFunction(final String eventType, final Integer dateVal){
-        attendeeQuery = FirebaseDatabase.getInstance().getReference("event")
+        attendeeQuery = FirebaseDatabase.getInstance().getReference(EVENT_LOC)
                 .orderByChild("event_date")
                 .equalTo(dateVal);
 
@@ -287,7 +280,7 @@ public class bottomsheet_fragment extends Fragment {
 
     private void registerFunction(String userUid){
         //find user information
-        userQuery = FirebaseDatabase.getInstance().getReference("user").orderByChild("key")
+        userQuery = FirebaseDatabase.getInstance().getReference(USER_LOC).orderByChild("key")
                 .equalTo(userUid);
 
 
@@ -314,7 +307,7 @@ public class bottomsheet_fragment extends Fragment {
 
     }
     private void registerFunction2(String first_name, String last_name, String uid){
-        eventQuery = FirebaseDatabase.getInstance().getReference("event")
+        eventQuery = FirebaseDatabase.getInstance().getReference(EVENT_LOC)
                 .orderByChild("event_date")
                 .equalTo(datevalInfo);
         Log.d("fun", String.valueOf(datevalInfo));
@@ -354,15 +347,19 @@ public class bottomsheet_fragment extends Fragment {
 
     private void registerFunction3(String event_name, String first_name , String last_name, String uid){
         String note = txtNote.getText().toString().trim();
-        Boolean isNew =  checkedItems[0];
+        boolean isNew =  checkedItems[0];
         myRef = FirebaseDatabase.getInstance().getReference();
         if (event_name != null) {
             // Writing attendee instance to the firebase db
-            myRef.child("event").child(event_name).child("uid").setValue(uid);
-            myRef.child("event").child(event_name).child("note").setValue(note);
-            myRef.child("event").child(event_name).child("last_name").setValue(last_name);
-            myRef.child("event").child(event_name).child("first_name").setValue(first_name);
-            myRef.child("event").child(event_name).child("first_shift").setValue(isNew);
+            myRef.child(EVENT_LOC).child(event_name).child("uid").setValue(uid);
+            myRef.child(EVENT_LOC).child(event_name).child("note").setValue(note);
+            myRef.child(EVENT_LOC).child(event_name).child("last_name").setValue(last_name);
+            myRef.child(EVENT_LOC).child(event_name).child("first_name").setValue(first_name);
+            if(isNew){
+                myRef.child(EVENT_LOC).child(event_name).child("first_shift").setValue(true);
+            } else {
+                myRef.child(EVENT_LOC).child(event_name).child("first_shift").setValue(false);
+            }
         }
     }
 

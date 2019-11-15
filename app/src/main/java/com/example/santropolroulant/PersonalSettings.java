@@ -53,6 +53,7 @@ public class PersonalSettings extends AppCompatActivity {
     private FirebaseAuth firebaseAuth;
     private DatabaseReference mDatabase;
 
+    private final String USER_LOC = MainActivity.USER_LOC;
     private void redirectToLogin(){
         Toast.makeText(PersonalSettings.this,
                 "Something went wrong with your Login information.\nPlease login again",
@@ -83,7 +84,7 @@ public class PersonalSettings extends AppCompatActivity {
         final String uid = pref.getString("uid", "notFound");
 
         //Pointing reference to the users in the database
-        mDatabase = FirebaseDatabase.getInstance().getReference("userSample/" + uid);
+        mDatabase = FirebaseDatabase.getInstance().getReference(USER_LOC + "/" + uid);
 
         //Find UI elements from layout
         //each InputField takes the editText from the layout, the name of the field in the database, and the User method which gets that value from a User object
