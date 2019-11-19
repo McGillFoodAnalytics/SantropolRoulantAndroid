@@ -345,7 +345,7 @@ public class bottomsheet_fragment extends Fragment {
         eventListener = eventQuery.addValueEventListener(eventListener);
     }
 
-    private void registerFunction3(String event_name, String first_name , String last_name, String uid){
+    private void registerFunction3(String event_name, String first_name, String last_name, String uid){
         String note = txtNote.getText().toString().trim();
         boolean isNew =  checkedItems[0];
         myRef = FirebaseDatabase.getInstance().getReference();

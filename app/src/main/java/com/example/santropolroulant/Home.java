@@ -28,9 +28,8 @@ public class Home extends AppCompatActivity {
     private CardView volunteerCard;
     private CardView scheduleCard;
     private CardView profileCard;
-    private CardView infoCard;
     private CardView contactCard;
-    private String name;
+    private String name = "default";
     private TextView tvGreeting, tvHello;
     private FirebaseAuth mAuth;
 
@@ -44,6 +43,8 @@ public class Home extends AppCompatActivity {
         mAuth = FirebaseAuth.getInstance();
         final FirebaseUser user = mAuth.getCurrentUser();      // Ensuring we are currently logged in
 
+        //TODO: Reinstate name display
+        /*
         if (user==null){
             String userName = user.toString();
             Log.d("LOGGED IN", userName);
@@ -55,7 +56,7 @@ public class Home extends AppCompatActivity {
         } catch(Exception e){
             e.printStackTrace();
             System.exit(-1);
-        }
+        }*/
 
         volunteerCard = (CardView)findViewById(R.id.volunteerCard);
         scheduleCard = (CardView)findViewById(R.id.scheduleCard);
@@ -97,12 +98,6 @@ public class Home extends AppCompatActivity {
             // Toast.makeText(Home.this, "Yet To Come", Toast.LENGTH_SHORT).show();            }
         });
 
-        infoCard.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Toast.makeText(Home.this, "Yet To Come", Toast.LENGTH_SHORT).show();            }
-        });
-
 
 
     }
@@ -111,7 +106,7 @@ public class Home extends AppCompatActivity {
 
         tvGreeting = (TextView) findViewById(R.id.tvGreeting);
         tvHello = (TextView) findViewById(R.id.tvHello);
-        tvHello.setText(tvHello + ", " + name + "!");
+        tvHello.setText(name + "!");
 
         volunteerCard = (CardView)findViewById(R.id.volunteerCard);
         scheduleCard = (CardView)findViewById(R.id.scheduleCard);
