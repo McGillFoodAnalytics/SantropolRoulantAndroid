@@ -7,7 +7,7 @@
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorPrimary</item>
         <item name="android:windowAnimationStyle">@style/CustomActivityAnimation</item>
-        <item name="colorControlNormal">#000000</item>
+        <item name="colorControlNormal">#FFFFFF</item>
     </style>
 
     <style name="AppTheme.NoActionBar">
