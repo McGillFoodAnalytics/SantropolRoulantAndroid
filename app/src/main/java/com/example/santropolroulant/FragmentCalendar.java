@@ -119,7 +119,9 @@ public class FragmentCalendar extends Fragment {
                            // emptyDay.setMinutes(0);
                           //  emptyDay.setSeconds(0);
                             for(Date potentialRemoval : calendarList){
-                                if(potentialRemoval.getDate() == emptyDay.getDate()){
+                                String potentialRemovalDate = "" + potentialRemoval.getYear() + "/" + potentialRemoval.getMonth() + "/" + potentialRemoval.getDate();
+                                String emptyDayDate = "" + emptyDay.getYear() + "/" + emptyDay.getMonth() + "/" + emptyDay.getDate();
+                                if(potentialRemovalDate.equals(emptyDayDate)){
                                     calendarList.remove(potentialRemoval);
                                     break;
                                 }
