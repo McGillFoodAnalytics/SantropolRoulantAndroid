@@ -36,6 +36,7 @@ public class CalanderSlots extends AppCompatActivity {
     private List<UserSlot> userList;        // List that will be filled with Event classes from Firebase Query
     private Button btnSignUp;
     private String keyIntent;
+    private final String EVENT_LOC = MainActivity.EVENT_LOC;
 
 
     @Override
@@ -129,7 +130,7 @@ public class CalanderSlots extends AppCompatActivity {
     private void queryFunction(String eventType, final String dateVal) {
 
         // Firebase query in event table looking for keys between values
-        Query attendeeQuery = FirebaseDatabase.getInstance().getReference("event")
+        Query attendeeQuery = FirebaseDatabase.getInstance().getReference(EVENT_LOC)
                 .orderByKey()
                 .startAt(dateVal+eventType+"01") // 190830kitam01
                 .endAt(dateVal+eventType+"99");  // 190830kitam99

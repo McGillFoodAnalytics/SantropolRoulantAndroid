@@ -51,6 +51,9 @@ public class Confirmation_Page extends AppCompatActivity {
     private String selectedUID;
     private String email;
 
+    private final String EVENT_LOC = MainActivity.EVENT_LOC;
+    private final String USER_LOC = MainActivity.USER_LOC;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -115,9 +118,9 @@ public class Confirmation_Page extends AppCompatActivity {
                         // Creating key from EID and UID which IS the key for the attendee instance
 
                         // Writing attendee instance to the firebase db
-                        myRef.child("event").child(selectedKey).child("uid").setValue("blahblah");
-                        myRef.child("event").child(selectedKey).child("first_name").setValue(selectedFirstName);
-                        myRef.child("event").child(selectedKey).child("last_name").setValue(selectedLastName);
+                        myRef.child(EVENT_LOC).child(selectedKey).child("uid").setValue("blahblah");
+                        myRef.child(EVENT_LOC).child(selectedKey).child("first_name").setValue(selectedFirstName);
+                        myRef.child(EVENT_LOC).child(selectedKey).child("last_name").setValue(selectedLastName);
 
                         // Print Success message
                         Toast.makeText(Confirmation_Page.this, "Success", Toast.LENGTH_SHORT).show();
@@ -189,7 +192,7 @@ public class Confirmation_Page extends AppCompatActivity {
 
 
     private void queryFunction(final String eventType, final Integer dateVal){
-        Query attendeeQuery = FirebaseDatabase.getInstance().getReference("event")
+        Query attendeeQuery = FirebaseDatabase.getInstance().getReference(EVENT_LOC)
                 .orderByChild("event_date")
                 .equalTo(dateVal);
 

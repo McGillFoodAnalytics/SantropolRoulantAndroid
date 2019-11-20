@@ -34,6 +34,8 @@ public class DisplayEvents extends AppCompatActivity{
     private Integer currentCap;
     private TextView title;
     private Button signUp;
+    private final String EVENT_LOC = MainActivity.EVENT_LOC;
+    private final String USER_LOC = MainActivity.USER_LOC;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -110,7 +112,7 @@ public class DisplayEvents extends AppCompatActivity{
 
     // Function for nested listener
     private void nestedListener(final String gtype){
-        Query queryEvents = FirebaseDatabase.getInstance().getReference("event")
+        Query queryEvents = FirebaseDatabase.getInstance().getReference(EVENT_LOC)
                 .orderByChild("event_type")
                 .equalTo(gtype);
 

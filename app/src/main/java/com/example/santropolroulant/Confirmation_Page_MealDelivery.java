@@ -45,6 +45,8 @@ public class Confirmation_Page_MealDelivery extends AppCompatActivity {
     private Switch swtchDriver;
     private Boolean isNew;
     private Boolean isDriver;
+    private final String EVENT_LOC = MainActivity.EVENT_LOC;
+    private final String USER_LOC = MainActivity.USER_LOC;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -155,7 +157,7 @@ public class Confirmation_Page_MealDelivery extends AppCompatActivity {
                     String uid = userSnap.child("uid").getValue(String.class);
 
                     Log.d("ConfirmPAGE", "Outer Ting");
-                    DatabaseReference innerRef = FirebaseDatabase.getInstance().getReference().child("user").child(uid);
+                    DatabaseReference innerRef = FirebaseDatabase.getInstance().getReference().child(USER_LOC).child(uid);
 
                     ValueEventListener userListener= new ValueEventListener() {
                         @Override

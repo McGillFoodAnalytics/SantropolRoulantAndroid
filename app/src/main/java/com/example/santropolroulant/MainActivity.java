@@ -23,6 +23,9 @@ public class MainActivity extends AppCompatActivity {
     private Button signupButton;
 
     private FirebaseAuth firebaseAuth;
+
+    public static final String EVENT_LOC = "eventSample";
+    public static final String USER_LOC = "userSample";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

@@ -40,7 +40,8 @@ public class Login extends AppCompatActivity {
     String key;
     private View progressOverlay;
     private View loginView;
-
+    private final String EVENT_LOC = MainActivity.EVENT_LOC;
+    private final String USER_LOC = MainActivity.USER_LOC;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -131,7 +132,7 @@ public class Login extends AppCompatActivity {
             Toast.makeText(Login.this, "Username should be alphanumeric.", Toast.LENGTH_SHORT).show();
             return;
         }
-        ref = FirebaseDatabase.getInstance().getReference("user");
+        ref = FirebaseDatabase.getInstance().getReference(USER_LOC);
         ref.child(username).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot snapshot) {

@@ -51,6 +51,9 @@ public class UserSchedule extends AppCompatActivity {
     private List<Event> eventList;
     private View progressOverlay;
     private View userSchedule;
+    
+    private final String EVENT_LOC = MainActivity.EVENT_LOC;
+    private final String USER_LOC = MainActivity.USER_LOC;
 
 
     @Override
@@ -115,7 +118,7 @@ public class UserSchedule extends AppCompatActivity {
 
     private void querySchedule(String user_UID){
         Log.d("@ @ : snapshot here:", "hey : " + user_UID);
-        Query querySchedule = FirebaseDatabase.getInstance().getReference("event")
+        Query querySchedule = FirebaseDatabase.getInstance().getReference(EVENT_LOC)
                 .orderByChild("uid")
                 .equalTo(user_UID);
 
@@ -184,7 +187,7 @@ public class UserSchedule extends AppCompatActivity {
 
         final String userID = mAuth.getCurrentUser().getUid();
 
-        Query myRef = FirebaseDatabase.getInstance().getReference("user")
+        Query myRef = FirebaseDatabase.getInstance().getReference(USER_LOC)
                 .orderByChild("key")
                 .equalTo(userID);
         ValueEventListener userListener = new ValueEventListener() {
@@ -313,17 +316,17 @@ public class UserSchedule extends AppCompatActivity {
 
         DatabaseReference myRef = firebaseDatabase.getReference();
 
-        tasks[5] = myRef.child("event").child(event_id).child("uid").setValue("nan");
+        tasks[5] = myRef.child(EVENT_LOC).child(event_id).child("uid").setValue("nan");
 
-        tasks[0] = myRef.child("event").child(event_id).child("first_name").setValue("");
+        tasks[0] = myRef.child(EVENT_LOC).child(event_id).child("first_name").setValue("");
 
-        tasks[1] = myRef.child("event").child(event_id).child("last_name").setValue("");
+        tasks[1] = myRef.child(EVENT_LOC).child(event_id).child("last_name").setValue("");
 
-        tasks[2] = myRef.child("event").child(event_id).child("first_shift").setValue(false);
+        tasks[2] = myRef.child(EVENT_LOC).child(event_id).child("first_shift").setValue(false);
 
-        tasks[3] = myRef.child("event").child(event_id).child("key").setValue("nan");
+        tasks[3] = myRef.child(EVENT_LOC).child(event_id).child("key").setValue("nan");
 
-        tasks[4] = myRef.child("event").child(event_id).child("note").setValue("");
+        tasks[4] = myRef.child(EVENT_LOC).child(event_id).child("note").setValue("");
 
 
 
