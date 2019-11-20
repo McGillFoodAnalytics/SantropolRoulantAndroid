@@ -27,6 +27,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Switch;
+import android.widget.Toast;
 
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.appcompat.widget.AppCompatTextView;
@@ -324,6 +325,11 @@ public class bottomsheet_fragment extends Fragment {
                     Log.d("fun", key);
                     if (key.contains(String.valueOf(datevalInfo)) && key.contains(eventTypeInfo)) {
                         if (uid_.contentEquals(uid)){
+                            Log.d("dupSignup", "tried duplicating");
+                            Toast toast = Toast.makeText(getActivity(),
+                                    "You are already signed up!",
+                                    Toast.LENGTH_SHORT);
+                            toast.show();
                             break;
                         }
                         else {
