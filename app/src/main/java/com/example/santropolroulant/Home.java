@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
@@ -21,6 +22,9 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
+
 
 
 public class Home extends AppCompatActivity {
@@ -32,6 +36,10 @@ public class Home extends AppCompatActivity {
     private String name = "default";
     private TextView tvGreeting, tvHello;
     private FirebaseAuth mAuth;
+    private ValueEventListener nameListener;
+    private DatabaseReference mDatabase;
+    private final String USER_LOC = MainActivity.USER_LOC;
+    private final String USER_FIRSTNAME_LOC = "first_name";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,8 +50,48 @@ public class Home extends AppCompatActivity {
         // Gets name of current user to add to greeting
         mAuth = FirebaseAuth.getInstance();
         final FirebaseUser user = mAuth.getCurrentUser();      // Ensuring we are currently logged in
+        if(user==null){
+            Redirect.redirectToLogin(Home.this, mAuth);
+        }
+
 
         //TODO: Reinstate name display
+
+        //Get uid from sharedPreferences
+        SharedPreferences pref = getApplicationContext().getSharedPreferences("MyPref", 0);
+        final String uid = pref.getString("uid", "notFound");
+
+        volunteerCard = (CardView)findViewById(R.id.volunteerCard);
+        scheduleCard = (CardView)findViewById(R.id.scheduleCard);
+        profileCard = (CardView)findViewById(R.id.profileCard);
+        contactCard = (CardView)findViewById(R.id.contactCard);
+
+        //Set database and listener to get name
+        mDatabase = FirebaseDatabase.getInstance().getReference(USER_LOC + "/" + uid + "/" + USER_FIRSTNAME_LOC);
+
+        nameListener = new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+
+                if(!dataSnapshot.exists()){
+                    Log.e("User Selection", "User not Found");
+                    Redirect.redirectToLogin(Home.this, mAuth);
+                } else {
+                   name = dataSnapshot.getValue(String.class);
+                   setUpUIViews();
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        };
+
+        mDatabase.addListenerForSingleValueEvent(nameListener);
+
+
+
         /*
         if (user==null){
             String userName = user.toString();
@@ -58,12 +106,6 @@ public class Home extends AppCompatActivity {
             System.exit(-1);
         }*/
 
-        volunteerCard = (CardView)findViewById(R.id.volunteerCard);
-        scheduleCard = (CardView)findViewById(R.id.scheduleCard);
-        profileCard = (CardView)findViewById(R.id.profileCard);
-        contactCard = (CardView)findViewById(R.id.contactCard);
-
-        setUpUIViews();
 
         // Bunch of CardView listeners
         volunteerCard.setOnClickListener(new View.OnClickListener() {
@@ -114,12 +156,16 @@ public class Home extends AppCompatActivity {
         contactCard = (CardView)findViewById(R.id.contactCard);
     }
 
-
-
     @Override
-    public void onBackPressed() {
-        return;
+    protected void onDestroy() {
+        super.onDestroy();
+        if(mDatabase != null){
+            if(nameListener != null){
+                mDatabase.removeEventListener(nameListener);
+            }
+        }
     }
+
     // to be implemented somewhere on this page
     private void Logout(){
         mAuth.signOut();
