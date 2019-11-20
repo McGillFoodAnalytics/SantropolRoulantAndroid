@@ -128,7 +128,7 @@ public class FragmentCalendar extends Fragment {
                             i++;
                         }
 
-                        if(i == 1) { break; }
+                        if(i == 100) { break; }
                     }
                 }
 
@@ -295,7 +295,7 @@ public class FragmentCalendar extends Fragment {
             datesInRange.add(result);
             calendar.add(Calendar.DATE, 1);
         }
-
+        Log.d("dates", datesInRange.toString());
         return datesInRange;
     }
 
