@@ -163,6 +163,7 @@ public class Login extends AppCompatActivity {
 
         if(emailId==null){
             Toast.makeText(Login.this, "Login Failed: Incorrect Username", Toast.LENGTH_SHORT).show();
+            setInvisible();
             return;
         }
 
@@ -180,8 +181,8 @@ public class Login extends AppCompatActivity {
                     // Go to Home activity
                     startActivity(new Intent(Login.this, Home.class));
                 }else{
-                    setInvisible();
                     Toast.makeText(Login.this, "Login Failed: Incorrect Password", Toast.LENGTH_SHORT).show();
+                    setInvisible();
                 }
             }
         });
