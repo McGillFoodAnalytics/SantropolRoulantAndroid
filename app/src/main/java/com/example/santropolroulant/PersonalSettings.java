@@ -54,15 +54,6 @@ public class PersonalSettings extends AppCompatActivity {
     private DatabaseReference mDatabase;
 
     private final String USER_LOC = MainActivity.USER_LOC;
-    private void redirectToLogin(){
-        Toast.makeText(PersonalSettings.this,
-                "Something went wrong with your Login information.\nPlease login again",
-                Toast.LENGTH_LONG
-        ).show();
-        firebaseAuth.signOut();
-        // Go to Login activity
-        startActivity(new Intent(PersonalSettings.this, Login.class));
-    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -77,8 +68,7 @@ public class PersonalSettings extends AppCompatActivity {
         // Auto login for signed in user - Commented out below
 
         if(user == null){
-            String userName = user.toString();
-            redirectToLogin();
+            Redirect.redirectToLogin(PersonalSettings.this, firebaseAuth);
         }
         SharedPreferences pref = getApplicationContext().getSharedPreferences("MyPref", 0);
         final String uid = pref.getString("uid", "notFound");
@@ -106,22 +96,14 @@ public class PersonalSettings extends AppCompatActivity {
 
         saveButton = findViewById(R.id.ps_save);
 
-        /*
-           * This is the event listener which will get all the Users from the database. These Users
-           * are stored in the ArrayList "users". Then it will find the User with the same email as
-           * the email my firebaseAuth (user) has. Once the correct User is found and saved as
-           * myUser, it will set the hints for each InputField.
-         */
-
-
-
+        //This is the event listener which will get all the UseR from the database.
         saveChangesListener = new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
                 if(!dataSnapshot.exists()){
                     Log.e("User Selection", "User not Found");
-                    redirectToLogin();
+                    Redirect.redirectToLogin(PersonalSettings.this, firebaseAuth);
                 } else {
                     myUser = dataSnapshot.getValue(User.class);
                     for(int i = 0; i < inputFields.size(); i++){

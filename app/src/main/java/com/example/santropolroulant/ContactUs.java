@@ -1,15 +1,19 @@
 package com.example.santropolroulant;
 
+import android.annotation.SuppressLint;
 import android.net.Uri;
 import android.os.Bundle;
-
-import androidx.annotation.NonNull;
+import android.content.Intent;
+import android.net.Uri;
+import android.util.Log;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
+import androidx.core.content.ContextCompat;
+import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.FragmentActivity;
+import android.content.ActivityNotFoundException;
+import android.content.pm.PackageManager;
 
-import android.app.Activity;
-import android.content.Intent;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -33,6 +37,8 @@ public class ContactUs extends FragmentActivity implements OnMapReadyCallback {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_contact_us);
         setupUIViews();
+
+
     }
     /*
     @Override
@@ -47,7 +53,40 @@ public class ContactUs extends FragmentActivity implements OnMapReadyCallback {
 
         title = findViewById(R.id.tvTitle2);
         phone = findViewById(R.id.tvPhoneNumber);
+
+        phone.setOnClickListener(new View.OnClickListener() {
+            @SuppressLint("MissingPermission")
+            @Override
+            public void onClick(View view) {
+                try {
+                    if (ContextCompat.checkSelfPermission( ContactUs.this, android.Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
+                        ActivityCompat.requestPermissions( ContactUs.this, new String[] {android.Manifest.permission.CALL_PHONE},1);
+                    }
+                    Intent callIntent = new Intent(Intent.ACTION_CALL);
+                    callIntent.setData(Uri.parse("tel:+15142849335"));
+                    startActivity(callIntent);
+                } catch (ActivityNotFoundException activityException) {
+                    Log.e("Calling a Phone Number", "Call failed", activityException);
+                }
+            }
+        });
+
         email = findViewById(R.id.tvEmail);
+
+        email.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                try{
+                    Intent intent = new Intent (Intent.ACTION_VIEW , Uri.parse("mailto:" + "info@santropolroulant.org"));
+                    intent.putExtra(Intent.EXTRA_SUBJECT, "Hello!");
+                    intent.putExtra(Intent.EXTRA_TEXT, "(Insert text here)");
+                    startActivity(intent);
+                }catch(ActivityNotFoundException e){
+                    Log.e("Sending an email", "Email failed");
+                }
+            }
+        });
+
         address = findViewById(R.id.tvAddress);
 
         phone.setOnClickListener(new View.OnClickListener() {
@@ -71,8 +110,8 @@ public class ContactUs extends FragmentActivity implements OnMapReadyCallback {
         MapFragment mapFragment = (MapFragment) getFragmentManager()
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
-
     }
+
 
     @Override
     public void onMapReady(GoogleMap googleMap) {
