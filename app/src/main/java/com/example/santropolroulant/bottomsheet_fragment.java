@@ -274,7 +274,7 @@ public class bottomsheet_fragment extends Fragment {
 
             }
         };
-        countListener = attendeeQuery.addValueEventListener(countListener);
+        attendeeQuery.addListenerForSingleValueEvent(countListener);
 
     }
 
@@ -303,7 +303,7 @@ public class bottomsheet_fragment extends Fragment {
                 //
             }
         };
-        userListener = userQuery.addValueEventListener(userListener);
+        userQuery.addListenerForSingleValueEvent(userListener);
         // find event_name
 
     }
@@ -348,7 +348,7 @@ public class bottomsheet_fragment extends Fragment {
                 //
             }
         };
-        eventListener = eventQuery.addValueEventListener(eventListener);
+        eventQuery.addListenerForSingleValueEvent(eventListener);
     }
 
     private void registerFunction3(String event_name, String first_name, String last_name, String uid){
