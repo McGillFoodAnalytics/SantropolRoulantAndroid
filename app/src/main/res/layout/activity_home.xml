@@ -223,7 +223,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="16dp"
         android:layout_marginEnd="8dp"
         android:fontFamily="@font/avenir_next_demi"
         android:text=" "
@@ -240,19 +240,19 @@
         android:layout_width="318dp"
         android:layout_height="69dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="24dp"
         android:layout_marginEnd="8dp"
-        android:layout_marginBottom="36dp"
+        android:layout_marginBottom="8dp"
         android:fontFamily="@font/avenir_next_demi"
         android:text="What good fortune brings you here?"
         android:textColor="@color/cu_title"
         android:textSize="25sp"
         app:layout_constraintBottom_toTopOf="@+id/linearLayout1"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.493"
+        app:layout_constraintHorizontal_bias="0.44"
         app:layout_constraintStart_toStartOf="@+id/guideline"
         app:layout_constraintTop_toBottomOf="@+id/tvHello"
-        app:layout_constraintVertical_bias="0.703" />
+        app:layout_constraintVertical_bias="0.48000002" />
 
 
 
