@@ -59,6 +59,7 @@ public class bottomsheet_fragment extends Fragment {
     private ValueEventListener countListener, userListener, eventListener;
     private final String EVENT_LOC = MainActivity.EVENT_LOC;
     private final String USER_LOC = MainActivity.USER_LOC;
+    private final String VACANT_UID = "nan";
 
     public bottomsheet_fragment() {
         // Required empty public constructor
@@ -331,6 +332,9 @@ public class bottomsheet_fragment extends Fragment {
                                     Toast.LENGTH_SHORT);
                             toast.show();
                             break;
+                        }
+                        else if(!uid_.equals(VACANT_UID)){
+                            continue;
                         }
                         else {
                             String event_name_ = event.getKey();

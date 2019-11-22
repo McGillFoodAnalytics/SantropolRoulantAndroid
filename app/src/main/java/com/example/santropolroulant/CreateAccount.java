@@ -142,7 +142,6 @@ public class CreateAccount extends AppCompatActivity {
 
         first_name = userFirstName.getText().toString().trim();
         last_name = userLastName.getText().toString().trim();
-
         String[] birthDateRaw = userBirthDate.getText().toString().trim().split("/");
 
         int monthRaw = Integer.parseInt(birthDateRaw[0]);
@@ -151,10 +150,11 @@ public class CreateAccount extends AppCompatActivity {
 
         if(first_name.isEmpty() || last_name.isEmpty() || birth_date.isEmpty()){
             Toast.makeText(this, "Please enter all the details", Toast.LENGTH_SHORT).show();
-
+            return result;
         }else{
             result = true;
         }
+
         return  result;
     }
 
