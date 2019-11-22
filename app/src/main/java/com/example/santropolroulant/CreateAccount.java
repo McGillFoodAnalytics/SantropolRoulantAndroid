@@ -143,17 +143,17 @@ public class CreateAccount extends AppCompatActivity {
         first_name = userFirstName.getText().toString().trim();
         last_name = userLastName.getText().toString().trim();
         String[] birthDateRaw = userBirthDate.getText().toString().trim().split("/");
+        if(first_name.isEmpty() || last_name.isEmpty() || birthDateRaw.length==0) {
+            Toast.makeText(this, "Please enter all the details", Toast.LENGTH_SHORT).show();
+            return result;
+        }
 
+        result = true;
         int monthRaw = Integer.parseInt(birthDateRaw[0]);
         int dayRaw = Integer.parseInt(birthDateRaw[1]);
         birth_date = birthDateRaw[2].trim() + String.format("%02d", monthRaw) + String.format("%02d", dayRaw);
 
-        if(first_name.isEmpty() || last_name.isEmpty() || birth_date.isEmpty()){
-            Toast.makeText(this, "Please enter all the details", Toast.LENGTH_SHORT).show();
-            return result;
-        }else{
-            result = true;
-        }
+
 
         return  result;
     }

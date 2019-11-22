@@ -102,9 +102,10 @@ public class CreateAccount3 extends AppCompatActivity {
                             }else{
                                 String s = task.getException().getMessage();
                                 Toast.makeText(CreateAccount3.this, s, Toast.LENGTH_SHORT).show();
+
                                 setInvisible();
-                                createAccount.setClickable(true);
-                                startActivity(new Intent(CreateAccount3.this, MainActivity.class));
+                                createAccount.setClickable(true);/*
+                                startActivity(new Intent(CreateAccount3.this, MainActivity.class));*/
 
                             }
 
@@ -172,7 +173,11 @@ public class CreateAccount3 extends AppCompatActivity {
         if(email.isEmpty() || phone_number.isEmpty() || password.isEmpty() || confPassword.isEmpty()){
             Toast.makeText(this, "Please enter all the details", Toast.LENGTH_SHORT).show();
 
-        }else{
+        }else if (!password.equals(confPassword)){
+            Toast.makeText(this, "Passwords must match!", Toast.LENGTH_SHORT).show();
+
+        }
+        else{
             result = true;
         }
         return  result;
