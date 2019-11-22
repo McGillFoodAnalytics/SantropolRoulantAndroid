@@ -79,12 +79,12 @@ public class Login extends AppCompatActivity {
             }
         });
 
-        forgotPassword.setOnClickListener(new View.OnClickListener() {
+      /*  forgotPassword.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(Login.this, PasswordActivity.class));         // On click, go to PasswordActivity
             }
-        });
+        });*/
     }
 
     private void setupUIViews() {
@@ -109,7 +109,7 @@ public class Login extends AppCompatActivity {
         });
 
         loginButton = (Button)findViewById(R.id.btnLogin);
-        forgotPassword = (Button) findViewById(R.id.btnForgotPassword);
+        //forgotPassword = (Button) findViewById(R.id.btnForgotPassword);
 
         loginHeader = (TextView)findViewById(R.id.tvLogInHeader);
         usernameInfo = (TextView)findViewById(R.id.tvUsernameInfo);
