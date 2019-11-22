@@ -275,7 +275,7 @@ public class bottomsheet_fragment extends Fragment {
 
             }
         };
-        attendeeQuery.addListenerForSingleValueEvent(countListener);
+        attendeeQuery.addValueEventListener(countListener);
 
     }
 
