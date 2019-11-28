@@ -20,7 +20,7 @@
     <string name="ps_address_line">ADDRESS LINE</string>
     <string name="ps_address_city">CITY</string>
     <string name="ps_address_postal">POSTAL CODE</string>
-    <string name="ps_username_title">YOUR ROULANT USER NAME</string>
+    <string name="ps_username_title">USER NAME</string>
     <string name="ps_save_button">Save Changes</string>
 
     <string name="erc_confirm_button">Sign Up For Event</string>
