@@ -19,20 +19,19 @@
         android:id="@+id/linearLayout1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginBottom="12dp"
         android:clipToPadding="false"
         android:gravity="center"
         android:orientation="horizontal"
         app:layout_constraintBottom_toTopOf="@+id/linearLayout2"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent">
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvGreeting">
 
         <androidx.cardview.widget.CardView
             android:id="@+id/volunteerCard"
-            android:layout_width="175dp"
-            android:layout_height="175dp"
+            android:layout_width="@dimen/hm_card_width"
+            android:layout_height="@dimen/hm_card_width"
             android:layout_margin="11dp"
             android:background="@drawable/radius2"
             android:clickable="true"
@@ -73,8 +72,8 @@
 
         <androidx.cardview.widget.CardView
             android:id="@+id/scheduleCard"
-            android:layout_width="175dp"
-            android:layout_height="175dp"
+            android:layout_width="@dimen/hm_card_width"
+            android:layout_height="@dimen/hm_card_width"
             android:layout_margin="11dp"
             android:clickable="true"
             app:background="@drawable/radius2"
@@ -119,20 +118,19 @@
         android:id="@+id/linearLayout2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginBottom="104dp"
         android:clipToPadding="false"
         android:gravity="center"
         android:orientation="horizontal"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent">
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout1">
 
         <androidx.cardview.widget.CardView
             android:id="@+id/profileCard"
-            android:layout_width="175dp"
-            android:layout_height="175dp"
+            android:layout_width="@dimen/hm_card_width"
+            android:layout_height="@dimen/hm_card_width"
             android:layout_margin="11dp"
             android:clickable="true"
             app:background="@drawable/radius2"
@@ -174,8 +172,8 @@
 
         <androidx.cardview.widget.CardView
             android:id="@+id/contactCard"
-            android:layout_width="175dp"
-            android:layout_height="175dp"
+            android:layout_width="@dimen/hm_card_width"
+            android:layout_height="@dimen/hm_card_width"
             android:layout_margin="11dp"
             android:clickable="true"
             app:background="@drawable/radius2"
@@ -222,15 +220,13 @@
         android:id="@+id/tvHello"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="8dp"
         android:fontFamily="@font/avenir_next_demi"
         android:text=" "
         android:textColor="@color/cu_title"
         android:textSize="50sp"
+        app:layout_constraintBottom_toTopOf="@+id/tvGreeting"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -239,21 +235,15 @@
         android:id="@+id/tvGreeting"
         android:layout_width="318dp"
         android:layout_height="69dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="24dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginBottom="8dp"
         android:fontFamily="@font/avenir_next_demi"
-        android:text="What good fortune brings you here?"
+        android:text="Something Different"
         android:textColor="@color/cu_title"
         android:textSize="25sp"
         app:layout_constraintBottom_toTopOf="@+id/linearLayout1"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.44"
-        app:layout_constraintStart_toStartOf="@+id/guideline"
-        app:layout_constraintTop_toBottomOf="@+id/tvHello"
-        app:layout_constraintVertical_bias="0.48000002" />
-
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvHello" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -129,7 +129,8 @@ public class UnlockApplication extends AppCompatActivity{
     }
 
     private void setupUIViews() {
-        accessCodeView = (TextView) findViewById(R.id.accessCode);
+        //TODO:Determine what R.id.accessCode is, and why isn't it working anymore
+        //accessCodeView = (TextView) findViewById(R.id.accessCode);
         logo = (ImageView) findViewById(R.id.unlock_logo);
         welcome = (TextView) findViewById(R.id.unlock_welcome);
         description1 = (TextView) findViewById(R.id.unlock_description1a);

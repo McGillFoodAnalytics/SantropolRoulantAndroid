@@ -10,6 +10,8 @@
     android:focusableInTouchMode="true"
     tools:context=".CreateAccount2">
 
+    <include layout="@layout/wheels" />
+
     <EditText
         android:id="@+id/etUser_Address"
         android:layout_width="308dp"
