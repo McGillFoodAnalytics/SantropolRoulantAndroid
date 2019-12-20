@@ -2,6 +2,7 @@ package com.example.santropolroulant;
 
 import android.app.Activity;
 import android.app.DatePickerDialog;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
@@ -30,9 +31,12 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 import java.util.concurrent.Executor;
@@ -40,13 +44,16 @@ import java.util.concurrent.Executor;
 import static android.R.style.Theme_Holo_Light_Dialog_MinWidth;
 
 public class PersonalSettings extends AppCompatActivity {
-    ArrayList<InputField> inputFields;
-    Button saveButton;
-    User myUser;
-    String uid;
+    private ArrayList<InputField> inputFields;
+    private Button saveButton;
+    private User myUser;
+    private String uid;
+    private ValueEventListener saveChangesListener;
 
     private FirebaseAuth firebaseAuth;
     private DatabaseReference mDatabase;
+
+    private final String USER_LOC = MainActivity.USER_LOC;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,15 +68,13 @@ public class PersonalSettings extends AppCompatActivity {
         // Auto login for signed in user - Commented out below
 
         if(user == null){
-            String userName = user.toString();
-            Log.d("LOGGED IN", userName);
-            System.exit(-1);
+            Redirect.redirectToLogin(PersonalSettings.this, firebaseAuth);
         }
         SharedPreferences pref = getApplicationContext().getSharedPreferences("MyPref", 0);
         final String uid = pref.getString("uid", "notFound");
 
         //Pointing reference to the users in the database
-        mDatabase = FirebaseDatabase.getInstance().getReference("userSample/" + uid);
+        mDatabase = FirebaseDatabase.getInstance().getReference(USER_LOC + "/" + uid);
 
         //Find UI elements from layout
         //each InputField takes the editText from the layout, the name of the field in the database, and the User method which gets that value from a User object
@@ -77,7 +82,7 @@ public class PersonalSettings extends AppCompatActivity {
         try {
             inputFields.add(new InputField((EditText) findViewById(R.id.prefinput_personal_firstname), "first_name", User.class.getDeclaredMethod("getFirst_name")));
             inputFields.add(new InputField((EditText) findViewById(R.id.prefinput_personal_lastname), "last_name", User.class.getDeclaredMethod("getLast_name")));
-            //inputFields.add(new DateField((EditText) findViewById(R.id.prefinput_birthday_dob), "dob", User.class.getDeclaredMethod("getDob")));
+            inputFields.add(new DateField((EditText) findViewById(R.id.prefinput_birthday_dob), "dob", User.class.getDeclaredMethod("getDob")));
             inputFields.add(new InputField((EditText) findViewById(R.id.prefinput_contact_email), "email", User.class.getDeclaredMethod("getEmail")));
             inputFields.add(new InputField((EditText) findViewById(R.id.prefinput_contact_phone), "phone", User.class.getDeclaredMethod("getPhone_number")));
             inputFields.add(new InputField((EditText) findViewById(R.id.prefinput_address_line), "address_street", User.class.getDeclaredMethod("getAddress_street")));
@@ -91,21 +96,14 @@ public class PersonalSettings extends AppCompatActivity {
 
         saveButton = findViewById(R.id.ps_save);
 
-        /*
-           * This is the event listener which will get all the Users from the database. These Users
-           * are stored in the ArrayList "users". Then it will find the User with the same email as
-           * the email my firebaseAuth (user) has. Once the correct User is found and saved as
-           * myUser, it will set the hints for each InputField.
-         */
-
-
-
-        ValueEventListener saveChangesListener = new ValueEventListener() {
+        //This is the event listener which will get all the UseR from the database.
+        saveChangesListener = new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                if(dataSnapshot == null){
+
+                if(!dataSnapshot.exists()){
                     Log.e("User Selection", "User not Found");
-                    System.exit(-1);
+                    Redirect.redirectToLogin(PersonalSettings.this, firebaseAuth);
                 } else {
                     myUser = dataSnapshot.getValue(User.class);
                     for(int i = 0; i < inputFields.size(); i++){
@@ -118,10 +116,11 @@ public class PersonalSettings extends AppCompatActivity {
             public void onCancelled(@NonNull DatabaseError databaseError) {
 
             }
+
         };
 
         //Setting it to be called everytime the database is updated, (and of course once on creation)
-        mDatabase.addValueEventListener(saveChangesListener);
+        saveChangesListener = mDatabase.addValueEventListener(saveChangesListener);
 
         //Occurs when save button is selected
         saveButton.setOnClickListener(new View.OnClickListener() {
@@ -147,7 +146,7 @@ public class PersonalSettings extends AppCompatActivity {
                 if( editSettings ) {
                     for(int i = 0; i < inputFields.size(); i++){
                         String dbEntry = inputFields.get(i).getDbReference();
-                        String fieldText = inputFields.get(i).getEditText().getText().toString();
+                        String fieldText = inputFields.get(i).getText();
                         // If this field has been changed
                         if(!fieldText.equals("")){
                             tasks.add(mDatabase.child(dbEntry).setValue(fieldText));
@@ -174,6 +173,10 @@ public class PersonalSettings extends AppCompatActivity {
             this.editText = editText;
             this.dbReference = dbReference;
             this.getHint = getHint;
+        }
+
+        public String getText(){
+            return editText.getText().toString();
         }
 
         //Clear the text in the UI
@@ -209,11 +212,28 @@ public class PersonalSettings extends AppCompatActivity {
         public String getDbReference() {
             return dbReference;
         }
+
+        public Method getGetHint() {
+            return getHint;
+        }
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        if(mDatabase != null) {
+            if(saveChangesListener != null){
+                mDatabase.removeEventListener(saveChangesListener);
+            }
+        }
     }
 
     private class DateField extends InputField{
         final Calendar myCalendar = Calendar.getInstance();
         DatePickerDialog.OnDateSetListener date;
+        private String displayFormat = "dd-MM-yyyy";
+        private String databaseFormat = "yyyyMMdd";
+
         public DateField(EditText editText, String dbReference, Method getHint){
             super(editText, dbReference, getHint);
 
@@ -243,15 +263,36 @@ public class PersonalSettings extends AppCompatActivity {
                 }
             };
         }
-        private void updateLabel() {
-            String myFormat = "MM/dd/yy"; //In which you need put here
-            SimpleDateFormat sdf = new SimpleDateFormat(myFormat, Locale.US);
+
+        @Override
+        public void setHint(User myUser) {
+            SimpleDateFormat formatter = new SimpleDateFormat(databaseFormat, Locale.ENGLISH);
+            try {
+                myCalendar.setTime(formatter.parse((String) getGetHint().invoke(myUser)));
+                updateLabel();
+            } catch (IllegalAccessException e){
+                e.printStackTrace();
+                System.exit(-1);
+            } catch (InvocationTargetException e){
+                e.printStackTrace();
+                System.exit(-1);
+            } catch (ParseException e){
+                e.printStackTrace();
+                System.exit(-1);
+            }
+        }
+
+        private void updateLabel() {//In which you need put here
+            SimpleDateFormat sdf = new SimpleDateFormat(displayFormat, Locale.US);
 
             getEditText().setText(sdf.format(myCalendar.getTime()));
         }
 
-
-
+        @Override
+        public String getText() {
+            SimpleDateFormat dbFormatter = new SimpleDateFormat(databaseFormat, Locale.US);
+            return dbFormatter.format(myCalendar.getTime());
+        }
     }
 }
 

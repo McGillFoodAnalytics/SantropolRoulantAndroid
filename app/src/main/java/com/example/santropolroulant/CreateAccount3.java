@@ -38,7 +38,8 @@ public class CreateAccount3 extends AppCompatActivity {
     private View progressOverlay;
     private View createAccount;
 
-
+    private final String EVENT_LOC = MainActivity.EVENT_LOC;
+    private final String USER_LOC = MainActivity.USER_LOC;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -80,7 +81,7 @@ public class CreateAccount3 extends AppCompatActivity {
                            Log.d("wtv", "FUCK");
 
                             if(task.isSuccessful()){
-                                // if successful then enter user data into firebase
+                                // if successful then entersendUser user data into firebase
                                 Task[] tasks = sendUserData();
 
                                 //if (tasks[0].isSuccessful() && tasks[1].isSuccessful() && tasks[2].isSuccessful() && tasks[3].isSuccessful() &&tasks[4].isSuccessful() && tasks[5].isSuccessful() && tasks[6].isSuccessful() && tasks[7].isSuccessful() && tasks[8].isSuccessful()){
@@ -101,9 +102,10 @@ public class CreateAccount3 extends AppCompatActivity {
                             }else{
                                 String s = task.getException().getMessage();
                                 Toast.makeText(CreateAccount3.this, s, Toast.LENGTH_SHORT).show();
+
                                 setInvisible();
-                                createAccount.setClickable(true);
-                                startActivity(new Intent(CreateAccount3.this, MainActivity.class));
+                                createAccount.setClickable(true);/*
+                                startActivity(new Intent(CreateAccount3.this, MainActivity.class));*/
 
                             }
 
@@ -171,7 +173,11 @@ public class CreateAccount3 extends AppCompatActivity {
         if(email.isEmpty() || phone_number.isEmpty() || password.isEmpty() || confPassword.isEmpty()){
             Toast.makeText(this, "Please enter all the details", Toast.LENGTH_SHORT).show();
 
-        }else{
+        }else if (!password.equals(confPassword)){
+            Toast.makeText(this, "Passwords must match!", Toast.LENGTH_SHORT).show();
+
+        }
+        else{
             result = true;
         }
         return  result;
@@ -187,7 +193,7 @@ public class CreateAccount3 extends AppCompatActivity {
         DatabaseReference myRef = firebaseDatabase.getReference();
 
         Task[] tasks = new Task[1];
-        tasks[0] = myRef.child("user").child(key).child("first_name").setValue(first_name);
+        tasks[0] = myRef.child(USER_LOC).child(key).child("first_name").setValue(first_name);
     }
     */
 
@@ -205,7 +211,7 @@ public class CreateAccount3 extends AppCompatActivity {
 
         int address_number_int = Integer.parseInt(address_number);
 
-        Task[] tasks = new Task[11];
+        Task[] tasks = new Task[12];
         // Write Statement
         // Call DatabaseReference
         // Specify the Children --> user --> UserID(key) --> ____ --> setValue
@@ -217,41 +223,30 @@ public class CreateAccount3 extends AppCompatActivity {
         DatabaseReference myRef = firebaseDatabase.getReference();
         Log.d("myRed", myRef.toString() + " " + myRef.getKey());
         Log.d("sendingUserData",first_name + "before " + last_name);
-        myRef.child("user").setValue(key);
-        myRef.child("user").child(key).setValue("first_name");
-        myRef.child("user").child(key).setValue("last_name");
-        myRef.child("user").child(key).setValue("dob");
-        myRef.child("user").child(key).setValue("phone_number");
-        myRef.child("user").child(key).setValue("email");
-        myRef.child("user").child(key).setValue("signup_date");
-        myRef.child("user").child(key).setValue("address_city");
-        myRef.child("user").child(key).setValue("address_number");
-        myRef.child("user").child(key).setValue("address_street");
-        myRef.child("user").child(key).setValue("address_postal_code");
-        myRef.child("user").child(key).setValue("key");
 
-        tasks[0] = myRef.child("user").child(key).child("first_name").setValue(first_name);
+        tasks[0] = myRef.child(USER_LOC).child(key).child("first_name").setValue(first_name);
 
-        tasks[1] = myRef.child("user").child(key).child("last_name").setValue(last_name);
+        tasks[1] = myRef.child(USER_LOC).child(key).child("last_name").setValue(last_name);
 
-        tasks[2] = myRef.child("user").child(key).child("dob").setValue(birth_date);
+        tasks[2] = myRef.child(USER_LOC).child(key).child("dob").setValue(birth_date);
 
-        tasks[3] = myRef.child("user").child(key).child("phone_number").setValue(phone_number);
+        tasks[3] = myRef.child(USER_LOC).child(key).child("phone_number").setValue(phone_number);
 
-        tasks[4] = myRef.child("user").child(key).child("email").setValue(email);
+        tasks[4] = myRef.child(USER_LOC).child(key).child("email").setValue(email);
 
-        tasks[5] = myRef.child("user").child(key).child("signup_date").setValue(formattedDate);
+        tasks[5] = myRef.child(USER_LOC).child(key).child("signup_date").setValue(formattedDate);
 
-        tasks[6] = myRef.child("user").child(key).child("address_city").setValue(city);
+        tasks[6] = myRef.child(USER_LOC).child(key).child("address_city").setValue(city);
 
-        tasks[7] = myRef.child("user").child(key).child("address_number").setValue(address_number_int);
+        tasks[7] = myRef.child(USER_LOC).child(key).child("address_number").setValue(address_number_int);
 
-        tasks[8] = myRef.child("user").child(key).child("address_street").setValue(address_street);
+        tasks[8] = myRef.child(USER_LOC).child(key).child("address_street").setValue(address_street);
 
-        tasks[9] = myRef.child("user").child(key).child("address_postal_code").setValue(postal_code);
+        tasks[9] = myRef.child(USER_LOC).child(key).child("address_postal_code").setValue(postal_code);
 
-        tasks[10] = myRef.child("user").child(key).child("key").setValue(firebaseAuth.getUid()); //this is the firebase's UID for the users
+        tasks[10] = myRef.child(USER_LOC).child(key).child("no_show").setValue(0);
 
+        tasks[11] = myRef.child(USER_LOC).child(key).child("key").setValue(firebaseAuth.getUid()); //this is the firebase's UID for the users
 
         return tasks;
     }

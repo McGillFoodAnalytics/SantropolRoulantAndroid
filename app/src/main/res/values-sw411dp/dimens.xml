@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="ps_roundedbox_radius">15sp</dimen>
+    <dimen name="ps_margin">30sp</dimen>
+    <dimen name="ps_prefgroup_divider">40sp</dimen>
+    <dimen name="ps_prefgroup_height">50sp</dimen>
+    <dimen name="ps_prefgroup_font_size">30sp</dimen>
+    <dimen name="ps_prefgroup_pad">100sp</dimen>
+    <dimen name="ps_preftitle_height">25sp</dimen>
+    <dimen name="ps_preftitle_font_size">20sp</dimen>
+    <dimen name="ps_prefinput_height">50sp</dimen>
+    <dimen name="ps_prefinput_font_size">60sp</dimen>
+    <dimen name="ps_pref_topmargin">20sp</dimen>
+    <dimen name="ps_prefinput_topmargin">10sp</dimen>
+    <dimen name="ps_save_topmargin">20sp</dimen>
+    <dimen name="ps_save_font_size">15sp</dimen>
+    <dimen name="cu_infobox_height">80sp</dimen>
+    <dimen name="cu_infobox_font_size">20sp</dimen>
+    <dimen name="cu_infobox_paddingleft">30sp</dimen>
+    <dimen name="hm_card_width">175dp</dimen>
+
+</resources>

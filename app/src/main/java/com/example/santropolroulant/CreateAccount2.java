@@ -87,6 +87,7 @@ public class CreateAccount2 extends AppCompatActivity {
         });
     }
 
+    //TODO: fix putting one word in address says address isn't there, instead of address isn't formatted
     private Boolean validate(){
         Boolean result = false;
 
@@ -104,10 +105,12 @@ public class CreateAccount2 extends AppCompatActivity {
             address = "";
         }
 
-        if(city.isEmpty() || address.isEmpty() || postal_code.isEmpty() || !isInteger(address_number)){
+        if(city.isEmpty() || address.isEmpty() || postal_code.isEmpty() ){
             Toast.makeText(this, "Please enter all the details", Toast.LENGTH_SHORT).show();
 
-        }else{
+        }else if(!isInteger(address_number)) {
+            Toast.makeText(this, "Your address should start with a number!", Toast.LENGTH_SHORT).show();
+        } else {
             result = true;
         }
         return  result;

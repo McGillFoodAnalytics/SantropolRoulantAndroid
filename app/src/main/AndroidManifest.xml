@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.santropolroulant">
+    <uses-permission android:name="android.permission.CALL_PHONE"></uses-permission>
 
     <application
         android:allowBackup="true"
@@ -9,25 +10,11 @@
         android:label="Santropol Roulant test"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".RegisterEvent"
-            android:screenOrientation="portrait" ></activity>
-        <activity android:name=".CalanderSlots"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".Confirmation_Page_MealDelivery"
-            android:windowSoftInputMode="adjustPan"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".Confirmation_Page"
-            android:windowSoftInputMode="adjustPan"
-            android:screenOrientation="portrait" />
-        <activity android:name=".Home"
+       <activity android:name=".Home"
             android:screenOrientation="portrait" />
         <activity android:name=".PersonalSettings"
             android:screenOrientation="portrait" />
-        <activity android:name=".DisplayEvents"
-            android:screenOrientation="portrait" />
-        <activity android:name=".VolunteerOptions"
+        <activity android:name=".VolunteerType"
             android:screenOrientation="portrait" />
         <activity android:name=".PasswordActivity"
             android:screenOrientation="portrait" />
@@ -43,9 +30,15 @@
             android:screenOrientation="portrait" />
         <activity android:name=".Login"
             android:screenOrientation="portrait" />
-        <activity android:name=".EventRegisterConfirmation"
-            android:screenOrientation="portrait"/>
+        <activity android:name=".TransportType"
+            android:screenOrientation="portrait" />
+        <activity android:name=".TimePreference"
+            android:screenOrientation="portrait" />
         <activity android:name=".MainActivity"
+            android:screenOrientation="portrait" />
+        <activity android:name=".Calendar_Main"
+            android:screenOrientation="portrait" />
+        <activity android:name=".FragmentCalendar"
             android:screenOrientation="portrait" />
         <activity android:name=".UnlockApplication"
             android:screenOrientation="portrait" >
@@ -55,18 +48,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-<<<<<<< HEAD
-=======
 
-        <activity android:name=".PersonalSettings"
-            android:screenOrientation="portrait"/>
-        <activity android:name=".EventRegisterConfirmation"
-            android:screenOrientation="portrait"/>
-        <meta-data
-            android:name="com.google.android.geo.API_KEY"
-            android:value="AIzaSyDHPXY-kRutTgPNo3ZfS6bEji5NTJtqUPE"/>
-
->>>>>>> 034b204f92802fe74255302e96af71e86e5865ef
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="AIzaSyALmASF-czV39bmGkST_15oViky6Pab6gY"/>

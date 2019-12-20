@@ -27,6 +27,8 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.util.regex.Pattern;
+
 public class Login extends AppCompatActivity {
 
     private EditText userName, passWord;
@@ -36,7 +38,10 @@ public class Login extends AppCompatActivity {
     private FirebaseAuth firebaseAuth;
     private DatabaseReference ref;
     String key;
-
+    private View progressOverlay;
+    private View loginView;
+    private final String EVENT_LOC = MainActivity.EVENT_LOC;
+    private final String USER_LOC = MainActivity.USER_LOC;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,6 +49,11 @@ public class Login extends AppCompatActivity {
         setContentView(R.layout.activity_login); // Designates which layout XML to be used for this page
         setupUIViews();                          // Sets up UI using function
 
+        loginView = (View) findViewById(R.id.activity_login);
+
+
+        progressOverlay = (View) findViewById(R.id.progress_overlay);
+        progressOverlay.setVisibility(View.INVISIBLE);
 
 
         // Getting current app user from Firebase
@@ -62,18 +72,19 @@ public class Login extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 // On Click, run validate function
+                setVisible();
                 String username = userName.getText().toString().trim();
                 userPassword = passWord.getText().toString().trim();
                 validate(username, userPassword);
             }
         });
 
-        forgotPassword.setOnClickListener(new View.OnClickListener() {
+      /*  forgotPassword.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(Login.this, PasswordActivity.class));         // On click, go to PasswordActivity
             }
-        });
+        });*/
     }
 
     private void setupUIViews() {
@@ -98,7 +109,7 @@ public class Login extends AppCompatActivity {
         });
 
         loginButton = (Button)findViewById(R.id.btnLogin);
-        forgotPassword = (Button) findViewById(R.id.btnForgotPassword);
+        //forgotPassword = (Button) findViewById(R.id.btnForgotPassword);
 
         loginHeader = (TextView)findViewById(R.id.tvLogInHeader);
         usernameInfo = (TextView)findViewById(R.id.tvUsernameInfo);
@@ -113,10 +124,15 @@ public class Login extends AppCompatActivity {
 
 
     // *Validate function
-    //TODO: Parse username, as ref.child(username) will crash if there is '.', which may be put by someone if they put there email.
-    //TODO: Save UID as sharedPreferences
+    //TODO: Parse username, as ref.child(username) will crash if there is '.', which may be put by someone if they put there email
     private void validate(final String username, String usersPassword){
-        ref = FirebaseDatabase.getInstance().getReference("user");
+
+        Pattern p = Pattern.compile("[^0-9A-zÀ-ú]");
+        if(p.matcher(username).find()){
+            Toast.makeText(Login.this, "Username should be alphanumeric.", Toast.LENGTH_SHORT).show();
+            return;
+        }
+        ref = FirebaseDatabase.getInstance().getReference(USER_LOC);
         ref.child(username).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot snapshot) {
@@ -147,6 +163,7 @@ public class Login extends AppCompatActivity {
 
         if(emailId==null){
             Toast.makeText(Login.this, "Login Failed: Incorrect Username", Toast.LENGTH_SHORT).show();
+            setInvisible();
             return;
         }
 
@@ -160,12 +177,23 @@ public class Login extends AppCompatActivity {
                     SharedPreferences.Editor editor = pref.edit();
                     editor.putString("uid", username);
                     editor.commit();
+                    setInvisible();
                     // Go to Home activity
-                    startActivity(new Intent(Login.this, EventRegisterConfirmation.class));
+                    startActivity(new Intent(Login.this, Home.class));
                 }else{
                     Toast.makeText(Login.this, "Login Failed: Incorrect Password", Toast.LENGTH_SHORT).show();
+                    setInvisible();
                 }
             }
         });
+    }
+
+    public void setInvisible() {
+        progressOverlay.setVisibility(View.INVISIBLE);
+
+    }
+    public void setVisible() {
+        progressOverlay.setVisibility(View.VISIBLE);
+        loginView.setClickable(false);
     }
 }
