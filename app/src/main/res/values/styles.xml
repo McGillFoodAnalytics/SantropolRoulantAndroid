@@ -1,6 +1,18 @@
 <resources>
 
-    <!-- Base application theme. -->
+
+    <!-- EXAMPLE -->
+    <style name="ContentText">
+        <item name="android:textSize">@dimen/font_normal</item>
+        <item name="android:textColor">@color/dark_grey</item>
+    </style>
+
+
+
+
+
+
+    <!-- OLD CODE TO REPLACE -->
     <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/colorPrimary</item>

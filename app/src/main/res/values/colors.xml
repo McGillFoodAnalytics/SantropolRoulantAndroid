@@ -1,13 +1,38 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+
+    <!-- grayscale -->
+    <color name="white">#FFFFFF</color>
+    <color name="lighter_grey">#D8D7D7</color>
+    <color name="light_grey">#88FFFFFF</color>
+    <color name="dark_grey"> #696969</color>
+
+    <!-- basic colors -->
+    <color name="lighter_purple">#E9C5E9</color>
+    <color name="light_purple">#dbabdb</color>
+    <color name="mild_purple">#7027B0</color>
+    <color name="dark_purple">#FF6b1264</color>
+
+    <color name="green">#4E9751</color>
+
+    <color name="light_red">#F44336</color>
+    <color name="dark_red">#F44336</color>
+
+
+    <color name="yellow">#FFC107</color>
+
+
+
+
+
+
+    <!-- OLD VALUES TO REMOVE OR RENAME -->
+
     <color name="colorPrimary">#9C27B0</color>
     <color name="colorPrimaryDark">#9C27B0</color>
     <color name="colorAccent">#DDE45EFA</color>
     <color name="deeppurple">#7027B0</color>
     <color name="yello">#FFC107</color>
-    <color name="green">#4E9751</color>
-    <color name="lightgrey">#D8D7D7</color>
-    <color name="darkgrey"> #696969</color>
     <color name="backgroundcolor">#FCFCFC</color>
     <color name="heartback">#B988FD</color>
     <color name="ps_save">#FF681469</color>
