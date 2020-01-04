@@ -6,6 +6,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:padding="10dp"
+    android:fitsSystemWindows="true"
     tools:context=".Home">
 
     <androidx.constraintlayout.widget.Guideline
@@ -57,7 +58,7 @@
                     android:fontFamily="@font/avenir_next_demi"
                     android:text="Volunteer"
                     android:textColor="#000000"
-                    android:textSize="18sp" />
+                    android:textSize="18sp"/>
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -220,8 +221,9 @@
         android:id="@+id/tvHello"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:autoSizeTextType="uniform"
         android:fontFamily="@font/avenir_next_demi"
-        android:text=" "
+        android:maxHeight="150sp"
         android:textColor="@color/cu_title"
         android:textSize="50sp"
         app:layout_constraintBottom_toTopOf="@+id/tvGreeting"
@@ -236,7 +238,7 @@
         android:layout_width="318dp"
         android:layout_height="69dp"
         android:fontFamily="@font/avenir_next_demi"
-        android:text="Something Different"
+        android:text="@string/Welcome"
         android:textColor="@color/cu_title"
         android:textSize="25sp"
         app:layout_constraintBottom_toTopOf="@+id/linearLayout1"

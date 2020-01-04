@@ -18,5 +18,7 @@
     <dimen name="cu_infobox_font_size">20sp</dimen>
     <dimen name="cu_infobox_paddingleft">30sp</dimen>
     <dimen name="hm_card_width">150dp</dimen>
+    <dimen name="hm_tvHello_topPadding">16dp</dimen>
+
 
 </resources>
