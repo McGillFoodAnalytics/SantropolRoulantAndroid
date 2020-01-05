@@ -1,25 +1,116 @@
 <resources>
 
 
-    <!-- EXAMPLE -->
-    <style name="ContentText">
+    <!-- TITLES / TEXT -->
+
+
+    <style name="header_bold">
+        <item name="android:textSize">@dimen/font_largest</item>
+        <item name="android:textColor">@color/darker_purple</item>
+        <item name="android:fontFamily"> @font/avenir_next_bold</item>
+    </style>
+
+    <style name="header_regular">
+        <item name="android:textSize">@dimen/font_largest</item>
+        <item name="android:textColor">@color/darker_purple</item>
+        <item name="android:fontFamily"> @font/avenir_next_demi</item>
+    </style>
+
+
+    <style name="sub_header_1_bold">
+        <item name="android:textSize">@dimen/font_larger</item>
+        <item name="android:textColor">@color/darker_purple</item>
+        <item name="android:fontFamily">@font/avenir_next_bold</item>
+    </style>
+
+
+    <style name="sub_header_1_regular">
+        <item name="android:textSize">@dimen/font_larger</item>
+        <item name="android:textColor">@color/darker_purple</item>
+        <item name="android:fontFamily">@font/avenir_next_demi</item>
+    </style>
+
+
+    <style name="sub_header_2_bold">
+        <item name="android:textSize">@dimen/font_large</item>
+        <item name="android:textColor">@color/darker_purple</item>
+        <item name="android:fontFamily">@font/avenir_next_bold</item>
+    </style>
+
+    <style name="sub_header_2_regular">
+        <item name="android:textSize">@dimen/font_large</item>
+        <item name="android:textColor">@color/darker_purple</item>
+        <item name="android:fontFamily">@font/avenir_next_demi</item>
+    </style>
+
+
+    <style name="sub_header_3_bold">
         <item name="android:textSize">@dimen/font_normal</item>
+        <item name="android:textColor">@color/black</item>
+        <item name="android:fontFamily">@font/avenir_next_bold</item>
+    </style>
+
+    <style name="sub_header_3_regular">
+        <item name="android:textSize">@dimen/font_normal</item>
+        <item name="android:textColor">@color/black</item>
+        <item name="android:fontFamily">@font/avenir_next_demi</item>
+    </style>
+
+
+    <style name="content_text">
+        <item name="android:textSize">@dimen/font_small</item>
         <item name="android:textColor">@color/dark_grey</item>
+        <item name="android:fontFamily">@font/avenir_next_demi</item>
     </style>
 
 
 
 
 
+    <!-- TEXT VIEWS -->
 
-    <!-- OLD CODE TO REPLACE -->
-    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+    <style name="text_view_1">
+        <item name="android:textSize">@dimen/font_large</item>
+        <item name="android:textColor">@color/dark_grey</item>
+        <item name="android:fontFamily">@font/avenir_next_regular</item>
+        <item name="android:background">@color/lighter_purple</item>
+    </style>
+
+    <style name="text_view_2">
+        <item name="android:textSize">@dimen/font_normal</item>
+        <item name="android:textColor">@color/dark_grey</item>
+        <item name="android:fontFamily">@font/avenir_next_regular</item>
+        <item name="android:background">@color/lighter_purple</item>
+    </style>
+
+
+
+    <!-- BUTTONS / CARDVIEWS -->
+
+    <style name="card_view_1">
+        <item name="android:textSize">@dimen/font_normal</item>
+        <item name="android:textColor">@color/dark_grey</item>
+        <item name="android:fontFamily">@font/avenir_next_regular</item>
+        <item name="android:background">@color/lighter_purple</item>
+    </style>
+
+
+    <style name="button_next">
+        <item name="android:textSize">@dimen/font_larger</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:fontFamily">@font/avenir_next_demi</item>
+        <item name="android:background">@color/light_purple</item>
+
+    </style>
+
+
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
         <!-- Customize your theme here. -->
-        <item name="colorPrimary">@color/colorPrimary</item>
-        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
-        <item name="colorAccent">@color/colorPrimary</item>
-        <item name="android:windowAnimationStyle">@style/CustomActivityAnimation</item>
-        <item name="colorControlNormal">#FFFFFF</item>
+        <item name="colorPrimary">@color/dark_purple</item>
+        <item name="colorPrimaryDark">@color/darker_purple</item>
+        <item name="colorAccent">@color/mild_purple</item>
     </style>
 
     <style name="AppTheme.NoActionBar">
@@ -31,10 +122,5 @@
 
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
-    <style name="CustomActivityAnimation" parent="@android:style/Animation.Activity" >
-        <item name="android:activityOpenEnterAnimation">@anim/slide_in_right</item>
-        <item name="android:activityOpenExitAnimation">@anim/slide_out_left</item>
-        <item name="android:activityCloseEnterAnimation">@anim/slide_in_left</item>
-        <item name="android:activityCloseExitAnimation">@anim/slide_out_right</item>
-    </style>
+
 </resources>

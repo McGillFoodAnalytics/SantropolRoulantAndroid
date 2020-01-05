@@ -4,214 +4,228 @@ xmlns:app="http://schemas.android.com/apk/res-auto"
 xmlns:tools="http://schemas.android.com/tools"
 android:layout_width="match_parent"
 android:layout_height="match_parent"
-
+android:background="@color/white"
 tools:context=".VolunteerType">
 
 
     <LinearLayout
         android:id="@+id/linearLayout5"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="16dp"
+        android:layout_marginTop="@dimen/spacing_normal"
         android:clipToPadding="false"
         android:gravity="center"
         android:orientation="horizontal"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/guideline4"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/guideline3"
         app:layout_constraintTop_toBottomOf="@+id/tvTitle2"
-        app:layout_constraintVertical_bias="0.073">
+        app:layout_constraintVertical_bias="0.073"
+        >
 
 
         <androidx.cardview.widget.CardView
             android:id="@+id/crdKitchen"
-            android:layout_width="150dp"
-            android:layout_height="150dp"
-            android:layout_margin="10dp"
+            android:layout_width="@dimen/cv_height_tallest"
+            android:layout_height="@dimen/cv_height_tallest"
+            android:layout_margin="@dimen/spacing_normal"
             android:clickable="true"
             android:foreground="?android:selectableItemBackground"
-            app:cardElevation="0dp">
+            app:cardElevation="@dimen/zero"
+            >
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:background="@drawable/radius"
                 android:gravity="center"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                android:background="@drawable/radius"
+                >
 
                 <ImageView
-                    android:layout_width="65dp"
-                    android:layout_height="65dp"
-                    android:layout_marginTop="2sp"
-                    android:layout_marginBottom="2sp"
+                    android:layout_width="@dimen/cv_height_tall"
+                    android:layout_height="@dimen/cv_height_tall"
+                    android:layout_marginTop="@dimen/spacing_tiny"
+                    android:layout_marginBottom="@dimen/spacing_tiny"
                     android:gravity="center"
-                    android:src="@drawable/kitchen"></ImageView>
+                    android:src="@drawable/kitchen"
+                    >
+                </ImageView>
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:fontFamily="@font/avenir_next_demi"
-                    android:textSize="17dp"
                     android:text="Kitchen"
-                    android:textColor="#000000" />
+                    style="@style/sub_header_3_regular"
+                    />
             </LinearLayout>
         </androidx.cardview.widget.CardView>
 
 
         <androidx.cardview.widget.CardView
             android:id="@+id/crdDelivery"
-            android:layout_width="150dp"
-            android:layout_height="150dp"
-            android:layout_margin="10dp"
+            android:layout_width="@dimen/cv_height_tallest"
+            android:layout_height="@dimen/cv_height_tallest"
+            android:layout_margin="@dimen/spacing_normal"
             android:clickable="true"
             android:foreground="?android:selectableItemBackground"
-            app:cardElevation="0dp">
+            app:cardElevation="@dimen/zero"
+            >
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:background="@drawable/radius"
                 android:gravity="center"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                android:background="@drawable/radius"
+                >
 
                 <ImageView
-                    android:layout_width="65dp"
-                    android:layout_height="65dp"
-                    android:layout_marginTop="2sp"
-                    android:layout_marginBottom="2sp"
+                    android:layout_width="@dimen/cv_height_tall"
+                    android:layout_height="@dimen/cv_height_tall"
+                    android:layout_marginTop="@dimen/spacing_tiny"
+                    android:layout_marginBottom="@dimen/spacing_tiny"
                     android:gravity="center"
-                    android:src="@drawable/delivery"></ImageView>
+                    android:src="@drawable/delivery"
+                    >
+                </ImageView>
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:fontFamily="@font/avenir_next_demi"
                     android:text="Meal Delivery"
-                    android:textSize="17dp"
-                    android:textColor="#000000" />
+                    style="@style/sub_header_3_regular"
+                    />
             </LinearLayout>
         </androidx.cardview.widget.CardView>
 
     </LinearLayout>
 
-    <Button
-        android:id="@+id/btnNext2"
-        android:layout_width="418sp"
-        android:layout_height="78sp"
-        android:layout_marginStart="8sp"
-        android:background="@color/next_button"
-        android:fontFamily="@font/avenir_next_demi"
-        android:text="NEXT"
-        android:textColor="#FFFFFF"
-        android:textSize="24sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.8"
-        app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
         android:id="@+id/tvTitle2"
-        android:layout_width="311dp"
-        android:layout_height="90dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginBottom="16dp"
-        android:fontFamily="@font/avenir_next_demi"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/tv_height_tallest"
+        android:layout_marginStart="@dimen/spacing_large"
+        android:layout_marginEnd="@dimen/spacing_large"
+        android:layout_marginTop="@dimen/spacing_normal"
+        android:layout_marginBottom="@dimen/spacing_normal"
         android:gravity="center"
-        android:text="What type of activity would you like to sign up for?"
-        android:textColor="@color/cu_title"
-        android:textSize="24sp"
         app:layout_constraintBottom_toTopOf="@+id/guideline6"
         app:layout_constraintEnd_toStartOf="@+id/guideline4"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="@+id/guideline3"
         app:layout_constraintTop_toTopOf="@+id/guideline5"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintVertical_bias="0.0"
+        android:text="What type of activity would you like to sign up for?"
+        style="@style/sub_header_1_regular"
+        />
 
-    <ImageView
-        android:id="@+id/meal_delivery_image"
-        android:layout_width="145dp"
-        android:layout_height="121dp"
-        android:layout_marginStart="16dp"
-        app:layout_constraintBottom_toBottomOf="@+id/kitchen_image"
-        app:layout_constraintEnd_toStartOf="@+id/meal_delivery_text_1"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/guideline3"
-        app:srcCompat="@drawable/foodbringer" />
+
+    <Button
+        android:id="@+id/btnNext2"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/button_height_tall"
+        android:text="NEXT"
+        android:gravity="center"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        style="@style/button_next"
+        />
 
     <TextView
         android:id="@+id/meal_delivery_text_2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginBottom="244dp"
+        android:layout_marginStart="@dimen/spacing_normal"
+        android:layout_marginEnd="@dimen/spacing_normal"
+        android:layout_marginBottom="@dimen/mid_bottom"
         android:text="Meal Delivery"
-        android:textColor="@color/next_button"
-        android:textSize="20sp"
-        android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/guideline6"
         app:layout_constraintEnd_toStartOf="@+id/guideline4"
         app:layout_constraintHorizontal_bias="0.913"
-        app:layout_constraintStart_toStartOf="@+id/guideline3" />
+        app:layout_constraintStart_toStartOf="@+id/guideline3"
+        style="@style/sub_header_2_regular"
+        />
 
     <TextView
         android:id="@+id/kitchen_text_1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginBottom="244dp"
+        android:layout_marginStart="@dimen/spacing_normal"
+        android:layout_marginEnd="@dimen/spacing_normal"
+        android:layout_marginBottom="@dimen/mid_bottom"
         android:text="Kitchen"
-        android:textColor="@color/next_button"
-        android:textSize="20sp"
-        android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/guideline6"
         app:layout_constraintEnd_toStartOf="@+id/guideline4"
         app:layout_constraintHorizontal_bias="0.84"
-        app:layout_constraintStart_toStartOf="@+id/guideline3" />
+        app:layout_constraintStart_toStartOf="@+id/guideline3"
+        style="@style/sub_header_2_regular"
+        />
+
+
+
 
     <TextView
         android:id="@+id/meal_delivery_text_1"
-        android:layout_width="156dp"
-        android:layout_height="54dp"
-        android:layout_marginEnd="12dp"
-        android:layout_marginBottom="124dp"
-        android:text="Help deliver a warm meal and a smiling greeting that can help make our clients day!"
-        android:textSize="11dp"
+        android:layout_width="@dimen/tv_width_wide"
+        android:layout_height="@dimen/tv_height_normal"
+        android:layout_marginEnd="@dimen/spacing_normal"
+        android:layout_marginBottom="@dimen/lower_bottom_1"
         app:layout_constraintBottom_toTopOf="@+id/guideline6"
         app:layout_constraintEnd_toStartOf="@+id/guideline4"
         app:layout_constraintTop_toBottomOf="@+id/meal_delivery_text_2"
-        app:layout_constraintVertical_bias="0.194" />
+        app:layout_constraintVertical_bias="0.194"
+        android:text="Help deliver a warm meal and a smiling greeting that can help make our clients day!"
+        style="@style/content_text"
+        />
 
     <TextView
         android:id="@+id/kitchen_text_2"
-        android:layout_width="158dp"
-        android:layout_height="54dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="12dp"
-        android:layout_marginBottom="168dp"
+        android:layout_width="@dimen/tv_width_wide"
+        android:layout_height="@dimen/tv_height_normal"
+        android:layout_marginEnd="@dimen/spacing_normal"
+        android:layout_marginBottom="@dimen/lower_bottom_1"
         android:text="Work with a chef to bring together all of the elements to prepare the meal of the day!"
-        android:textSize="11dp"
         app:layout_constraintBottom_toTopOf="@+id/guideline6"
         app:layout_constraintEnd_toStartOf="@+id/guideline4"
         app:layout_constraintTop_toBottomOf="@+id/kitchen_text_1"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintVertical_bias="0.0"
+        style="@style/content_text"
+        />
+
+
+
+
+    <ImageView
+        android:id="@+id/meal_delivery_image"
+        android:layout_width="@dimen/image_large"
+        android:layout_height="@dimen/image_normal"
+        android:layout_marginStart="@dimen/spacing_normal"
+        app:layout_constraintBottom_toBottomOf="@+id/kitchen_image"
+        app:layout_constraintEnd_toStartOf="@+id/meal_delivery_text_1"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/guideline3"
+        app:srcCompat="@drawable/foodbringer"
+        />
+
 
     <ImageView
         android:id="@+id/kitchen_image"
-        android:layout_width="146dp"
-        android:layout_height="124dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginBottom="148dp"
+        android:layout_width="@dimen/image_large"
+        android:layout_height="@dimen/image_normal"
+        android:layout_marginStart="@dimen/spacing_normal"
+        android:layout_marginBottom="@dimen/lower_bottom_2"
         app:layout_constraintBottom_toTopOf="@+id/guideline6"
         app:layout_constraintEnd_toStartOf="@+id/kitchen_text_2"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/guideline3"
-        app:srcCompat="@drawable/foodmaker" />
+        app:srcCompat="@drawable/foodmaker"
+        />
+
+
+
 
 
     <androidx.constraintlayout.widget.Guideline
@@ -219,28 +233,32 @@ tools:context=".VolunteerType">
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_begin="30dp" />
+        app:layout_constraintGuide_begin="30dp"
+        />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_end="30dp" />
+        app:layout_constraintGuide_end="30dp"
+        />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline5"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_begin="30dp" />
+        app:layout_constraintGuide_begin="30dp"
+        />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline6"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_end="30dp" />
+        app:layout_constraintGuide_end="30dp"
+        />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

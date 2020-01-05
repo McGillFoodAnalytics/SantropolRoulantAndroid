@@ -1,5 +1,64 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+
+    <!-- general -->
+    <dimen name="zero">0dp</dimen>
+
+    <!-- font sizes -->
+    <dimen name="font_largest">40sp</dimen>
+    <dimen name="font_larger">25sp</dimen>
+    <dimen name="font_large">20sp</dimen>
+    <dimen name="font_normal">17sp</dimen>
+    <dimen name="font_small">10sp</dimen>
+
+
+    <!-- typical spacing between two views -->
+    <dimen name="spacing_huge">40dp</dimen>
+    <dimen name="spacing_large">25dp</dimen>
+    <dimen name="spacing_normal">15dp</dimen>
+    <dimen name="spacing_small">10dp</dimen>
+    <dimen name="spacing_tiny">5dp</dimen>
+
+
+
+
+    <!-- typical sizes of views -->
+    <dimen name="tv_height_tallest">100dp</dimen>
+    <dimen name="tv_height_tall">80dp</dimen>
+    <dimen name="tv_height_normal">50dp</dimen>
+
+    <dimen name="tv_width_widest">350dp</dimen>
+    <dimen name="tv_width_wide">150dp</dimen>
+    <dimen name="tv_width_normal">100dp</dimen>
+
+    <dimen name="button_height_tall">60dp</dimen>
+    <dimen name="button_height_normal">40dp</dimen>
+    <dimen name="button_height_short">32dp</dimen>
+
+    <dimen name="cv_height_tallest">150dp</dimen>
+    <dimen name="cv_height_tall">55dp</dimen>
+    <dimen name="cv_height_normal">45dp</dimen>
+
+
+    <!-- typical sizes of images -->
+    <dimen name="image_large">140</dimen>
+    <dimen name="image_normal">120</dimen>
+    <dimen name="image_small">75</dimen>
+
+
+    <!-- margins (all from the BOTTOM) -->
+    <dimen name="lower_bottom_1">120dp</dimen>
+    <dimen name="lower_bottom_2">150dp</dimen>
+    <dimen name="mid_bottom">240dp</dimen>
+    <dimen name="mid_top">480dp</dimen>
+
+
+
+
+
+
+    <!-- OLD VALUES TO REMOVE OR RENAME -->
+
     <dimen name="ps_roundedbox_radius">15sp</dimen>
     <dimen name="ps_margin">30sp</dimen>
     <dimen name="ps_prefgroup_divider">40sp</dimen>
@@ -18,5 +77,8 @@
     <dimen name="cu_infobox_font_size">20sp</dimen>
     <dimen name="cu_infobox_paddingleft">30sp</dimen>
     <dimen name="hm_card_width">175dp</dimen>
+
+
+
 
 </resources>

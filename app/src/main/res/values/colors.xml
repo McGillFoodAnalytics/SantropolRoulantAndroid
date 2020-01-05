@@ -6,12 +6,14 @@
     <color name="lighter_grey">#D8D7D7</color>
     <color name="light_grey">#88FFFFFF</color>
     <color name="dark_grey"> #696969</color>
+    <color name="black">#000000</color>
 
     <!-- basic colors -->
     <color name="lighter_purple">#E9C5E9</color>
     <color name="light_purple">#dbabdb</color>
-    <color name="mild_purple">#7027B0</color>
-    <color name="dark_purple">#FF6b1264</color>
+    <color name="mild_purple">#b27be2</color>
+    <color name="dark_purple">#7027B0</color>
+    <color name="darker_purple">#471970</color>
 
     <color name="green">#4E9751</color>
 
@@ -38,10 +40,7 @@
     <color name="ps_save">#FF681469</color>
     <color name="ps_pref_input">#449C27B0</color>
     <color name="ps_pref_group">#88FFFFFF</color>
-    <color name="cu_title">#FF6b1264</color>
     <color name="cu_info_boxes">#E9C5E9</color>
-    <color name="er_info_boxes">#dbabdb</color>
-    <color name="next_button"> #68166a </color>
     <color name="colorAccentAlpha60">#96ff4081</color>
     <color name="colorPrimaryText">#FFFFFF</color>
     <color name="calendar_selected_day_bg">#DDE45EFA</color>

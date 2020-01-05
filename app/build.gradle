@@ -49,3 +49,7 @@ dependencies {
 
 apply plugin: 'com.google.gms.google-services'  // Google Play services Gradle plugin
 
+configurations.all {
+    resolutionStrategy {
+        force 'com.android.support:support-v4:27.1.0'
+    }}
