@@ -20,6 +20,10 @@
     <dimen name="button_height_normal">40dp</dimen>
     <dimen name="button_height_short">32dp</dimen>
 
+    <!--layout-specific sizes -->
+    <dimen name="hm_tvhello_padding_top">16dp</dimen>
+    <dimen name="hm_tvhello_padding_bottom">8dp</dimen>
+    <dimen name="hm_tvhello_text_size">75sp</dimen>
 
 
 
@@ -45,7 +49,6 @@
     <dimen name="cu_infobox_font_size">20sp</dimen>
     <dimen name="cu_infobox_paddingleft">30sp</dimen>
     <dimen name="hm_card_width">150dp</dimen>
-    <dimen name="hm_tvHello_topPadding">16dp</dimen>
 
 
 </resources>
