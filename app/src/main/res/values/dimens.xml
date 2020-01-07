@@ -24,6 +24,8 @@
     <dimen name="hm_tvhello_padding_top">16dp</dimen>
     <dimen name="hm_tvhello_padding_bottom">8dp</dimen>
     <dimen name="hm_tvhello_text_size">75sp</dimen>
+    <dimen name="hm_tvhello_padding_side">32dp</dimen>
+
 
 
 
