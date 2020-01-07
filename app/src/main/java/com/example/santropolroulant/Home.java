@@ -11,6 +11,7 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewTreeObserver;
 import android.widget.Toast;
 import android.widget.TextView;
 
@@ -88,7 +89,7 @@ public class Home extends AppCompatActivity {
             }
         };
 
-        mDatabase.addListenerForSingleValueEvent(nameListener);
+        mDatabase.addValueEventListener(nameListener);
 
 
 
@@ -149,6 +150,26 @@ public class Home extends AppCompatActivity {
         tvGreeting = (TextView) findViewById(R.id.tvGreeting);
         tvHello = (TextView) findViewById(R.id.tvHello);
         tvHello.setText(name + "!");
+        tvHello.getViewTreeObserver().addOnPreDrawListener(new ViewTreeObserver.OnPreDrawListener() {
+            @Override
+            public boolean onPreDraw() {
+                boolean draw = true;
+                tvHello.getViewTreeObserver().removeOnPreDrawListener(this);
+                if(tvHello.getLineCount() > 1){
+                    draw = tvHello.getPaddingTop() == 32;
+                    tvHello.setPadding(0,50,0,32);
+                    Log.i("Das de ting", "padding set");
+                } else {
+                    draw = tvHello.getPaddingTop() == 0;
+                    tvHello.setPadding(0,0,0,0);
+                    tvHello.setTextSize(50);
+                    Log.i("Das de ting", "padding not set");
+
+                }
+                return draw;
+            }
+        });
+
 
         volunteerCard = (CardView)findViewById(R.id.volunteerCard);
         scheduleCard = (CardView)findViewById(R.id.scheduleCard);

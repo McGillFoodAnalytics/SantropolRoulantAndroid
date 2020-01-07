@@ -111,7 +111,7 @@ public class Login extends AppCompatActivity {
         loginButton = (Button)findViewById(R.id.btnLogin);
         //forgotPassword = (Button) findViewById(R.id.btnForgotPassword);
 
-        loginHeader = (TextView)findViewById(R.id.tvLogInHeader);
+     //   loginHeader = (TextView)findViewById(R.id.tvLogInHeader);
         usernameInfo = (TextView)findViewById(R.id.tvUsernameInfo);
     }
 
