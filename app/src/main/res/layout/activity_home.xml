@@ -109,8 +109,8 @@
                     android:orientation="vertical">
 
                     <ImageView
-                        android:layout_width="65dp"
-                        android:layout_height="65dp"
+                        android:layout_width="@dimen/hm_card_img_size"
+                        android:layout_height="@dimen/hm_card_img_size"
                         android:src="@drawable/ic_like"></ImageView>
 
                     <TextView
@@ -121,7 +121,7 @@
                         android:fontFamily="@font/avenir_next_demi"
                         android:text="Volunteer"
                         android:textColor="#000000"
-                        android:textSize="18sp" />
+                        android:textSize="@dimen/hm_card_text_size" />
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -151,8 +151,8 @@
                     android:orientation="vertical">
 
                     <ImageView
-                        android:layout_width="65dp"
-                        android:layout_height="65dp"
+                        android:layout_width="@dimen/hm_card_img_size"
+                        android:layout_height="@dimen/hm_card_img_size"
                         android:src="@drawable/ic_calendar"></ImageView>
 
                     <TextView
@@ -163,7 +163,7 @@
                         android:fontFamily="@font/avenir_next_demi"
                         android:text="My Schedule"
                         android:textColor="#000000"
-                        android:textSize="18sp" />
+                        android:textSize="@dimen/hm_card_text_size" />
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -208,8 +208,8 @@
                     android:orientation="vertical">
 
                     <ImageView
-                        android:layout_width="65dp"
-                        android:layout_height="65dp"
+                        android:layout_width="@dimen/hm_card_img_size"
+                        android:layout_height="@dimen/hm_card_img_size"
                         android:src="@drawable/ic_user"></ImageView>
 
                     <TextView
@@ -220,7 +220,7 @@
                         android:fontFamily="@font/avenir_next_demi"
                         android:text="Profile"
                         android:textColor="#000000"
-                        android:textSize="18sp" />
+                        android:textSize="@dimen/hm_card_text_size" />
 
 
                     <TextView
@@ -251,8 +251,8 @@
                     android:orientation="vertical">
 
                     <ImageView
-                        android:layout_width="65dp"
-                        android:layout_height="65dp"
+                        android:layout_width="@dimen/hm_card_img_size"
+                        android:layout_height="@dimen/hm_card_img_size"
                         android:src="@drawable/ic_smartphone"></ImageView>
 
                     <TextView
@@ -263,7 +263,7 @@
                         android:fontFamily="@font/avenir_next_demi"
                         android:text="Contact Us"
                         android:textColor="#000000"
-                        android:textSize="18sp" />
+                        android:textSize="@dimen/hm_card_text_size" />
 
                     <TextView
                         android:layout_width="wrap_content"
