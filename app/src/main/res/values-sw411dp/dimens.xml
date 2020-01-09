@@ -15,6 +15,10 @@
     <dimen name="ps_save_topmargin">20sp</dimen>
     <dimen name="ps_save_font_size">15sp</dimen>
     <dimen name="hm_card_width">175dp</dimen>
-    <dimen name="hm_tvHello_topPadding">16dp</dimen>
+
+
+    <dimen name="hm_tvhello_text_size">75sp</dimen>
+    <dimen name="hm_tvhello_padding_side">32dp</dimen>
+    <dimen name="hm_card_img_size">65dp</dimen>
 
 </resources>
