@@ -6,8 +6,10 @@ import androidx.cardview.widget.CardView;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
+import android.util.TypedValue;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -153,20 +155,30 @@ public class Home extends AppCompatActivity {
         tvHello.getViewTreeObserver().addOnPreDrawListener(new ViewTreeObserver.OnPreDrawListener() {
             @Override
             public boolean onPreDraw() {
+                /*Log.i("Das de size", Float.toString(tvHello.getTextSize()));
                 boolean draw = true;
-                tvHello.getViewTreeObserver().removeOnPreDrawListener(this);
-                if(tvHello.getLineCount() > 1){
-                    draw = tvHello.getPaddingTop() == 32;
-                    tvHello.setPadding(0,50,0,32);
-                    Log.i("Das de ting", "padding set");
+                int charCount = tvHello.getText().length();
+                Log.i("Das de charcount", Integer.toString(charCount));
+                if(charCount > 50){
+                    int topPadding = dpToPx(getResources().getDimension(R.dimen.hm_tvhello_padding_top));
+                    draw = tvHello.getPaddingTop() == topPadding;
+                    tvHello.setPadding(
+                            0,
+                            topPadding,
+                            0,
+                            32
+                    );
                 } else {
                     draw = tvHello.getPaddingTop() == 0;
                     tvHello.setPadding(0,0,0,0);
-                    tvHello.setTextSize(50);
-                    Log.i("Das de ting", "padding not set");
-
+                    Log.i("Das de Size given", Float.toString(getResources().getDimension(R.dimen.hm_tvhello_text_size)));
+                    tvHello.setTextSize(getResources().getDimension(R.dimen.hm_tvhello_text_size));
                 }
-                return draw;
+
+                Log.i("Das de size now", Float.toString(tvHello.getTextSize()));
+                Log.i("Das de draw", Boolean.toString(draw));
+                return draw;*/
+                return true;
             }
         });
 
@@ -192,5 +204,12 @@ public class Home extends AppCompatActivity {
         mAuth.signOut();
         finish();
         startActivity(new Intent(Home.this, MainActivity.class));
+    }
+
+    public int dpToPx(float dp){
+        return (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, dp, this.getResources().getDisplayMetrics());
+    }
+    public int spToPx(float sp) {
+        return (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_SP, sp, this.getResources().getDisplayMetrics());
     }
 }
