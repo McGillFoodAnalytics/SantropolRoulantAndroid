@@ -39,7 +39,8 @@ public class VolunteerType extends AppCompatActivity {
             public void onClick(View view) {
                 volunteerType = "kitchen";
                 crdKitchen.setCardBackgroundColor(Color.parseColor("#B128B8"));
-                crdDelivery.setCardBackgroundColor(Color.parseColor("#D3D163DA"));
+                crdDelivery.setCardBackgroundColor(Color.parseColor("#ffffff"));
+    //            crdDelivery.setBackgroundResource(R.drawable.radius_clicked);
                 imagedelivery.setVisibility(View.INVISIBLE);
                 text1delivery.setVisibility(View.INVISIBLE);
                 text2delivery.setVisibility(View.INVISIBLE);
@@ -54,7 +55,8 @@ public class VolunteerType extends AppCompatActivity {
             public void onClick(View view) {
                 volunteerType = "delivery";
                 crdDelivery.setCardBackgroundColor(Color.parseColor("#B128B8"));
-                crdKitchen.setCardBackgroundColor(Color.parseColor("#D3D163DA"));
+                crdKitchen.setCardBackgroundColor(Color.parseColor("#ffffff"));
+       //         crdDelivery.setBackgroundResource(R.drawable.radius_clicked);
                 imagedelivery.setVisibility(View.VISIBLE);
                 text1delivery.setVisibility(View.VISIBLE);
                 text2delivery.setVisibility(View.VISIBLE);

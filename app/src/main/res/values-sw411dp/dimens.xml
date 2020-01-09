@@ -41,17 +41,18 @@
 
 
     <!-- typical sizes of images -->
-    <dimen name="image_large">140</dimen>
-    <dimen name="image_normal">120</dimen>
-    <dimen name="image_small">75</dimen>
+    <dimen name="image_large">140dp</dimen>
+    <dimen name="image_normal">120dp</dimen>
+    <dimen name="image_small">75dp</dimen>
 
 
     <!-- margins (all from the BOTTOM) -->
-    <dimen name="lower_bottom_1">120dp</dimen>
-    <dimen name="lower_bottom_2">150dp</dimen>
-    <dimen name="mid_bottom">240dp</dimen>
-    <dimen name="mid_top">480dp</dimen>
-
+    <dimen name="largest_margin">400dp</dimen>
+    <dimen name="larger_margin">200dp</dimen>
+    <dimen name="large_margin_1">120dp</dimen>
+    <dimen name="large_margin_2">90dp</dimen>
+    <dimen name="normal_margin">40dp</dimen>
+    <dimen name="small_margin">15dp</dimen>
 
 
 

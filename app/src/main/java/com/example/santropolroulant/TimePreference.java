@@ -43,7 +43,7 @@ public class TimePreference extends AppCompatActivity  {
             public void onClick(View view) {
                 timePref = "kitam";
                 crdMorning.setCardBackgroundColor(Color.parseColor("#B128B8"));
-                crdAfternoon.setCardBackgroundColor(Color.parseColor("#D3D163DA"));
+                crdAfternoon.setCardBackgroundColor(Color.parseColor("#FFFFFF"));
             }
         });
 
@@ -52,7 +52,7 @@ public class TimePreference extends AppCompatActivity  {
             public void onClick(View view) {
                 timePref = "kitpm";
                 crdAfternoon.setCardBackgroundColor(Color.parseColor("#B128B8"));
-                crdMorning.setCardBackgroundColor(Color.parseColor("#D3D163DA"));
+                crdMorning.setCardBackgroundColor(Color.parseColor("#FFFFFF"));
             }
         });
 

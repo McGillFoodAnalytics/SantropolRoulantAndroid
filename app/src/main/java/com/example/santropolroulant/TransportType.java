@@ -38,7 +38,8 @@ public class TransportType extends AppCompatActivity {
             public void onClick(View view) {
                 transportType = "deldr";
                 crdDriver.setCardBackgroundColor(Color.parseColor("#B128B8"));
-                crdNonDriver.setCardBackgroundColor(Color.parseColor("#D3D163DA"));
+                crdNonDriver.setCardBackgroundColor(Color.parseColor("#FFFFFF"));
+          //      crdDriver.setBackgroundResource(R.drawable.radius_clicked);
             }
         });
 
@@ -47,7 +48,8 @@ public class TransportType extends AppCompatActivity {
             public void onClick(View view) {
                 transportType = "deliv";
                 crdNonDriver.setCardBackgroundColor(Color.parseColor("#B128B8"));
-                crdDriver.setCardBackgroundColor(Color.parseColor("#D3D163DA"));
+                crdDriver.setCardBackgroundColor(Color.parseColor("#FFFFFF"));
+         //       crdNonDriver.setBackgroundResource(R.drawable.radius_clicked);
             }
         });
 
