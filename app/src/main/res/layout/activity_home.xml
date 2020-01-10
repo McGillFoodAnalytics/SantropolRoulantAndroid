@@ -34,7 +34,7 @@
     <TextView
         android:id="@+id/tvGreeting"
         android:layout_width="match_parent"
-        android:layout_height="69dp"
+        android:layout_height="@dimen/tv_height_tall"
         android:fontFamily="@font/avenir_next_demi"
         android:textSize="25sp"
         app:layout_constraintBottom_toTopOf="@+id/linearLayout"
@@ -88,8 +88,8 @@
 
             <androidx.cardview.widget.CardView
                 android:id="@+id/volunteerCard"
-                android:layout_width="@dimen/hm_card_width"
-                android:layout_height="@dimen/hm_card_width"
+                android:layout_width="@dimen/cv_height_tallest"
+                android:layout_height="@dimen/cv_height_tallest"
                 android:layout_margin="11dp"
                 android:background="@drawable/radius2"
                 android:clickable="true"
@@ -103,8 +103,8 @@
                     android:orientation="vertical">
 
                     <ImageView
-                        android:layout_width="@dimen/hm_card_img_size"
-                        android:layout_height="@dimen/hm_card_img_size"
+                        android:layout_width="@dimen/cv_height_tall"
+                        android:layout_height="@dimen/cv_height_tall"
                         android:src="@drawable/ic_like"></ImageView>
 
                     <TextView
@@ -130,8 +130,8 @@
 
             <androidx.cardview.widget.CardView
                 android:id="@+id/scheduleCard"
-                android:layout_width="@dimen/hm_card_width"
-                android:layout_height="@dimen/hm_card_width"
+                android:layout_width="@dimen/cv_height_tallest"
+                android:layout_height="@dimen/cv_height_tallest"
                 android:layout_margin="11dp"
                 android:clickable="true"
                 app:background="@drawable/radius2"
@@ -145,8 +145,8 @@
                     android:orientation="vertical">
 
                     <ImageView
-                        android:layout_width="@dimen/hm_card_img_size"
-                        android:layout_height="@dimen/hm_card_img_size"
+                        android:layout_width="@dimen/cv_height_tall"
+                        android:layout_height="@dimen/cv_height_tall"
                         android:src="@drawable/ic_calendar"></ImageView>
 
                     <TextView
@@ -187,8 +187,8 @@
 
             <androidx.cardview.widget.CardView
                 android:id="@+id/profileCard"
-                android:layout_width="@dimen/hm_card_width"
-                android:layout_height="@dimen/hm_card_width"
+                android:layout_width="@dimen/cv_height_tallest"
+                android:layout_height="@dimen/cv_height_tallest"
                 android:layout_margin="11dp"
                 android:clickable="true"
                 app:background="@drawable/radius2"
@@ -202,8 +202,8 @@
                     android:orientation="vertical">
 
                     <ImageView
-                        android:layout_width="@dimen/hm_card_img_size"
-                        android:layout_height="@dimen/hm_card_img_size"
+                        android:layout_width="@dimen/cv_height_tall"
+                        android:layout_height="@dimen/cv_height_tall"
                         android:src="@drawable/ic_user"></ImageView>
 
                     <TextView
@@ -230,8 +230,8 @@
 
             <androidx.cardview.widget.CardView
                 android:id="@+id/contactCard"
-                android:layout_width="@dimen/hm_card_width"
-                android:layout_height="@dimen/hm_card_width"
+                android:layout_width="@dimen/cv_height_tallest"
+                android:layout_height="@dimen/cv_height_tallest"
                 android:layout_margin="11dp"
                 android:clickable="true"
                 app:background="@drawable/radius2"
@@ -245,8 +245,8 @@
                     android:orientation="vertical">
 
                     <ImageView
-                        android:layout_width="@dimen/hm_card_img_size"
-                        android:layout_height="@dimen/hm_card_img_size"
+                        android:layout_width="@dimen/cv_height_tall"
+                        android:layout_height="@dimen/cv_height_tall"
                         android:src="@drawable/ic_smartphone"></ImageView>
 
                     <TextView
