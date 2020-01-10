@@ -23,9 +23,10 @@
         android:layout_height="0dp"
         android:autoSizeTextType="uniform"
         android:fontFamily="@font/avenir_next_demi"
+        android:paddingStart="@dimen/normal_margin"
+        android:paddingEnd="@dimen/normal_margin"
         android:text=" "
-        android:textColor="@color/darker_purple"
-        android:textSize="50sp"
+        android:textSize="@dimen/font_largest"
         app:layout_constraintBottom_toTopOf="@+id/guideline2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -36,7 +37,10 @@
         android:layout_width="match_parent"
         android:layout_height="@dimen/tv_height_tall"
         android:fontFamily="@font/avenir_next_demi"
-        android:textSize="25sp"
+        android:paddingStart="@dimen/normal_margin"
+        android:paddingEnd="@dimen/normal_margin"
+        android:text="@string/Welcome"
+        android:textSize="@dimen/font_larger"
         app:layout_constraintBottom_toTopOf="@+id/linearLayout"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
@@ -115,7 +119,7 @@
                         android:fontFamily="@font/avenir_next_demi"
                         android:text="Volunteer"
                         android:textColor="#000000"
-                        android:textSize="@dimen/hm_card_text_size" />
+                        android:textSize="@dimen/font_normal" />
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -124,7 +128,8 @@
                         android:gravity="center"
                         android:padding="5sp"
                         android:text="Do Good &amp; Feel Good"
-                        android:textColor="@color/dark_grey" />
+                        android:textColor="@color/dark_grey"
+                        android:textSize="@dimen/font_small" />
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
 
@@ -157,7 +162,7 @@
                         android:fontFamily="@font/avenir_next_demi"
                         android:text="My Schedule"
                         android:textColor="#000000"
-                        android:textSize="@dimen/hm_card_text_size" />
+                        android:textSize="@dimen/font_normal" />
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -166,7 +171,8 @@
                         android:gravity="center"
                         android:padding="5sp"
                         android:text="Check your schedule"
-                        android:textColor="@color/dark_grey" />
+                        android:textColor="@color/dark_grey"
+                        android:textSize="@dimen/font_small" />
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
         </LinearLayout>
@@ -214,7 +220,7 @@
                         android:fontFamily="@font/avenir_next_demi"
                         android:text="Profile"
                         android:textColor="#000000"
-                        android:textSize="@dimen/hm_card_text_size" />
+                        android:textSize="@dimen/font_normal" />
 
 
                     <TextView
@@ -224,7 +230,8 @@
                         android:gravity="center"
                         android:padding="5sp"
                         android:text="Update Information"
-                        android:textColor="@color/dark_grey" />
+                        android:textColor="@color/dark_grey"
+                        android:textSize="@dimen/font_small" />
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
 
@@ -257,7 +264,7 @@
                         android:fontFamily="@font/avenir_next_demi"
                         android:text="Contact Us"
                         android:textColor="#000000"
-                        android:textSize="@dimen/hm_card_text_size" />
+                        android:textSize="@dimen/font_normal" />
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -266,7 +273,8 @@
                         android:gravity="center"
                         android:padding="5sp"
                         android:text="Inquiries and More"
-                        android:textColor="@color/dark_grey" />
+                        android:textColor="@color/dark_grey"
+                        android:textSize="@dimen/font_small" />
 
                 </LinearLayout>
             </androidx.cardview.widget.CardView>

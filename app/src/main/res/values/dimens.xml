@@ -55,18 +55,6 @@
 
 
 
-
-    <!--layout-specific sizes -->
-    <dimen name="hm_tvhello_text_size">75sp</dimen>
-    <dimen name="hm_tvhello_padding_side">16dp</dimen>
-    <dimen name="hm_card_img_size">50dp</dimen>
-    <dimen name="hm_card_text_size">18sp</dimen>
-
-
-
-
-
-
     <!-- OLD VALUES TO REMOVE OR RENAME -->
 
     <dimen name="ps_roundedbox_radius">15sp</dimen>
