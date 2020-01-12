@@ -16,6 +16,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -44,7 +45,7 @@ public class UserSchedule extends AppCompatActivity {
     private FirebaseAuth mAuth;
     private Button VolunteerButton;
 
-    RelativeLayout relativeLayout;
+    ConstraintLayout relativeLayout;
 
     private RecyclerView recyclerView;
     private EventAdapter adapter;
@@ -67,7 +68,7 @@ public class UserSchedule extends AppCompatActivity {
 
         VolunteerButton = (Button)findViewById(R.id.btnVolunteer);
         mAuth = FirebaseAuth.getInstance();
-        relativeLayout = (RelativeLayout)findViewById(R.id.user_schedule);
+        relativeLayout = (ConstraintLayout) findViewById(R.id.user_schedule);
 
         userSchedule = (View) findViewById(R.id.user_schedule);
         recyclerView = findViewById(R.id.recyclerViewUser);

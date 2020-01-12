@@ -1,180 +1,221 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:layout_height="match_parent"
     android:layout_width="match_parent"
     android:background="@drawable/main_background">
 
-    <LinearLayout
-        android:id="@+id/info_session_info1"
+
+    <ImageView
+        android:id="@+id/unlock_logo"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:contentDescription="@string/santropol_logo"
+        app:srcCompat="@drawable/santropol_logo"
+        app:layout_constraintBottom_toBottomOf="@+id/bg_unlock_icon"
+        app:layout_constraintLeft_toLeftOf="@+id/lg_unlock"
+        app:layout_constraintRight_toRightOf="@+id/rg_unlock"
+        app:layout_constraintTop_toTopOf="@+id/tg_unlock_icon" />
+
+    <TextView
+        android:id="@+id/unlock_welcome"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="@string/Welcome"
+        android:textColor="#FFFFFF"
+        android:textSize="@dimen/_22sdp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/bg_unlock_header"
+        app:layout_constraintLeft_toLeftOf="@+id/lg_unlock"
+        app:layout_constraintRight_toRightOf="@+id/rg_unlock"
+        app:layout_constraintTop_toTopOf="@+id/tg_unlock_header"/>
+
+
+    <TextView
+        android:id="@+id/unlock_description1a"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:src="@drawable/ps_shape_save"
+        android:text="@string/unlock_body_text1"
+        android:textColor="#FFFFFF"
+        android:textSize="@dimen/_16sdp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/bg_unlock_text1"
+        app:layout_constraintLeft_toLeftOf="@+id/lg_unlock"
+        app:layout_constraintRight_toRightOf="@+id/rg_unlock"
+        app:layout_constraintTop_toTopOf="@+id/tg_unlock_text1" />
+
+    <TextView
+        android:id="@+id/unlock_description2a"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:src="@drawable/ps_shape_save"
+        android:text="@string/unlock_body_text2"
+        android:textColor="#FFFFFF"
+        android:textSize="@dimen/_16sdp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/bg_unlock_text2"
+        app:layout_constraintLeft_toLeftOf="@+id/lg_unlock"
+        app:layout_constraintRight_toRightOf="@+id/rg_unlock"
+        app:layout_constraintTop_toTopOf="@+id/tg_unlock_text2"/>
+
+    <EditText
+        android:id="@+id/code_input"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:ems="10"
+        android:importantForAutofill="no"
+        android:inputType="textPersonName"
+        android:textColor="#FFFFFF"
+        app:layout_constraintBottom_toBottomOf="@+id/bg_unlock_input"
+        app:layout_constraintLeft_toLeftOf="@+id/lg_unlock"
+        app:layout_constraintRight_toRightOf="@+id/rg_unlock"
+        app:layout_constraintTop_toTopOf="@+id/tg_unlock_input" />
+
+    <Button
+        android:id="@+id/enter_code_button"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="#5F9856"
+        android:text="@string/enter_code_text"
+        android:textColor="#FFFFFF"
+        android:textSize="@dimen/_16sdp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/bg_unlock_button"
+        app:layout_constraintLeft_toLeftOf="@+id/lg_unlock"
+        app:layout_constraintRight_toRightOf="@+id/rg_unlock"
+        app:layout_constraintTop_toTopOf="@+id/tg_unlock_button"/>
+
+
+    <TextView
+        android:id="@+id/unlock_login"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:divider="@drawable/ps_prefgroup_divider"
-        android:orientation="vertical"
-        android:padding="@dimen/ps_margin"
-        android:showDividers="middle"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        android:layout_height="wrap_content"
+        android:text="@string/unlock_login_text"
+        android:textAlignment="center"
+        android:textColor="#FFFFFF"
+        android:textSize="@dimen/_16sdp"
+        app:layout_constraintBottom_toBottomOf="@+id/bg_unlock_redirect"
+        app:layout_constraintLeft_toLeftOf="@+id/lg_unlock"
+        app:layout_constraintRight_toRightOf="@+id/rg_unlock"
+        app:layout_constraintTop_toTopOf="@+id/tg_unlock_redirect" />
 
-        <LinearLayout
-            android:id="@+id/info_session_info2"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
-
-            <ImageView
-                android:id="@+id/unlock_logo"
-                android:layout_width="match_parent"
-                android:layout_height="96dp"
-                android:layout_gravity="start|left"
-                android:contentDescription="@string/santropol_logo"
-                app:srcCompat="@drawable/santropol_logo" />
-
-            <TextView
-                android:id="@+id/unlock_welcome"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:gravity="center"
-                android:text="@string/Welcome"
-                android:textAlignment="textStart"
-                android:textColor="#FFFFFF"
-                android:textSize="36sp"
-                android:textStyle="bold" />
-
-            <LinearLayout
-                android:id="@+id/unlock_description"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical">
-
-                <LinearLayout
-                    android:id="@+id/unlock_description1"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_marginTop="@dimen/ps_pref_topmargin"
-                    android:orientation="vertical">
-
-                    <TextView
-                        android:id="@+id/unlock_description1a"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:src="@drawable/ps_shape_save"
-                        android:text="@string/unlock_body_text1"
-                        android:textColor="#FFFFFF"
-                        android:textSize="@dimen/ps_preftitle_font_size"
-                        android:textStyle="bold" />
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:id="@+id/unlock_description2"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_marginTop="@dimen/ps_pref_topmargin"
-                    android:orientation="vertical">
-
-                    <TextView
-                        android:id="@+id/unlock_description2a"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:src="@drawable/ps_shape_save"
-                        android:text="@string/unlock_body_text2"
-                        android:textColor="#FFFFFF"
-                        android:textSize="@dimen/ps_preftitle_font_size"
-                        android:textStyle="bold" />
-
-                </LinearLayout>
-            </LinearLayout>
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/code_verification"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
-
-            <LinearLayout
-                android:id="@+id/preferences_personal_address"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginTop="@dimen/ps_pref_topmargin"
-                android:orientation="vertical">
-
-                <EditText
-                    android:id="@+id/code_input"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:ems="10"
-                    android:importantForAutofill="no"
-                    android:inputType="textPersonName"
-                    android:textColor="#FFFFFF" />
-
-                <Button
-                    android:id="@+id/enter_code_button"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="#5F9856"
-                    android:text="@string/enter_code_text"
-                    android:textColor="#FFFFFF"
-                    android:textSize="24sp"
-                    android:textStyle="bold" />
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/preference_address_postal"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginTop="@dimen/ps_pref_topmargin"
-                android:orientation="vertical">
-
-                <TextView
-                    android:id="@+id/unlock_login"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="@string/unlock_login_text"
-                    android:textAlignment="center"
-                    android:textColor="#FFFFFF"
-                    android:textSize="18sp" />
-
-            </LinearLayout>
-        </LinearLayout>
-
-    </LinearLayout>
 
     <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline3"
+        android:id="@+id/lg_unlock"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_begin="30dp" />
+        app:layout_constraintGuide_percent="0.1" />
 
     <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline4"
+        android:id="@+id/rg_unlock"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_end="30dp" />
+        app:layout_constraintGuide_percent="0.9" />
 
     <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline5"
+        android:id="@+id/tg_unlock_icon"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_begin="30dp" />
+        app:layout_constraintGuide_percent="0.04"  />
 
     <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline6"
+        android:id="@+id/bg_unlock_icon"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_end="30dp" />
+        app:layout_constraintGuide_percent="0.15" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/tg_unlock_header"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.15"  />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/bg_unlock_header"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.25" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/tg_unlock_text1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.28"  />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/bg_unlock_text1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.48" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/tg_unlock_text2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.52"  />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/bg_unlock_text2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.66" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/tg_unlock_input"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.67"  />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/bg_unlock_input"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.74" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/tg_unlock_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.76"  />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/bg_unlock_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.84" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/tg_unlock_redirect"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.88"  />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/bg_unlock_redirect"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.95" />
 
 
 
 
-</LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
