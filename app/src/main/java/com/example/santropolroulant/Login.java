@@ -32,8 +32,8 @@ import java.util.regex.Pattern;
 public class Login extends AppCompatActivity {
 
     private EditText userName, passWord;
-    private Button loginButton, forgotPassword;
-    private TextView loginHeader, usernameInfo;
+    private Button loginButton;
+    private TextView loginHeader, usernameInfo, forgotPassword;
     String userEmail, userPassword;
     private FirebaseAuth firebaseAuth;
     private DatabaseReference ref;
@@ -50,8 +50,7 @@ public class Login extends AppCompatActivity {
         setupUIViews();                          // Sets up UI using function
 
         loginView = (View) findViewById(R.id.activity_login);
-
-
+        forgotPassword = (TextView) findViewById(R.id.tvForgotPassword);
         progressOverlay = (View) findViewById(R.id.progress_overlay);
         progressOverlay.setVisibility(View.INVISIBLE);
 
@@ -79,12 +78,12 @@ public class Login extends AppCompatActivity {
             }
         });
 
-      /*  forgotPassword.setOnClickListener(new View.OnClickListener() {
+        forgotPassword.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(Login.this, PasswordActivity.class));         // On click, go to PasswordActivity
             }
-        });*/
+        });
     }
 
     private void setupUIViews() {

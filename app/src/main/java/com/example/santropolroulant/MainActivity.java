@@ -6,6 +6,7 @@ import androidx.cardview.widget.CardView;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -32,8 +33,8 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main_page); //Designates which layout XML to be used for this page
 
         // Setting up UI
-        loginButton = (Button)findViewById(R.id.Login_Button);
-        signupButton = (Button)findViewById(R.id.Create_Account_Button);
+        loginButton = (Button) findViewById(R.id.Login_Button);
+        signupButton = (Button) findViewById(R.id.Create_Account_Button);
 
         // Auto login for signed in user - Commented out below
         /*firebaseAuth = FirebaseAuth.getInstance();
@@ -60,7 +61,5 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(new Intent(MainActivity.this, CreateAccount.class));
             }
         });
-
     }
-
 }
