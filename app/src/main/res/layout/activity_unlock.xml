@@ -10,9 +10,9 @@
         android:id="@+id/info_session_info1"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:divider="@drawable/ps_prefgroup_divider"
+        android:divider="@drawable/prefgroup_divider"
         android:orientation="vertical"
-        android:padding="@dimen/ps_margin"
+        android:padding="@dimen/small_margin"
         android:showDividers="middle"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -62,10 +62,10 @@
                         android:id="@+id/unlock_description1a"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:src="@drawable/ps_shape_save"
+                        android:src="@drawable/shape_save"
                         android:text="@string/unlock_body_text1"
                         android:textColor="#FFFFFF"
-                        android:textSize="@dimen/ps_preftitle_font_size"
+                        android:textSize="@dimen/font_larger"
                         android:textStyle="bold" />
 
                 </LinearLayout>
@@ -81,10 +81,10 @@
                         android:id="@+id/unlock_description2a"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:src="@drawable/ps_shape_save"
+                        android:src="@drawable/shape_save"
                         android:text="@string/unlock_body_text2"
                         android:textColor="#FFFFFF"
-                        android:textSize="@dimen/ps_preftitle_font_size"
+                        android:textSize="@dimen/font_larger"
                         android:textStyle="bold" />
 
                 </LinearLayout>

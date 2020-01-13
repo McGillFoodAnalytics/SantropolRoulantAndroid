@@ -5,7 +5,7 @@
     android:id="@+id/linearLayout6"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/ps_background">
+    android:background="@drawable/background">
 
     <ScrollView
         android:layout_width="match_parent"
@@ -17,9 +17,9 @@
             android:id="@+id/prefgroups"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:divider="@drawable/ps_prefgroup_divider"
+            android:divider="@drawable/prefgroup_divider"
             android:orientation="vertical"
-            android:padding="@dimen/ps_margin"
+            android:padding="@dimen/small_margin"
             android:showDividers="middle"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -38,12 +38,11 @@
                     android:id="@+id/prefgroup_personal_title"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/ps_prefgroup_height"
-                    android:background="@drawable/ps_shape_prefgroup"
+                    android:background="@drawable/shape_prefgroup"
                     android:gravity="center"
                     android:text="@string/ps_personal_title"
                     android:textAlignment="gravity"
-                    android:textSize="@dimen/ps_prefgroup_font_size"
-                    />
+                    android:textSize="@dimen/font_larger" />
 
                 <LinearLayout
                     android:id="@+id/preferences_personal"
@@ -62,9 +61,9 @@
                             android:id="@+id/preftitle_personal_firstname"
                             android:layout_width="match_parent"
                             android:layout_height="@dimen/ps_preftitle_height"
-                            android:src="@drawable/ps_shape_save"
+                            android:src="@drawable/shape_save"
                             android:text="@string/ps_personal_firstname"
-                            android:textSize="@dimen/ps_preftitle_font_size" />
+                            android:textSize="@dimen/font_large" />
 
 
                         <EditText
@@ -72,9 +71,11 @@
                             android:layout_width="match_parent"
                             android:layout_height="@dimen/ps_prefinput_height"
                             android:layout_marginTop="@dimen/ps_prefinput_topmargin"
-                            android:background="@drawable/ps_shape_prefinput"
+                            android:background="@drawable/shape_prefinput"
                             android:hint="@string/ps_personal_firstname"
-                            />
+                            android:paddingStart="@dimen/small_margin"
+                            android:paddingEnd="@dimen/small_margin"
+                            android:textSize="@dimen/font_normal" />
                     </LinearLayout>
 
                     <LinearLayout
@@ -88,17 +89,20 @@
                             android:id="@+id/preftitle_personal_lastname"
                             android:layout_width="match_parent"
                             android:layout_height="@dimen/ps_preftitle_height"
-                            android:src="@drawable/ps_shape_save"
+                            android:src="@drawable/shape_save"
                             android:text="@string/ps_personal_lastname"
-                            android:textSize="@dimen/ps_preftitle_font_size" />
+                            android:textSize="@dimen/font_large" />
 
                         <EditText
                             android:id="@+id/prefinput_personal_lastname"
                             android:layout_width="match_parent"
                             android:layout_height="@dimen/ps_prefinput_height"
                             android:layout_marginTop="@dimen/ps_prefinput_topmargin"
-                            android:background="@drawable/ps_shape_prefinput"
-                            android:hint="@string/ps_personal_lastname" />
+                            android:background="@drawable/shape_prefinput"
+                            android:hint="@string/ps_personal_lastname"
+                            android:paddingStart="@dimen/small_margin"
+                            android:paddingEnd="@dimen/small_margin"
+                            android:textSize="@dimen/font_normal" />
                     </LinearLayout>
                 </LinearLayout>
             </LinearLayout>
@@ -113,11 +117,11 @@
                     android:id="@+id/prefgroup_birthday_title"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/ps_prefgroup_height"
-                    android:background="@drawable/ps_shape_prefgroup"
+                    android:background="@drawable/shape_prefgroup"
                     android:gravity="center"
                     android:text="@string/ps_birthday_title"
                     android:textAlignment="gravity"
-                    android:textSize="@dimen/ps_prefgroup_font_size" />
+                    android:textSize="@dimen/font_larger" />
 
                 <LinearLayout
                     android:id="@+id/preferences_birthday"
@@ -136,21 +140,24 @@
                             android:id="@+id/preftitle_birthday_dob"
                             android:layout_width="match_parent"
                             android:layout_height="@dimen/ps_preftitle_height"
-                            android:src="@drawable/ps_shape_save"
+                            android:src="@drawable/shape_save"
                             android:text="@string/ps_birthday_dob"
-                            android:textSize="@dimen/ps_preftitle_font_size" />
+                            android:textSize="@dimen/font_large" />
 
                         <EditText
                             android:id="@+id/prefinput_birthday_dob"
                             android:layout_width="match_parent"
                             android:layout_height="@dimen/ps_prefinput_height"
                             android:layout_marginTop="@dimen/ps_prefinput_topmargin"
-                            android:background="@drawable/ps_shape_prefinput"
+                            android:background="@drawable/shape_prefinput"
                             android:calendarViewShown="false"
                             android:datePickerMode="spinner"
                             android:focusable="false"
                             android:inputType="date"
-                            android:longClickable="false" />
+                            android:longClickable="false"
+                            android:paddingStart="@dimen/small_margin"
+                            android:paddingEnd="@dimen/small_margin"
+                            android:textSize="@dimen/font_normal" />
                     </LinearLayout>
                 </LinearLayout>
             </LinearLayout>
@@ -165,11 +172,11 @@
                     android:id="@+id/prefgroup_contact_title"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/ps_prefgroup_height"
-                    android:background="@drawable/ps_shape_prefgroup"
+                    android:background="@drawable/shape_prefgroup"
                     android:gravity="center"
                     android:text="@string/ps_contact_title"
                     android:textAlignment="gravity"
-                    android:textSize="@dimen/ps_prefgroup_font_size" />
+                    android:textSize="@dimen/font_larger" />
 
                 <LinearLayout
                     android:id="@+id/preferences_contact"
@@ -188,17 +195,20 @@
                             android:id="@+id/preftitle_contact_email"
                             android:layout_width="match_parent"
                             android:layout_height="@dimen/ps_preftitle_height"
-                            android:src="@drawable/ps_shape_save"
+                            android:src="@drawable/shape_save"
                             android:text="@string/ps_contact_email"
-                            android:textSize="@dimen/ps_preftitle_font_size" />
+                            android:textSize="@dimen/font_large" />
 
                         <EditText
                             android:id="@+id/prefinput_contact_email"
                             android:layout_width="match_parent"
                             android:layout_height="@dimen/ps_prefinput_height"
                             android:layout_marginTop="@dimen/ps_prefinput_topmargin"
-                            android:background="@drawable/ps_shape_prefinput"
-                            android:hint="@string/ps_contact_email" />
+                            android:background="@drawable/shape_prefinput"
+                            android:hint="@string/ps_contact_email"
+                            android:paddingStart="@dimen/small_margin"
+                            android:paddingEnd="@dimen/small_margin"
+                            android:textSize="@dimen/font_normal" />
                     </LinearLayout>
 
                     <LinearLayout
@@ -212,17 +222,20 @@
                             android:id="@+id/preftitle_contact_phone"
                             android:layout_width="match_parent"
                             android:layout_height="@dimen/ps_preftitle_height"
-                            android:src="@drawable/ps_shape_save"
+                            android:src="@drawable/shape_save"
                             android:text="@string/ps_contact_phone"
-                            android:textSize="@dimen/ps_preftitle_font_size" />
+                            android:textSize="@dimen/font_large" />
 
                         <EditText
                             android:id="@+id/prefinput_contact_phone"
                             android:layout_width="match_parent"
                             android:layout_height="@dimen/ps_prefinput_height"
                             android:layout_marginTop="@dimen/ps_prefinput_topmargin"
-                            android:background="@drawable/ps_shape_prefinput"
-                            android:hint="@string/ps_contact_phone" />
+                            android:background="@drawable/shape_prefinput"
+                            android:hint="@string/ps_contact_phone"
+                            android:paddingStart="@dimen/small_margin"
+                            android:paddingEnd="@dimen/small_margin"
+                            android:textSize="@dimen/font_normal" />
                     </LinearLayout>
                 </LinearLayout>
 
@@ -238,11 +251,11 @@
                     android:id="@+id/prefgroup_address_title"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/ps_prefgroup_height"
-                    android:background="@drawable/ps_shape_prefgroup"
+                    android:background="@drawable/shape_prefgroup"
                     android:gravity="center"
                     android:text="@string/ps_address_title"
                     android:textAlignment="gravity"
-                    android:textSize="@dimen/ps_prefgroup_font_size" />
+                    android:textSize="@dimen/font_larger" />
 
                 <LinearLayout
                     android:id="@+id/preferences_address"
@@ -261,17 +274,20 @@
                             android:id="@+id/preftitle_address_line"
                             android:layout_width="match_parent"
                             android:layout_height="@dimen/ps_preftitle_height"
-                            android:src="@drawable/ps_shape_save"
+                            android:src="@drawable/shape_save"
                             android:text="@string/ps_address_line"
-                            android:textSize="@dimen/ps_preftitle_font_size" />
+                            android:textSize="@dimen/font_large" />
 
                         <EditText
                             android:id="@+id/prefinput_address_line"
                             android:layout_width="match_parent"
                             android:layout_height="@dimen/ps_prefinput_height"
                             android:layout_marginTop="@dimen/ps_prefinput_topmargin"
-                            android:background="@drawable/ps_shape_prefinput"
-                            android:hint="@string/ps_address_line" />
+                            android:background="@drawable/shape_prefinput"
+                            android:hint="@string/ps_address_line"
+                            android:paddingStart="@dimen/small_margin"
+                            android:paddingEnd="@dimen/small_margin"
+                            android:textSize="@dimen/font_normal" />
                     </LinearLayout>
 
                     <LinearLayout
@@ -285,17 +301,20 @@
                             android:id="@+id/preftitle_address_city"
                             android:layout_width="match_parent"
                             android:layout_height="@dimen/ps_preftitle_height"
-                            android:src="@drawable/ps_shape_save"
+                            android:src="@drawable/shape_save"
                             android:text="@string/ps_address_city"
-                            android:textSize="@dimen/ps_preftitle_font_size" />
+                            android:textSize="@dimen/font_large" />
 
                         <EditText
                             android:id="@+id/prefinput_address_city"
                             android:layout_width="match_parent"
                             android:layout_height="@dimen/ps_prefinput_height"
                             android:layout_marginTop="@dimen/ps_prefinput_topmargin"
-                            android:background="@drawable/ps_shape_prefinput"
-                            android:hint="@string/ps_address_city" />
+                            android:background="@drawable/shape_prefinput"
+                            android:hint="@string/ps_address_city"
+                            android:paddingStart="@dimen/small_margin"
+                            android:paddingEnd="@dimen/small_margin"
+                            android:textSize="@dimen/font_normal" />
                     </LinearLayout>
 
                     <LinearLayout
@@ -309,17 +328,20 @@
                             android:id="@+id/preftitle_address_postal"
                             android:layout_width="match_parent"
                             android:layout_height="@dimen/ps_preftitle_height"
-                            android:src="@drawable/ps_shape_save"
+                            android:src="@drawable/shape_save"
                             android:text="@string/ps_address_postal"
-                            android:textSize="@dimen/ps_preftitle_font_size" />
+                            android:textSize="@dimen/font_large" />
 
                         <EditText
                             android:id="@+id/prefinput_address_postal"
                             android:layout_width="match_parent"
                             android:layout_height="@dimen/ps_prefinput_height"
                             android:layout_marginTop="@dimen/ps_prefinput_topmargin"
-                            android:background="@drawable/ps_shape_prefinput"
-                            android:hint="@string/ps_address_postal" />
+                            android:background="@drawable/shape_prefinput"
+                            android:hint="@string/ps_address_postal"
+                            android:paddingStart="@dimen/small_margin"
+                            android:paddingEnd="@dimen/small_margin"
+                            android:textSize="@dimen/font_normal" />
                     </LinearLayout>
                 </LinearLayout>
             </LinearLayout>
@@ -334,13 +356,12 @@
                     android:id="@+id/prefgroup_username_title"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/ps_prefgroup_height"
-                    android:background="@drawable/ps_shape_prefgroup"
+                    android:autoSizeTextType="uniform"
+                    android:background="@drawable/shape_prefgroup"
                     android:gravity="center"
                     android:text="@string/ps_username_title"
                     android:textAlignment="gravity"
-                    android:textSize="@dimen/ps_prefgroup_font_size"
-                    android:autoSizeTextType="uniform"
-                    />
+                    android:textSize="@dimen/font_larger" />
 
                 <LinearLayout
                     android:id="@+id/preferences_username"
@@ -360,8 +381,11 @@
                             android:layout_width="match_parent"
                             android:layout_height="@dimen/ps_prefinput_height"
                             android:layout_marginTop="@dimen/ps_prefinput_topmargin"
-                            android:background="@drawable/ps_shape_prefinput"
-                            android:hint="@string/ps_username_title" />
+                            android:background="@drawable/shape_prefinput"
+                            android:hint="@string/ps_username_title"
+                            android:paddingStart="@dimen/small_margin"
+                            android:paddingEnd="@dimen/small_margin"
+                            android:textSize="@dimen/font_normal" />
                     </LinearLayout>
                 </LinearLayout>
             </LinearLayout>
@@ -370,7 +394,7 @@
                 android:id="@+id/ps_save"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@drawable/ps_shape_save"
+                android:background="@drawable/shape_save"
                 android:text="@string/ps_save_button"
                 android:textSize="@dimen/ps_save_font_size"
                 tools:layout_editor_absoluteX="30dp"
