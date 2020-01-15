@@ -78,7 +78,7 @@ public class CreateAccount3 extends AppCompatActivity {
 
                         @Override
                         public void onComplete(@NonNull Task<AuthResult> task) {
-                           Log.d("wtv", "FUCK");
+                           Log.d("wtv", "hmm");
 
                             if(task.isSuccessful()){
                                 // if successful then entersendUser user data into firebase
@@ -89,7 +89,10 @@ public class CreateAccount3 extends AppCompatActivity {
                                 setInvisible();
                                 createAccount.setClickable(true);
 
-                                startActivity(new Intent(CreateAccount3.this, Login.class));
+                                Intent intent = new Intent(CreateAccount3.this, CreateAccountFinish.class);
+                                intent.putExtra("LAST_NAME", last_name);
+                                intent.putExtra("PHONE_NUMBER", phone_number);
+                                startActivity(intent);
                                 /*}
                                 else{
                                     Toast.makeText(CreateAccount3.this, "Oops a monkey quit!", Toast.LENGTH_SHORT).show();

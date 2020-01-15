@@ -76,7 +76,8 @@ public class FragmentCalendar extends Fragment {
         ArrayList<Date> calendarList =  getDatesBetween(today, nextYear.getTime());
         Log.d("calendarList", calendarList.get(0).toString());
 
-        Integer dateVal = Integer.valueOf(Integer.toString(year).substring(1)+Integer.toString(month)+Integer.toString(day));
+        Integer dateVal = Integer.valueOf(Integer.toString(year).substring(1)+ String.format("%02d", month)+ String.format("%02d",day));
+        Log.d("ha", dateVal + "");
         listener.onInputASent(todayDate,dateVal);
         final CalendarPickerView calendar = (CalendarPickerView) v.findViewById(R.id.calendar);
         calendar.init(today, nextYear.getTime()).withSelectedDate(today).withHighlightedDate(nextDay2.getTime());
@@ -172,7 +173,8 @@ public class FragmentCalendar extends Fragment {
                 int month = cal.get(Calendar.MONTH)+1;
                 int year  = cal.get(Calendar.YEAR);
                 int day   = cal.get(Calendar.DAY_OF_MONTH);
-                Integer dateVal = Integer.valueOf(Integer.toString(year).substring(1)+Integer.toString(month)+Integer.toString(day));
+                //Integer dateVal = Integer.valueOf(Integer.toString(year).substring(1)+Integer.toString(month)+Integer.toString(day));
+                Integer dateVal = Integer.valueOf(Integer.toString(year).substring(1)+ String.format("%02d", month)+ String.format("%02d",day));
                 listener.onInputASent(selectedDate,dateVal);
             }
             @Override

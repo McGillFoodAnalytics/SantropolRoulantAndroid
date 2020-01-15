@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical" android:layout_width="match_parent"
@@ -7,60 +7,211 @@
     android:background="@drawable/main_background"
     >
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:gravity="center"
+        android:text="Every day, our services bring an infinite amount of love to our members"
+        android:textColor="#FFFFFF"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/bg_main_desc"
+        app:layout_constraintLeft_toLeftOf="@+id/lg_main_buttons"
+        app:layout_constraintRight_toRightOf="@+id/rg_main_buttons"
+        app:layout_constraintTop_toTopOf="@+id/tg_main_desc" />
+    <Button
+        android:id="@+id/Create_Account_Button"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="#679267"
+        android:text="REGISTER"
+        android:textColor="#FFFFFF"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:visibility="visible"
+        app:layout_constraintBottom_toBottomOf="@+id/bg_main_register"
+        app:layout_constraintLeft_toLeftOf="@+id/lg_main_buttons"
+        app:layout_constraintRight_toRightOf="@+id/rg_main_buttons"
+        app:layout_constraintTop_toTopOf="@+id/tg_main_register" />
 
-        <ImageView
-            android:id="@+id/Santropol_Logo"
-            android:layout_width="342dp"
-            android:layout_height="308dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="100dp"
-            android:layout_marginEnd="8dp"
-            android:contentDescription="@string/santropol_logo"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.49"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/santropol_logo" />
+    <Button
+        android:id="@+id/Login_Button"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="#679267"
+        android:text="@string/log_in"
+        android:textColor="#FFFFFF"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/bg_main_login"
+        app:layout_constraintLeft_toLeftOf="@+id/lg_main_buttons"
+        app:layout_constraintRight_toRightOf="@+id/rg_main_buttons"
+        app:layout_constraintTop_toTopOf="@+id/tg_main_login" />
 
-        <Button
-            android:id="@+id/Create_Account_Button"
-            android:layout_width="237dp"
-            android:layout_height="55dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="428dp"
-            android:layout_marginEnd="8dp"
-            android:background="#822F71"
-            android:text="@string/create_account"
-            android:textColor="#FFFFFF"
-            android:textSize="18sp"
-            android:textStyle="bold"
-            android:visibility="visible"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:lines="2"
+        android:text="Welcome to \nSantropol Roulant"
+        android:textColor="#FFFFFF"
+        android:textSize="@dimen/_22sdp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/bg_main_header"
+        app:layout_constraintLeft_toLeftOf="@+id/lg_main_buttons"
+        app:layout_constraintRight_toRightOf="@+id/rg_main_buttons"
+        app:layout_constraintTop_toTopOf="@+id/tg_main_header" />
 
-        <Button
-            android:id="@+id/Login_Button"
-            android:layout_width="237dp"
-            android:layout_height="55dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginBottom="8dp"
-            android:background="#822F71"
-            android:text="@string/log_in"
-            android:textColor="#FFFFFF"
-            android:textSize="18sp"
-            android:textStyle="bold"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/Create_Account_Button"
-            app:layout_constraintVertical_bias="0.129" />
+    <TextView
+        android:id="@+id/timerView"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:text="0"
+        android:textColor="#444445"
+        android:textSize="@dimen/_64sdp"
+        android:textStyle="bold"
+        android:gravity="center"
+        android:alpha=".80"
+        app:layout_constraintBottom_toBottomOf="@+id/bg_main_heart"
+        app:layout_constraintLeft_toLeftOf="@+id/lg_main_counter"
+        app:layout_constraintRight_toRightOf="@+id/rg_main_buttons"
+        app:layout_constraintTop_toTopOf="@+id/tg_main_heart" />
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:srcCompat="@drawable/heart"
+        android:alpha=".80"
+        app:layout_constraintBottom_toBottomOf="@+id/bg_main_heart"
+        app:layout_constraintLeft_toLeftOf="@+id/lg_main_heart"
+        app:layout_constraintRight_toRightOf="@+id/rg_main_heart"
+        app:layout_constraintTop_toTopOf="@+id/tg_main_heart" />
 
-</LinearLayout>
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/tg_main_login"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent=".68" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/bg_main_login"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent=".76" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/tg_main_register"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent=".81" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/bg_main_register"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent=".89" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/lg_main_buttons"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent=".1" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/rg_main_buttons"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent=".9" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/tg_main_desc"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent=".46" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/bg_main_desc"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent=".62" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/tg_main_header"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent=".09" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/bg_main_header"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent=".2" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/tg_main_heart"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent=".26" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/bg_main_heart"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent=".44" />
+
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/tg_main_count"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent=".30" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/bg_main_count"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent=".40" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/lg_main_heart"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent=".15" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/rg_main_heart"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent=".40" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/lg_main_counter"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent=".4" />
+
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+
+

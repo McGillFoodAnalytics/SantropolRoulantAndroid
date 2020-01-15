@@ -14,151 +14,209 @@
 
     <EditText
         android:id="@+id/etUserF_Name"
-        android:layout_width="308dp"
-        android:layout_height="58dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="36dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginBottom="8dp"
-        android:ems="10"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
         android:hint="@string/first_name"
         android:imeOptions="actionDone"
         android:inputType="textPersonName"
         android:textColor="#FFFFFF"
         android:textColorHint="#FFFFFF"
-        android:textSize="24sp"
-        app:layout_constraintBottom_toTopOf="@+id/etUserL_Name"
-        app:layout_constraintEnd_toStartOf="@+id/guideline4"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="@+id/guideline3"
-        app:layout_constraintTop_toBottomOf="@+id/info_about_you"
-        app:layout_constraintVertical_bias="0.177" />
+        android:textSize="@dimen/_20sdp"
+        android:backgroundTint="#FFFFFF"
+        app:layout_constraintBottom_toBottomOf="@+id/bg_first_name"
+        app:layout_constraintLeft_toLeftOf="@+id/lg_create_account"
+        app:layout_constraintRight_toRightOf="@+id/rg_create_account"
+        app:layout_constraintTop_toTopOf="@+id/tg_first_name" />
 
 
     <EditText
         android:id="@+id/etUserL_Name"
-        android:layout_width="308dp"
-        android:layout_height="58dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="24dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginBottom="8dp"
-        android:ems="10"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
         android:hint="@string/last_name"
         android:imeOptions="actionDone"
         android:inputType="textPersonName"
         android:textColor="#FFFFFF"
         android:textColorHint="#FFFFFF"
-        android:textSize="24sp"
-        app:layout_constraintBottom_toTopOf="@+id/etUserBirthDate"
-        app:layout_constraintEnd_toStartOf="@+id/guideline4"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="@+id/guideline3"
-        app:layout_constraintTop_toBottomOf="@+id/etUserF_Name"
-        app:layout_constraintVertical_bias="0.0" />
+        android:textSize="@dimen/_20sdp"
+        android:backgroundTint="#FFFFFF"
+        app:layout_constraintBottom_toBottomOf="@+id/bg_last_name"
+        app:layout_constraintLeft_toLeftOf="@+id/lg_create_account"
+        app:layout_constraintRight_toRightOf="@+id/rg_create_account"
+        app:layout_constraintTop_toTopOf="@+id/tg_last_name"/>
 
 
     <TextView
         android:id="@+id/etUserBirthDate"
-        android:layout_width="308dp"
-        android:layout_height="58dp"
-        android:layout_gravity="center"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="28sp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginBottom="8dp"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
         android:background="?attr/editTextBackground"
-        android:gravity="center_vertical"
         android:hint="Date of Birth"
         android:textAppearance="?android:attr/textAppearanceMediumInverse"
         android:textColor="#FFFFFF"
         android:textColorHint="#FFFFFF"
-        android:textSize="24sp"
-        app:layout_constraintBottom_toTopOf="@+id/tvUserLogin"
-        app:layout_constraintEnd_toStartOf="@+id/guideline4"
-        app:layout_constraintStart_toStartOf="@+id/guideline3"
-        app:layout_constraintTop_toBottomOf="@+id/etUserL_Name"
-        app:layout_constraintVertical_bias="0.0" />
+        android:textSize="@dimen/_20sdp"
+        android:backgroundTint="#FFFFFF"
+        app:layout_constraintBottom_toBottomOf="@+id/bg_dob"
+        app:layout_constraintLeft_toLeftOf="@+id/lg_create_account"
+        app:layout_constraintRight_toRightOf="@+id/rg_create_account"
+        app:layout_constraintTop_toTopOf="@+id/tg_dob" />
 
     <TextView
         android:id="@+id/info_about_you"
-        android:layout_width="320dp"
-        android:layout_height="39dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginBottom="8dp"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
         android:text="Let us know about you!"
         android:textColor="#FFFFFF"
-        android:textSize="30sp"
+        android:textSize="@dimen/_24sdp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/guideline6"
-        app:layout_constraintEnd_toStartOf="@+id/guideline4"
-        app:layout_constraintHorizontal_bias="0.625"
-        app:layout_constraintStart_toStartOf="@+id/guideline3"
-        app:layout_constraintTop_toTopOf="@+id/guideline5"
-        app:layout_constraintVertical_bias="0.034" />
+        app:layout_constraintBottom_toBottomOf="@+id/bg_header"
+        app:layout_constraintLeft_toLeftOf="@+id/lg_create_account"
+        app:layout_constraintRight_toRightOf="@+id/rg_create_account"
+        app:layout_constraintTop_toTopOf="@+id/tg_header" />
 
 
     <TextView
         android:id="@+id/tvUserLogin"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="60dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginBottom="16dp"
         android:text="Already Signed Up? Login"
         android:textColor="#FFFFFF"
-        android:textSize="20sp"
+        android:textSize="@dimen/_18sdp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/guideline6"
-        app:layout_constraintEnd_toStartOf="@+id/guideline4"
-        app:layout_constraintHorizontal_bias="0.495"
-        app:layout_constraintStart_toStartOf="@+id/guideline3"
-        app:layout_constraintTop_toBottomOf="@+id/etUserBirthDate"
-        app:layout_constraintVertical_bias="0.108" />
+        app:layout_constraintBottom_toBottomOf="@+id/bg_redirect1"
+        app:layout_constraintLeft_toLeftOf="@+id/lg_create_account"
+        app:layout_constraintRight_toRightOf="@+id/rg_create_account"
+        app:layout_constraintTop_toTopOf="@+id/tg_redirect1" />
 
     <Button
         android:id="@+id/btn_next_about_you"
-        android:layout_width="418sp"
-        android:layout_height="78sp"
-        android:layout_marginStart="8sp"
+        android:layout_width="0sp"
+        android:layout_height="0sp"
         android:background="#679267"
         android:text="NEXT"
         android:textColor="#FFFFFF"
-        android:textSize="24sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.8"
-        app:layout_constraintStart_toStartOf="parent" />
+        android:textSize="@dimen/_20sdp"
+        app:layout_constraintBottom_toBottomOf="@+id/bg_next1"
+        app:layout_constraintLeft_toLeftOf="@+id/lg_next1"
+        app:layout_constraintRight_toRightOf="@+id/rg_next1"
+        app:layout_constraintTop_toTopOf="@+id/tg_next1" />
 
 
     <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline3"
+        android:id="@+id/lg_create_account"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_begin="30dp" />
+        app:layout_constraintGuide_percent="0.10" />
 
     <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline4"
+        android:id="@+id/rg_create_account"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_end="30dp" />
+        app:layout_constraintGuide_percent="0.90" />
 
     <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline5"
+        android:id="@+id/bg_header"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_begin="30dp" />
+        app:layout_constraintGuide_percent="0.22
+" />
 
     <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline6"
+        android:id="@+id/tg_header"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_end="98dp" />
+        app:layout_constraintGuide_percent="0.10" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/tg_first_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.25" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/bg_first_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.35" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/tg_last_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.40" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/bg_last_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.50" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/tg_dob"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.55" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/bg_dob"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.65" />
+
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/tg_redirect1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.70" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/bg_redirect1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.80" />
+
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/tg_next1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.9" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/bg_next1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="1.0" />
+
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/rg_next1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="1" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/lg_next1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_begin="0dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

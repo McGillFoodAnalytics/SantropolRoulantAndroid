@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -12,42 +12,100 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerViewUser"
-        android:layout_width="match_parent"
-        android:layout_height="494dp"
-        android:layout_above="@+id/btnVolunteer"
-        android:layout_alignParentTop="true"
-        android:layout_marginTop="59dp"
-        android:layout_marginBottom="37dp"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
         android:background="#FFFFFF"
         android:visibility="visible"
-        tools:visibility="invisible" />
+        tools:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="@+id/bg_schedule_list"
+        app:layout_constraintLeft_toLeftOf="@+id/lg_schedule_list"
+        app:layout_constraintRight_toRightOf="@+id/rg_schedule_list"
+        app:layout_constraintTop_toTopOf="@+id/tg_schedule_list"/>
 
     <Button
         android:id="@+id/btnVolunteer"
-        android:layout_width="311dp"
-        android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentBottom="true"
-        android:layout_marginStart="48dp"
-        android:layout_marginEnd="51dp"
-        android:layout_marginBottom="38dp"
+        android:layout_width="0sp"
+        android:layout_height="0sp"
         android:background="#9C27B0"
         android:text="Volunteer"
-        android:textColor="#FFFFFF" />
+        android:textColor="#FFFFFF"
+        app:layout_constraintBottom_toBottomOf="@+id/bg_schedule_button"
+        app:layout_constraintLeft_toLeftOf="@+id/lg_schedule"
+        app:layout_constraintRight_toRightOf="@+id/rg_schedule"
+        app:layout_constraintTop_toTopOf="@+id/tg_schedule_button"/>
 
     <TextView
         android:id="@+id/textView"
-        android:layout_width="263dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentEnd="true"
-        android:layout_marginStart="72dp"
-        android:layout_marginTop="14dp"
-        android:layout_marginEnd="76dp"
         android:text="What you are signed up for!"
         android:textColor="#9C27B0"
         android:textSize="20sp"
-        android:textStyle="bold" />
-</RelativeLayout>
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/tg_schedule_list"
+        app:layout_constraintLeft_toLeftOf="@+id/lg_schedule"
+        app:layout_constraintRight_toRightOf="@+id/rg_schedule"
+        app:layout_constraintTop_toTopOf="@+id/tg_schedule_header"/>
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/lg_schedule"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.1" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/rg_schedule"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.9" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/tg_schedule_header"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.05" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/tg_schedule_list"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.15" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/bg_schedule_list"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent=".80" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/tg_schedule_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.85" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/bg_schedule_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.95" />
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/lg_schedule_list"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/rg_schedule_list"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="1" />
+</androidx.constraintlayout.widget.ConstraintLayout>
