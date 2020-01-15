@@ -23,6 +23,7 @@
         android:textColor="#FFFFFF"
         android:textColorHint="#FFFFFF"
         android:textSize="@dimen/_20sdp"
+        android:backgroundTint="#FFFFFF"
         app:layout_constraintBottom_toBottomOf="@+id/bg_create_account_phone_number"
         app:layout_constraintLeft_toLeftOf="@+id/lg_create_account"
         app:layout_constraintRight_toRightOf="@+id/rg_create_account"
@@ -38,6 +39,7 @@
         android:textColor="#FFFFFF"
         android:textColorHint="#FFFFFF"
         android:textSize="@dimen/_20sdp"
+        android:backgroundTint="#FFFFFF"
         app:layout_constraintBottom_toBottomOf="@+id/bg_create_account_email"
         app:layout_constraintLeft_toLeftOf="@+id/lg_create_account"
         app:layout_constraintRight_toRightOf="@+id/rg_create_account"
@@ -53,6 +55,7 @@
         android:textColor="#FFFFFF"
         android:textColorHint="#FFFFFF"
         android:textSize="@dimen/_20sdp"
+        android:backgroundTint="#FFFFFF"
         app:layout_constraintBottom_toBottomOf="@+id/bg_create_account_pass1"
         app:layout_constraintLeft_toLeftOf="@+id/lg_create_account"
         app:layout_constraintRight_toRightOf="@+id/rg_create_account"
@@ -68,6 +71,7 @@
         android:textColor="#FFFFFF"
         android:textColorHint="#FFFFFF"
         android:textSize="@dimen/_20sdp"
+        android:backgroundTint="#FFFFFF"
         app:layout_constraintBottom_toBottomOf="@+id/bg_create_account_pass2"
         app:layout_constraintLeft_toLeftOf="@+id/lg_create_account"
         app:layout_constraintRight_toRightOf="@+id/rg_create_account"
@@ -106,56 +110,56 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.25" />
+        app:layout_constraintGuide_percent="0.30" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/tg_create_account_phone_number"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.15" />
+        app:layout_constraintGuide_percent="0.20" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/tg_create_account_email"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.30" />
+        app:layout_constraintGuide_percent="0.35" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/bg_create_account_email"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.40" />
+        app:layout_constraintGuide_percent="0.45" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/tg_create_account_pass1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.45" />
+        app:layout_constraintGuide_percent="0.50" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/bg_create_account_pass1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.55" />
+        app:layout_constraintGuide_percent="0.60" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/tg_create_account_pass2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.60" />
+        app:layout_constraintGuide_percent="0.65" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/bg_create_account_pass2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.70" />
+        app:layout_constraintGuide_percent="0.75" />
 
 
     <androidx.constraintlayout.widget.Guideline
@@ -186,5 +190,33 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         app:layout_constraintGuide_begin="0dp" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/bg_header"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.22
+" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/tg_header"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.10" />
+
+    <TextView
+        android:id="@+id/create_account_3_header"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:text="Almost done!"
+        android:textColor="#FFFFFF"
+        android:textSize="@dimen/_24sdp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/bg_header"
+        app:layout_constraintLeft_toLeftOf="@+id/lg_create_account"
+        app:layout_constraintRight_toRightOf="@+id/rg_create_account"
+        app:layout_constraintTop_toTopOf="@+id/tg_header" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

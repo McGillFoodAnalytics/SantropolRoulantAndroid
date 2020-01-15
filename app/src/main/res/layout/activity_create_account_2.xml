@@ -22,6 +22,7 @@
         android:textColor="#FFFFFF"
         android:textColorHint="#FFFFFF"
         android:textSize="@dimen/_20sdp"
+        android:backgroundTint="#FFFFFF"
         app:layout_constraintBottom_toBottomOf="@+id/bg_first_name"
         app:layout_constraintLeft_toLeftOf="@+id/lg_create_account"
         app:layout_constraintRight_toRightOf="@+id/rg_create_account"
@@ -37,6 +38,7 @@
         android:textColor="#FFFFFF"
         android:textColorHint="#FFFFFF"
         android:textSize="@dimen/_20sdp"
+        android:backgroundTint="#FFFFFF"
         app:layout_constraintBottom_toBottomOf="@+id/bg_last_name"
         app:layout_constraintLeft_toLeftOf="@+id/lg_create_account"
         app:layout_constraintRight_toRightOf="@+id/rg_create_account"
@@ -52,6 +54,7 @@
         android:textColor="#FFFFFF"
         android:textColorHint="#FFFFFF"
         android:textSize="@dimen/_20sdp"
+        android:backgroundTint="#FFFFFF"
         app:layout_constraintBottom_toBottomOf="@+id/bg_dob"
         app:layout_constraintLeft_toLeftOf="@+id/lg_create_account"
         app:layout_constraintRight_toRightOf="@+id/rg_create_account"
@@ -170,5 +173,35 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         app:layout_constraintGuide_begin="0dp" />
+
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/bg_header"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.22
+" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/tg_header"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.10" />
+
+    <TextView
+        android:id="@+id/address_header"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:text="Where do you live?"
+        android:textColor="#FFFFFF"
+        android:textSize="@dimen/_24sdp"
+        android:textStyle="bold"
+
+        app:layout_constraintBottom_toBottomOf="@+id/bg_header"
+        app:layout_constraintLeft_toLeftOf="@+id/lg_create_account"
+        app:layout_constraintRight_toRightOf="@+id/rg_create_account"
+        app:layout_constraintTop_toTopOf="@+id/tg_header" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
