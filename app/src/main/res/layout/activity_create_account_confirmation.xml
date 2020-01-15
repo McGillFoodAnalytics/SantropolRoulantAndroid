@@ -1,0 +1,208 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_create_account_confirmation"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/main_background"
+    android:clickable="true"
+    android:focusableInTouchMode="true"
+    tools:context=".Login">
+
+    <include layout="@layout/wheels" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/tg_create_account_conf_check"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.08" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/bg_create_account_conf_check"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.2" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/tguser"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.36" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/bguser"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.42" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/tgpass"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.45" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/bgpass"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.55" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/tginfo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.60" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/bginfo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.75" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/lguser_pass_info"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.14" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/rguser_pass_info"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.86" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/rgbutton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="1" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/lgbutton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/tgbutton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.9" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/bgbutton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="1.0" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/tg_login_header"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.26" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/bg_login_header"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.34" />
+
+
+    <TextView
+        android:id="@+id/tvCreateAccountConfSubtitle"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:text="YOUR USER NAME"
+        android:textColor="#FFFFFF"
+        android:textSize="@dimen/_15sdp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@id/bguser"
+        app:layout_constraintLeft_toLeftOf="@+id/lguser_pass_info"
+        app:layout_constraintRight_toRightOf="@+id/rguser_pass_info"
+        app:layout_constraintTop_toTopOf="@+id/tguser"
+        />
+
+    <TextView
+        android:id="@+id/tvCreateAccountConfUsername"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:textColor="#444445"
+        android:textSize="@dimen/_16sdp"
+        android:autoSizeTextType="uniform"
+        android:backgroundTint="#FFFFFF"
+        android:gravity="center"
+        app:layout_constraintBottom_toBottomOf="@id/bgpass"
+        app:layout_constraintLeft_toLeftOf="@+id/lguser_pass_info"
+        app:layout_constraintRight_toRightOf="@+id/rguser_pass_info"
+        app:layout_constraintTop_toTopOf="@+id/tgpass" />
+
+    <Button
+        android:id="@+id/btnCreateAccountConfFinish"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="#679267"
+        android:shadowColor="#00070303"
+        android:text="Finish"
+        android:textAllCaps="false"
+        android:textColor="#FFFFFF"
+        android:textSize="@dimen/_22sdp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@id/bgbutton"
+        app:layout_constraintLeft_toLeftOf="@+id/lgbutton"
+        app:layout_constraintRight_toRightOf="@+id/rgbutton"
+        app:layout_constraintTop_toTopOf="@+id/tgbutton" />
+
+    <TextView
+        android:id="@+id/create_account_conf_description"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:text="You need to use this given username to login to your account.  It is made up of the first two letters of your family name followed by your phone number."
+        android:textColor="#ffffff"
+        android:textSize="@dimen/_13sdp"
+        app:layout_constraintBottom_toBottomOf="@id/bginfo"
+        app:layout_constraintLeft_toLeftOf="@+id/lguser_pass_info"
+        app:layout_constraintRight_toRightOf="@+id/rguser_pass_info"
+        app:layout_constraintTop_toTopOf="@+id/tginfo" />
+
+    <TextView
+        android:id="@+id/tvLoginHeader"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:text="Your Account is now set up."
+        android:textColor="#ffffff"
+        android:textSize="@dimen/_16sdp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@id/bg_login_header"
+        app:layout_constraintLeft_toLeftOf="@+id/lguser_pass_info"
+        app:layout_constraintRight_toRightOf="@+id/rguser_pass_info"
+        app:layout_constraintTop_toTopOf="@+id/tg_login_header" />
+
+    <ImageView
+        android:id="@+id/ivCheckmark"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:src="@drawable/checkmark"
+        app:layout_constraintBottom_toBottomOf="@id/bg_create_account_conf_check"
+        app:layout_constraintLeft_toLeftOf="@+id/lguser_pass_info"
+        app:layout_constraintRight_toRightOf="@+id/rguser_pass_info"
+        app:layout_constraintTop_toTopOf="@+id/tg_create_account_conf_check" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

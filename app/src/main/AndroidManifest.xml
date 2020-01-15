@@ -24,6 +24,8 @@
             android:screenOrientation="portrait" />
         <activity android:name=".CreateAccount3"
             android:screenOrientation="portrait" />
+        <activity android:name=".CreateAccountFinish"
+            android:screenOrientation="portrait" />
         <activity android:name=".ContactUs"
             android:screenOrientation="portrait" />
         <activity android:name=".CreateAccount"
