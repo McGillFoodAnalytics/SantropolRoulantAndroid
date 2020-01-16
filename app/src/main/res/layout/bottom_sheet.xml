@@ -5,7 +5,7 @@
     android:id="@+id/bottom_sheet"
     android:layout_width="match_parent"
     android:layout_height="445dp"
-    android:background="#9950AC"
+    android:background="@color/mild_purple"
     android:orientation="vertical"
     app:behavior_hideable="false"
     app:behavior_peekHeight="?actionBarSize"
@@ -31,6 +31,7 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         app:layout_constraintGuide_percent="0.09" />
+
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/right_guideline"
         android:layout_width="wrap_content"
@@ -115,7 +116,7 @@
         android:id="@+id/signUp"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:background="#9C27B0"
+        android:background="@color/dark_purple"
         android:text="Sign Up"
         android:textAllCaps="true"
         android:textColor="#FFFFFF"

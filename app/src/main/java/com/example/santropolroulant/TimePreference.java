@@ -37,13 +37,15 @@ public class TimePreference extends AppCompatActivity  {
         btnNext3 = findViewById(R.id.btnNext3);
         crdMorning = findViewById(R.id.crdMorning);
         crdAfternoon = findViewById(R.id.crdAfternoon);
+        crdAfternoon.setCardBackgroundColor(Color.parseColor("#DCAADC"));
+        crdMorning.setCardBackgroundColor(Color.parseColor("#DCAADC"));
 
         crdMorning.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 timePref = "kitam";
-                crdMorning.setCardBackgroundColor(Color.parseColor("#B128B8"));
-                crdAfternoon.setCardBackgroundColor(Color.parseColor("#FFFFFF"));
+                crdMorning.setCardBackgroundColor(Color.parseColor("#D07FCE"));
+                crdAfternoon.setCardBackgroundColor(Color.parseColor("#DCAADC"));
             }
         });
 
@@ -51,8 +53,8 @@ public class TimePreference extends AppCompatActivity  {
             @Override
             public void onClick(View view) {
                 timePref = "kitpm";
-                crdAfternoon.setCardBackgroundColor(Color.parseColor("#B128B8"));
-                crdMorning.setCardBackgroundColor(Color.parseColor("#FFFFFF"));
+                crdAfternoon.setCardBackgroundColor(Color.parseColor("#D07FCE"));
+                crdMorning.setCardBackgroundColor(Color.parseColor("#DCAADC"));
             }
         });
 

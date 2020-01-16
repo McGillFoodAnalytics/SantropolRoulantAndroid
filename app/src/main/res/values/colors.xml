@@ -10,10 +10,10 @@
 
     <!-- basic colors -->
     <color name="lighter_purple">#E9C5E9</color>
-    <color name="light_purple">#dbabdb</color>
-    <color name="mild_purple">#b27be2</color>
-    <color name="dark_purple">#7027B0</color>
-    <color name="darker_purple">#471970</color>
+    <color name="light_purple">#DCAADC</color>
+    <color name="mild_purple">#D07FCE</color>
+    <color name="dark_purple">#671668</color>
+    <color name="darker_purple">#671668</color>
 
     <color name="green">#4E9751</color>
 

@@ -57,28 +57,28 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.58" />
+        app:layout_constraintGuide_percent="0.56" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/rg_button2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.94" />
+        app:layout_constraintGuide_percent="0.92" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/bg_buttons"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.49" />
+        app:layout_constraintGuide_percent="0.5" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/tg_buttons"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.31" />
+        app:layout_constraintGuide_percent="0.28" />
 
 
 
@@ -116,17 +116,16 @@
         android:layout_height="0dp"
         android:clickable="true"
         android:foreground="?android:selectableItemBackground"
+        app:cardCornerRadius="@dimen/_20sdp"
         app:cardElevation="@dimen/zero"
         app:layout_constraintBottom_toBottomOf="@+id/bg_buttons"
-        app:layout_constraintLeft_toLeftOf="@+id/lg_button1"
-        app:layout_constraintRight_toRightOf="@+id/rg_button1"
-        app:layout_constraintTop_toTopOf="@+id/tg_buttons"
-        >
+        app:layout_constraintLeft_toLeftOf="@+id/lg_button2"
+        app:layout_constraintRight_toRightOf="@+id/rg_button2"
+        app:layout_constraintTop_toTopOf="@+id/tg_buttons">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@drawable/radius"
             android:gravity="center"
             android:orientation="vertical">
 
@@ -153,17 +152,16 @@
         android:layout_height="0dp"
         android:clickable="true"
         android:foreground="?android:selectableItemBackground"
+        app:cardCornerRadius="@dimen/_20sdp"
         app:cardElevation="@dimen/zero"
         app:layout_constraintBottom_toBottomOf="@+id/bg_buttons"
-        app:layout_constraintLeft_toLeftOf="@+id/lg_button2"
-        app:layout_constraintRight_toRightOf="@+id/rg_button2"
-        app:layout_constraintTop_toTopOf="@+id/tg_buttons"
-        >
+        app:layout_constraintLeft_toLeftOf="@+id/lg_button1"
+        app:layout_constraintRight_toRightOf="@+id/rg_button1"
+        app:layout_constraintTop_toTopOf="@+id/tg_buttons">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@drawable/radius"
             android:gravity="center"
             android:orientation="vertical">
 
@@ -192,24 +190,28 @@
         android:layout_height="0dp"
         android:gravity="center"
         android:text="Which time of the day would you prefer?"
+        android:textColor="@color/dark_purple"
+        android:textSize="@dimen/_20sdp"
         app:layout_constraintBottom_toBottomOf="@+id/bg_header"
         app:layout_constraintLeft_toLeftOf="@+id/lg_header"
         app:layout_constraintRight_toRightOf="@+id/rg_header"
-        app:layout_constraintTop_toTopOf="@+id/tg_header"
-        />
+        app:layout_constraintTop_toTopOf="@+id/tg_header" />
 
     <Button
         android:id="@+id/btnNext3"
+        style="@style/button_next"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:text="NEXT"
+        android:background="@color/dark_purple"
         android:gravity="center"
-        style="@style/button_next"
+        android:text="NEXT"
+        android:textAlignment="center"
+        android:textSize="@dimen/_20sdp"
+        android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="@+id/bg_next"
         app:layout_constraintLeft_toLeftOf="@+id/lg_next"
         app:layout_constraintRight_toRightOf="@+id/rg_next"
-        app:layout_constraintTop_toTopOf="@+id/tg_next"
-        />
+        app:layout_constraintTop_toTopOf="@+id/tg_next" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
