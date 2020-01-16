@@ -53,20 +53,20 @@
     <dimen name="normal_margin">50dp</dimen>
     <dimen name="small_margin">20dp</dimen>
 
+    <!-- radius -->
+    <dimen name="radius_stroke">20dp</dimen>
+    <dimen name="radius_padding">30dp</dimen>
+
 
 
     <!-- OLD VALUES TO REMOVE OR RENAME -->
 
     <dimen name="ps_roundedbox_radius">15sp</dimen>
-    <dimen name="ps_margin">30sp</dimen>
     <dimen name="ps_prefgroup_divider">40sp</dimen>
     <dimen name="ps_prefgroup_height">50sp</dimen>
-    <dimen name="ps_prefgroup_font_size">30sp</dimen>
     <dimen name="ps_prefgroup_pad">100sp</dimen>
     <dimen name="ps_preftitle_height">25sp</dimen>
-    <dimen name="ps_preftitle_font_size">20sp</dimen>
     <dimen name="ps_prefinput_height">50sp</dimen>
-    <dimen name="ps_prefinput_font_size">60sp</dimen>
     <dimen name="ps_pref_topmargin">20sp</dimen>
     <dimen name="ps_prefinput_topmargin">10sp</dimen>
     <dimen name="ps_save_topmargin">20sp</dimen>
