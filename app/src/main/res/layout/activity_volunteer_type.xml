@@ -27,7 +27,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.17" />
+        app:layout_constraintGuide_percent="0.28" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/tg_header"
@@ -49,14 +49,14 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.44" />
+        app:layout_constraintGuide_percent="0.48" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/lg_button2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.56" />
+        app:layout_constraintGuide_percent="0.52" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/rg_button2"
@@ -144,7 +144,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.56" />
+        app:layout_constraintGuide_percent="0.44" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/rg_info_text_header"
@@ -172,7 +172,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.56" />
+        app:layout_constraintGuide_percent="0.44" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/rg_info_text"
@@ -186,7 +186,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.77" />
+        app:layout_constraintGuide_percent="0.81" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/tg_info_text"
@@ -271,12 +271,13 @@
         style="@style/sub_header_1_regular"
         android:layout_width="0dp"
         android:layout_height="0dp"
+        android:fontFamily="sans-serif-medium"
         android:gravity="center"
-        android:text="What type of activity would you \nlike to sign up for?"
         android:lines="2"
+        android:text="What type of activity would you like to sign up for?"
         android:textAllCaps="false"
         android:textColor="@color/dark_purple"
-        android:textSize="@dimen/_20sdp"
+        android:textSize="@dimen/_25sdp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="@+id/bg_header"
         app:layout_constraintHorizontal_bias="0.0"
@@ -291,9 +292,11 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:background="@color/dark_purple"
+        android:fontFamily="sans-serif-medium"
         android:gravity="center"
-        android:text="NEXT"
+        android:text="Next"
         android:textAlignment="center"
+        android:textAllCaps="false"
         android:textSize="@dimen/_20sdp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="@+id/bg_next"
@@ -308,7 +311,7 @@
         android:layout_height="0dp"
         android:text="Meal Delivery"
         android:textColor="@color/dark_purple"
-        android:textSize="@dimen/_15sdp"
+        android:textSize="@dimen/_20sdp"
         app:layout_constraintBottom_toBottomOf="@+id/bg_info_text_header"
         app:layout_constraintLeft_toLeftOf="@+id/lg_info_text_header"
         app:layout_constraintRight_toRightOf="@+id/rg_info_text_header"
@@ -321,7 +324,7 @@
         android:layout_height="0dp"
         android:text="Kitchen"
         android:textColor="@color/dark_purple"
-        android:textSize="@dimen/_15sdp"
+        android:textSize="@dimen/_20sdp"
         app:layout_constraintBottom_toBottomOf="@+id/bg_info_text_header"
         app:layout_constraintLeft_toLeftOf="@+id/lg_info_text_header"
         app:layout_constraintRight_toRightOf="@+id/rg_info_text_header"
@@ -334,7 +337,7 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:text="Help deliver a warm meal and a smiling greeting that can help make our clients day!"
-        android:textSize="@dimen/_10sdp"
+        android:textSize="@dimen/_15sdp"
         app:layout_constraintBottom_toBottomOf="@+id/bg_info_text"
         app:layout_constraintLeft_toLeftOf="@+id/lg_info_text"
         app:layout_constraintRight_toRightOf="@+id/rg_info_text"
@@ -346,7 +349,7 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:text="Work with a chef to bring together all of the elements to prepare the meal of the day!"
-        android:textSize="@dimen/_10sdp"
+        android:textSize="@dimen/_15sdp"
         app:layout_constraintBottom_toBottomOf="@+id/bg_info_text"
         app:layout_constraintLeft_toLeftOf="@+id/lg_info_text"
         app:layout_constraintRight_toRightOf="@+id/rg_info_text"

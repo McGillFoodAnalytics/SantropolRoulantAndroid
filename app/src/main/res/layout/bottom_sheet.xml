@@ -23,14 +23,14 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.16" />
+        app:layout_constraintGuide_percent="0.21" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/topheadtext_guideline"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.09" />
+        app:layout_constraintGuide_percent="0.13" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/right_guideline"
@@ -118,9 +118,9 @@
         android:layout_height="0dp"
         android:background="@color/dark_purple"
         android:text="Sign Up"
-        android:textAllCaps="true"
+        android:textAllCaps="false"
         android:textColor="#FFFFFF"
-        android:textSize="18sp"
+        android:textSize="@dimen/_20sdp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="@id/bottom_guideline"
         app:layout_constraintLeft_toLeftOf="@+id/left_guideline"
@@ -137,7 +137,7 @@
         android:textAlignment="viewStart"
         android:textAllCaps="true"
         android:textColor="@color/colorPrimaryText"
-        android:textSize="18sp"
+        android:textSize="@dimen/_20sdp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="@id/topheadtext_guideline"
         app:layout_constraintLeft_toLeftOf="@id/left_guideline"
@@ -153,7 +153,7 @@
         android:textAlignment="viewStart"
         android:textAllCaps="false"
         android:textColor="@color/colorPrimaryText"
-        android:textSize="14sp"
+        android:textSize="@dimen/_15sdp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="@id/toprecycle_guideline"
         app:layout_constraintLeft_toLeftOf="@id/left_guideline"

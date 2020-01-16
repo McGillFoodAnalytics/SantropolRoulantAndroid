@@ -28,7 +28,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.17" />
+        app:layout_constraintGuide_percent="0.28" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/tg_header"
@@ -50,14 +50,14 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.44" />
+        app:layout_constraintGuide_percent="0.48" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/lg_button2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.56" />
+        app:layout_constraintGuide_percent="0.53" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/rg_button2"
@@ -188,14 +188,18 @@
         style="@style/sub_header_1_regular"
         android:layout_width="0dp"
         android:layout_height="0dp"
+        android:fontFamily="sans-serif-medium"
         android:gravity="center"
         android:text="Which time of the day would you prefer?"
         android:textColor="@color/dark_purple"
-        android:textSize="@dimen/_20sdp"
+        android:textSize="@dimen/_25sdp"
+        android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="@+id/bg_header"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintLeft_toLeftOf="@+id/lg_header"
         app:layout_constraintRight_toRightOf="@+id/rg_header"
-        app:layout_constraintTop_toTopOf="@+id/tg_header" />
+        app:layout_constraintTop_toTopOf="@+id/tg_header"
+        app:layout_constraintVertical_bias="0.0" />
 
     <Button
         android:id="@+id/btnNext3"
@@ -203,6 +207,7 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:background="@color/dark_purple"
+        android:fontFamily="sans-serif-medium"
         android:gravity="center"
         android:text="NEXT"
         android:textAlignment="center"
