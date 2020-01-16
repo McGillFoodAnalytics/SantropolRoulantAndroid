@@ -151,36 +151,7 @@ public class Home extends AppCompatActivity {
 
         tvGreeting = (TextView) findViewById(R.id.tvGreeting);
         tvHello = (TextView) findViewById(R.id.tvHello);
-        tvHello.setText(name + "!");
-        tvHello.getViewTreeObserver().addOnPreDrawListener(new ViewTreeObserver.OnPreDrawListener() {
-            @Override
-            public boolean onPreDraw() {
-                /*Log.i("Das de size", Float.toString(tvHello.getTextSize()));
-                boolean draw = true;
-                int charCount = tvHello.getText().length();
-                Log.i("Das de charcount", Integer.toString(charCount));
-                if(charCount > 50){
-                    int topPadding = dpToPx(getResources().getDimension(R.dimen.hm_tvhello_padding_top));
-                    draw = tvHello.getPaddingTop() == topPadding;
-                    tvHello.setPadding(
-                            0,
-                            topPadding,
-                            0,
-                            32
-                    );
-                } else {
-                    draw = tvHello.getPaddingTop() == 0;
-                    tvHello.setPadding(0,0,0,0);
-                    Log.i("Das de Size given", Float.toString(getResources().getDimension(R.dimen.hm_tvhello_text_size)));
-                    tvHello.setTextSize(getResources().getDimension(R.dimen.hm_tvhello_text_size));
-                }
-
-                Log.i("Das de size now", Float.toString(tvHello.getTextSize()));
-                Log.i("Das de draw", Boolean.toString(draw));
-                return draw;*/
-                return true;
-            }
-        });
+        tvHello.setText("Hello, " +name + "!");
 
 
         volunteerCard = (CardView)findViewById(R.id.volunteerCard);

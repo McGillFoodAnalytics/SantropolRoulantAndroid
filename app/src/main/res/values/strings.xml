@@ -30,7 +30,7 @@
     <string name="erc_type_header">Date</string>
 
     <string name="title_activity_maps">Map</string>
-    <string name="Welcome">Welcome to\nSantropol Roulant</string>
+    <string name="Welcome">What good fortune brings you here?</string>
     <string name="unlock_body_text1">To use our app, you need to attend on of our info sessions for volunteers. You will be given an access code that you can input below</string>
     <string name="unlock_body_text2">Call us at (514) 284-9335 for information about our next info sessions</string>
     <string name="unlock_login_text">I already have an account</string>
