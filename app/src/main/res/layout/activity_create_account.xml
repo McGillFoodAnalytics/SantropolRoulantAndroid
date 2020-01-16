@@ -95,6 +95,7 @@
         android:layout_height="0sp"
         android:background="#679267"
         android:text="NEXT"
+        android:textAlignment="center"
         android:textColor="#FFFFFF"
         android:textSize="@dimen/_20sdp"
         app:layout_constraintBottom_toBottomOf="@+id/bg_next1"
