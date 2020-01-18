@@ -9,88 +9,140 @@
     android:background="@color/white"
     tools:context=".TimePreference">
 
-
-    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools"
-        android:id="@+id/contact_us"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginTop="@dimen/spacing_huge"
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/lg_main"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/guideline5">
+        app:layout_constraintGuide_percent="0" />
 
-        <TextView
-            android:id="@+id/tvTitle2"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/tv_height_tall"
-            android:gravity="center"
-            android:text="Let's get in touch!"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            style="@style/header_bold"
-            />
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/rg_main"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="1" />
 
-        <TextView
-            android:id="@+id/tvPhoneNumber"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/tv_height_tall"
-            android:paddingLeft="@dimen/spacing_large"
-            android:text="(514) 284-9335"
-            android:drawableLeft="@drawable/phone"
-            android:drawablePadding="@dimen/spacing_large"
-            android:gravity="center_vertical"
-            style="@style/text_view_1"
-            />
-
-        <TextView
-            android:id="@+id/tvEmail"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/tv_height_tall"
-            android:paddingLeft="@dimen/spacing_large"
-            android:text="info@santropolroulant.org"
-            android:drawableLeft="@drawable/email"
-            android:drawablePadding="@dimen/spacing_large"
-            android:gravity="center_vertical"
-            style="@style/text_view_1"
-            />
-
-
-        <TextView
-            android:id="@+id/tvAddress"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/tv_height_tall"
-            android:paddingLeft="@dimen/spacing_large"
-            android:text="111, Roy East, Montreal (QC) H2W 1M1"
-            android:drawableLeft="@drawable/location"
-            android:drawablePadding="@dimen/spacing_large"
-            android:gravity="center_vertical"
-            style="@style/text_view_2"
-            />
-
-
-        <fragment xmlns:android="http://schemas.android.com/apk/res/android"
-            xmlns:map="http://schemas.android.com/apk/res-auto"
-            xmlns:tools="http://schemas.android.com/tools"
-            android:id="@+id/map"
-            android:name="com.google.android.gms.maps.MapFragment"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            tools:context=".ContactUs"
-            />
-
-    </LinearLayout>
 
 
     <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline5"
+        android:id="@+id/tg_header"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_begin="30dp"
-        />
+        app:layout_constraintGuide_percent="0.0" />
+
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/tg_text1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.14" />
+
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/tg_text2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.25" />
+
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/tg_text3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.36" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/tg_frag"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.47" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/bg_frag"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="1.0" />
+
+
+    <fragment
+        android:id="@+id/map"
+        android:name="com.google.android.gms.maps.MapFragment"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        tools:context=".ContactUs"
+        app:layout_constraintBottom_toBottomOf="@+id/bg_frag"
+        app:layout_constraintLeft_toLeftOf="@+id/lg_main"
+        app:layout_constraintRight_toRightOf="@+id/rg_main"
+        app:layout_constraintTop_toTopOf="@+id/tg_frag" />
+
+    <TextView
+        android:id="@+id/tvAddress"
+        style="@style/text_view_2"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@color/light_purple"
+        android:drawableLeft="@drawable/location"
+        android:drawablePadding="@dimen/spacing_large"
+        android:gravity="center_vertical"
+        android:paddingLeft="@dimen/spacing_large"
+        android:text="111, Roy East, Montreal (QC) H2W 1M1"
+        app:layout_constraintBottom_toBottomOf="@+id/tg_text2"
+        app:layout_constraintLeft_toLeftOf="@+id/lg_main"
+        app:layout_constraintRight_toRightOf="@+id/rg_main"
+        app:layout_constraintTop_toTopOf="@+id/tg_text1" />
+
+    <TextView
+        android:id="@+id/tvEmail"
+        style="@style/text_view_1"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@color/light_purple"
+        android:drawableLeft="@drawable/email"
+        android:drawablePadding="@dimen/spacing_large"
+        android:gravity="center_vertical"
+        android:paddingLeft="@dimen/spacing_large"
+        android:text="info@santropolroulant.org"
+        app:layout_constraintBottom_toBottomOf="@+id/tg_frag"
+        app:layout_constraintLeft_toLeftOf="@+id/lg_main"
+        app:layout_constraintRight_toRightOf="@+id/rg_main"
+        app:layout_constraintTop_toTopOf="@+id/tg_text3" />
+
+    <TextView
+        android:id="@+id/tvPhoneNumber"
+        style="@style/text_view_1"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@color/light_purple"
+        android:drawableLeft="@drawable/phone"
+        android:drawablePadding="@dimen/spacing_large"
+        android:gravity="center_vertical"
+        android:paddingLeft="@dimen/spacing_large"
+        android:text="(514) 284-9335"
+        app:layout_constraintBottom_toBottomOf="@+id/tg_text3"
+        app:layout_constraintLeft_toLeftOf="@+id/lg_main"
+        app:layout_constraintRight_toRightOf="@+id/rg_main"
+        app:layout_constraintTop_toTopOf="@+id/tg_text2" />
+
+    <TextView
+        android:id="@+id/tvTitle2"
+        style="@style/header_bold"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:fontFamily="sans-serif-medium"
+        android:gravity="center"
+        android:text="Let's get in touch!"
+        android:textSize="@dimen/_25sdp"
+        app:layout_constraintBottom_toBottomOf="@+id/tg_text1"
+        app:layout_constraintLeft_toLeftOf="@+id/lg_main"
+        app:layout_constraintRight_toRightOf="@+id/rg_main"
+        app:layout_constraintTop_toTopOf="@+id/tg_header" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -8,165 +8,214 @@
     android:background="@color/white"
     tools:context=".TransportType">
 
-
-    <LinearLayout
-        android:id="@+id/linearLayout5"
-        android:layout_width="match_parent"
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/lg_header"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/spacing_normal"
-        android:clipToPadding="false"
-        android:gravity="center"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/rg_header"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="1" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/bg_header"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintBottom_toTopOf="@+id/guideline6"
-        app:layout_constraintEnd_toStartOf="@+id/guideline4"
-        app:layout_constraintStart_toStartOf="@+id/guideline3"
-        app:layout_constraintTop_toBottomOf="@+id/tvTitle2"
-        app:layout_constraintVertical_bias="0.073">
+        app:layout_constraintGuide_percent="0.28" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/tg_header"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.05" />
 
 
-        <androidx.cardview.widget.CardView
-            android:id="@+id/crdDriver"
-            android:layout_width="@dimen/cv_height_tallest"
-            android:layout_height="@dimen/cv_height_tallest"
-            android:layout_margin="@dimen/spacing_normal"
-            android:clickable="true"
-            android:foreground="?android:selectableItemBackground"
-            app:cardElevation="@dimen/zero"
-            >
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/lg_button1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.08" />
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:gravity="center"
-                android:orientation="vertical"
-                android:background="@drawable/radius"
-                >
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/rg_button1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.48" />
 
-                <ImageView
-                    android:layout_width="@dimen/cv_height_normal"
-                    android:layout_height="@dimen/cv_height_normal"
-                    android:layout_marginTop="@dimen/spacing_tiny"
-                    android:layout_marginBottom="@dimen/spacing_tiny"
-                    android:gravity="center"
-                    android:src="@drawable/driver"
-                    >
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/lg_button2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.52" />
 
-                </ImageView>
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/rg_button2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.92" />
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Driver"
-                    style="@style/sub_header_3_regular"
-                    />
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/bg_buttons"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.5" />
 
-            </LinearLayout>
-        </androidx.cardview.widget.CardView>
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/tg_buttons"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.28" />
 
 
-        <androidx.cardview.widget.CardView
-            android:id="@+id/crdNonDriver"
-            android:layout_width="@dimen/cv_height_tallest"
-            android:layout_height="@dimen/cv_height_tallest"
-            android:layout_margin="@dimen/spacing_normal"
-            android:clickable="true"
-            android:foreground="?android:selectableItemBackground"
-            app:cardElevation="@dimen/zero"
-            >
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:gravity="center"
-                android:orientation="vertical"
-                android:background="@drawable/radius"
-                >
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/lg_next"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0" />
 
-                <ImageView
-                    android:layout_width="@dimen/cv_height_tall"
-                    android:layout_height="@dimen/cv_height_tall"
-                    android:layout_marginTop="@dimen/spacing_tiny"
-                    android:layout_marginBottom="@dimen/spacing_tiny"
-                    android:gravity="center"
-                    android:src="@drawable/non_driver"
-                    >
-                </ImageView>
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/rg_next"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="1" />
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Non-Driver"
-                    style="@style/sub_header_3_regular"
-                    />
-            </LinearLayout>
-        </androidx.cardview.widget.CardView>
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/bg_next"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="1.0" />
 
-    </LinearLayout>
-
-    <TextView
-        android:id="@+id/tvTitle2"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/tv_height_tallest"
-        android:layout_marginStart="@dimen/spacing_large"
-        android:layout_marginEnd="@dimen/spacing_large"
-        android:layout_marginTop="@dimen/spacing_normal"
-        android:layout_marginBottom="@dimen/spacing_normal"
-        android:gravity="center"
-        app:layout_constraintBottom_toTopOf="@+id/guideline6"
-        app:layout_constraintEnd_toStartOf="@+id/guideline4"
-        app:layout_constraintHorizontal_bias="0.571"
-        app:layout_constraintStart_toStartOf="@+id/guideline3"
-        app:layout_constraintTop_toTopOf="@+id/guideline5"
-        app:layout_constraintVertical_bias="0.0"
-        android:text="Which mode of transportation would you prefer for delivery?"
-        style="@style/sub_header_2_regular"
-        />
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/tg_next"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.9" />
 
 
     <Button
         android:id="@+id/btnNext2"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/button_height_tall"
-        android:text="NEXT"
-        android:gravity="center"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
         style="@style/button_next"
-        />
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@color/dark_purple"
+        android:fontFamily="sans-serif-medium"
+        android:gravity="center"
+        android:text="Next"
+        android:textAlignment="center"
+        android:textAllCaps="false"
+        android:textSize="@dimen/_20sdp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/bg_next"
+        app:layout_constraintLeft_toLeftOf="@+id/lg_next"
+        app:layout_constraintRight_toRightOf="@+id/rg_next"
+        app:layout_constraintTop_toTopOf="@+id/tg_next" />
 
+    <TextView
+        android:id="@+id/tvTitle2"
+        style="@style/sub_header_2_regular"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:fontFamily="sans-serif-medium"
+        android:gravity="center"
+        android:text="Which mode of transportation would you prefer for delivery?"
+        android:textColor="@color/dark_purple"
+        android:textSize="@dimen/_25sdp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/bg_header"
+        app:layout_constraintLeft_toLeftOf="@+id/lg_header"
+        app:layout_constraintRight_toRightOf="@+id/rg_header"
+        app:layout_constraintTop_toTopOf="@+id/tg_header" />
 
+    <androidx.cardview.widget.CardView
+        android:id="@+id/crdNonDriver"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:clickable="true"
+        android:foreground="?android:selectableItemBackground"
+        app:cardCornerRadius="@dimen/_20sdp"
+        app:cardElevation="@dimen/zero"
+        app:layout_constraintBottom_toBottomOf="@+id/bg_buttons"
+        app:layout_constraintLeft_toLeftOf="@+id/lg_button1"
+        app:layout_constraintRight_toRightOf="@+id/rg_button1"
+        app:layout_constraintTop_toTopOf="@+id/tg_buttons">
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:orientation="vertical">
 
+            <ImageView
+                android:layout_width="@dimen/cv_height_tall"
+                android:layout_height="@dimen/cv_height_tall"
+                android:layout_marginTop="@dimen/spacing_tiny"
+                android:layout_marginBottom="@dimen/spacing_tiny"
+                android:gravity="center"
+                android:src="@drawable/non_driver"></ImageView>
 
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        app:layout_constraintGuide_begin="30dp" />
+            <TextView
+                style="@style/sub_header_3_regular"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Non-Driver" />
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
 
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline4"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        app:layout_constraintGuide_end="30dp" />
+    <androidx.cardview.widget.CardView
+        android:id="@+id/crdDriver"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:clickable="true"
+        android:foreground="?android:selectableItemBackground"
+        app:cardCornerRadius="@dimen/_20sdp"
+        app:cardElevation="@dimen/zero"
+        app:layout_constraintBottom_toBottomOf="@+id/bg_buttons"
+        app:layout_constraintLeft_toLeftOf="@+id/lg_button2"
+        app:layout_constraintRight_toRightOf="@+id/rg_button2"
+        app:layout_constraintTop_toTopOf="@+id/tg_buttons">
 
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline5"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layout_constraintGuide_begin="30dp" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:orientation="vertical">
 
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline6"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layout_constraintGuide_end="30dp" />
+            <ImageView
+                android:layout_width="@dimen/cv_height_normal"
+                android:layout_height="@dimen/cv_height_normal"
+                android:layout_marginTop="@dimen/spacing_tiny"
+                android:layout_marginBottom="@dimen/spacing_tiny"
+                android:gravity="center"
+                android:src="@drawable/driver">
 
+            </ImageView>
+
+            <TextView
+                style="@style/sub_header_3_regular"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Driver" />
+
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
