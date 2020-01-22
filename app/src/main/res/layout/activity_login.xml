@@ -17,7 +17,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.28" />
+        app:layout_constraintGuide_percent="0.26" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/bguser"
@@ -31,7 +31,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.39" />
+        app:layout_constraintGuide_percent="0.37" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/bgpass"
@@ -162,10 +162,10 @@
         android:layout_height="0dp"
         android:background="#679267"
         android:shadowColor="#00070303"
-        android:text="Log In"
+        android:text="Login"
         android:textAllCaps="false"
         android:textColor="#FFFFFF"
-        android:textSize="@dimen/_22sdp"
+        android:textSize="@dimen/_20sdp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="@id/bgbutton"
         app:layout_constraintLeft_toLeftOf="@+id/lgbutton"
@@ -190,7 +190,7 @@
         android:layout_height="0dp"
         android:text="Welcome Back!"
         android:textColor="#ffffff"
-        android:textSize="@dimen/_22sdp"
+        android:textSize="@dimen/_25sdp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="@id/bg_login_header"
         app:layout_constraintLeft_toLeftOf="@+id/lguser_pass_info"

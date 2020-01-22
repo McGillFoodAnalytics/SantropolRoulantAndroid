@@ -38,7 +38,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.11" />
+        app:layout_constraintGuide_percent="0.14" />
 
 
     <androidx.constraintlayout.widget.Guideline
@@ -46,7 +46,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.21" />
+        app:layout_constraintGuide_percent="0.25" />
 
 
     <androidx.constraintlayout.widget.Guideline
@@ -54,14 +54,14 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.32" />
+        app:layout_constraintGuide_percent="0.36" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/tg_frag"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.43" />
+        app:layout_constraintGuide_percent="0.47" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/bg_frag"
@@ -87,6 +87,7 @@
         style="@style/text_view_2"
         android:layout_width="0dp"
         android:layout_height="0dp"
+        android:background="@color/light_purple"
         android:drawableLeft="@drawable/location"
         android:drawablePadding="@dimen/spacing_large"
         android:gravity="center_vertical"
@@ -102,6 +103,7 @@
         style="@style/text_view_1"
         android:layout_width="0dp"
         android:layout_height="0dp"
+        android:background="@color/light_purple"
         android:drawableLeft="@drawable/email"
         android:drawablePadding="@dimen/spacing_large"
         android:gravity="center_vertical"
@@ -117,6 +119,7 @@
         style="@style/text_view_1"
         android:layout_width="0dp"
         android:layout_height="0dp"
+        android:background="@color/light_purple"
         android:drawableLeft="@drawable/phone"
         android:drawablePadding="@dimen/spacing_large"
         android:gravity="center_vertical"
@@ -132,9 +135,10 @@
         style="@style/header_bold"
         android:layout_width="0dp"
         android:layout_height="0dp"
+        android:fontFamily="sans-serif-medium"
         android:gravity="center"
         android:text="Let's get in touch!"
-        android:textSize="@dimen/_20sdp"
+        android:textSize="@dimen/_25sdp"
         app:layout_constraintBottom_toBottomOf="@+id/tg_text1"
         app:layout_constraintLeft_toLeftOf="@+id/lg_main"
         app:layout_constraintRight_toRightOf="@+id/rg_main"

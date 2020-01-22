@@ -38,8 +38,8 @@ public class VolunteerType extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 volunteerType = "kitchen";
-                crdKitchen.setCardBackgroundColor(Color.parseColor("#B128B8"));
-                crdDelivery.setCardBackgroundColor(Color.parseColor("#ffffff"));
+                crdKitchen.setCardBackgroundColor(Color.parseColor("#D07FCE"));
+                crdDelivery.setCardBackgroundColor(Color.parseColor("#DCAADC"));
     //            crdDelivery.setBackgroundResource(R.drawable.radius_clicked);
                 imagedelivery.setVisibility(View.INVISIBLE);
                 text1delivery.setVisibility(View.INVISIBLE);
@@ -54,8 +54,8 @@ public class VolunteerType extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 volunteerType = "delivery";
-                crdDelivery.setCardBackgroundColor(Color.parseColor("#B128B8"));
-                crdKitchen.setCardBackgroundColor(Color.parseColor("#ffffff"));
+                crdDelivery.setCardBackgroundColor(Color.parseColor("#D07FCE"));
+                crdKitchen.setCardBackgroundColor(Color.parseColor("#DCAADC"));
        //         crdDelivery.setBackgroundResource(R.drawable.radius_clicked);
                 imagedelivery.setVisibility(View.VISIBLE);
                 text1delivery.setVisibility(View.VISIBLE);
@@ -103,6 +103,8 @@ public class VolunteerType extends AppCompatActivity {
         imagekitchen.setVisibility(View.INVISIBLE);
         text1kitchen.setVisibility(View.INVISIBLE);
         text2kitchen.setVisibility(View.INVISIBLE);
+        crdDelivery.setCardBackgroundColor(Color.parseColor("#DCAADC"));
+        crdKitchen.setCardBackgroundColor(Color.parseColor("#DCAADC"));
     }
 
 

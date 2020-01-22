@@ -20,14 +20,16 @@
         app:layout_constraintLeft_toLeftOf="@+id/lg_main_buttons"
         app:layout_constraintRight_toRightOf="@+id/rg_main_buttons"
         app:layout_constraintTop_toTopOf="@+id/tg_main_desc" />
+
     <Button
         android:id="@+id/Create_Account_Button"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:background="#679267"
-        android:text="REGISTER"
+        android:text="Register"
         android:textColor="#FFFFFF"
-        android:textSize="18sp"
+        android:textSize="@dimen/_20sdp"
+        android:textAllCaps="false"
         android:textStyle="bold"
         android:visibility="visible"
         app:layout_constraintBottom_toBottomOf="@+id/bg_main_register"
@@ -40,9 +42,10 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:background="#679267"
-        android:text="@string/log_in"
+        android:textAllCaps="false"
+        android:text="Login"
         android:textColor="#FFFFFF"
-        android:textSize="18sp"
+        android:textSize="@dimen/_20sdp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="@+id/bg_main_login"
         app:layout_constraintLeft_toLeftOf="@+id/lg_main_buttons"
@@ -56,7 +59,7 @@
         android:lines="2"
         android:text="Welcome to \nSantropol Roulant"
         android:textColor="#FFFFFF"
-        android:textSize="@dimen/_22sdp"
+        android:textSize="@dimen/_25sdp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="@+id/bg_main_header"
         app:layout_constraintLeft_toLeftOf="@+id/lg_main_buttons"
@@ -150,7 +153,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent=".09" />
+        app:layout_constraintGuide_percent="0.08" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/bg_main_header"
