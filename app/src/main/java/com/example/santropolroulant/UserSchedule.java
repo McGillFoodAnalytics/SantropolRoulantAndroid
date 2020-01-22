@@ -134,12 +134,12 @@ public class UserSchedule extends AppCompatActivity {
                         final String date_txt = scheduleSnap.child("event_date_txt").getValue(String.class);
                         final String start_time = scheduleSnap.child("event_time_start").getValue(String.class);
                         final String end_time = scheduleSnap.child("event_time_end").getValue(String.class);
-                        final String is_current = scheduleSnap.child("is_current").getValue(String.class);
-                        final Boolean first_shift = scheduleSnap.child("first_shift").getValue(Boolean.class);
+                        final boolean is_current = scheduleSnap.child("is_current").getValue(Boolean.class);
+                        final boolean first_shift = scheduleSnap.child("first_shift").getValue(Boolean.class);
                         final String event_type = scheduleSnap.child("event_type").getValue(String.class);
                         final String uid = scheduleSnap.child("uid").getValue(String.class);
                         final String note = scheduleSnap.child("note").getValue(String.class);
-                        final String event_id = scheduleSnap.child("event_id").getValue(String.class);
+                        final String event_id = scheduleSnap.getKey();
 
                         Log.d("@ @ : snapshot here:", "hey : BRaaaa1" + key);
                         // Make manual entry to eventList
