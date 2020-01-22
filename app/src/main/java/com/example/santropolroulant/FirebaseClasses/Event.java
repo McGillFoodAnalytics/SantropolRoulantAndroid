@@ -2,66 +2,64 @@ package com.example.santropolroulant.FirebaseClasses;
 
 public class Event {
 
-    String date_txt;
-    Integer date;
-    String start_time;
-    String end_time;
-    String event_type;
-    String uid;
-    String note;
-    Boolean first_shift;
-    Boolean is_current;
-    String event_id;
+    private int event_date;
+    private String event_date_txt;
+    private String event_id;
+    private String event_time_end;
+    private String event_time_start;
+    private String event_type;
+    private String first_name;
+    private boolean first_shift;
+    private boolean is_current;
+    private boolean is_important_event;
+    private String key;
+    private String last_name;
+    private String note;
+    private String slot;
+    private String uid;
 
+    public Event(){
 
-    public Event(String date_txt, Integer date, String start_time, String end_time, String event_type, String uid, String note, Boolean is_current, Boolean first_shift, String event_id) {
+    }
 
-        this.date = date;
-        this.date_txt = date_txt;
-        this.start_time = start_time;
-        this.end_time = end_time;
-        this.event_type = event_type;
-        this.uid = uid;
-        this.note = note;
-        this.first_shift = first_shift;
-        this.is_current = is_current;
+    public int getEvent_date() {
+        return event_date;
+    }
+
+    public void setEvent_date(int event_date) {
+        this.event_date = event_date;
+    }
+
+    public String getEvent_date_txt() {
+        return event_date_txt;
+    }
+
+    public void setEvent_date_txt(String event_date_txt) {
+        this.event_date_txt = event_date_txt;
+    }
+
+    public String getEvent_id() {
+        return event_id;
+    }
+
+    public void setEvent_id(String event_id) {
         this.event_id = event_id;
     }
 
-    public Event() {
-        ;
-    } // Empty constructor
-
-    public String getDate_txt() {
-        return date_txt;
+    public String getEvent_time_end() {
+        return event_time_end;
     }
 
-    public void setDate_txt(String date_txt) {
-        this.date_txt = date_txt;
+    public void setEvent_time_end(String event_time_end) {
+        this.event_time_end = event_time_end;
     }
 
-    public Integer getDate() {
-        return date;
+    public String getEvent_time_start() {
+        return event_time_start;
     }
 
-    public void setDate(Integer date) {
-        this.date = date;
-    }
-
-    public String getStart_time() {
-        return start_time;
-    }
-
-    public void setStart_time(String start_time) {
-        this.start_time = start_time;
-    }
-
-    public String getEnd_time() {
-        return end_time;
-    }
-
-    public void setEnd_time(String end_time) {
-        this.end_time = end_time;
+    public void setEvent_time_start(String event_time_start) {
+        this.event_time_start = event_time_start;
     }
 
     public String getEvent_type() {
@@ -72,12 +70,52 @@ public class Event {
         this.event_type = event_type;
     }
 
-    public String getUid() {
-        return uid;
+    public String getFirst_name() {
+        return first_name;
     }
 
-    public void setUid(String uid) {
-        this.uid = uid;
+    public void setFirst_name(String first_name) {
+        this.first_name = first_name;
+    }
+
+    public boolean isFirst_shift() {
+        return first_shift;
+    }
+
+    public void setFirst_shift(boolean first_shift) {
+        this.first_shift = first_shift;
+    }
+
+    public boolean isIs_current() {
+        return is_current;
+    }
+
+    public void setIs_current(boolean is_current) {
+        this.is_current = is_current;
+    }
+
+    public boolean isIs_important_event() {
+        return is_important_event;
+    }
+
+    public void setIs_important_event(boolean is_important_event) {
+        this.is_important_event = is_important_event;
+    }
+
+    public String getKey() {
+        return key;
+    }
+
+    public void setKey(String key) {
+        this.key = key;
+    }
+
+    public String getLast_name() {
+        return last_name;
+    }
+
+    public void setLast_name(String last_name) {
+        this.last_name = last_name;
     }
 
     public String getNote() {
@@ -88,21 +126,19 @@ public class Event {
         this.note = note;
     }
 
-    public Boolean getFirst_shift() {
-        return first_shift;
+    public String getSlot() {
+        return slot;
     }
 
-    public void setFirst_shift(Boolean first_shift) {
-        this.first_shift = first_shift;
+    public void setSlot(String slot) {
+        this.slot = slot;
     }
 
-    public Boolean getIs_current() {
-        return is_current;
+    public String getUid() {
+        return uid;
     }
 
-    public void setIs_current(Boolean is_current) {
-        this.is_current = is_current;
+    public void setUid(String uid) {
+        this.uid = uid;
     }
-
-    public String getEventId() { return event_id; }
 }

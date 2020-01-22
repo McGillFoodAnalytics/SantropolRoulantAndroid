@@ -1,4 +1,4 @@
-package com.example.santropolroulant.FirebaseClasses;
+package com.example.santropolroulant.Adapters;
 
 public class UserSlot {
     public String NumVal;
