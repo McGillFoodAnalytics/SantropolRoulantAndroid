@@ -1,24 +1,16 @@
 package com.example.santropolroulant;
 
 import android.content.Intent;
-import android.app.Activity;
-import android.content.SharedPreferences;
+
+
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.TextView;
-
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-
 import static com.example.santropolroulant.R.id.btnCreateAccountConfFinish;
 import static com.example.santropolroulant.R.id.tvCreateAccountConfUsername;
 
@@ -45,10 +37,12 @@ public class CreateAccountFinish extends AppCompatActivity {
             phone_number = extras.getString("PHONE_NUMBER");
         }
 
-        setupUIViews();
-
         user_name = last_name.substring(0,2) + phone_number;
         Log.d("usaname", user_name);
+
+
+        setupUIViews();
+
 
         finish_button.setOnClickListener(new View.OnClickListener() {
             @Override

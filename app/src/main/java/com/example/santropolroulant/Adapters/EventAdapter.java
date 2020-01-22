@@ -77,6 +77,7 @@ public class EventAdapter extends RecyclerView.Adapter<EventAdapter.EventViewHol
     @Override
     public void onBindViewHolder(@NonNull EventViewHolder holder, int position) {
         Event event = eventList.get(position);                       // Get element from dataset at this position
+
         weekImage(holder,event.getEvent_date_txt());
         holder.txtType.setText("Event: " + typeName(event.getEvent_type()));
         holder.txtDate.setText(event.getEvent_date_txt());                 // Change contents of view with new element

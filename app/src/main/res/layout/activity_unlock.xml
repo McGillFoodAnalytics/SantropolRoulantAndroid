@@ -25,12 +25,12 @@
         android:gravity="center"
         android:text="@string/Welcome"
         android:textColor="#FFFFFF"
-        android:textSize="@dimen/_22sdp"
+        android:textSize="@dimen/_25sdp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="@+id/bg_unlock_header"
         app:layout_constraintLeft_toLeftOf="@+id/lg_unlock"
         app:layout_constraintRight_toRightOf="@+id/rg_unlock"
-        app:layout_constraintTop_toTopOf="@+id/tg_unlock_header"/>
+        app:layout_constraintTop_toTopOf="@+id/tg_unlock_header" />
 
 
     <TextView
@@ -40,7 +40,7 @@
         android:src="@drawable/shape_save"
         android:text="@string/unlock_body_text1"
         android:textColor="#FFFFFF"
-        android:textSize="@dimen/_16sdp"
+        android:textSize="@dimen/_15sdp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="@+id/bg_unlock_text1"
         app:layout_constraintLeft_toLeftOf="@+id/lg_unlock"
@@ -54,12 +54,14 @@
         android:src="@drawable/shape_save"
         android:text="@string/unlock_body_text2"
         android:textColor="#FFFFFF"
-        android:textSize="@dimen/_16sdp"
+        android:textSize="@dimen/_15sdp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="@+id/bg_unlock_text2"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintLeft_toLeftOf="@+id/lg_unlock"
         app:layout_constraintRight_toRightOf="@+id/rg_unlock"
-        app:layout_constraintTop_toTopOf="@+id/tg_unlock_text2"/>
+        app:layout_constraintTop_toTopOf="@+id/tg_unlock_text2"
+        app:layout_constraintVertical_bias="0.0" />
 
     <EditText
         android:id="@+id/code_input"
@@ -70,6 +72,7 @@
         android:inputType="textPersonName"
         android:textColor="#FFFFFF"
         android:backgroundTint="#FFFFFF"
+        android:textSize="@dimen/_20sdp"
         app:layout_constraintBottom_toBottomOf="@+id/bg_unlock_input"
         app:layout_constraintLeft_toLeftOf="@+id/lg_unlock"
         app:layout_constraintRight_toRightOf="@+id/rg_unlock"
@@ -80,14 +83,15 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:background="#679267"
+        android:textAllCaps="false"
         android:text="@string/enter_code_text"
         android:textColor="#FFFFFF"
-        android:textSize="@dimen/_16sdp"
+        android:textSize="@dimen/_20sdp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="@+id/bg_unlock_button"
         app:layout_constraintLeft_toLeftOf="@+id/lg_unlock"
         app:layout_constraintRight_toRightOf="@+id/rg_unlock"
-        app:layout_constraintTop_toTopOf="@+id/tg_unlock_button"/>
+        app:layout_constraintTop_toTopOf="@+id/tg_unlock_button" />
 
 
     <TextView
@@ -165,21 +169,21 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.52"  />
+        app:layout_constraintGuide_percent="0.48" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/bg_unlock_text2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.66" />
+        app:layout_constraintGuide_percent="0.65" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/tg_unlock_input"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.67"  />
+        app:layout_constraintGuide_percent="0.65" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/bg_unlock_input"
