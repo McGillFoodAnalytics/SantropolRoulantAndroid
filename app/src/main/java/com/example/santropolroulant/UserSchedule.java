@@ -260,7 +260,7 @@ public class UserSchedule extends AppCompatActivity {
 
                 builder.setCancelable(true);
                 TextView title = new TextView(UserSchedule.this);
-                int myColor = getResources().getColor(R.color.light_purple);
+                int myColor = getResources().getColor(R.color.white);
                 title.setText("Confirm? " + getEmojiByUnicode(unicode));
                 title.setBackgroundColor(myColor);
                 title.setPadding(10, 10, 10, 10);
