@@ -135,45 +135,23 @@ public class UserSchedule extends AppCompatActivity {
                 if (dataSnapshot.exists()){
                     setVisible();
                     for(DataSnapshot scheduleSnap : dataSnapshot.getChildren()){
-                        String key = scheduleSnap.getKey();
-                        final Integer date = scheduleSnap.child("event_date").getValue(Integer.class);
-                        final String date_txt = scheduleSnap.child("event_date_txt").getValue(String.class);
-                        final String start_time = scheduleSnap.child("event_time_start").getValue(String.class);
-                        final String end_time = scheduleSnap.child("event_time_end").getValue(String.class);
-                        final boolean is_current = scheduleSnap.child("is_current").getValue(Boolean.class);
-                        final boolean first_shift = scheduleSnap.child("first_shift").getValue(Boolean.class);
-                        final String event_type = scheduleSnap.child("event_type").getValue(String.class);
-                        final String uid = scheduleSnap.child("uid").getValue(String.class);
-                        final String note = scheduleSnap.child("note").getValue(String.class);
-                        final String event_id = scheduleSnap.getKey();
+                        Event curEvent = scheduleSnap.getValue(Event.class);
+                        curEvent.setEvent_id(scheduleSnap.getKey());
 
-                        Log.d("@ @ : snapshot here:", "hey : BRaaaa1" + key);
+                        Log.d("@ @ : snapshot here:", "hey : BRaaaa1" + curEvent.getEvent_id());
                         // Make manual entry to eventList
                         // Use default 'Capacity' capVar from the type table
 
-                        Log.d("@ @ : snapshot here:", "hey : after" + date_txt+ start_time + end_time +String.valueOf(first_shift));
+                        Log.d("@ @ : snapshot here:", "hey : after" + curEvent.getEvent_date_txt()+ curEvent.getEvent_time_start() + curEvent.getEvent_time_end() +String.valueOf(curEvent.isFirst_shift()));
                         Boolean isDuplicate = false;
                         for(Event event: eventList)
                         {
-                            if(event_id.equals(event.getEventId())){
+                            if(curEvent.getEvent_id().equals(event.getEvent_id())){
                                 isDuplicate = true;
                             }
                         }
-                        if(!uid.equals("nan") && isDuplicate == false) {
-                            eventList.add(
-                                    new Event(
-                                            date_txt,
-                                            date,
-                                            start_time,
-                                            end_time,
-                                            event_type,
-                                            uid,
-                                            note,
-                                            is_current,
-                                            false,
-                                            event_id
-                                    )
-                            );
+                        if(!curEvent.getUid().equals("nan") && !isDuplicate) {
+                            eventList.add(curEvent);
                         }
                     }
                     adapter.notifyDataSetChanged();
@@ -335,7 +313,7 @@ public class UserSchedule extends AppCompatActivity {
 
     private void deleteEvent(int position){
         //String key =
-        String event_id = eventList.get(position).getEventId();
+        String event_id = eventList.get(position).getEvent_id();
         eventList.remove(position);
         Task[] tasks = new Task[11];
 
