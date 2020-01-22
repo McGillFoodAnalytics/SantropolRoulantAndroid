@@ -5,12 +5,14 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -39,6 +41,8 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
+import static android.graphics.Color.DKGRAY;
+
 
 public class UserSchedule extends AppCompatActivity {
 
@@ -55,6 +59,8 @@ public class UserSchedule extends AppCompatActivity {
     
     private final String EVENT_LOC = MainActivity.EVENT_LOC;
     private final String USER_LOC = MainActivity.USER_LOC;
+
+    private int unicode = 0x1F494;
 
 
     @Override
@@ -249,11 +255,20 @@ public class UserSchedule extends AppCompatActivity {
         SwipeToDeleteCallback swipeToDeleteCallback = new SwipeToDeleteCallback(this) {
             @Override
             public void onSwiped(@NonNull final RecyclerView.ViewHolder viewHolder, int i) {
+                // adapter.notifyDataSetChanged();
                 AlertDialog.Builder builder = new AlertDialog.Builder(UserSchedule.this);
 
                 builder.setCancelable(true);
-                builder.setTitle("Unregister?");
-                builder.setMessage("Would you like to unregister from this volunteering event? :(");
+                TextView title = new TextView(UserSchedule.this);
+                int myColor = getResources().getColor(R.color.light_purple);
+                title.setText("Confirm? " + getEmojiByUnicode(unicode));
+                title.setBackgroundColor(myColor);
+                title.setPadding(10, 10, 10, 10);
+                title.setGravity(Gravity.CENTER);
+                title.setTextColor(DKGRAY);
+                title.setTextSize(20);
+                builder.setCustomTitle(title);
+                builder.setMessage("Are you should you want to unregister from this event?");
 
                 builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
                     @Override
@@ -275,22 +290,33 @@ public class UserSchedule extends AppCompatActivity {
 
                         //adapter.notifyDataSetChanged();
 
-
+/*
                         Snackbar snackbar = Snackbar
                                 .make(relativeLayout, "You have been removed from the list.", Snackbar.LENGTH_LONG);
-                        /*snackbar.setAction("UNDO", new View.OnClickListener() {
+                        snackbar.setAction("UNDO", new View.OnClickListener() {
                             @Override
                             public void onClick(View view) {
                                 // adapter.restoreItem(item, position);
                                 recyclerView.scrollToPosition(position);
                             }
-                        });*/
+                        });
 
                         snackbar.setActionTextColor(Color.YELLOW);
-                        snackbar.show();
+                        snackbar.show();*/
                     }
                 });
-                builder.show();
+
+                AlertDialog dialog = builder.show();
+                TextView messageView = (TextView)dialog.findViewById(android.R.id.message);
+                messageView.setGravity(Gravity.CENTER);
+
+                Button btnPositive = dialog.getButton(AlertDialog.BUTTON_POSITIVE);
+                Button btnNegative = dialog.getButton(AlertDialog.BUTTON_NEGATIVE);
+
+                LinearLayout.LayoutParams layoutParams = (LinearLayout.LayoutParams) btnPositive.getLayoutParams();
+                layoutParams.weight = 10;
+                btnPositive.setLayoutParams(layoutParams);
+                btnNegative.setLayoutParams(layoutParams);
 
             }
         };
@@ -334,6 +360,10 @@ public class UserSchedule extends AppCompatActivity {
         adapter.notifyDataSetChanged();
 
         //return tasks;
+    }
+
+    public String getEmojiByUnicode(int unicode){
+        return new String(Character.toChars(unicode));
     }
 
 }
