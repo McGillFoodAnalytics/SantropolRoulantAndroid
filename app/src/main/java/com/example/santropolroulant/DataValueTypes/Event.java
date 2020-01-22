@@ -15,7 +15,7 @@ public class Event{
     private String event_type;
     private String first_name;
     private boolean first_shift;
-    private String is_current;
+    private boolean is_current;
     private boolean is_important_event;
     private String key;
     private String last_name;
@@ -63,7 +63,7 @@ public class Event{
         return first_shift;
     }
 
-    public String getIs_current() {
+    public boolean getIs_current() {
         return is_current;
     }
 
