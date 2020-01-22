@@ -1,4 +1,4 @@
-package com.example.santropolroulant.DataValueTypes;
+package com.example.santropolroulant.FirebaseClasses;
 
 public class User {
     private String address_city;
@@ -13,8 +13,12 @@ public class User {
     private Long no_show;
     private String phone_number;
     private String signup_date;
+    private String uid;
 
-    public User(){}
+
+
+    public User() {
+    }
 
     public String getAddress_city() {
         return address_city;
@@ -63,4 +67,13 @@ public class User {
     public String getSignup_date() {
         return signup_date;
     }
+
+    public String getUid() {
+        return uid;
+    }
+
+    public void setUid(String uid) {
+        this.uid = uid;
+    }
+
 }

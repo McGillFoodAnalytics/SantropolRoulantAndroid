@@ -5,7 +5,7 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 
 import com.example.santropolroulant.Adapters.UserAdapter;
-import com.example.santropolroulant.FirebaseClasses.UserSlot;
+import com.example.santropolroulant.Adapters.UserSlot;
 import com.google.android.material.bottomsheet.BottomSheetBehavior;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;

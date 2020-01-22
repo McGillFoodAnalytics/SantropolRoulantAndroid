@@ -1,10 +1,9 @@
 package com.example.santropolroulant;
 
-import android.app.Activity;
 import android.app.DatePickerDialog;
-import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.renderscript.ScriptGroup;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -13,10 +12,9 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.santropolroulant.DataValueTypes.User;
+import com.example.santropolroulant.FirebaseClasses.User;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -30,13 +28,10 @@ import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
-import java.util.List;
 import java.util.Locale;
-import java.util.concurrent.Executor;
 
 import static android.R.style.Theme_Holo_Light_Dialog_MinWidth;
 
@@ -85,7 +80,7 @@ public class PersonalSettings extends AppCompatActivity {
             inputFields.add(new InputField((EditText) findViewById(R.id.prefinput_address_line), "address_street", User.class.getDeclaredMethod("getAddress_street")));
             inputFields.add(new InputField((EditText) findViewById(R.id.prefinput_address_city), "address_city", User.class.getDeclaredMethod("getAddress_city")));
             inputFields.add(new InputField((EditText) findViewById(R.id.prefinput_address_postal), "address_postal", User.class.getDeclaredMethod("getAddress_postal_code")));
-            inputFields.add(new InputField((EditText) findViewById(R.id.prefinput_username_username), "key", User.class.getDeclaredMethod("getKey")));
+            inputFields.add(new NonEditableInputField((EditText) findViewById(R.id.prefinput_username_username), "key", User.class.getDeclaredMethod("getUid")));
         }catch(NoSuchMethodException e){
             e.printStackTrace();
             System.exit(-1);
@@ -103,6 +98,7 @@ public class PersonalSettings extends AppCompatActivity {
                     Redirect.redirectToLogin(PersonalSettings.this, firebaseAuth);
                 } else {
                     myUser = dataSnapshot.getValue(User.class);
+                    myUser.setUid(dataSnapshot.getKey());
                     for(int i = 0; i < inputFields.size(); i++){
                         inputFields.get(i).setHint(myUser);
                     }
@@ -135,9 +131,7 @@ public class PersonalSettings extends AppCompatActivity {
                 //If atleast one of the EditTexts have been changed, we want to tell firebase we
                 //have new info.
                 for(int i = 0; i < inputFields.size(); i++){
-                    if(!inputFields.get(i).getEditText().getText().toString().equals("")){
-                        editSettings = true;
-                    }
+                    editSettings = editSettings || inputFields.get(i).hasChanged();
                 }
 
                 if( editSettings ) {
@@ -145,7 +139,7 @@ public class PersonalSettings extends AppCompatActivity {
                         String dbEntry = inputFields.get(i).getDbReference();
                         String fieldText = inputFields.get(i).getText();
                         // If this field has been changed
-                        if(!fieldText.equals("")){
+                        if(inputFields.get(i).hasChanged()){
                             tasks.add(mDatabase.child(dbEntry).setValue(fieldText));
                         }
                         inputFields.get(i).clearText();
@@ -158,6 +152,18 @@ public class PersonalSettings extends AppCompatActivity {
             }
         });
 
+    }
+
+
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        if(mDatabase != null) {
+            if(saveChangesListener != null){
+                mDatabase.removeEventListener(saveChangesListener);
+            }
+        }
     }
 
     private class InputField{
@@ -213,21 +219,27 @@ public class PersonalSettings extends AppCompatActivity {
         public Method getGetHint() {
             return getHint;
         }
-    }
 
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        if(mDatabase != null) {
-            if(saveChangesListener != null){
-                mDatabase.removeEventListener(saveChangesListener);
-            }
+        public boolean hasChanged(){
+            return !editText.getText().toString().equals("");
         }
     }
 
+    private class NonEditableInputField extends InputField{
+        public NonEditableInputField(EditText editText, String dbReference, Method getHint) {
+            super(editText, dbReference, getHint);
+            editText.setEnabled(false);
+        }
+
+        @Override
+        public boolean hasChanged() {
+            return false;
+        }
+    }
     private class DateField extends InputField{
         final Calendar myCalendar = Calendar.getInstance();
         DatePickerDialog.OnDateSetListener date;
+        private Date originalDate;
         private String displayFormat = "dd-MM-yyyy";
         private String databaseFormat = "yyyyMMdd";
 
@@ -265,7 +277,8 @@ public class PersonalSettings extends AppCompatActivity {
         public void setHint(User myUser) {
             SimpleDateFormat formatter = new SimpleDateFormat(databaseFormat, Locale.ENGLISH);
             try {
-                myCalendar.setTime(formatter.parse((String) getGetHint().invoke(myUser)));
+                originalDate = formatter.parse((String) getGetHint().invoke(myUser));
+                myCalendar.setTime(originalDate);
                 updateLabel();
             } catch (IllegalAccessException e){
                 e.printStackTrace();
@@ -289,6 +302,11 @@ public class PersonalSettings extends AppCompatActivity {
         public String getText() {
             SimpleDateFormat dbFormatter = new SimpleDateFormat(databaseFormat, Locale.US);
             return dbFormatter.format(myCalendar.getTime());
+        }
+
+        @Override
+        public boolean hasChanged() {
+            return !myCalendar.getTime().equals(originalDate);
         }
     }
 }
