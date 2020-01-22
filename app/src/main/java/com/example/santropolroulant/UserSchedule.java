@@ -136,11 +136,11 @@ public class UserSchedule extends AppCompatActivity {
                         // Make manual entry to eventList
                         // Use default 'Capacity' capVar from the type table
 
-                        Log.d("@ @ : snapshot here:", "hey : after" + curEvent.getDate_txt()+ curEvent.getStart_time() + curEvent.getEnd_time() +String.valueOf(curEvent.isFirst_shift()));
+                        Log.d("@ @ : snapshot here:", "hey : after" + curEvent.getEvent_date_txt()+ curEvent.getEvent_time_start() + curEvent.getEvent_time_end() +String.valueOf(curEvent.isFirst_shift()));
                         Boolean isDuplicate = false;
                         for(Event event: eventList)
                         {
-                            if(curEvent.getEvent_id().equals(event.getEventId())){
+                            if(curEvent.getEvent_id().equals(event.getEvent_id())){
                                 isDuplicate = true;
                             }
                         }
@@ -287,7 +287,7 @@ public class UserSchedule extends AppCompatActivity {
 
     private void deleteEvent(int position){
         //String key =
-        String event_id = eventList.get(position).getEventId();
+        String event_id = eventList.get(position).getEvent_id();
         eventList.remove(position);
         Task[] tasks = new Task[11];
 

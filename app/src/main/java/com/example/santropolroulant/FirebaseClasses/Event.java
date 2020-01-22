@@ -18,6 +18,10 @@ public class Event {
     private String slot;
     private String uid;
 
+    public Event(){
+
+    }
+
     public int getEvent_date() {
         return event_date;
     }
@@ -32,6 +36,14 @@ public class Event {
 
     public void setEvent_date_txt(String event_date_txt) {
         this.event_date_txt = event_date_txt;
+    }
+
+    public String getEvent_id() {
+        return event_id;
+    }
+
+    public void setEvent_id(String event_id) {
+        this.event_id = event_id;
     }
 
     public String getEvent_time_end() {
