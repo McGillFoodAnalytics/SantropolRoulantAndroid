@@ -135,7 +135,7 @@
                 android:layout_marginTop="@dimen/spacing_tiny"
                 android:layout_marginBottom="@dimen/spacing_tiny"
                 android:gravity="center"
-                android:src="@drawable/afternoon"></ImageView>
+                android:src="@drawable/afternoon_better"></ImageView>
 
             <TextView
                 style="@style/sub_header_3_regular"
@@ -171,7 +171,7 @@
                 android:layout_marginTop="@dimen/spacing_tiny"
                 android:layout_marginBottom="@dimen/spacing_tiny"
                 android:gravity="center"
-                android:src="@drawable/morning"></ImageView>
+                android:src="@drawable/morning_better"></ImageView>
 
             <TextView
                 style="@style/sub_header_3_regular"

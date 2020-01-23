@@ -169,7 +169,7 @@
                 android:layout_marginTop="@dimen/spacing_tiny"
                 android:layout_marginBottom="@dimen/spacing_tiny"
                 android:gravity="center"
-                android:src="@drawable/non_driver"></ImageView>
+                android:src="@drawable/non_driver_better"></ImageView>
 
             <TextView
                 style="@style/sub_header_3_regular"

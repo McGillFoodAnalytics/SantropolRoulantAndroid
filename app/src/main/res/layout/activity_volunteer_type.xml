@@ -220,7 +220,7 @@
                 android:layout_marginTop="@dimen/spacing_tiny"
                 android:layout_marginBottom="@dimen/spacing_tiny"
                 android:gravity="center"
-                android:src="@drawable/delivery"></ImageView>
+                android:src="@drawable/delivery_better"></ImageView>
 
             <TextView
                 style="@style/sub_header_3_regular"
@@ -255,7 +255,7 @@
                 android:layout_marginTop="@dimen/spacing_tiny"
                 android:layout_marginBottom="@dimen/spacing_tiny"
                 android:gravity="center"
-                android:src="@drawable/kitchen"></ImageView>
+                android:src="@drawable/kitchen_better"></ImageView>
 
             <TextView
                 style="@style/sub_header_3_regular"
