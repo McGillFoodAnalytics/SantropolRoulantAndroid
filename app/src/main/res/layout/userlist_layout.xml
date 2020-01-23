@@ -17,7 +17,7 @@
         <RelativeLayout
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:background="#9950AC"
+            android:background="@color/mild_purple"
             android:orientation="horizontal"
             android:padding="10dp">
 

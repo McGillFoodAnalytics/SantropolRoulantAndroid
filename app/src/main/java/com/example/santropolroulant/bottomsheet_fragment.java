@@ -260,7 +260,7 @@ public class bottomsheet_fragment extends Fragment {
 
                         if (!first_name.isEmpty() && !last_name.isEmpty()) {
                             userList.add(
-                                    new UserSlot(i.toString(), first_name, last_name, key)
+                                    new UserSlot(i.toString(), first_name, (last_name.charAt(0)+"."), key)
                             );
                             i = i + 1;
                         }
