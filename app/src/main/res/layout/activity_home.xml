@@ -160,6 +160,7 @@
                 android:padding="5sp"
                 android:text="Update Information"
                 android:textColor="@color/dark_grey" />
+
         </LinearLayout>
     </androidx.cardview.widget.CardView>
 
@@ -332,4 +333,70 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         app:layout_constraintGuide_percent=".15" />
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/bg_footer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent=".98" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/tg_footer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent=".92" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/lg_footer_image"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent=".10" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/rg_footer_image"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent=".19" />
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/lg_footer_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent=".20" />
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/rg_footer_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent=".85" />
+
+    <ImageView
+        android:id="@+id/imageView3"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:srcCompat="@drawable/mcfaclogo"
+        app:layout_constraintBottom_toBottomOf="@+id/bg_footer"
+        app:layout_constraintRight_toRightOf="@+id/rg_footer_image"
+        app:layout_constraintLeft_toLeftOf="@+id/lg_footer_image"
+        app:layout_constraintTop_toTopOf="@+id/tg_footer" />
+
+
+    <TextView
+        android:id="@+id/tvMcFac"
+        style="@style/sub_header_1_regular"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:fontFamily="@font/avenir_next_demi"
+        android:text="Powered by the McGill Food Analytics Centre"
+        android:textColor="#C32F26"
+        android:gravity="center_vertical"
+        android:textSize="@dimen/_9sdp"
+        app:layout_constraintBottom_toBottomOf="@+id/bg_footer"
+        app:layout_constraintLeft_toLeftOf="@id/lg_footer_text"
+        app:layout_constraintRight_toRightOf="@id/rg_footer_text"
+        app:layout_constraintTop_toTopOf="@+id/tg_footer" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
