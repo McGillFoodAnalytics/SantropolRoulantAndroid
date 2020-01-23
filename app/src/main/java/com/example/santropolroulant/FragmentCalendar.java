@@ -1,46 +1,37 @@
 package com.example.santropolroulant;
 
 import android.content.Context;
-import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.annotation.RequiresApi;
 import androidx.fragment.app.Fragment;
 
-import com.example.santropolroulant.FirebaseClasses.UserSlot;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 import com.savvi.rangedatepicker.CalendarPickerView;
+import com.savvi.rangedatepicker.SubTitle;
 
-import java.lang.reflect.Array;
 import java.text.DateFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.time.LocalDate;
-import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.List;
 
-import static android.widget.Toast.LENGTH_SHORT;
-
 public class FragmentCalendar extends Fragment {
     private FragmentCalendarListener listener;
     ArrayList<Date> emptyDates = new ArrayList<Date>();
     String event_type;
+    ArrayList<SubTitle> subTitles = new ArrayList<>();
+
     private final String EVENT_LOC = "eventSample";
 
 
@@ -55,8 +46,8 @@ public class FragmentCalendar extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_calendar, container,false);
-        Calendar nextYear = Calendar.getInstance();
-        nextYear.add(Calendar.YEAR, 1);
+        Calendar nextMonth = Calendar.getInstance();
+        nextMonth.add(Calendar.MONTH, 2);
         Date today = new Date();
         List<Date> dates = new ArrayList<Date>();
 
@@ -73,15 +64,14 @@ public class FragmentCalendar extends Fragment {
         Calendar nextDay2 = Calendar.getInstance();
         nextDay2.add(Calendar.DATE, 5);
 
-        ArrayList<Date> calendarList =  getDatesBetween(today, nextYear.getTime());
+        ArrayList<Date> calendarList =  getDatesBetween(today, nextMonth.getTime());
         Log.d("calendarList", calendarList.get(0).toString());
 
         Integer dateVal = Integer.valueOf(Integer.toString(year).substring(1)+ String.format("%02d", month)+ String.format("%02d",day));
         Log.d("ha", dateVal + "");
         listener.onInputASent(todayDate,dateVal);
         final CalendarPickerView calendar = (CalendarPickerView) v.findViewById(R.id.calendar);
-        calendar.init(today, nextYear.getTime()).withSelectedDate(today).withHighlightedDate(nextDay2.getTime());
-
+        calendar.init(today, nextMonth.getTime());
         //queryFunction(event_type, inflater, container);
         //**********************
         Query attendeeQuery = FirebaseDatabase.getInstance().getReference(EVENT_LOC)
@@ -91,6 +81,7 @@ public class FragmentCalendar extends Fragment {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 emptyDates.clear();
+                subTitles.clear();
                 Integer i=0;
                 for (DataSnapshot userSnap : dataSnapshot.getChildren()){
                     String key = userSnap.getKey();
@@ -113,6 +104,10 @@ public class FragmentCalendar extends Fragment {
 
                         java.util.Date emptyDay = cal.getTime();
 
+                        if (userSnap.child("is_important_event").getValue(boolean.class)) {
+                            java.util.Date subtitleday = cal.getTime();
+                            subTitles.add(new SubTitle(subtitleday, "URGENT"));
+                        }
                         if(!emptyDates.contains(emptyDay) && !emptyDay.before(today)) {
                             //emptyDates.add(i, emptyDay);
                            // Log.d("calendarListInside", calendarList.get(0).toString());
@@ -140,7 +135,7 @@ public class FragmentCalendar extends Fragment {
 
                 final CalendarPickerView calendar = (CalendarPickerView) v.findViewById(R.id.calendar);
                 //calendar.highlightDates(emptyDates);
-                calendar.init(today, nextYear.getTime()).withSelectedDate(today).withHighlightedDates(calendarList);
+                calendar.init(today, nextMonth.getTime()).withHighlightedDates(calendarList).withSubTitles(subTitles);
             }
 
             @Override

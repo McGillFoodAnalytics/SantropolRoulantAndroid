@@ -11,7 +11,6 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.santropolroulant.R;
-import com.example.santropolroulant.FirebaseClasses.UserSlot;
 
 import java.util.List;
 
@@ -46,7 +45,7 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.UserViewHolder
         UserSlot user = userList.get(position);
         holder.txtNumVal.setText(user.getNumVal());
         if (user.getFirstName().equals("Selected Slot")){
-            holder.txtFullName.setTextColor(Color.parseColor("#8BC34A"));
+            holder.txtFullName.setTextColor(Color.parseColor("#FFFFFF"));
         }
         holder.txtFullName.setText(user.getFirstName()+" "+user.getLastName());
     }
