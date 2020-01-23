@@ -1,5 +1,6 @@
 package com.example.santropolroulant;
 
+import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
@@ -248,6 +249,7 @@ public class UserSchedule extends AppCompatActivity {
                 builder.setCustomTitle(title);
                 builder.setMessage("Are you should you want to unregister from this event?");
 
+
                 builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
@@ -285,6 +287,7 @@ public class UserSchedule extends AppCompatActivity {
                 });
 
                 AlertDialog dialog = builder.show();
+
                 TextView messageView = (TextView)dialog.findViewById(android.R.id.message);
                 messageView.setGravity(Gravity.CENTER);
 

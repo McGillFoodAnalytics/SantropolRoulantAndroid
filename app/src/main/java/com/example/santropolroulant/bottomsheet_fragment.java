@@ -20,13 +20,16 @@ import androidx.fragment.app.Fragment;
 
 import android.util.DisplayMetrics;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.Switch;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.constraintlayout.widget.ConstraintLayout;
@@ -37,6 +40,9 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import static android.graphics.Color.BLACK;
+import static android.graphics.Color.DKGRAY;
 
 public class bottomsheet_fragment extends Fragment {
     private ConstraintLayout mBottomSheet;
@@ -60,6 +66,7 @@ public class bottomsheet_fragment extends Fragment {
     private final String EVENT_LOC = MainActivity.EVENT_LOC;
     private final String USER_LOC = MainActivity.USER_LOC;
     private final String VACANT_UID = "nan";
+    private int unicode = 0x1F64C;
 
     public bottomsheet_fragment() {
         // Required empty public constructor
@@ -187,11 +194,20 @@ public class bottomsheet_fragment extends Fragment {
     }
     private void popUpClick(final String key){
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+        TextView title = new TextView(getActivity());
+        int myColor = getResources().getColor(R.color.white);
+        title.setText("Confirmation " + getEmojiByUnicode(unicode));
+        title.setBackgroundColor(myColor);
+        title.setPadding(10, 10, 10, 10);
+        title.setGravity(Gravity.CENTER);
+        title.setTextColor(BLACK);
+        title.setTextSize(20);
+        builder.setCustomTitle(title);
         builder.setCancelable(true);
-        builder.setTitle("Confirmation");
+       // builder.setTitle("Confirmation");
         final View customLayout = getLayoutInflater().inflate(R.layout.btn_share, null);
         txtNote = customLayout.findViewById(R.id.txtNote);
-        String[] info = {"First Shift"};
+        String[] info = {"First time doing this activity?"};
         builder.setView(customLayout)
                 .setPositiveButton("Sign up!",
                         new DialogInterface.OnClickListener() {
@@ -234,6 +250,14 @@ public class bottomsheet_fragment extends Fragment {
 
         AlertDialog dialog = builder.create();
         dialog.show();
+        Button btnPositive = dialog.getButton(AlertDialog.BUTTON_POSITIVE);
+        Button btnNegative = dialog.getButton(AlertDialog.BUTTON_NEGATIVE);
+
+        LinearLayout.LayoutParams layoutParams = (LinearLayout.LayoutParams) btnPositive.getLayoutParams();
+        layoutParams.weight = 10;
+        btnPositive.setLayoutParams(layoutParams);
+        btnNegative.setLayoutParams(layoutParams);
+
     }
 
     private void queryFunction(final String eventType, final Integer dateVal){
@@ -396,4 +420,8 @@ public class bottomsheet_fragment extends Fragment {
             }
         }
     }
+    public String getEmojiByUnicode(int unicode){
+        return new String(Character.toChars(unicode));
+    }
+
 }
