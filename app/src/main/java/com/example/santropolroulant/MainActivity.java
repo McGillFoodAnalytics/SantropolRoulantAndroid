@@ -76,6 +76,10 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
+    @Override
+    public void onBackPressed() {
+        return;
+    }
 
     public abstract class CountUpTimer extends CountDownTimer {
         private static final long INTERVAL_MS = 500;

@@ -139,6 +139,10 @@ public class Home extends AppCompatActivity {
 
 
     }
+    @Override
+    public void onBackPressed() {
+        return;
+    }
 
     private void setUpUIViews() {
 
