@@ -11,7 +11,6 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.santropolroulant.R;
-import com.example.santropolroulant.FirebaseClasses.UserSlot;
 
 import java.util.List;
 

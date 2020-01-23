@@ -5,7 +5,7 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 
 import com.example.santropolroulant.Adapters.UserAdapter;
-import com.example.santropolroulant.FirebaseClasses.UserSlot;
+import com.example.santropolroulant.Adapters.UserSlot;
 import com.google.android.material.bottomsheet.BottomSheetBehavior;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
@@ -260,7 +260,7 @@ public class bottomsheet_fragment extends Fragment {
 
                         if (!first_name.isEmpty() && !last_name.isEmpty()) {
                             userList.add(
-                                    new UserSlot(i.toString(), first_name, (last_name.charAt(0)+"."), key)
+                                    new UserSlot(i.toString(), first_name, Character.toString(last_name.charAt(0)).concat("."), key)
                             );
                             i = i + 1;
                         }
