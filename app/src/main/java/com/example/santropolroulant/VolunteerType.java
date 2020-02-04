@@ -33,14 +33,14 @@ public class VolunteerType extends AppCompatActivity {
         mAuth = FirebaseAuth.getInstance();
         setupUIViews();
 
-        // TO DO AFTER DELIVERY!!!!
+
         crdKitchen.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 volunteerType = "kitchen";
                 crdKitchen.setCardBackgroundColor(Color.parseColor("#D07FCE"));
                 crdDelivery.setCardBackgroundColor(Color.parseColor("#DCAADC"));
-    //            crdDelivery.setBackgroundResource(R.drawable.radius_clicked);
+
                 imagedelivery.setVisibility(View.INVISIBLE);
                 text1delivery.setVisibility(View.INVISIBLE);
                 text2delivery.setVisibility(View.INVISIBLE);
