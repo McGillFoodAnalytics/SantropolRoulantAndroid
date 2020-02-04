@@ -59,9 +59,9 @@ public class UnlockApplication extends AppCompatActivity{
         //}
 
         /*TO SET BACK TO LOCKED*/
-        SharedPreferences.Editor editor = getSharedPreferences(MY_PREFS_NAME, MODE_PRIVATE).edit();
+        /*SharedPreferences.Editor editor = getSharedPreferences(MY_PREFS_NAME, MODE_PRIVATE).edit();
         editor.putBoolean("unlocked", false);
-        editor.apply();
+        editor.apply();*/
 
 
         SharedPreferences prefs = getSharedPreferences(MY_PREFS_NAME, MODE_PRIVATE);
