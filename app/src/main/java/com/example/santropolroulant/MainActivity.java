@@ -75,7 +75,6 @@ public class MainActivity extends AppCompatActivity {
         timer.start();
     }
 
-
     @Override
     public void onBackPressed() {
         return;

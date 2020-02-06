@@ -106,7 +106,7 @@ public class FragmentCalendar extends Fragment {
 
                         if (userSnap.child("is_important_event").getValue(boolean.class)) {
                             java.util.Date subtitleday = cal.getTime();
-                            subTitles.add(new SubTitle(subtitleday, "URGENT"));
+                            subTitles.add(new SubTitle(subtitleday, "PRIORITY"));
                         }
                         if(!emptyDates.contains(emptyDay) && !emptyDay.before(today)) {
                             //emptyDates.add(i, emptyDay);
