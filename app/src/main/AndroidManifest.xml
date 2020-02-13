@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.santropolroulant">
+    package="com.mcfac.santropolroulant">
     <uses-permission android:name="android.permission.CALL_PHONE"></uses-permission>
 
     <application
