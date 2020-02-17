@@ -92,12 +92,11 @@
         android:drawablePadding="@dimen/spacing_large"
         android:gravity="center_vertical"
         android:paddingLeft="@dimen/spacing_large"
-        android:text="111, Roy East, Montreal (QC) H2W 1M1"
+        android:text="@string/_111_roy_east_montreal_qc_h2w_1m1"
         app:layout_constraintBottom_toBottomOf="@+id/tg_text2"
         app:layout_constraintLeft_toLeftOf="@+id/lg_main"
         app:layout_constraintRight_toRightOf="@+id/rg_main"
         app:layout_constraintTop_toTopOf="@+id/tg_text1" />
-
     <TextView
         android:id="@+id/tvEmail"
         style="@style/text_view_1"
@@ -108,12 +107,11 @@
         android:drawablePadding="@dimen/spacing_large"
         android:gravity="center_vertical"
         android:paddingLeft="@dimen/spacing_large"
-        android:text="info@santropolroulant.org"
+        android:text="@string/info_santropolroulant_org"
         app:layout_constraintBottom_toBottomOf="@+id/tg_frag"
         app:layout_constraintLeft_toLeftOf="@+id/lg_main"
         app:layout_constraintRight_toRightOf="@+id/rg_main"
         app:layout_constraintTop_toTopOf="@+id/tg_text3" />
-
     <TextView
         android:id="@+id/tvPhoneNumber"
         style="@style/text_view_1"
@@ -124,12 +122,11 @@
         android:drawablePadding="@dimen/spacing_large"
         android:gravity="center_vertical"
         android:paddingLeft="@dimen/spacing_large"
-        android:text="(514) 284-9335"
+        android:text="@string/_514_284_9335"
         app:layout_constraintBottom_toBottomOf="@+id/tg_text3"
         app:layout_constraintLeft_toLeftOf="@+id/lg_main"
         app:layout_constraintRight_toRightOf="@+id/rg_main"
         app:layout_constraintTop_toTopOf="@+id/tg_text2" />
-
     <TextView
         android:id="@+id/tvTitle2"
         style="@style/header_bold"
@@ -137,7 +134,7 @@
         android:layout_height="0dp"
         android:fontFamily="sans-serif-medium"
         android:gravity="center"
-        android:text="Let's get in touch!"
+        android:text="@string/let_s_get_in_touch"
         android:textSize="@dimen/_25sdp"
         app:layout_constraintBottom_toBottomOf="@+id/tg_text1"
         app:layout_constraintLeft_toLeftOf="@+id/lg_main"

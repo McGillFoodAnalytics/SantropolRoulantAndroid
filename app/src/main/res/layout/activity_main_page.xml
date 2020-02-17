@@ -12,7 +12,7 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:gravity="center"
-        android:text="Every day, our services bring an infinite amount of love to our members"
+        android:text="@string/infinite_love"
         android:textColor="#FFFFFF"
         android:textSize="24sp"
         android:textStyle="bold"
@@ -20,13 +20,12 @@
         app:layout_constraintLeft_toLeftOf="@+id/lg_main_buttons"
         app:layout_constraintRight_toRightOf="@+id/rg_main_buttons"
         app:layout_constraintTop_toTopOf="@+id/tg_main_desc" />
-
     <Button
         android:id="@+id/Create_Account_Button"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:background="#679267"
-        android:text="Register"
+        android:text="@string/register"
         android:textColor="#FFFFFF"
         android:textSize="@dimen/_20sdp"
         android:textAllCaps="false"
@@ -36,14 +35,13 @@
         app:layout_constraintLeft_toLeftOf="@+id/lg_main_buttons"
         app:layout_constraintRight_toRightOf="@+id/rg_main_buttons"
         app:layout_constraintTop_toTopOf="@+id/tg_main_register" />
-
     <Button
         android:id="@+id/Login_Button"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:background="#679267"
         android:textAllCaps="false"
-        android:text="Login"
+        android:text="@string/login"
         android:textColor="#FFFFFF"
         android:textSize="@dimen/_20sdp"
         android:textStyle="bold"
@@ -51,13 +49,12 @@
         app:layout_constraintLeft_toLeftOf="@+id/lg_main_buttons"
         app:layout_constraintRight_toRightOf="@+id/rg_main_buttons"
         app:layout_constraintTop_toTopOf="@+id/tg_main_login" />
-
     <TextView
         android:id="@+id/textView2"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:lines="2"
-        android:text="Welcome to \nSantropol Roulant"
+        android:text="@string/welcome_to_nsantropol_roulant"
         android:textColor="#FFFFFF"
         android:textSize="@dimen/_25sdp"
         android:textStyle="bold"
@@ -65,12 +62,11 @@
         app:layout_constraintLeft_toLeftOf="@+id/lg_main_buttons"
         app:layout_constraintRight_toRightOf="@+id/rg_main_buttons"
         app:layout_constraintTop_toTopOf="@+id/tg_main_header" />
-
     <TextView
         android:id="@+id/timerView"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:text="0"
+        android:text="@string/_0"
         android:textColor="#444445"
         android:textSize="@dimen/_64sdp"
         android:textStyle="bold"
@@ -80,7 +76,6 @@
         app:layout_constraintLeft_toLeftOf="@+id/lg_main_counter"
         app:layout_constraintRight_toRightOf="@+id/rg_main_buttons"
         app:layout_constraintTop_toTopOf="@+id/tg_main_heart" />
-
     <ImageView
         android:id="@+id/imageView"
         android:layout_width="0dp"

@@ -129,7 +129,7 @@
         android:id="@+id/tvCreateAccountConfSubtitle"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:text="YOUR USER NAME"
+        android:text="@string/your_user_name"
         android:textColor="#FFFFFF"
         android:textSize="@dimen/_15sdp"
         android:textStyle="bold"
@@ -138,7 +138,6 @@
         app:layout_constraintRight_toRightOf="@+id/rguser_pass_info"
         app:layout_constraintTop_toTopOf="@+id/tguser"
         />
-
     <TextView
         android:id="@+id/tvCreateAccountConfUsername"
         android:layout_width="0dp"
@@ -152,14 +151,13 @@
         app:layout_constraintLeft_toLeftOf="@+id/lguser_pass_info"
         app:layout_constraintRight_toRightOf="@+id/rguser_pass_info"
         app:layout_constraintTop_toTopOf="@+id/tgpass" />
-
     <Button
         android:id="@+id/btnCreateAccountConfFinish"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:background="#679267"
         android:shadowColor="#00070303"
-        android:text="Finish"
+        android:text="@string/finish"
         android:textAllCaps="false"
         android:textColor="#FFFFFF"
         android:textSize="@dimen/_20sdp"
@@ -168,24 +166,22 @@
         app:layout_constraintLeft_toLeftOf="@+id/lgbutton"
         app:layout_constraintRight_toRightOf="@+id/rgbutton"
         app:layout_constraintTop_toTopOf="@+id/tgbutton" />
-
     <TextView
         android:id="@+id/create_account_conf_description"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:text="You need to use this given username to login to your account.  It is made up of the first two letters of your family name followed by your phone number."
+        android:text="@string/username_instruction"
         android:textColor="#ffffff"
         android:textSize="@dimen/_15sdp"
         app:layout_constraintBottom_toBottomOf="@id/bginfo"
         app:layout_constraintLeft_toLeftOf="@+id/lguser_pass_info"
         app:layout_constraintRight_toRightOf="@+id/rguser_pass_info"
         app:layout_constraintTop_toTopOf="@+id/tginfo" />
-
     <TextView
         android:id="@+id/tvLoginHeader"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:text="Your Account is now set up."
+        android:text="@string/your_account_is_now_set_up"
         android:textColor="#ffffff"
         android:textSize="@dimen/_16sdp"
         android:textStyle="bold"
@@ -193,7 +189,6 @@
         app:layout_constraintLeft_toLeftOf="@+id/lguser_pass_info"
         app:layout_constraintRight_toRightOf="@+id/rguser_pass_info"
         app:layout_constraintTop_toTopOf="@+id/tg_login_header" />
-
     <ImageView
         android:id="@+id/ivCheckmark"
         android:layout_width="0dp"
@@ -203,6 +198,5 @@
         app:layout_constraintLeft_toLeftOf="@+id/lguser_pass_info"
         app:layout_constraintRight_toRightOf="@+id/rguser_pass_info"
         app:layout_constraintTop_toTopOf="@+id/tg_create_account_conf_check" />
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>

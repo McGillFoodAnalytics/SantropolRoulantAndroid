@@ -205,7 +205,7 @@
         android:background="@color/dark_purple"
         android:fontFamily="sans-serif-medium"
         android:gravity="center"
-        android:text="Next"
+        android:text="@string/next"
         android:textAlignment="center"
         android:textAllCaps="false"
         android:textSize="@dimen/_20sdp"
@@ -222,7 +222,7 @@
         android:layout_height="0dp"
         android:fontFamily="sans-serif-medium"
         android:gravity="center"
-        android:text="Which mode of transportation would you prefer for delivery?"
+        android:text="@string/transport_mode"
         android:textColor="@color/dark_purple"
         android:textSize="@dimen/_25sdp"
         android:textStyle="bold"
@@ -262,7 +262,7 @@
                 style="@style/sub_header_3_regular"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Non-Driver" />
+                android:text="@string/non_driver" />
         </LinearLayout>
     </androidx.cardview.widget.CardView>
 
@@ -299,7 +299,7 @@
                 style="@style/sub_header_3_regular"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Driver" />
+                android:text="@string/driver"  />
 
         </LinearLayout>
     </androidx.cardview.widget.CardView>

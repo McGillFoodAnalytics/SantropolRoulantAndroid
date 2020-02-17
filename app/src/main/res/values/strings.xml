@@ -36,4 +36,78 @@
     <string name="unlock_login_text">I already have an account</string>
     <string name="enter_code_text">Enter Code</string>
     <string name="santropol_logo">Santropol Logo</string>
+    <string name="where_do_you_live">Where do you live?</string>
+    <string name="_111_roy_east_montreal_qc_h2w_1m1">111, Roy East, Montreal (QC) H2W
+1M1</string>
+    <string name="info_santropolroulant_org"
+        translatable="false">info@santropolroulant.org</string>
+    <string name="_514_284_9335" translatable="false">(514) 284-9335</string>
+    <string name="let_s_get_in_touch">Let\'s get in touch!</string>
+    <string name="let_us_know_about_you">Let us know about you!</string>
+    <string name="already_signed_up_login">Already Signed Up? Login</string>
+    <string name="next">Next</string>
+    <string name="almost_done">Almost done!</string>
+    <string name="date_of_birth">Date of Birth</string>
+    <string name="address">Address</string>
+    <string name="postal_code">Postal Code</string>
+    <string name="city">City</string>
+    <string name="phone_number">Phone Number</string>
+    <string name="email_address">Email Address</string>
+    <string name="password">Password</string>
+    <string name="confirm_password">Confirm Password</string>
+    <string name="your_user_name">YOUR USER NAME</string>
+    <string name="finish">Finish</string>
+    <string name="username_instruction">You need to use this given username to login
+to your account. It is made up of the first two letters of your family name followed
+by your phone number.</string>
+    <string name="your_account_is_now_set_up">Your Account is now set up.</string>
+    <string name="volunteer">Volunteer</string>
+    <string name="do_good_feel_good"><![CDATA[Do Good & Feel Good]]></string>
+    <string name="my_schedule">My Schedule</string>
+    <string name="check_your_schedule">Check your schedule</string>
+    <string name="profile">Profile</string>
+    <string name="update_information">Update Information</string>
+    <string name="contact_us">Contact Us</string>
+    <string name="inquiries_and_more">Inquiries and More</string>
+    <string name="powered_by_the_mcgill_food_analytics_centre">Powered by the McGill
+Food Analytics Centre</string>
+    <string name="username">Username*</string>
+    <string name="password_2">Password</string>
+    <string name="login">Login</string>
+    <string name="username_description">*Your username is made up of the first two
+letters of your last name followed by your phone number.</string>
+    <string name="welcome_back">Welcome Back!</string>
+    <string name="forgot_your_password">Forgot your password?</string>
+    <string name="infinite_love">Every day, our services bring an infinite amount of
+love to our members</string>
+    <string name="register">Register</string>
+    <string name="welcome_to_nsantropol_roulant">Welcome to Santropol Roulant</string>
+    <string name="_0" translatable="false">0</string>
+    <string name="email">Email</string>
+    <string name="reset_password">Reset Password</string>
+    <string name="which_time_of_the_day_would_you_prefer">Which time of the day would
+you prefer?</string>
+    <string name="next_caps">NEXT</string>
+    <string name="transport_mode">Which mode of transportation would you prefer for
+delivery?</string>
+    <string name="non_driver">Non-Driver</string>
+    <string name="driver">Driver</string>
+    <string name="what_you_are_signed_up_for">What you are signed up for!</string>
+    <string name="meal_delivery">Meal Delivery</string>
+    <string name="kitchen">Kitchen</string>
+    <string name="activity_type">What type of activity would you like to sign up
+for?</string>
+    <string name="delivery_description">Help deliver a warm meal and a smiling
+greeting that can help make our clients day!</string>
+    <string name="kitchen_description">Work with a chef to bring together all of the
+elements to prepare the meal of the day!</string>
+    <string name="sign_up">Sign Up</string>
+    <string name="bottom_sheet">Bottom Sheet</string>
+    <string name="event_information">Event Information</string>
+    <string name="first_shift">First Shift?</string>
+    <string name="remarks">Any remarks you want us to know</string>
+    <string name="afternoon_shift">Afternoon</string>
+    <string name="morning_shift">Morning</string>
+    <string name="password_reset">Enter your email to reset your password.</string>
+    <string name="change_lang">Change Language</string>
 </resources>

@@ -17,7 +17,7 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:ems="10"
-        android:hint="Address"
+        android:hint="@string/address"
         android:inputType="textPersonName"
         android:textColor="#FFFFFF"
         android:textColorHint="#FFFFFF"
@@ -27,13 +27,12 @@
         app:layout_constraintLeft_toLeftOf="@+id/lg_create_account"
         app:layout_constraintRight_toRightOf="@+id/rg_create_account"
         app:layout_constraintTop_toTopOf="@+id/tg_first_name" />
-
     <EditText
         android:id="@+id/etUser_City"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:ems="10"
-        android:hint="City"
+        android:hint="@string/city"
         android:inputType="textPersonName"
         android:textColor="#FFFFFF"
         android:textColorHint="#FFFFFF"
@@ -43,13 +42,12 @@
         app:layout_constraintLeft_toLeftOf="@+id/lg_create_account"
         app:layout_constraintRight_toRightOf="@+id/rg_create_account"
         app:layout_constraintTop_toTopOf="@+id/tg_last_name" />
-
     <EditText
         android:id="@+id/etUser_Postal_Code"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:ems="10"
-        android:hint="Postal Code"
+        android:hint="@string/postal_code"
         android:inputType="textPersonName"
         android:textColor="#FFFFFF"
         android:textColorHint="#FFFFFF"
@@ -59,13 +57,12 @@
         app:layout_constraintLeft_toLeftOf="@+id/lg_create_account"
         app:layout_constraintRight_toRightOf="@+id/rg_create_account"
         app:layout_constraintTop_toTopOf="@+id/tg_dob" />
-
     <Button
         android:id="@+id/etNext_2"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:background="#679267"
-        android:text="Next"
+        android:text="@string/next"
         android:textAllCaps="false"
         android:textColor="#FFFFFF"
         android:textSize="@dimen/_20sdp"
@@ -196,11 +193,10 @@
         android:id="@+id/address_header"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:text="Where do you live?"
+        android:text="@string/where_do_you_live"
         android:textColor="#FFFFFF"
         android:textSize="@dimen/_25sdp"
         android:textStyle="bold"
-
         app:layout_constraintBottom_toBottomOf="@+id/bg_header"
         app:layout_constraintLeft_toLeftOf="@+id/lg_create_account"
         app:layout_constraintRight_toRightOf="@+id/rg_create_account"

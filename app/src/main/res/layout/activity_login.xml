@@ -129,7 +129,7 @@
         android:id="@+id/etUsername"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:hint="Username*"
+        android:hint="@string/username"
         android:inputType="textPersonName"
         android:textColor="#FFFFFF"
         android:textColorHint="#FFFFFF"
@@ -140,12 +140,11 @@
         app:layout_constraintRight_toRightOf="@+id/rguser_pass_info"
         app:layout_constraintTop_toTopOf="@+id/tguser"
         />
-
     <EditText
         android:id="@+id/etPassword"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:hint="Password"
+        android:hint="@string/password"
         android:inputType="textPassword"
         android:textColor="#FFFFFF"
         android:textColorHint="#FFFFFF"
@@ -155,14 +154,13 @@
         app:layout_constraintLeft_toLeftOf="@+id/lguser_pass_info"
         app:layout_constraintRight_toRightOf="@+id/rguser_pass_info"
         app:layout_constraintTop_toTopOf="@+id/tgpass" />
-
     <Button
         android:id="@+id/btnLogin"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:background="#679267"
         android:shadowColor="#00070303"
-        android:text="Login"
+        android:text="@string/login"
         android:textAllCaps="false"
         android:textColor="#FFFFFF"
         android:textSize="@dimen/_20sdp"
@@ -171,24 +169,22 @@
         app:layout_constraintLeft_toLeftOf="@+id/lgbutton"
         app:layout_constraintRight_toRightOf="@+id/rgbutton"
         app:layout_constraintTop_toTopOf="@+id/tgbutton" />
-
     <TextView
         android:id="@+id/tvUsernameInfo"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:text="*Your username is made up of the first two letters of your last name followed by your phone number."
+        android:text="@string/username_description"
         android:textColor="#ffffff"
         android:textSize="@dimen/_15sdp"
         app:layout_constraintBottom_toBottomOf="@id/bginfo"
         app:layout_constraintLeft_toLeftOf="@+id/lguser_pass_info"
         app:layout_constraintRight_toRightOf="@+id/rguser_pass_info"
         app:layout_constraintTop_toTopOf="@+id/tginfo" />
-
     <TextView
         android:id="@+id/tvLoginHeader"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:text="Welcome Back!"
+        android:text="@string/welcome_back"
         android:textColor="#ffffff"
         android:textSize="@dimen/_25sdp"
         android:textStyle="bold"
@@ -196,12 +192,11 @@
         app:layout_constraintLeft_toLeftOf="@+id/lguser_pass_info"
         app:layout_constraintRight_toRightOf="@+id/rguser_pass_info"
         app:layout_constraintTop_toTopOf="@+id/tg_login_header" />
-
     <TextView
         android:id="@+id/tvForgotPassword"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:text="Forgot your password?"
+        android:text="@string/forgot_your_password"
         android:textColor="#ffffff"
         android:textSize="@dimen/_11sdp"
         app:layout_constraintBottom_toBottomOf="@id/bg_login_forgot_pass"

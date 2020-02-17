@@ -117,7 +117,7 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:background="@color/dark_purple"
-        android:text="Sign Up"
+        android:text="@string/sign_up"
         android:textAllCaps="false"
         android:textColor="#FFFFFF"
         android:textSize="@dimen/_20sdp"
@@ -126,14 +126,13 @@
         app:layout_constraintLeft_toLeftOf="@+id/left_guideline"
         app:layout_constraintRight_toRightOf="@+id/right_guideline"
         app:layout_constraintTop_toTopOf="@+id/topcalender_guideline" />
-
     <TextView
         android:id="@+id/bottom_sheet_heading_txt"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginLeft="16dp"
         android:layout_marginTop="16dp"
-        android:text="Bottom Sheet"
+        android:text="@string/bottom_sheet"
         android:textAlignment="viewStart"
         android:textAllCaps="true"
         android:textColor="@color/colorPrimaryText"
@@ -143,13 +142,12 @@
         app:layout_constraintLeft_toLeftOf="@id/left_guideline"
         app:layout_constraintRight_toRightOf="@id/right_guideline"
         app:layout_constraintTop_toTopOf="@id/topbutton_guideline" />
-
     <TextView
         android:id="@+id/bottom_sheet_heading_txt_info"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginLeft="16dp"
-        android:text="Event Information"
+        android:text="@string/event_information"
         android:textAlignment="viewStart"
         android:textAllCaps="false"
         android:textColor="@color/colorPrimaryText"
@@ -159,7 +157,6 @@
         app:layout_constraintLeft_toLeftOf="@id/left_guideline"
         app:layout_constraintRight_toRightOf="@id/right_guideline"
         app:layout_constraintTop_toTopOf="@id/topheadtext_guideline" />
-
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerViewUsers"
         android:layout_width="0dp"

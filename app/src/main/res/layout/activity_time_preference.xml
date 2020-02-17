@@ -7,109 +7,90 @@
     android:layout_height="match_parent"
     android:background="@color/white"
     tools:context=".TimePreference">
-
-
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/lg_header"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
         app:layout_constraintGuide_percent="0" />
-
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/rg_header"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
         app:layout_constraintGuide_percent="1" />
-
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/bg_header"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         app:layout_constraintGuide_percent="0.28" />
-
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/tg_header"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         app:layout_constraintGuide_percent="0.05" />
-
-
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/lg_button1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
         app:layout_constraintGuide_percent="0.08" />
-
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/rg_button1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
         app:layout_constraintGuide_percent="0.48" />
-
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/lg_button2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
         app:layout_constraintGuide_percent="0.53" />
-
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/rg_button2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
         app:layout_constraintGuide_percent="0.92" />
-
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/bg_buttons"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         app:layout_constraintGuide_percent="0.5" />
-
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/tg_buttons"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         app:layout_constraintGuide_percent="0.28" />
-
-
-
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/lg_next"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
         app:layout_constraintGuide_percent="0" />
-
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/rg_next"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
         app:layout_constraintGuide_percent="1" />
-
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/bg_next"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         app:layout_constraintGuide_percent="1.0" />
-
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/tg_next"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         app:layout_constraintGuide_percent="0.9" />
-
     <androidx.cardview.widget.CardView
         android:id="@+id/crdAfternoon"
         android:layout_width="0dp"
@@ -122,13 +103,11 @@
         app:layout_constraintLeft_toLeftOf="@+id/lg_button2"
         app:layout_constraintRight_toRightOf="@+id/rg_button2"
         app:layout_constraintTop_toTopOf="@+id/tg_buttons">
-
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:gravity="center"
             android:orientation="vertical">
-
             <ImageView
                 android:layout_width="@dimen/cv_height_tall"
                 android:layout_height="@dimen/cv_height_tall"
@@ -136,16 +115,13 @@
                 android:layout_marginBottom="@dimen/spacing_tiny"
                 android:gravity="center"
                 android:src="@drawable/afternoon_better"></ImageView>
-
             <TextView
                 style="@style/sub_header_3_regular"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Afternoon Shift" />
-
+                android:text="@string/afternoon_shift" />
         </LinearLayout>
     </androidx.cardview.widget.CardView>
-
     <androidx.cardview.widget.CardView
         android:id="@+id/crdMorning"
         android:layout_width="0dp"
@@ -158,13 +134,11 @@
         app:layout_constraintLeft_toLeftOf="@+id/lg_button1"
         app:layout_constraintRight_toRightOf="@+id/rg_button1"
         app:layout_constraintTop_toTopOf="@+id/tg_buttons">
-
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:gravity="center"
             android:orientation="vertical">
-
             <ImageView
                 android:layout_width="@dimen/cv_height_tall"
                 android:layout_height="@dimen/cv_height_tall"
@@ -172,17 +146,13 @@
                 android:layout_marginBottom="@dimen/spacing_tiny"
                 android:gravity="center"
                 android:src="@drawable/morning_better"></ImageView>
-
             <TextView
                 style="@style/sub_header_3_regular"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Morning Shift" />
-
+                android:text="@string/morning_shift" />
         </LinearLayout>
     </androidx.cardview.widget.CardView>
-
-
     <TextView
         android:id="@+id/tvTitle3"
         style="@style/sub_header_1_regular"
@@ -190,7 +160,7 @@
         android:layout_height="0dp"
         android:fontFamily="sans-serif-medium"
         android:gravity="center"
-        android:text="Which time of the day would you prefer?"
+        android:text="@string/which_time_of_the_day_would_you_prefer"
         android:textColor="@color/dark_purple"
         android:textSize="@dimen/_25sdp"
         android:textStyle="bold"
@@ -200,7 +170,6 @@
         app:layout_constraintRight_toRightOf="@+id/rg_header"
         app:layout_constraintTop_toTopOf="@+id/tg_header"
         app:layout_constraintVertical_bias="0.0" />
-
     <Button
         android:id="@+id/btnNext3"
         style="@style/button_next"
@@ -209,7 +178,7 @@
         android:background="@color/dark_purple"
         android:fontFamily="sans-serif-medium"
         android:gravity="center"
-        android:text="NEXT"
+        android:text="@string/next_caps"
         android:textAlignment="center"
         android:textSize="@dimen/_20sdp"
         android:textStyle="bold"
@@ -217,6 +186,4 @@
         app:layout_constraintLeft_toLeftOf="@+id/lg_next"
         app:layout_constraintRight_toRightOf="@+id/rg_next"
         app:layout_constraintTop_toTopOf="@+id/tg_next" />
-
-
 </androidx.constraintlayout.widget.ConstraintLayout>

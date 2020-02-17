@@ -28,7 +28,7 @@
         android:layout_height="0sp"
         android:background="@color/dark_purple"
         android:textAllCaps="false"
-        android:text="Volunteer"
+        android:text="@string/volunteer"
         android:textColor="#FFFFFF"
         android:textSize="@dimen/_20sdp"
         android:textStyle="bold"
@@ -36,17 +36,15 @@
         app:layout_constraintLeft_toLeftOf="@+id/lg_schedule"
         app:layout_constraintRight_toRightOf="@+id/rg_schedule"
         app:layout_constraintTop_toTopOf="@+id/tg_schedule_button" />
-
     <TextView
         android:id="@+id/textView"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:fontFamily="sans-serif-medium"
         android:gravity="center"
-        android:text="What you are signed up for!"
+        android:text="@string/what_you_are_signed_up_for"
         android:textColor="@color/dark_purple"
         android:textSize="@dimen/_22sdp"
-
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="@+id/tg_schedule_list"
         app:layout_constraintLeft_toLeftOf="@+id/lg_schedule"

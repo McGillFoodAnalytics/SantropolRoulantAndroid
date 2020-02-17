@@ -18,7 +18,7 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:ems="10"
-        android:hint="Phone Number"
+        android:hint="@string/phone_number"
         android:inputType="phone"
         android:textColor="#FFFFFF"
         android:textColorHint="#FFFFFF"
@@ -27,14 +27,13 @@
         app:layout_constraintBottom_toBottomOf="@+id/bg_create_account_phone_number"
         app:layout_constraintLeft_toLeftOf="@+id/lg_create_account"
         app:layout_constraintRight_toRightOf="@+id/rg_create_account"
-        app:layout_constraintTop_toTopOf="@+id/tg_create_account_phone_number"  />
-
+        app:layout_constraintTop_toTopOf="@+id/tg_create_account_phone_number" />
     <EditText
         android:id="@+id/etUser_Email"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:ems="10"
-        android:hint="Email Address"
+        android:hint="@string/email_address"
         android:inputType="textEmailAddress"
         android:textColor="#FFFFFF"
         android:textColorHint="#FFFFFF"
@@ -44,13 +43,12 @@
         app:layout_constraintLeft_toLeftOf="@+id/lg_create_account"
         app:layout_constraintRight_toRightOf="@+id/rg_create_account"
         app:layout_constraintTop_toTopOf="@+id/tg_create_account_email" />
-
     <EditText
         android:id="@+id/etUser_Password"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:ems="10"
-        android:hint="Password"
+        android:hint="@string/password"
         android:inputType="textPassword"
         android:textColor="#FFFFFF"
         android:textColorHint="#FFFFFF"
@@ -60,13 +58,12 @@
         app:layout_constraintLeft_toLeftOf="@+id/lg_create_account"
         app:layout_constraintRight_toRightOf="@+id/rg_create_account"
         app:layout_constraintTop_toTopOf="@+id/tg_create_account_pass1" />
-
     <EditText
         android:id="@+id/etUser_Conf_Password"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:ems="10"
-        android:hint="Confirm Password"
+        android:hint="@string/confirm_password"
         android:inputType="textPassword"
         android:textColor="#FFFFFF"
         android:textColorHint="#FFFFFF"
@@ -76,13 +73,12 @@
         app:layout_constraintLeft_toLeftOf="@+id/lg_create_account"
         app:layout_constraintRight_toRightOf="@+id/rg_create_account"
         app:layout_constraintTop_toTopOf="@+id/tg_create_account_pass2" />
-
     <Button
         android:id="@+id/register"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:background="#679267"
-        android:text="Next"
+        android:text="@string/next"
         android:textAllCaps="false"
         android:textColor="#FFFFFF"
         android:textSize="@dimen/_20sdp"
@@ -212,7 +208,7 @@
         android:id="@+id/create_account_3_header"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:text="Almost done!"
+        android:text="@string/almost_done"
         android:textColor="#FFFFFF"
         android:textSize="@dimen/_25sdp"
         android:textStyle="bold"

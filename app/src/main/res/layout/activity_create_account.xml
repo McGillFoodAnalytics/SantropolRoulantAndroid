@@ -27,8 +27,6 @@
         app:layout_constraintLeft_toLeftOf="@+id/lg_create_account"
         app:layout_constraintRight_toRightOf="@+id/rg_create_account"
         app:layout_constraintTop_toTopOf="@+id/tg_first_name" />
-
-
     <EditText
         android:id="@+id/etUserL_Name"
         android:layout_width="0dp"
@@ -44,14 +42,12 @@
         app:layout_constraintLeft_toLeftOf="@+id/lg_create_account"
         app:layout_constraintRight_toRightOf="@+id/rg_create_account"
         app:layout_constraintTop_toTopOf="@+id/tg_last_name"/>
-
-
     <TextView
         android:id="@+id/etUserBirthDate"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:background="?attr/editTextBackground"
-        android:hint="Date of Birth"
+        android:hint="@string/date_of_birth"
         android:textAppearance="?android:attr/textAppearanceMediumInverse"
         android:textColor="#FFFFFF"
         android:textColorHint="#FFFFFF"
@@ -61,12 +57,11 @@
         app:layout_constraintLeft_toLeftOf="@+id/lg_create_account"
         app:layout_constraintRight_toRightOf="@+id/rg_create_account"
         app:layout_constraintTop_toTopOf="@+id/tg_dob" />
-
     <TextView
         android:id="@+id/info_about_you"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:text="Let us know about you!"
+        android:text="@string/let_us_know_about_you"
         android:textColor="#FFFFFF"
         android:textSize="@dimen/_25sdp"
         android:textStyle="bold"
@@ -74,13 +69,11 @@
         app:layout_constraintLeft_toLeftOf="@+id/lg_create_account"
         app:layout_constraintRight_toRightOf="@+id/rg_create_account"
         app:layout_constraintTop_toTopOf="@+id/tg_header" />
-
-
     <TextView
         android:id="@+id/tvUserLogin"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Already Signed Up? Login"
+        android:text="@string/already_signed_up_login"
         android:textColor="#FFFFFF"
         android:textSize="@dimen/_18sdp"
         android:textStyle="bold"
@@ -88,14 +81,13 @@
         app:layout_constraintLeft_toLeftOf="@+id/lg_create_account"
         app:layout_constraintRight_toRightOf="@+id/rg_create_account"
         app:layout_constraintTop_toTopOf="@+id/tg_redirect1" />
-
     <Button
         android:id="@+id/btn_next_about_you"
         android:layout_width="0sp"
         android:layout_height="0sp"
         android:background="#679267"
         android:textAllCaps="false"
-        android:text="Next"
+        android:text="@string/next"
         android:textAlignment="center"
         android:textColor="#FFFFFF"
         android:textSize="@dimen/_20sdp"

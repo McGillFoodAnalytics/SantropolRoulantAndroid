@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
     android:layout_height="match_parent"
     android:layout_width="match_parent"
@@ -17,7 +18,6 @@
         app:layout_constraintLeft_toLeftOf="@+id/lg_unlock"
         app:layout_constraintRight_toRightOf="@+id/rg_unlock"
         app:layout_constraintTop_toTopOf="@+id/tg_unlock_icon" />
-
     <TextView
         android:id="@+id/unlock_welcome"
         android:layout_width="wrap_content"
@@ -219,6 +219,14 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         app:layout_constraintGuide_percent="0.95" />
+    <Button
+        android:id="@+id/changeMyLang"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/change_lang"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteX="127dp"
+        tools:layout_editor_absoluteY="681dp" />
 
 
 

@@ -207,13 +207,11 @@
         app:layout_constraintLeft_toLeftOf="@+id/lg_button2"
         app:layout_constraintRight_toRightOf="@+id/rg_button2"
         app:layout_constraintTop_toTopOf="@+id/tg_buttons">
-
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:gravity="center"
             android:orientation="vertical">
-
             <ImageView
                 android:layout_width="@dimen/cv_height_tall"
                 android:layout_height="@dimen/cv_height_tall"
@@ -221,15 +219,13 @@
                 android:layout_marginBottom="@dimen/spacing_tiny"
                 android:gravity="center"
                 android:src="@drawable/delivery_better"></ImageView>
-
             <TextView
                 style="@style/sub_header_3_regular"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Meal Delivery" />
+                android:text="@string/meal_delivery" />
         </LinearLayout>
     </androidx.cardview.widget.CardView>
-
     <androidx.cardview.widget.CardView
         android:id="@+id/crdKitchen"
         android:layout_width="0dp"
@@ -242,13 +238,11 @@
         app:layout_constraintLeft_toLeftOf="@+id/lg_button1"
         app:layout_constraintRight_toRightOf="@+id/rg_button1"
         app:layout_constraintTop_toTopOf="@+id/tg_buttons">
-
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:gravity="center"
             android:orientation="vertical">
-
             <ImageView
                 android:layout_width="@dimen/cv_height_tall"
                 android:layout_height="@dimen/cv_height_tall"
@@ -256,16 +250,13 @@
                 android:layout_marginBottom="@dimen/spacing_tiny"
                 android:gravity="center"
                 android:src="@drawable/kitchen_better"></ImageView>
-
             <TextView
                 style="@style/sub_header_3_regular"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Kitchen" />
+                android:text="@string/kitchen" />
         </LinearLayout>
     </androidx.cardview.widget.CardView>
-
-
     <TextView
         android:id="@+id/tvTitle2"
         style="@style/sub_header_1_regular"
@@ -274,7 +265,7 @@
         android:fontFamily="sans-serif-medium"
         android:gravity="center"
         android:lines="2"
-        android:text="What type of activity would you like to sign up for?"
+        android:text="@string/activity_type"
         android:textAllCaps="false"
         android:textColor="@color/dark_purple"
         android:textSize="@dimen/_25sdp"
@@ -285,7 +276,6 @@
         app:layout_constraintRight_toRightOf="@+id/rg_header"
         app:layout_constraintTop_toTopOf="@+id/tg_header"
         app:layout_constraintVertical_bias="0.0" />
-
     <Button
         android:id="@+id/btnNext2"
         style="@style/button_next"
@@ -294,7 +284,7 @@
         android:background="@color/dark_purple"
         android:fontFamily="sans-serif-medium"
         android:gravity="center"
-        android:text="Next"
+        android:text="@string/next"
         android:textAlignment="center"
         android:textAllCaps="false"
         android:textSize="@dimen/_20sdp"
@@ -303,52 +293,47 @@
         app:layout_constraintLeft_toLeftOf="@+id/lg_next"
         app:layout_constraintRight_toRightOf="@+id/rg_next"
         app:layout_constraintTop_toTopOf="@+id/tg_next" />
-
     <TextView
         android:id="@+id/meal_delivery_text_2"
         style="@style/sub_header_2_regular"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:text="Meal Delivery"
+        android:text="@string/meal_delivery"
         android:textColor="@color/dark_purple"
         android:textSize="@dimen/_20sdp"
         app:layout_constraintBottom_toBottomOf="@+id/bg_info_text_header"
         app:layout_constraintLeft_toLeftOf="@+id/lg_info_text_header"
         app:layout_constraintRight_toRightOf="@+id/rg_info_text_header"
         app:layout_constraintTop_toTopOf="@+id/tg_info_text_header" />
-
     <TextView
         android:id="@+id/kitchen_text_1"
         style="@style/sub_header_2_regular"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:text="Kitchen"
+        android:text="@string/kitchen"
         android:textColor="@color/dark_purple"
         android:textSize="@dimen/_20sdp"
         app:layout_constraintBottom_toBottomOf="@+id/bg_info_text_header"
         app:layout_constraintLeft_toLeftOf="@+id/lg_info_text_header"
         app:layout_constraintRight_toRightOf="@+id/rg_info_text_header"
         app:layout_constraintTop_toTopOf="@+id/tg_info_text_header" />
-
-
     <TextView
         android:id="@+id/meal_delivery_text_1"
         style="@style/content_text"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:text="Help deliver a warm meal and a smiling greeting that can help make our clients day!"
+        android:text="@string/delivery_description"
         android:textSize="@dimen/_15sdp"
         app:layout_constraintBottom_toBottomOf="@+id/bg_info_text"
         app:layout_constraintLeft_toLeftOf="@+id/lg_info_text"
         app:layout_constraintRight_toRightOf="@+id/rg_info_text"
         app:layout_constraintTop_toTopOf="@+id/tg_info_text" />
-
     <TextView
         android:id="@+id/kitchen_text_2"
         style="@style/content_text"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:text="Work with a chef to bring together all of the elements to prepare the meal of the day!"
+        android:text="@string/kitchen_description"
         android:textSize="@dimen/_15sdp"
         app:layout_constraintBottom_toBottomOf="@+id/bg_info_text"
         app:layout_constraintLeft_toLeftOf="@+id/lg_info_text"
