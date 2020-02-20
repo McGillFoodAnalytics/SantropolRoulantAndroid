@@ -92,7 +92,8 @@ you prefer?</string>
 delivery?</string>
     <string name="non_driver">Non-Driver</string>
     <string name="driver">Driver</string>
-    <string name="what_you_are_signed_up_for">What you are signed up for!</string>
+    <string name="what_you_are_signed_up_for">What you are signed up for?</string>
+    <string name="swipe_left_to_delete">Swipe left to delete event*</string>
     <string name="meal_delivery">Meal Delivery</string>
     <string name="kitchen">Kitchen</string>
     <string name="activity_type">What type of activity would you like to sign up

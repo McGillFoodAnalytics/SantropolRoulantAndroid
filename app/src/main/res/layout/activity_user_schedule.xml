@@ -51,6 +51,21 @@
         app:layout_constraintRight_toRightOf="@+id/rg_schedule"
         app:layout_constraintTop_toTopOf="@+id/tg_schedule_header" />
 
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:fontFamily="sans-serif-medium"
+        android:gravity="center"
+        android:text="@string/swipe_left_to_delete"
+        android:textColor="@color/dark_purple"
+        android:textSize="@dimen/_12sdp"
+        app:layout_constraintBottom_toBottomOf="@+id/tg_schedule_button"
+        app:layout_constraintLeft_toLeftOf="@+id/lg_schedule"
+        app:layout_constraintRight_toRightOf="@+id/rg_schedule"
+        app:layout_constraintTop_toTopOf="@+id/bg_schedule_list" />
+
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/lg_schedule"
         android:layout_width="wrap_content"
@@ -84,7 +99,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.9" />
+        app:layout_constraintGuide_percent="0.85" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/tg_schedule_button"
