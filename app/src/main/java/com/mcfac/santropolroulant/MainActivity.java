@@ -104,7 +104,7 @@ public class MainActivity extends AppCompatActivity {
     }
     private void showChangeLanguageDialog() {
 
-        final String[] listItems = {"French", "English"};
+        final String[] listItems = {"English", "French"};
 
         AlertDialog.Builder mbuilder = new AlertDialog.Builder(MainActivity.this);
 
