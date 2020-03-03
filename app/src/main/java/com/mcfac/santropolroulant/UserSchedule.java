@@ -25,7 +25,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.mcfac.santropolroulant.Adapters.EventAdapter;
-import com.example.santropolroulant.FirebaseClasses.Event;
+import com.mcfac.santropolroulant.FirebaseClasses.Event;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.auth.FirebaseAuth;

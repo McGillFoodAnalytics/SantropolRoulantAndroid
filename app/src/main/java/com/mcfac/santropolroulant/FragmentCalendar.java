@@ -33,7 +33,7 @@ public class FragmentCalendar extends Fragment {
     String event_type;
     ArrayList<SubTitle> subTitles = new ArrayList<>();
 
-    private final String EVENT_LOC = "eventSample";
+    private final String EVENT_LOC = "event";
 
 
     public FragmentCalendar(String event_type){

@@ -1,4 +1,4 @@
-package com.example.santropolroulant.FirebaseClasses;
+package com.mcfac.santropolroulant.FirebaseClasses;
 
 public class Event {
 

@@ -40,7 +40,7 @@ public class MainActivity extends AppCompatActivity {
     private FirebaseAuth firebaseAuth;
     private TextView timerView;
 
-    public static final String EVENT_LOC = "eventSample";
+    public static final String EVENT_LOC = "event";
     public static final String USER_LOC = "userSample";
     @Override
     protected void onCreate(Bundle savedInstanceState) {

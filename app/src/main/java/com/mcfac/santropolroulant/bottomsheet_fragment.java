@@ -66,7 +66,8 @@ public class bottomsheet_fragment extends Fragment {
     private ValueEventListener countListener, userListener, eventListener;
     private final String EVENT_LOC = MainActivity.EVENT_LOC;
     private final String USER_LOC = MainActivity.USER_LOC;
-    private final String VACANT_UID = "nan";
+    private final String VACANT_UID = "";
+    private final String VACANT_UID2 = "nan";
     private int unicode = 0x1F64C;
 
     public bottomsheet_fragment() {
@@ -358,7 +359,7 @@ public class bottomsheet_fragment extends Fragment {
                             toast.show();
                             break;
                         }
-                        else if(!uid_.equals(VACANT_UID)){
+                        else if(!uid_.equals(VACANT_UID) && !uid_.equals(VACANT_UID2)){
                             continue;
                         }
                         else {
@@ -386,6 +387,7 @@ public class bottomsheet_fragment extends Fragment {
         myRef = FirebaseDatabase.getInstance().getReference();
         if (event_name != null) {
             // Writing attendee instance to the firebase db
+            Log.d("signedup", "true");
             myRef.child(EVENT_LOC).child(event_name).child("uid").setValue(uid);
             myRef.child(EVENT_LOC).child(event_name).child("note").setValue(note);
             myRef.child(EVENT_LOC).child(event_name).child("last_name").setValue(last_name);

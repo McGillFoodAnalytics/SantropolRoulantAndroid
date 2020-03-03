@@ -1,4 +1,4 @@
-package com.example.santropolroulant.FirebaseClasses;
+package com.mcfac.santropolroulant.FirebaseClasses;
 
 public class User {
     private String address_city;

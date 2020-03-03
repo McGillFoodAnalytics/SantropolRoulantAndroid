@@ -10,7 +10,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.santropolroulant.FirebaseClasses.Event;
+import com.mcfac.santropolroulant.FirebaseClasses.Event;
 import com.mcfac.santropolroulant.R;
 
 import java.util.List;
@@ -124,7 +124,13 @@ public class EventAdapter extends RecyclerView.Adapter<EventAdapter.EventViewHol
             case "kitam":
                 properName = "Kitchen";
                 break;
+            case "kitas":
+                properName = "Kitchen";
+                break;
             case "kitpm":
+                properName = "Kitchen";
+                break;
+            case "kitps":
                 properName = "Kitchen";
                 break;
             default:
