@@ -41,7 +41,7 @@ public class MainActivity extends AppCompatActivity {
     private TextView timerView;
 
     public static final String EVENT_LOC = "event";
-    public static final String USER_LOC = "userSample";
+    public static final String USER_LOC = "user";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
