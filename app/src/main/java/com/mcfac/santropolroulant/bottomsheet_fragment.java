@@ -157,7 +157,7 @@ public class bottomsheet_fragment extends Fragment {
         queryFunction(eventType,dateval);
         dateText.setText(newText);
         String eventLongInfo;
-        if (eventType.contains("kitam")) {
+        if (eventType.contains("kita")) {
             if (newText.contains("saturday")) {
                 eventLongInfo = "Kitchen 9:00am-12:00pm";
             }
@@ -165,7 +165,7 @@ public class bottomsheet_fragment extends Fragment {
                 eventLongInfo = "Kitchen 9:30-12:30pm";
             }
         }
-        else if (eventType.contains("kitpm")){
+        else if (eventType.contains("kitp")){
             if (newText.contains("saturday")) {
                 eventLongInfo = "Kitchen 1:00-3:30pm";
             }
@@ -173,7 +173,7 @@ public class bottomsheet_fragment extends Fragment {
                 eventLongInfo = "Kitchen 1:30-4:00pm";
             }
         }
-        else if (eventType.contains("deldr")){
+        else if (eventType.contains("del")){
             if (newText.contains("saturday")) {
                 eventLongInfo = "Meal Delivery 2:15-5:30pm";
             }
@@ -181,7 +181,7 @@ public class bottomsheet_fragment extends Fragment {
                 eventLongInfo = "Meal Delivery 2:45-6:00pm";
             }
         }
-        else if (eventType.contains("deliv")){
+        else if (eventType.contains("del")){
             if (newText.contains("saturday")) {
                 eventLongInfo = "Meal Delivery 2:15-5:30pm";
             }

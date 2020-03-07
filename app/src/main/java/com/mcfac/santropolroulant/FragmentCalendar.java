@@ -129,7 +129,6 @@ public class FragmentCalendar extends Fragment {
                             i++;
                         }
 
-                        if(i == 100) { break; }
                     }
                 }
 

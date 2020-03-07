@@ -44,7 +44,7 @@ public class TimePreference extends AppCompatActivity  {
         crdMorning.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                timePref = "kitam";
+                timePref = "kita";
                 crdMorning.setCardBackgroundColor(Color.parseColor("#D07FCE"));
                 crdAfternoon.setCardBackgroundColor(Color.parseColor("#DCAADC"));
             }
@@ -53,7 +53,7 @@ public class TimePreference extends AppCompatActivity  {
         crdAfternoon.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                timePref = "kitpm";
+                timePref = "kitp";
                 crdAfternoon.setCardBackgroundColor(Color.parseColor("#D07FCE"));
                 crdMorning.setCardBackgroundColor(Color.parseColor("#DCAADC"));
             }

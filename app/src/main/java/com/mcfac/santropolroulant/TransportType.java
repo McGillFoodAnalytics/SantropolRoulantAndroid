@@ -36,7 +36,7 @@ public class TransportType extends AppCompatActivity {
         crdDriver.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                transportType = "deldr";
+                transportType = "deld";
                 crdDriver.setCardBackgroundColor(Color.parseColor("#D07FCE"));
                 crdNonDriver.setCardBackgroundColor(Color.parseColor("#DCAADC"));
 
@@ -52,7 +52,7 @@ public class TransportType extends AppCompatActivity {
         crdNonDriver.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                transportType = "deliv";
+                transportType = "deli";
                 crdNonDriver.setCardBackgroundColor(Color.parseColor("#D07FCE"));
                 crdDriver.setCardBackgroundColor(Color.parseColor("#DCAADC"));
 
