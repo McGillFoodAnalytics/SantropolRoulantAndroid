@@ -60,6 +60,7 @@ public class bottomsheet_fragment extends Fragment {
     private String eventTypeInfo;
     boolean[] checkedItems = {false};
     private AppCompatTextView infoText;
+    //private AppCompatTextView infoTextRegisteredCount;
     private Query attendeeQuery, eventQuery, userQuery;
     private DatabaseReference myRef;
     private ValueEventListener countListener, userListener, eventListener;
@@ -92,6 +93,7 @@ public class bottomsheet_fragment extends Fragment {
         mLeftArrow = view.findViewById(R.id.bottom_sheet_left_arrow);
         mRightArrow = view.findViewById(R.id.bottom_sheet_right_arrow);
         infoText = view.findViewById(R.id.bottom_sheet_heading_txt_info);
+        //infoTextRegisteredCount =  view.findViewById(R.id.bottom_sheet_heading_txt_info_count);
         signUp = view.findViewById(R.id.signUp);
 
         initializeBottomSheet();
@@ -270,6 +272,7 @@ public class bottomsheet_fragment extends Fragment {
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 userList.clear();
                 Integer i=1;
+                Integer registeredCount = 0;
                 for (DataSnapshot userSnap : dataSnapshot.getChildren()){
                     String key = userSnap.getKey();
                     Log.d("hey:","For loop key: " + key);
@@ -286,10 +289,17 @@ public class bottomsheet_fragment extends Fragment {
                             userList.add(
                                     new UserSlot(i.toString(), first_name, Character.toString(last_name.charAt(0)).concat("."), key)
                             );
-                            i = i + 1;
+                            registeredCount = registeredCount+1;
                         }
+                        else{
+                            userList.add(
+                                    new UserSlot(i.toString(), "", "", key)
+                            );
+                        }
+                        i = i + 1;
                     }
                 }
+                //infoTextRegisteredCount.setText((i-registeredCount).toString());
                 adapter.notifyDataSetChanged();
 
             }
