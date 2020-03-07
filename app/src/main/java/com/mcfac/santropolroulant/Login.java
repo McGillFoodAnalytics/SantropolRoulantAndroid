@@ -180,6 +180,7 @@ public class Login extends AppCompatActivity {
                     setInvisible();
                     // Go to Home activity
                     startActivity(new Intent(Login.this, Home.class));
+                    finishAffinity();
                 }else{
                     Toast.makeText(Login.this, "Login Failed: Incorrect Password", Toast.LENGTH_SHORT).show();
                     setInvisible();

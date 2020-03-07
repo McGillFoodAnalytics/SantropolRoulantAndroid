@@ -272,6 +272,7 @@ public class bottomsheet_fragment extends Fragment {
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 userList.clear();
                 Integer i=1;
+                Integer registeredCount = 0;
                 for (DataSnapshot userSnap : dataSnapshot.getChildren()){
                     String key = userSnap.getKey();
                     Log.d("hey:","For loop key: " + key);
@@ -288,8 +289,14 @@ public class bottomsheet_fragment extends Fragment {
                             userList.add(
                                     new UserSlot(i.toString(), first_name, Character.toString(last_name.charAt(0)).concat("."), key)
                             );
-                            i = i + 1;
+                            registeredCount = registeredCount+1;
                         }
+                        else{
+                            userList.add(
+                                    new UserSlot(i.toString(), "", "", key)
+                            );
+                        }
+                        i = i + 1;
                     }
                 }
                 adapter.notifyDataSetChanged();
