@@ -3,6 +3,7 @@ package com.mcfac.santropolroulant;
 import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.res.Configuration;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -24,6 +25,8 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.mcfac.santropolroulant.R;
+
+import java.util.Locale;
 
 
 public class UnlockApplication extends AppCompatActivity{
@@ -50,7 +53,7 @@ public class UnlockApplication extends AppCompatActivity{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_unlock);
         setupUIViews();
-
+        loadLocale();
         firebaseAuth = FirebaseAuth.getInstance();
         final FirebaseUser user = firebaseAuth.getCurrentUser();
         // Auto login for signed in user - Commented out below
@@ -127,6 +130,35 @@ public class UnlockApplication extends AppCompatActivity{
        //accessCode = dataStorage.getAccessCode();
 
 
+    }
+
+    private void setLocale(String lang) {
+
+        Locale locale = new Locale(lang);
+
+        Locale.setDefault(locale);
+
+        Configuration config = new Configuration();
+
+        config.locale = locale;
+
+        getBaseContext().getResources().updateConfiguration(config, getBaseContext().getResources().getDisplayMetrics());
+
+        SharedPreferences.Editor editor = getSharedPreferences( "Settings", MODE_PRIVATE).edit();
+
+        editor.putString("My_Lang", lang);
+
+        editor.apply();
+
+    }
+
+    public void loadLocale() {
+
+        SharedPreferences prefs = getSharedPreferences("Settings", Activity.MODE_PRIVATE);
+
+        String language = prefs.getString("My_Lang", "");
+
+        setLocale(language);
     }
 
     private void setupUIViews() {

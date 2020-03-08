@@ -92,52 +92,6 @@ public class MainActivity extends AppCompatActivity {
 
         timer.start();
 
-        Button changeLang = (Button) findViewById(R.id.changeMyLang);
-
-        changeLang.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                showChangeLanguageDialog();
-            }
-
-        });
-    }
-    private void showChangeLanguageDialog() {
-
-        final String[] listItems = {"English", "French"};
-
-        AlertDialog.Builder mbuilder = new AlertDialog.Builder(MainActivity.this);
-
-        mbuilder.setTitle("Choose Language...");
-
-        mbuilder.setSingleChoiceItems(listItems, -1, new OnClickListener() {
-
-            @Override
-            public void onClick(DialogInterface dialog, int i) {
-
-                if (i == 0) {
-
-                    setLocale("en");
-
-                    recreate();
-
-                } else if (i == 1) {
-
-                    setLocale("fr");
-
-                    recreate();
-
-                }
-
-                dialog.dismiss();
-
-            }
-
-        });
-
-        AlertDialog mDialog = mbuilder.create();
-
-        mDialog.show();
 
     }
 

@@ -42,6 +42,8 @@
             android:screenOrientation="portrait" />
         <activity android:name=".FragmentCalendar"
             android:screenOrientation="portrait" />
+        <activity android:name=".Settings"
+            android:screenOrientation="portrait" />
         <activity android:name=".UnlockApplication"
             android:screenOrientation="portrait" >
             <intent-filter>
