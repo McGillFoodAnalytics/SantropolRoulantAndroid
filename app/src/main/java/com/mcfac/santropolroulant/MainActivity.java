@@ -42,6 +42,7 @@ public class MainActivity extends AppCompatActivity {
 
     public static final String EVENT_LOC = "event";
     public static final String USER_LOC = "user";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -84,9 +85,12 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        CountUpTimer timer = new CountUpTimer(100000000) {
+        CountUpTimer timer = new CountUpTimer(500000) {
             public void onTick(int second) {
-                timerView.setText(String.valueOf(second));
+                if(second != -1)
+                    timerView.setText(String.valueOf(second));
+                else
+                    timerView.setText(getEmojiByUnicode(0x267E));
             }
         };
 
@@ -147,7 +151,13 @@ public class MainActivity extends AppCompatActivity {
 
         @Override
         public void onFinish() {
-            onTick(duration / 500);
+           // onTick(duration / 500);
+            onTick(-1);
         }
     }
+
+    public String getEmojiByUnicode(int unicode){
+        return new String(Character.toChars(unicode));
+    }
+
 }

@@ -111,4 +111,8 @@ elements to prepare the meal of the day!</string>
     <string name="morning_shift">Morning</string>
     <string name="password_reset">Enter your email to reset your password.</string>
     <string name="change_lang">Change Language</string>
+    <string name="logout">Logout</string>
+    <string name="language">Language</string>
+    <string name="personal_settings">Personal Settings</string>
+    <string name="my_profile">My Profile</string>
 </resources>

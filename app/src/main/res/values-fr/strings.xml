@@ -97,5 +97,9 @@
     <string name="your_user_name">VOTRE NOM D’UTILISATEUR</string>
     <string name="password_2">Mot de Passe</string>
     <string name="change_lang">" Changer de langue"</string>
+    <string name="logout">Se déconnecter</string>
+    <string name="language">Langue</string>
+    <string name="personal_settings">Paramètres personnels</string>
+    <string name="my_profile">Mon Profil</string>
     </resources>
 
