@@ -223,9 +223,9 @@ public class UnlockApplication extends AppCompatActivity{
         inputCode = codeInput.getText().toString().trim();
 
         if(inputCode.isEmpty()){
-            Toast.makeText(this, "Please enter a code", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, R.string.enter_a_code, Toast.LENGTH_SHORT).show();
         }else if (!(accessCode.equals(inputCode)) && (!inputCode.isEmpty())){
-            Toast.makeText(this, "Invalid code", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, R.string.invalid_code, Toast.LENGTH_SHORT).show();
         }
         else{
             result = true;

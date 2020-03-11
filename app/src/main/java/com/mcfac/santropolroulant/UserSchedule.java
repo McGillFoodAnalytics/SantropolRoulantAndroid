@@ -188,7 +188,7 @@ public class UserSchedule extends AppCompatActivity {
                         break;
                     }
                 }else{
-                    Toast.makeText(UserSchedule.this, "Unable to Fetch Events", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(UserSchedule.this, R.string.unable_fetch_events, Toast.LENGTH_SHORT).show();
                 }
             }
             @Override
@@ -241,17 +241,17 @@ public class UserSchedule extends AppCompatActivity {
                 builder.setCancelable(true);
                 TextView title = new TextView(UserSchedule.this);
                 int myColor = getResources().getColor(R.color.white);
-                title.setText("Confirm? " + getEmojiByUnicode(unicode));
+                title.setText(getString(R.string.confirm) + getEmojiByUnicode(unicode));
                 title.setBackgroundColor(myColor);
                 title.setPadding(10, 10, 10, 10);
                 title.setGravity(Gravity.CENTER);
                 title.setTextColor(DKGRAY);
                 title.setTextSize(20);
                 builder.setCustomTitle(title);
-                builder.setMessage("Are you should you want to unregister from this event?");
+                builder.setMessage(getString(R.string.unregister));
 
 
-                builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                builder.setNegativeButton(getString(R.string.cancel), new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
                         dialogInterface.cancel();
@@ -259,7 +259,7 @@ public class UserSchedule extends AppCompatActivity {
 
                     }
                 });
-                builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                builder.setPositiveButton(getString(R.string.yes), new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
                         final int position = viewHolder.getAdapterPosition();

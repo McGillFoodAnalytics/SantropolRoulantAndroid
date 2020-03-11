@@ -201,7 +201,7 @@ public class bottomsheet_fragment extends Fragment {
         title.setTextSize(20);
         builder.setCustomTitle(title);
         builder.setCancelable(true);
-       // builder.setTitle("Confirmation");
+        // builder.setTitle("Confirmation");
         final View customLayout = getLayoutInflater().inflate(R.layout.btn_share, null);
         txtNote = customLayout.findViewById(R.id.txtNote);
         String[] info = {"First time doing this activity?"};
@@ -229,10 +229,10 @@ public class bottomsheet_fragment extends Fragment {
                             }
                         })
                 .setMultiChoiceItems(info,checkedItems,new DialogInterface.OnMultiChoiceClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int which, boolean isChecked) {
-                                checkedItems[which] = isChecked;
-                            }
+                    @Override
+                    public void onClick(DialogInterface dialog, int which, boolean isChecked) {
+                        checkedItems[which] = isChecked;
+                    }
                 })
                 .setNegativeButton("Cancel",
                         new DialogInterface.OnClickListener() {

@@ -86,7 +86,7 @@ public class CreateAccount3 extends AppCompatActivity {
                                 Task[] tasks = sendUserData();
 
                                 //if (tasks[0].isSuccessful() && tasks[1].isSuccessful() && tasks[2].isSuccessful() && tasks[3].isSuccessful() &&tasks[4].isSuccessful() && tasks[5].isSuccessful() && tasks[6].isSuccessful() && tasks[7].isSuccessful() && tasks[8].isSuccessful()){
-                                Toast.makeText(CreateAccount3.this, "Registration Successful!", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(CreateAccount3.this, R.string.reg_success, Toast.LENGTH_SHORT).show();
                                 setInvisible();
                                 createAccount.setClickable(true);
 
@@ -175,10 +175,10 @@ public class CreateAccount3 extends AppCompatActivity {
         password = userPassword.getText().toString().trim();
         confPassword = userConfPassword.getText().toString().trim();
         if(email.isEmpty() || phone_number.isEmpty() || password.isEmpty() || confPassword.isEmpty()){
-            Toast.makeText(this, "Please enter all the details", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, R.string.enter_details, Toast.LENGTH_SHORT).show();
 
         }else if (!password.equals(confPassword)){
-            Toast.makeText(this, "Passwords must match!", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, R.string.passwords_match, Toast.LENGTH_SHORT).show();
 
         }
         else{

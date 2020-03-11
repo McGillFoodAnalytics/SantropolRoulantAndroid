@@ -51,7 +51,7 @@ public class MainActivity extends AppCompatActivity {
 
         //ActionBar actionBar = getSupportActionBar();
 
-       // actionBar.setTitle(getResources().getString(R.string.app_name));
+        // actionBar.setTitle(getResources().getString(R.string.app_name));
 
 
         // Setting up UI
@@ -151,7 +151,7 @@ public class MainActivity extends AppCompatActivity {
 
         @Override
         public void onFinish() {
-           // onTick(duration / 500);
+            // onTick(duration / 500);
             onTick(-1);
         }
     }

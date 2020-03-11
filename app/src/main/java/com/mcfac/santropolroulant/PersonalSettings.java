@@ -145,9 +145,9 @@ public class PersonalSettings extends AppCompatActivity {
                         }
                         inputFields.get(i).clearText();
                     }
-                    Toast.makeText(PersonalSettings.this, "Changes have been saved!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(PersonalSettings.this, R.string.changes_saved, Toast.LENGTH_SHORT).show();
                 } else { //if not, prompt user for input
-                    Toast.makeText(PersonalSettings.this, "Please Change Something!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(PersonalSettings.this, R.string.change_smth, Toast.LENGTH_SHORT).show();
                 }
 
             }

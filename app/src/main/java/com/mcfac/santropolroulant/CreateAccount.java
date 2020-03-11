@@ -146,7 +146,7 @@ public class CreateAccount extends AppCompatActivity {
         last_name = userLastName.getText().toString().trim();
         String[] birthDateRaw = userBirthDate.getText().toString().trim().split("/");
         if(first_name.isEmpty() || last_name.isEmpty() || birthDateRaw.length==0) {
-            Toast.makeText(this, "Please enter all the details", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, R.string.enter_details, Toast.LENGTH_SHORT).show();
             return result;
         }
 
