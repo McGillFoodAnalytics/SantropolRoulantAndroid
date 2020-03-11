@@ -268,7 +268,6 @@ public class bottomsheet_fragment extends Fragment {
                 userList.clear();
                 Integer i=1;
                 Integer registeredCount = 0;
-                Boolean wasFull = false;
                 for (DataSnapshot userSnap : dataSnapshot.getChildren()){
                     String key = userSnap.getKey();
                     Log.d("hey:","For loop key: " + key);
@@ -296,15 +295,11 @@ public class bottomsheet_fragment extends Fragment {
                     }
                 }
                 adapter.notifyDataSetChanged();
-                if(registeredCount == userList.size()){
+                if(userList.size() == registeredCount){
                     full();
-                    wasFull = true;
                 }
-                else{
-                    if(wasFull) {
+                else if(!signUp.hasOnClickListeners()){
                         available();
-                        wasFull = false;
-                    }
                 }
 
             }
