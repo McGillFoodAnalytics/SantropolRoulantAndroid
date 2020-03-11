@@ -108,10 +108,10 @@ public class CreateAccount2 extends AppCompatActivity {
         }
 
         if(city.isEmpty() || address.isEmpty() || postal_code.isEmpty() ){
-            Toast.makeText(this, "Please enter all the details", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, R.string.enter_details, Toast.LENGTH_SHORT).show();
 
         }else if(!isInteger(address_number)) {
-            Toast.makeText(this, "Your address should start with a number!", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, R.string.address_number, Toast.LENGTH_SHORT).show();
         } else {
             result = true;
         }

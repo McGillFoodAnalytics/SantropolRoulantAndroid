@@ -208,7 +208,13 @@
         android:id="@+id/create_account_3_header"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:text="@string/almost_done"
+        android:text=
+
+
+
+
+
+            "@string/almost_done"
         android:textColor="#FFFFFF"
         android:textSize="@dimen/_25sdp"
         android:textStyle="bold"

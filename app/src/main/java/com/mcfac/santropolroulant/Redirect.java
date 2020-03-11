@@ -8,7 +8,7 @@ import com.google.firebase.auth.FirebaseAuth;
 
 public class Redirect {
 
-    private static final String LOGIN_ERR = "Something went wrong with your Login information.\nPlease login again";
+    private static final String LOGIN_ERR = "Something went wrong with your Login information. Please login again";
     public static void redirectToLogin(Context context, FirebaseAuth firebaseAuth){
         Toast.makeText(context,
                 LOGIN_ERR,

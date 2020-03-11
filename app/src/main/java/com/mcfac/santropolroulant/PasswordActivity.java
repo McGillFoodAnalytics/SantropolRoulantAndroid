@@ -42,7 +42,7 @@ public class PasswordActivity extends AppCompatActivity {
                 String useremail = passwordEmail.getText().toString().trim();
 
                 if(useremail.equals("")){ // If empty
-                    Toast.makeText(PasswordActivity.this, "Please enter your registered email", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(PasswordActivity.this, R.string.enter_email, Toast.LENGTH_SHORT).show();
                 }else{
                     // Built in reset password function
                     // refer to firebase for more
@@ -50,11 +50,11 @@ public class PasswordActivity extends AppCompatActivity {
                         @Override
                         public void onComplete(@NonNull Task<Void> task) {
                             if(task.isSuccessful()){
-                                Toast.makeText(PasswordActivity.this, "Password reset email sent", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(PasswordActivity.this, R.string.reset_email_sent, Toast.LENGTH_SHORT).show();
                                 finish();
                                 startActivity(new Intent( PasswordActivity.this, MainActivity.class));
                             }else{
-                                Toast.makeText(PasswordActivity.this, "Error in sending password reset email", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(PasswordActivity.this, R.string.email_error, Toast.LENGTH_SHORT).show();
                             }
                         }
                     });
