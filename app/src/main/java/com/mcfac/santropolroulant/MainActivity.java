@@ -90,7 +90,7 @@ public class MainActivity extends AppCompatActivity {
                 if(second != -1)
                     timerView.setText(String.valueOf(second));
                 else
-                    timerView.setText(getEmojiByUnicode(0x267E));
+                    timerView.setText(getEmojiByUnicode(0x221E));
             }
         };
 

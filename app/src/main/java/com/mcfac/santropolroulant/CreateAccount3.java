@@ -171,7 +171,7 @@ public class CreateAccount3 extends AppCompatActivity {
         Boolean result = false;
 
         email = userEmail.getText().toString().trim();
-        phone_number = userPhoneNumber.getText().toString().trim();
+        phone_number = userPhoneNumber.getText().toString().trim().replaceAll("[^0-9]", "");
         password = userPassword.getText().toString().trim();
         confPassword = userConfPassword.getText().toString().trim();
         if(email.isEmpty() || phone_number.isEmpty() || password.isEmpty() || confPassword.isEmpty()){

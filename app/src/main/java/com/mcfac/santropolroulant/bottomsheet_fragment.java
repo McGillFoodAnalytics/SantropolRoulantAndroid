@@ -98,12 +98,7 @@ public class bottomsheet_fragment extends Fragment {
 
         initializeBottomSheet();
 
-        signUp.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                popUpClick("");
-            }
-        });
+        available();
 
 
         return view;
@@ -273,6 +268,7 @@ public class bottomsheet_fragment extends Fragment {
                 userList.clear();
                 Integer i=1;
                 Integer registeredCount = 0;
+                Boolean wasFull = false;
                 for (DataSnapshot userSnap : dataSnapshot.getChildren()){
                     String key = userSnap.getKey();
                     Log.d("hey:","For loop key: " + key);
@@ -300,6 +296,16 @@ public class bottomsheet_fragment extends Fragment {
                     }
                 }
                 adapter.notifyDataSetChanged();
+                if(registeredCount == userList.size()){
+                    full();
+                    wasFull = true;
+                }
+                else{
+                    if(wasFull) {
+                        available();
+                        wasFull = false;
+                    }
+                }
 
             }
 
@@ -405,6 +411,20 @@ public class bottomsheet_fragment extends Fragment {
                 myRef.child(EVENT_LOC).child(event_name).child("first_shift").setValue(false);
             }
         }
+    }
+
+    private void full(){
+        signUp.setText("Full");
+        signUp.setOnClickListener(null);
+    }
+    private void available(){
+        signUp.setText("Sign Up");
+        signUp.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                popUpClick("");
+            }
+        });
     }
 
     @Override
