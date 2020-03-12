@@ -154,34 +154,34 @@ public class bottomsheet_fragment extends Fragment {
         String eventLongInfo;
         if (eventType.contains("kita")) {
             if (newText.contains("saturday")) {
-                eventLongInfo = "Kitchen 9:00am-12:00pm";
+                eventLongInfo = getString(R.string.kitchen_9_am);
             }
             else{
-                eventLongInfo = "Kitchen 9:30-12:30pm";
+                eventLongInfo = getString(R.string.kitchen_930_am);
             }
         }
         else if (eventType.contains("kitp")){
             if (newText.contains("saturday")) {
-                eventLongInfo = "Kitchen 1:00-3:30pm";
+                eventLongInfo = getString(R.string.kitchen_1_pm);
             }
             else{
-                eventLongInfo = "Kitchen 1:30-4:00pm";
+                eventLongInfo = getString(R.string.kitchen_130_pm);
             }
         }
         else if (eventType.contains("del")){
             if (newText.contains("saturday")) {
-                eventLongInfo = "Meal Delivery 2:15-5:30pm";
+                eventLongInfo = getString(R.string.delivery_215_pm);
             }
             else{
-                eventLongInfo = "Meal Delivery 2:45-6:00pm";
+                eventLongInfo = getString(R.string.delivery_245_pm);
             }
         }
         else if (eventType.contains("del")){
             if (newText.contains("saturday")) {
-                eventLongInfo = "Meal Delivery 2:15-5:30pm";
+                eventLongInfo = getString(R.string.delivery_215_pm);
             }
             else{
-                eventLongInfo = "Meal Delivery 2:45-6:00pm";
+                eventLongInfo = getString(R.string.delivery_245_pm);
             }
         }
         else{
@@ -206,7 +206,7 @@ public class bottomsheet_fragment extends Fragment {
         txtNote = customLayout.findViewById(R.id.txtNote);
         String[] info = {"First time doing this activity?"};
         builder.setView(customLayout)
-                .setPositiveButton("Sign up!",
+                .setPositiveButton(R.string.signup,
                         new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int id) {
@@ -234,7 +234,7 @@ public class bottomsheet_fragment extends Fragment {
                         checkedItems[which] = isChecked;
                     }
                 })
-                .setNegativeButton("Cancel",
+                .setNegativeButton(R.string.cancel,
                         new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int id) {
@@ -367,7 +367,7 @@ public class bottomsheet_fragment extends Fragment {
                         if (uid_.contentEquals(uid)){
                             Log.d("dupSignup", "tried duplicating");
                             Toast toast = Toast.makeText(getActivity(),
-                                    "You are already signed up!",
+                                    R.string.already_signed_up,
                                     Toast.LENGTH_SHORT);
                             toast.show();
                             break;
@@ -414,11 +414,11 @@ public class bottomsheet_fragment extends Fragment {
     }
 
     private void full(){
-        signUp.setText("Full");
+        signUp.setText(R.string.full);
         signUp.setOnClickListener(null);
     }
     private void available(){
-        signUp.setText("Sign Up");
+        signUp.setText(R.string.signup);
         signUp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

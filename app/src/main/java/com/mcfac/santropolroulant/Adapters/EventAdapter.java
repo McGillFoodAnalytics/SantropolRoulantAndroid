@@ -79,9 +79,9 @@ public class EventAdapter extends RecyclerView.Adapter<EventAdapter.EventViewHol
         Event event = eventList.get(position);                       // Get element from dataset at this position
 
         //weekImage(holder,event.getEvent_date_txt());
-        holder.txtType.setText("Event: " + typeName(event.getEvent_type()));
+        holder.txtType.setText(mCtx.getString(R.string.event) + typeName(event.getEvent_type()));
         holder.txtDate.setText(event.getEvent_date_txt());                 // Change contents of view with new element
-        holder.txtSlot.setText("Time: " + event.getEvent_time_start() + "-" + event.getEvent_time_end());
+        holder.txtSlot.setText(mCtx.getString(R.string.event) + event.getEvent_time_start() + "-" + event.getEvent_time_end());
     }
 
    /* // Set image in list depending on day of the week
@@ -116,22 +116,22 @@ public class EventAdapter extends RecyclerView.Adapter<EventAdapter.EventViewHol
         String properName = "";
         switch(event_type) {
             case "deliv":
-                properName = "Meal Delivery";
+                properName = mCtx.getString(R.string.meal_delivery);
                 break;
             case "deldr":
-                properName = "Driving Delivery";
+                properName = mCtx.getString(R.string.driving_delivery);
                 break;
             case "kitam":
-                properName = "Kitchen";
+                properName = mCtx.getString(R.string.kitchen);
                 break;
             case "kitas":
-                properName = "Kitchen";
+                properName = mCtx.getString(R.string.kitchen);
                 break;
             case "kitpm":
-                properName = "Kitchen";
+                properName = mCtx.getString(R.string.kitchen);
                 break;
             case "kitps":
-                properName = "Kitchen";
+                properName = mCtx.getString(R.string.kitchen);
                 break;
             default:
         }
