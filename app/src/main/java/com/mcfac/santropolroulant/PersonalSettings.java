@@ -14,6 +14,8 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.firebase.database.Query;
 import com.mcfac.santropolroulant.FirebaseClasses.User;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
@@ -42,9 +44,10 @@ public class PersonalSettings extends AppCompatActivity {
     private User myUser;
     private String uid;
     private ValueEventListener saveChangesListener;
-
+    private Query eventQuery;
+    private ValueEventListener eventListener;
     private FirebaseAuth firebaseAuth;
-    private DatabaseReference mDatabase;
+    private DatabaseReference mDatabase, newMDatabase, userDatabase;
 
     private final String USER_LOC = MainActivity.USER_LOC;
 
@@ -60,9 +63,9 @@ public class PersonalSettings extends AppCompatActivity {
         final FirebaseUser user = firebaseAuth.getCurrentUser();
         // Auto login for signed in user - Commented out below
 
-        if(user == null){
-            Redirect.redirectToLogin(PersonalSettings.this, firebaseAuth);
-        }
+        //if(user == null){
+        //    Redirect.redirectToLogin(PersonalSettings.this, firebaseAuth);
+       // }
         SharedPreferences pref = getApplicationContext().getSharedPreferences("MyPref", 0);
         final String uid = pref.getString("uid", "notFound");
 
@@ -128,11 +131,19 @@ public class PersonalSettings extends AppCompatActivity {
 
                 //Have any of the values been changed? Is the text not ""?
                 boolean editSettings = false;
+                boolean usernameChange = false;
 
                 //If atleast one of the EditTexts have been changed, we want to tell firebase we
                 //have new info.
                 for(int i = 0; i < inputFields.size(); i++){
                     editSettings = editSettings || inputFields.get(i).hasChanged();
+
+                    if(inputFields.get(i).hasChanged()){
+                        usernameChange = usernameChange || inputFields.get(i).getDbReference().contains("last_name") || inputFields.get(i).getDbReference().contains("phone");
+                    }
+
+
+
                 }
 
                 if( editSettings ) {
@@ -143,8 +154,25 @@ public class PersonalSettings extends AppCompatActivity {
                         if(inputFields.get(i).hasChanged()){
                             tasks.add(mDatabase.child(dbEntry).setValue(fieldText));
                         }
-                        inputFields.get(i).clearText();
                     }
+
+                    //If username needs to change
+                    if(usernameChange){
+                        String last_name = "";
+                        String phone_num = "";
+                        for(int i = 0; i < inputFields.size(); i++){
+                            if(inputFields.get(i).getDbReference().contains("last_name")) {
+                                last_name = inputFields.get(i).getText();
+                            }
+                            if(inputFields.get(i).getDbReference().contains("phone")) {
+                                phone_num = inputFields.get(i).getText();
+                            }
+                            inputFields.get(i).clearText();
+                        }
+                        Log.d("phone", phone_num);
+                        updateUsername(phone_num, last_name);
+                    }
+
                     Toast.makeText(PersonalSettings.this, R.string.changes_saved, Toast.LENGTH_SHORT).show();
                 } else { //if not, prompt user for input
                     Toast.makeText(PersonalSettings.this, R.string.change_smth, Toast.LENGTH_SHORT).show();
@@ -224,6 +252,72 @@ public class PersonalSettings extends AppCompatActivity {
         public boolean hasChanged(){
             return !editText.getText().toString().equals("");
         }
+    }
+
+    private void updateUsername(String phone, String lastName){
+        String first_two_letters = lastName.substring(0,2).toLowerCase();
+        String newKey = first_two_letters + phone;
+
+        //Creating new key
+        userDatabase = FirebaseDatabase.getInstance().getReference(USER_LOC);
+        userDatabase.child(newKey).child("last_name").setValue("test");//arbitrary setup of key
+
+        newMDatabase = FirebaseDatabase.getInstance().getReference(USER_LOC + "/" + newKey);
+        copyRecord(mDatabase, newMDatabase);
+        mDatabase.removeValue();
+
+
+        SharedPreferences.Editor editor = getSharedPreferences( "MyPref", 0).edit();
+        editor.putString("uid", newKey);
+        editor.apply();
+
+    }
+
+    private void copyRecord(DatabaseReference fromPath, final DatabaseReference toPath) {
+        ValueEventListener valueEventListener = new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                toPath.setValue(dataSnapshot.getValue()).addOnCompleteListener(new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+                        if (task.isComplete()) {
+                            Log.d("copy", "Success!");
+                        } else {
+                            Log.d("copy", "Copy failed!");
+                        }
+                    }
+                });
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {}
+        };
+        fromPath.addListenerForSingleValueEvent(valueEventListener);
+    }
+
+    private void updateEvents(){ //String firstName, String lastName, String oldUid, String newUid
+        eventQuery = FirebaseDatabase.getInstance().getReference(MainActivity.EVENT_LOC)
+                .orderByChild("uid")
+                .equalTo("ka5144491200");
+
+        eventListener = new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                int i = 0;
+                for (DataSnapshot event : dataSnapshot.getChildren()) {
+                    i++;
+                    Log.d("occurence", "" + i);
+                }
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+                //
+            }
+        };
+        eventQuery.addListenerForSingleValueEvent(eventListener);
+
     }
 
     private class NonEditableInputField extends InputField{
