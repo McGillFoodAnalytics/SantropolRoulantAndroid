@@ -72,6 +72,11 @@ public class TimePreference extends AppCompatActivity  {
 
     }
 
+    @Override
+    public void onBackPressed() {
+        TimePreference.this.finish();
+    }
+
 
 
 }
