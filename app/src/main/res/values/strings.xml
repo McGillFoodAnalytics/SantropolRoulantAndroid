@@ -152,4 +152,6 @@ elements to prepare the meal of the day!</string>
     <string name="event">\"Event: \"</string>
     <string name="time">\"Time: \"</string>
     <string name="driving_delivery">Driving Delivery</string>
+    <string name="hello">\"Hello, \"</string>
+    <string name="priority">PRIORITY</string>
 </resources>
