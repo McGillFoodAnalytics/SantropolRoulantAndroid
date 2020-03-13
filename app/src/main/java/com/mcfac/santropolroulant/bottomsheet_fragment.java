@@ -1,5 +1,6 @@
 package com.mcfac.santropolroulant;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -103,6 +104,7 @@ public class bottomsheet_fragment extends Fragment {
 
         return view;
     }
+
 
     private void initializeBottomSheet() {
 
@@ -254,8 +256,9 @@ public class bottomsheet_fragment extends Fragment {
         layoutParams.weight = 10;
         btnPositive.setLayoutParams(layoutParams);
         btnNegative.setLayoutParams(layoutParams);
-
     }
+
+
 
     private void queryFunction(final String eventType, final Integer dateVal){
         attendeeQuery = FirebaseDatabase.getInstance().getReference(EVENT_LOC)
@@ -448,5 +451,9 @@ public class bottomsheet_fragment extends Fragment {
     public String getEmojiByUnicode(int unicode){
         return new String(Character.toChars(unicode));
     }
+
+
+
+
 
 }

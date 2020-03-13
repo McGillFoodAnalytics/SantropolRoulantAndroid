@@ -103,8 +103,12 @@ public class TransportType extends AppCompatActivity {
         crdDriver.setCardBackgroundColor(Color.parseColor("#DCAADC"));
         crdNonDriver.setCardBackgroundColor(Color.parseColor("#DCAADC"));
 
+    }
 
 
+    @Override
+    public void onBackPressed() {
+        TransportType.this.finish();
     }
 
 

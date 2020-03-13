@@ -37,6 +37,7 @@ import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 import com.mcfac.santropolroulant.R;
 
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -212,7 +213,6 @@ public class UserSchedule extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-
         switch(item.getItemId()){
             case R.id.homeMenu:
                 BackToMain();
@@ -267,7 +267,25 @@ public class UserSchedule extends AppCompatActivity {
 
                         //adapter.removeItem(position);
                         //eventList.remove(position);
-                        deleteEvent(position);
+
+                        try {
+                            if (checkDate(position)) {
+                                deleteEvent(position);
+                            } else {
+                                AlertDialog.Builder builder = new AlertDialog.Builder(UserSchedule.this);
+                                int myColor = getResources().getColor(R.color.white);
+                                title.setText("ERROR");
+                                title.setBackgroundColor(myColor);
+                                title.setPadding(10, 10, 10, 10);
+                                title.setGravity(Gravity.CENTER);
+                                title.setTextColor(DKGRAY);
+                                title.setTextSize(20);
+                                builder.setCustomTitle(title);
+                                builder.setMessage("If you want to cancel your volunteer position within 48 hours before your event, you must speak to the Roulant in person, or call them! You can reach them at +15142849335.");
+                            }
+                        } catch (ParseException e) {
+                            e.printStackTrace();
+                        }
 
                         //adapter.notifyDataSetChanged();
 
@@ -342,6 +360,25 @@ public class UserSchedule extends AppCompatActivity {
         adapter.notifyDataSetChanged();
 
         //return tasks;
+    }
+
+    private boolean checkDate(int position) throws ParseException {
+        boolean check = false;
+
+        Date todayDate = Calendar.getInstance().getTime();            // gets current date
+
+        String event = eventList.get(position).getEvent_date_txt();             // gets event date + formats properly
+        SimpleDateFormat oldDF = new SimpleDateFormat("yy/MM/dd");
+        Date dateObj = oldDF.parse(event);
+        SimpleDateFormat newDF = new SimpleDateFormat("dd/MM/yyyy");
+        event = newDF.format(dateObj);
+        Date eventDate = newDF.parse(event);
+
+        int daysApart = (int)((eventDate.getTime() - todayDate.getTime()) / (1000*60*60*24l));
+        if (Math.abs(daysApart) > 2)
+            check = true;
+
+        return check;
     }
 
     public String getEmojiByUnicode(int unicode){

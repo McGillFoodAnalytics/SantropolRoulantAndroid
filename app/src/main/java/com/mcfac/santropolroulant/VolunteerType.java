@@ -109,4 +109,10 @@ public class VolunteerType extends AppCompatActivity {
     }
 
 
+    @Override
+    public void onBackPressed() {
+        VolunteerType.this.finish();
+    }
+
+
 }
