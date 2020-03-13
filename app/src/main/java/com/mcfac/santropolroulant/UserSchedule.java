@@ -282,6 +282,10 @@ public class UserSchedule extends AppCompatActivity {
                                 title.setTextSize(20);
                                 builder.setCustomTitle(title);
                                 builder.setMessage("If you want to cancel your volunteer position within 48 hours before your event, you must speak to the Roulant in person, or call them! You can reach them at +15142849335.");
+
+                                AlertDialog dialog = builder.show();
+                                TextView messageView = (TextView)dialog.findViewById(android.R.id.message);
+                                messageView.setGravity(Gravity.CENTER);
                             }
                         } catch (ParseException e) {
                             e.printStackTrace();
