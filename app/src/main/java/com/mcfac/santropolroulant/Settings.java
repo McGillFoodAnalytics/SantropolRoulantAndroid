@@ -81,7 +81,7 @@ public class Settings extends AppCompatActivity {
 
     private void showChangeLanguageDialog() {
 
-        final String[] listItems = {"English", "French"};
+        final String[] listItems = {getString(R.string.english), getString(R.string.french)};
         AlertDialog.Builder mbuilder = new AlertDialog.Builder(Settings.this);
         mbuilder.setTitle("Choose Language...");
         mbuilder.setSingleChoiceItems(listItems, -1, new DialogInterface.OnClickListener() {

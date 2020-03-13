@@ -87,7 +87,7 @@
     <string name="username">Nom D\'Utilisateur</string>
     <string name="username_description">*Votre nom d’utilisateur est composé des deux premières lettres de votre nom de famille suivies de votre numéro de téléphone.</string>
     <string name="username_instruction">Vous devez utiliser ce nom d’utilisateur pour vous connecter à votre compte. Il est composé des deux premières lettres de votre nom de famille suivies de votre numéro de téléphone.</string>
-    <string name="volunteer">Bénévolat</string>
+    <string name="volunteer">Faire du bénévolat</string>
     <string name="welcome_back">Bienvenue!</string>
     <string name="welcome_to_nsantropol_roulant">Bienvenue à Santropol Roulant!</string>
     <string name="what_you_are_signed_up_for">Vos prochaines activités de bénévolat</string>
@@ -139,7 +139,9 @@
     <string name="event">\"Événement: \"</string>
     <string name="time">\"Heure: \"</string>
     <string name="driving_delivery">Livraison de Conduite</string>
-    <string name="hello">\"Bonjour, \"</string>
+    <string name="hello">Bonjour, </string>
     <string name="priority">PRIORITÉ</string>
+    <string name="driver_description">Livrez des repas à ceux qui sont plus loin! Si vous aimez conduire, cette option est faite pour vous.</string>
+    <string name="non_driver_description">Livrez des repas à ceux qui sont plus près du siège social de Santropol Roulant! Une excellente façon de prendre l'air.</string>
 </resources>
 

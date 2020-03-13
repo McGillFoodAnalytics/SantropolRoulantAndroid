@@ -154,4 +154,6 @@ elements to prepare the meal of the day!</string>
     <string name="driving_delivery">Driving Delivery</string>
     <string name="hello">\"Hello, \"</string>
     <string name="priority">PRIORITY</string>
+    <string name="driver_description">Deliver meals to those in areas that are further away! If you love to drive, this option is for you.</string>
+    <string name="non_driver_description">Deliver meals to those in areas that are closer to Roulant HQ! A great way to get fresh air.</string>
 </resources>

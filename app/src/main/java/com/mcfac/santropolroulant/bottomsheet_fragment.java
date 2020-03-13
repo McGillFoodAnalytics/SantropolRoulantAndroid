@@ -206,7 +206,7 @@ public class bottomsheet_fragment extends Fragment {
         // builder.setTitle("Confirmation");
         final View customLayout = getLayoutInflater().inflate(R.layout.btn_share, null);
         txtNote = customLayout.findViewById(R.id.txtNote);
-        String[] info = {"First time doing this activity?"};
+        String[] info = {getString(R.string.first_time)};
         builder.setView(customLayout)
                 .setPositiveButton(R.string.signup,
                         new DialogInterface.OnClickListener() {
