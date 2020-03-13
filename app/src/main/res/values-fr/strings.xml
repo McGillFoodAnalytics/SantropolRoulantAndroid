@@ -134,6 +134,10 @@
     <string name="unable_fetch_events">Incapable de récupérer les événements</string>
     <string name="unregister">Êtes-vous sur de vouloir vous désinscrire de cet événement?</string>
     <string name="yes">Oui</string>
-    <string name="swipe_left_to_delete">gauche</string>
+    <string name="swipe_left_to_delete">Glisser à gauche pour supprimer</string>f
+    <string name="full">Plein</string>
+    <string name="event">\"Événement: \"</string>
+    <string name="time">\"Heure: \"</string>
+    <string name="driving_delivery">Livraison de Conduite</string>
 </resources>
 

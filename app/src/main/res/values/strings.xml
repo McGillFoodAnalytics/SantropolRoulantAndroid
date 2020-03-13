@@ -148,4 +148,8 @@ elements to prepare the meal of the day!</string>
     <string name="confirm">Confirm?</string>
     <string name="unregister">Are you sure you want to unregister from this event?</string>
     <string name="yes">Yes</string>
+    <string name="full">Full</string>
+    <string name="event">\"Event: \"</string>
+    <string name="time">\"Time: \"</string>
+    <string name="driving_delivery">Driving Delivery</string>
 </resources>

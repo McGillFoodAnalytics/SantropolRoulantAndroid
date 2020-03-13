@@ -51,16 +51,14 @@ public class Calendar_Main extends AppCompatActivity implements FragmentCalendar
         getSupportFragmentManager().beginTransaction()
                 .replace(R.id.container_calendar, fragmentCalendar)
                 .commit();
+
     }
 
 
     @Override
     public void onBackPressed()
     {
-        super.onBackPressed();
-        startActivity(new Intent(Calendar_Main.this, Home.class));
-        finish();
-
+        Calendar_Main.this.finish();
     }
 
     @Override
@@ -68,6 +66,7 @@ public class Calendar_Main extends AppCompatActivity implements FragmentCalendar
         Log.d("bob", "onInputASent: " +dateval.toString()+eventType);
         bottomsheetfragment.updateEditText(input,dateval,eventType);
     }
+
 
 
 }
