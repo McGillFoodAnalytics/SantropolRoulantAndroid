@@ -365,14 +365,17 @@ public class UserSchedule extends AppCompatActivity {
     private boolean checkDate(int position) throws ParseException {
         boolean check = false;
 
-        Date todayDate = Calendar.getInstance().getTime();            // gets current date
-
-        String event = eventList.get(position).getEvent_date_txt();             // gets event date + formats properly
-        SimpleDateFormat oldDF = new SimpleDateFormat("yy/MM/dd");
-        Date dateObj = oldDF.parse(event);
+        SimpleDateFormat oldDF = new SimpleDateFormat("EEEE, MMMM dd, yyyy");
         SimpleDateFormat newDF = new SimpleDateFormat("dd/MM/yyyy");
-        event = newDF.format(dateObj);
+
+
+        String today = newDF.format(Calendar.getInstance().getTime());            // gets current date
+        String event = eventList.get(position).getEvent_date_txt();             // gets event date + formats properly
+        Date eventObj1 = oldDF.parse(event);
+        event = newDF.format(eventObj1);
+
         Date eventDate = newDF.parse(event);
+        Date todayDate = newDF.parse(today);
 
         int daysApart = (int)((eventDate.getTime() - todayDate.getTime()) / (1000*60*60*24l));
         if (Math.abs(daysApart) > 2)
