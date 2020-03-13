@@ -139,5 +139,7 @@
     <string name="event">\"Événement: \"</string>
     <string name="time">\"Heure: \"</string>
     <string name="driving_delivery">Livraison de Conduite</string>
+    <string name="hello">\"Bonjour, \"</string>
+    <string name="priority">PRIORITÉ</string>
 </resources>
 

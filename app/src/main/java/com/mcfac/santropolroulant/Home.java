@@ -147,7 +147,7 @@ public class Home extends AppCompatActivity {
 
         tvGreeting = (TextView) findViewById(R.id.tvGreeting);
         tvHello = (TextView) findViewById(R.id.tvHello);
-        tvHello.setText("Hello, " +name + "!");
+        tvHello.setText(getString(R.string.hello) +name + "!");
 
 
         volunteerCard = (CardView)findViewById(R.id.volunteerCard);
