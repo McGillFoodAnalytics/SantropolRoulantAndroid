@@ -240,9 +240,9 @@ public class UserSchedule extends AppCompatActivity {
 
                 builder.setCancelable(true);
                 TextView title = new TextView(UserSchedule.this);
-                int myColor = getResources().getColor(R.color.white);
+              //  int myColor = getResources().getColor(R.color.white);
                 title.setText(getString(R.string.confirm) + getEmojiByUnicode(unicode));
-                title.setBackgroundColor(myColor);
+              //  title.setBackgroundColor(myColor);
                 title.setPadding(10, 10, 10, 10);
                 title.setGravity(Gravity.CENTER);
                 title.setTextColor(DKGRAY);
@@ -273,9 +273,9 @@ public class UserSchedule extends AppCompatActivity {
                                 deleteEvent(position);
                             } else {
                                 AlertDialog.Builder builder = new AlertDialog.Builder(UserSchedule.this);
-                                int myColor = getResources().getColor(R.color.white);
+                                //int myColor = getResources().getColor(R.color.white);
                                 title.setText("ERROR");
-                                title.setBackgroundColor(myColor);
+                               // title.setBackgroundColor(myColor);
                                 title.setPadding(10, 10, 10, 10);
                                 title.setGravity(Gravity.CENTER);
                                 title.setTextColor(DKGRAY);
