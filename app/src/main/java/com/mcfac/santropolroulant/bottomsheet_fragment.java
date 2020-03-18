@@ -302,7 +302,7 @@ public class bottomsheet_fragment extends Fragment {
                     full();
                 }
                 else if(!signUp.hasOnClickListeners()){
-                        available();
+                    available();
                 }
 
             }

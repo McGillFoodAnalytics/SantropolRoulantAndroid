@@ -106,10 +106,10 @@ public class TransportType extends AppCompatActivity {
     }
 
 
-    @Override
+   /* @Override
     public void onBackPressed() {
         TransportType.this.finish();
-    }
+    }*/
 
 
 
