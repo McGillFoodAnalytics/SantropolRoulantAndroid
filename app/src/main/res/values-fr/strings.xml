@@ -139,9 +139,9 @@
     <string name="event">\"Événement: \"</string>
     <string name="time">\"Heure: \"</string>
     <string name="driving_delivery">Livraison de Conduite</string>
-    <string name="hello">Bonjour, </string>
+    <string name="hello">Bonjour,\u0020</string>
     <string name="priority">PRIORITÉ</string>
     <string name="driver_description">Livrez des repas à ceux qui sont plus loin! Si vous aimez conduire, cette option est faite pour vous.</string>
-    <string name="non_driver_description">Livrez des repas à ceux qui sont plus près du siège social de Santropol Roulant! Une excellente façon de prendre l'air.</string>
+    <string name="non_driver_description">Livrez des repas à ceux qui sont plus près du siège social de Santropol Roulant! Une excellente façon de prendre l\'air. </string>
 </resources>
 
