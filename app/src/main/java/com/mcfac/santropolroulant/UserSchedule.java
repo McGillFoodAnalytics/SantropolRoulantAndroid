@@ -42,6 +42,8 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
+import java.text.ParseException;
+
 
 import static android.graphics.Color.DKGRAY;
 
@@ -63,6 +65,7 @@ public class UserSchedule extends AppCompatActivity {
     private final String USER_LOC = MainActivity.USER_LOC;
 
     private int unicode = 0x1F494;
+    private int unicodesad = 0x1F62D;
 
 
     @Override
@@ -236,40 +239,42 @@ public class UserSchedule extends AppCompatActivity {
             @Override
             public void onSwiped(@NonNull final RecyclerView.ViewHolder viewHolder, int i) {
                 // adapter.notifyDataSetChanged();
-                AlertDialog.Builder builder = new AlertDialog.Builder(UserSchedule.this);
+                final int position = viewHolder.getAdapterPosition();
+                try {
+                    if (checkDate(position)) {
+                        AlertDialog.Builder builder = new AlertDialog.Builder(UserSchedule.this);
 
-                builder.setCancelable(true);
-                TextView title = new TextView(UserSchedule.this);
-                int myColor = getResources().getColor(R.color.white);
-                title.setText(getString(R.string.confirm) + getEmojiByUnicode(unicode));
-                title.setBackgroundColor(myColor);
-                title.setPadding(10, 10, 10, 10);
-                title.setGravity(Gravity.CENTER);
-                title.setTextColor(DKGRAY);
-                title.setTextSize(20);
-                builder.setCustomTitle(title);
-                builder.setMessage(getString(R.string.unregister));
+                        builder.setCancelable(true);
+                        TextView title = new TextView(UserSchedule.this);
+                        int myColor = getResources().getColor(R.color.white);
+                        title.setText(getString(R.string.confirm) + getEmojiByUnicode(unicode));
+                        title.setBackgroundColor(myColor);
+                        title.setPadding(10, 10, 10, 10);
+                        title.setGravity(Gravity.CENTER);
+                        title.setTextColor(DKGRAY);
+                        title.setTextSize(20);
+                        builder.setCustomTitle(title);
+                        builder.setMessage(getString(R.string.unregister));
 
 
-                builder.setNegativeButton(getString(R.string.cancel), new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
-                        dialogInterface.cancel();
-                        adapter.notifyDataSetChanged();
+                        builder.setNegativeButton(getString(R.string.cancel), new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+                                dialogInterface.cancel();
+                                adapter.notifyDataSetChanged();
 
-                    }
-                });
-                builder.setPositiveButton(getString(R.string.yes), new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
-                        final int position = viewHolder.getAdapterPosition();
-                        // final String item = adapter.getData().get(position);
+                            }
+                        });
+                        builder.setPositiveButton(getString(R.string.yes), new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+                                // final String item = adapter.getData().get(position);
 
-                        //adapter.removeItem(position);
-                        //eventList.remove(position);
-                        deleteEvent(position);
+                                //adapter.removeItem(position);
+                                //eventList.remove(position);
+                                deleteEvent(position);
 
-                        //adapter.notifyDataSetChanged();
+                                //adapter.notifyDataSetChanged();
 
 /*
                         Snackbar snackbar = Snackbar
@@ -284,21 +289,42 @@ public class UserSchedule extends AppCompatActivity {
 
                         snackbar.setActionTextColor(Color.YELLOW);
                         snackbar.show();*/
+                            }
+                        });
+
+                        AlertDialog dialog = builder.show();
+
+                        TextView messageView = (TextView) dialog.findViewById(android.R.id.message);
+                        messageView.setGravity(Gravity.CENTER);
+
+                        Button btnPositive = dialog.getButton(AlertDialog.BUTTON_POSITIVE);
+                        Button btnNegative = dialog.getButton(AlertDialog.BUTTON_NEGATIVE);
+
+                        LinearLayout.LayoutParams layoutParams = (LinearLayout.LayoutParams) btnPositive.getLayoutParams();
+                        layoutParams.weight = 10;
+                        btnPositive.setLayoutParams(layoutParams);
+                        btnNegative.setLayoutParams(layoutParams);
+                    } else {
+                        AlertDialog.Builder builder = new AlertDialog.Builder(UserSchedule.this);
+                        TextView title = new TextView(UserSchedule.this);
+                        //int myColor = getResources().getColor(R.color.white);
+                        title.setText(getEmojiByUnicode(unicodesad)+getEmojiByUnicode(unicodesad)+getEmojiByUnicode(unicodesad));
+                        // title.setBackgroundColor(myColor);
+                        title.setPadding(10, 10, 10, 10);
+                        title.setGravity(Gravity.CENTER);
+                        title.setTextColor(DKGRAY);
+                        title.setTextSize(20);
+                        builder.setCustomTitle(title);
+                        builder.setMessage("The event is less than 48 hours away. Please call us at (514) 284-9335 in order to cancel.");
+
+                        AlertDialog dialog = builder.show();
+                        TextView messageView = (TextView) dialog.findViewById(android.R.id.message);
+                        messageView.setGravity(Gravity.CENTER);
+                        adapter.notifyDataSetChanged();
                     }
-                });
-
-                AlertDialog dialog = builder.show();
-
-                TextView messageView = (TextView)dialog.findViewById(android.R.id.message);
-                messageView.setGravity(Gravity.CENTER);
-
-                Button btnPositive = dialog.getButton(AlertDialog.BUTTON_POSITIVE);
-                Button btnNegative = dialog.getButton(AlertDialog.BUTTON_NEGATIVE);
-
-                LinearLayout.LayoutParams layoutParams = (LinearLayout.LayoutParams) btnPositive.getLayoutParams();
-                layoutParams.weight = 10;
-                btnPositive.setLayoutParams(layoutParams);
-                btnNegative.setLayoutParams(layoutParams);
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                }
 
             }
         };
@@ -342,6 +368,33 @@ public class UserSchedule extends AppCompatActivity {
         adapter.notifyDataSetChanged();
 
         //return tasks;
+    }
+
+    public boolean checkDate(int position) throws ParseException{
+        boolean check = false;
+
+        SimpleDateFormat oldDF = new SimpleDateFormat("HH:mm, EEEE, MMMM dd, yyyy");
+        SimpleDateFormat newDF = new SimpleDateFormat("HH:mm/dd/MM/yyyy");
+
+
+        String today = newDF.format(Calendar.getInstance().getTime());            // gets current date
+        String event = eventList.get(position).getEvent_date_txt();
+        String event_time = eventList.get(position).getEvent_time_start();
+        event = event_time+ ", "+ event;
+        Date eventObj1 = oldDF.parse(event);
+        event = newDF.format(eventObj1);
+        Date eventDate = newDF.parse(event);
+        Date todayDate = newDF.parse(today);
+
+        Log.d("oops", newDF.format(eventDate));
+        Log.d("oops", newDF.format(todayDate));
+        long secs = ((eventDate.getTime() - todayDate.getTime()) / (1000));
+        int minsApart = (int) secs / 60;
+
+        if (Math.abs(minsApart) > 48*60)
+            check = true;
+
+        return check;
     }
 
     public String getEmojiByUnicode(int unicode){
