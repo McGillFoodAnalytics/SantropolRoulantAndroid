@@ -98,16 +98,16 @@ public class PersonalSettings extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
-               /* if(!dataSnapshot.exists()){
+               if(!dataSnapshot.exists()){
                     Log.e("User Selection", "User not Found");
                     Redirect.redirectToLogin(PersonalSettings.this, firebaseAuth);
-                } else {*/
+                } else {
                     myUser = dataSnapshot.getValue(User.class);
                     myUser.setUid(dataSnapshot.getKey());
                     for(int i = 0; i < inputFields.size(); i++){
                         inputFields.get(i).setHint(myUser);
-                    //}
                     }
+               }
             }
 
             @Override
