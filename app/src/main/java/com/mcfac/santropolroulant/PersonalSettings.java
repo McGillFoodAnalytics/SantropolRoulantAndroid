@@ -70,7 +70,8 @@ public class PersonalSettings extends AppCompatActivity {
         final String uid = pref.getString("uid", "notFound");
 
         //Pointing reference to the users in the database
-        mDatabase = FirebaseDatabase.getInstance().getReference(USER_LOC + "/" + uid);
+       // mDatabase = FirebaseDatabase.getInstance().getReference(USER_LOC + "/" + uid);
+        mDatabase = FirebaseDatabase.getInstance().getReference(USER_LOC).child(uid);
 
         //Find UI elements from layout
         //each InputField takes the editText from the layout, the name of the field in the database, and the User method which gets that value from a User object
@@ -277,11 +278,11 @@ public class PersonalSettings extends AppCompatActivity {
         userDatabase.child(newKey).child("last_name").setValue("test");//arbitrary setup of key
 
         newMDatabase = FirebaseDatabase.getInstance().getReference(USER_LOC + "/" + newKey);
+        copyRecord(mDatabase, newMDatabase);
+
 
         mDatabase.removeEventListener(saveChangesListener);
         saveChangesListener = newMDatabase.addValueEventListener(saveChangesListener);
-
-        copyRecord(mDatabase, newMDatabase);
         mDatabase.removeValue();
 
 
