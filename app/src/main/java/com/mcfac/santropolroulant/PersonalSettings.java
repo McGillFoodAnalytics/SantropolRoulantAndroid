@@ -1,25 +1,33 @@
 package com.mcfac.santropolroulant;
 
 import android.app.DatePickerDialog;
+import android.content.DialogInterface;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.renderscript.ScriptGroup;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.firebase.auth.AuthCredential;
+import com.google.firebase.auth.EmailAuthProvider;
 import com.google.firebase.database.Query;
 import com.mcfac.santropolroulant.FirebaseClasses.User;
+import com.google.firebase.auth.FirebaseUser;
+
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -37,6 +45,7 @@ import java.util.Date;
 import java.util.Locale;
 
 import static android.R.style.Theme_Holo_Light_Dialog_MinWidth;
+import static android.graphics.Color.BLACK;
 
 public class PersonalSettings extends AppCompatActivity {
     private ArrayList<InputField> inputFields;
@@ -48,6 +57,7 @@ public class PersonalSettings extends AppCompatActivity {
     private ValueEventListener eventListener;
     private FirebaseAuth firebaseAuth;
     private DatabaseReference mDatabase, newMDatabase, userDatabase;
+
 
     private final String USER_LOC = MainActivity.USER_LOC;
 
@@ -133,8 +143,10 @@ public class PersonalSettings extends AppCompatActivity {
                 //Have any of the values been changed? Is the text not ""?
                 boolean editSettings = false;
                 boolean usernameChange = false;
+                boolean emailChange = false;
                 String last_name = "";
                 String phone_num = "";
+                String newemail = "";
 
                 //If atleast one of the EditTexts have been changed, we want to tell firebase we
                 //have new info.
@@ -143,6 +155,10 @@ public class PersonalSettings extends AppCompatActivity {
 
                     if(inputFields.get(i).hasChanged()){
                         usernameChange = usernameChange || inputFields.get(i).getDbReference().contains("last_name") || inputFields.get(i).getDbReference().contains("phone_number");
+                        emailChange = emailChange || inputFields.get(i).getDbReference().contains("email");
+                        if (inputFields.get(i).getDbReference().contains("email")){
+                            newemail = inputFields.get(i).getText();
+                        }
                     }
 
                     if(inputFields.get(i).getDbReference().contains("last_name")){
@@ -152,7 +168,6 @@ public class PersonalSettings extends AppCompatActivity {
                     if(inputFields.get(i).getDbReference().contains("phone_number")){
                         phone_num = myUser.getPhone_number();
                     }
-
                 }
 
                 if( editSettings ) {
@@ -182,6 +197,9 @@ public class PersonalSettings extends AppCompatActivity {
                         }
                         Log.d("TestPhone", phone_num);
                         updateUsername(phone_num, last_name);
+                    }
+                    if(emailChange){
+                        updateEmail(newemail);
                     }
 
                     Toast.makeText(PersonalSettings.this, R.string.changes_saved, Toast.LENGTH_SHORT).show();
@@ -289,6 +307,65 @@ public class PersonalSettings extends AppCompatActivity {
 
 
     }
+
+    private void updateEmail(String newemail){
+        // Get auth credentials from the user for re-authentication
+        //prompt user for password
+        AlertDialog.Builder alert = new AlertDialog.Builder(this);
+        final EditText edittext = new EditText(this);
+        alert.setMessage("Please re-enter your password");
+        alert.setTitle("Password");
+
+        alert.setView(edittext);
+
+        alert.setPositiveButton("Save Changes", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int whichButton) {
+                //What ever you want to do with the value
+                String password = edittext.getText().toString();
+                AuthCredential credential = EmailAuthProvider
+                        .getCredential(firebaseAuth.getCurrentUser().getEmail(), password); // Current Login Credentials \\
+                // Prompt the user to re-provide their sign-in credentials
+                firebaseAuth.getCurrentUser().reauthenticate(credential)
+                        .addOnCompleteListener(new OnCompleteListener<Void>() {
+                            @Override
+                            public void onComplete(@NonNull Task<Void> task) {
+                                if (task.isSuccessful()){
+                                Log.d("OK", "User re-authenticated.");
+                                //Now change your email address \\
+                                //----------------Code for Changing Email Address----------\\
+                                firebaseAuth.getCurrentUser().updateEmail(newemail)
+                                        .addOnCompleteListener(new OnCompleteListener<Void>() {
+                                            @Override
+                                            public void onComplete(@NonNull Task<Void> task) {
+                                                if (task.isSuccessful()) {
+                                                    Log.d("OK", "User email address updated.");
+                                                    dialog.cancel();
+                                                }
+                                                else{
+                                                }
+                                            }
+                                        });
+                                }
+                                else{
+                                }
+                            }
+                        });
+            }
+        });
+
+        alert.setNegativeButton("Cancel Changes", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int whichButton) {
+                // what ever you want to do with No option.
+                dialog.cancel();
+            }
+        });
+
+        alert.show();
+
+
+
+    }
+
 
     private void copyRecord(DatabaseReference fromPath, final DatabaseReference toPath) {
         ValueEventListener valueEventListener = new ValueEventListener() {
