@@ -132,6 +132,8 @@ public class PersonalSettings extends AppCompatActivity {
                 //Have any of the values been changed? Is the text not ""?
                 boolean editSettings = false;
                 boolean usernameChange = false;
+                String last_name = "";
+                String phone_num = "";
 
                 //If atleast one of the EditTexts have been changed, we want to tell firebase we
                 //have new info.
@@ -142,7 +144,13 @@ public class PersonalSettings extends AppCompatActivity {
                         usernameChange = usernameChange || inputFields.get(i).getDbReference().contains("last_name") || inputFields.get(i).getDbReference().contains("phone_number");
                     }
 
+                    if(inputFields.get(i).getDbReference().contains("last_name")){
+                        last_name = inputFields.get(i).getText();
+                    }
 
+                    if(inputFields.get(i).getDbReference().contains("phone_number")){
+                        phone_num = inputFields.get(i).getText();
+                    }
 
                 }
 
@@ -158,8 +166,7 @@ public class PersonalSettings extends AppCompatActivity {
 
                     //If username needs to change
                     if(usernameChange){
-                        String last_name = "";
-                        String phone_num = "";
+
                         for(int i = 0; i < inputFields.size(); i++){
                             Log.d("star", "hi");
                             if(inputFields.get(i).getDbReference().contains("last_name")) {
@@ -173,7 +180,7 @@ public class PersonalSettings extends AppCompatActivity {
                             inputFields.get(i).clearText();
                         }
                         Log.d("TestPhone", phone_num);
-                        //updateUsername(phone_num, last_name);
+                        updateUsername(phone_num, last_name);
                     }
 
                     Toast.makeText(PersonalSettings.this, R.string.changes_saved, Toast.LENGTH_SHORT).show();
@@ -261,18 +268,21 @@ public class PersonalSettings extends AppCompatActivity {
         String first_two_letters = lastName.substring(0,2).toLowerCase();
         String newKey = first_two_letters + phone;
 
+        SharedPreferences.Editor editor = getSharedPreferences( "MyPref", 0).edit();
+        editor.putString("uid", newKey);
+        editor.apply();
+
         //Creating new key
         userDatabase = FirebaseDatabase.getInstance().getReference(USER_LOC);
         userDatabase.child(newKey).child("last_name").setValue("test");//arbitrary setup of key
 
         newMDatabase = FirebaseDatabase.getInstance().getReference(USER_LOC + "/" + newKey);
         copyRecord(mDatabase, newMDatabase);
+
+        mDatabase.removeEventListener(saveChangesListener);
+        saveChangesListener = newMDatabase.addValueEventListener(saveChangesListener);
         mDatabase.removeValue();
 
-
-        SharedPreferences.Editor editor = getSharedPreferences( "MyPref", 0).edit();
-        editor.putString("uid", newKey);
-        editor.apply();
 
     }
 
