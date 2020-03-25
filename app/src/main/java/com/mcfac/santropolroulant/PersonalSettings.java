@@ -105,6 +105,7 @@ public class PersonalSettings extends AppCompatActivity {
                     myUser.setUid(dataSnapshot.getKey());
                     for(int i = 0; i < inputFields.size(); i++){
                         inputFields.get(i).setHint(myUser);
+                        inputFields.get(i).set
                     //}
                     }
             }
@@ -145,11 +146,11 @@ public class PersonalSettings extends AppCompatActivity {
                     }
 
                     if(inputFields.get(i).getDbReference().contains("last_name")){
-                        last_name = inputFields.get(i).getText();
+                        last_name = inputFields.get(i).getHint();
                     }
 
                     if(inputFields.get(i).getDbReference().contains("phone_number")){
-                        phone_num = inputFields.get(i).getText();
+                        phone_num = inputFields.get(i).getHint();
                     }
 
                 }
@@ -169,11 +170,11 @@ public class PersonalSettings extends AppCompatActivity {
 
                         for(int i = 0; i < inputFields.size(); i++){
                             Log.d("star", "hi");
-                            if(inputFields.get(i).getDbReference().contains("last_name")) {
+                            if(inputFields.get(i).hasChanged() && inputFields.get(i).getDbReference().contains("last_name")) {
                                 last_name = inputFields.get(i).getText();
                                 Log.d("star", "ho");
                             }
-                            if(inputFields.get(i).getDbReference().contains("phone_number")) {
+                            if(inputFields.get(i).hasChanged() && inputFields.get(i).getDbReference().contains("phone_number")) {
                                 phone_num = inputFields.get(i).getText();
                                 Log.d("pleasegetthis", "" + phone_num);
                             }
