@@ -277,13 +277,15 @@ public class PersonalSettings extends AppCompatActivity {
         userDatabase = FirebaseDatabase.getInstance().getReference(USER_LOC);
         userDatabase.child(newKey).child("last_name").setValue("test");//arbitrary setup of key
 
-        newMDatabase = FirebaseDatabase.getInstance().getReference(USER_LOC + "/" + newKey);
+        newMDatabase = FirebaseDatabase.getInstance().getReference(USER_LOC).child(newKey);
         copyRecord(mDatabase, newMDatabase);
 
 
         mDatabase.removeEventListener(saveChangesListener);
         saveChangesListener = newMDatabase.addValueEventListener(saveChangesListener);
+
         mDatabase.removeValue();
+        mDatabase = newMDatabase;
 
 
     }
