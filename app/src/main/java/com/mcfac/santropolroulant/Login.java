@@ -129,6 +129,7 @@ public class Login extends AppCompatActivity {
             Toast.makeText(Login.this, R.string.username_alphanumeric, Toast.LENGTH_SHORT).show();
             return;
         }
+
         ref = FirebaseDatabase.getInstance().getReference(USER_LOC);
         ref.child(username).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override

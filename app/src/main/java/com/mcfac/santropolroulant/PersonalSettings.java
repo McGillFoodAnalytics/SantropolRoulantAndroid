@@ -105,7 +105,6 @@ public class PersonalSettings extends AppCompatActivity {
                     myUser.setUid(dataSnapshot.getKey());
                     for(int i = 0; i < inputFields.size(); i++){
                         inputFields.get(i).setHint(myUser);
-                        inputFields.get(i).set
                     //}
                     }
             }
@@ -146,11 +145,11 @@ public class PersonalSettings extends AppCompatActivity {
                     }
 
                     if(inputFields.get(i).getDbReference().contains("last_name")){
-                        last_name = inputFields.get(i).getHint();
+                        last_name = myUser.getLast_name();
                     }
 
                     if(inputFields.get(i).getDbReference().contains("phone_number")){
-                        phone_num = inputFields.get(i).getHint();
+                        phone_num = myUser.getPhone_number();
                     }
 
                 }

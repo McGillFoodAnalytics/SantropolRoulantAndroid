@@ -122,6 +122,7 @@ public class Home extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(Home.this, Settings.class));
+                finish();
                 //Toast.makeText(Home.this, "Yet To Come", Toast.LENGTH_SHORT).show();
                 // startActivity(new Intent(Home.this, VolunteerOptions.class));
             }
