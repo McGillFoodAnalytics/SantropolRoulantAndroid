@@ -111,7 +111,7 @@ public class PersonalSettings extends AppCompatActivity {
 
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
-
+                Log.e("User Selection", "User not Found");
             }
 
         };
