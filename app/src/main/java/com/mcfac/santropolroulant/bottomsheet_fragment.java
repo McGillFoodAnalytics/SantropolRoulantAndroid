@@ -153,36 +153,34 @@ public class bottomsheet_fragment extends Fragment {
         dateText.setText(newText);
         String eventLongInfo;
         if (eventType.contains("kita")) {
-            if (newText.contains("saturday")) {
-                eventLongInfo = "Kitchen 9:00am-12:00pm";
+            if (newText.contains(getString(R.string.saturday))) {
+                eventLongInfo = getString(R.string.kitchen_9_am);
             }
             else{
-                eventLongInfo = "Kitchen 9:30-12:30pm";
+                eventLongInfo = getString(R.string.kitchen_930_am);
             }
         }
         else if (eventType.contains("kitp")){
-            if (newText.contains("saturday")) {
-                eventLongInfo = "Kitchen 1:00-3:30pm";
+            if (newText.contains(getString(R.string.saturday))) {
+                eventLongInfo = getString(R.string.kitchen_1_pm);
             }
             else{
-                eventLongInfo = "Kitchen 1:30-4:00pm";
+                eventLongInfo = getString(R.string.kitchen_130_pm);
             }
         }
         else if (eventType.contains("del")){
-            if (newText.contains("saturday")) {
-                eventLongInfo = "Meal Delivery 2:15-5:30pm";
+            if (newText.contains(getString(R.string.saturday))) {
+                eventLongInfo = getString(R.string.delivery_215_pm);
             }
             else{
-                eventLongInfo = "Meal Delivery 2:45-6:00pm";
-            }
+                eventLongInfo = getString(R.string.delivery_245_pm);            }
         }
         else if (eventType.contains("del")){
-            if (newText.contains("saturday")) {
-                eventLongInfo = "Meal Delivery 2:15-5:30pm";
+            if (newText.contains(getString(R.string.saturday))) {
+                eventLongInfo = getString(R.string.delivery_215_pm);
             }
             else{
-                eventLongInfo = "Meal Delivery 2:45-6:00pm";
-            }
+                eventLongInfo = getString(R.string.delivery_245_pm);            }
         }
         else{
             eventLongInfo = "";
@@ -204,9 +202,9 @@ public class bottomsheet_fragment extends Fragment {
         // builder.setTitle("Confirmation");
         final View customLayout = getLayoutInflater().inflate(R.layout.btn_share, null);
         txtNote = customLayout.findViewById(R.id.txtNote);
-        String[] info = {"First time doing this activity?"};
+        String[] info = {getString(R.string.first_time)};
         builder.setView(customLayout)
-                .setPositiveButton("Sign up!",
+                .setPositiveButton(getString(R.string.signup),
                         new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int id) {
@@ -234,7 +232,7 @@ public class bottomsheet_fragment extends Fragment {
                         checkedItems[which] = isChecked;
                     }
                 })
-                .setNegativeButton("Cancel",
+                .setNegativeButton(getString(R.string.cancel),
                         new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int id) {
@@ -270,15 +268,12 @@ public class bottomsheet_fragment extends Fragment {
                 Integer registeredCount = 0;
                 for (DataSnapshot userSnap : dataSnapshot.getChildren()){
                     String key = userSnap.getKey();
-                    Log.d("hey:","For loop key: " + key);
 
                     if (key.contains(String.valueOf(dateVal) + eventType)){
-                        Log.d("hey:","For contained");
                         //final String slot = userSnap.child("slot").getValue(String.class);
                         final String first_name = userSnap.child("first_name").getValue(String.class);
                         final String last_name = userSnap.child("last_name").getValue(String.class);
 
-                        Log.d("hey:","Whats"  + " : " + first_name + " " + last_name);
 
                         if (!first_name.isEmpty() && !last_name.isEmpty()) {
                             userList.add(
@@ -357,12 +352,10 @@ public class bottomsheet_fragment extends Fragment {
                 for (DataSnapshot event : dataSnapshot.getChildren()) {
                     String key = event.getKey();
                     String uid_ = event.child("uid").getValue(String.class);
-                    Log.d("fun", key);
                     if (key.contains(String.valueOf(datevalInfo)) && key.contains(eventTypeInfo)) {
                         if (uid_.contentEquals(uid)){
-                            Log.d("dupSignup", "tried duplicating");
                             Toast toast = Toast.makeText(getActivity(),
-                                    "You are already signed up!",
+                                    R.string.already_signed_up,
                                     Toast.LENGTH_SHORT);
                             toast.show();
                             break;
@@ -372,7 +365,6 @@ public class bottomsheet_fragment extends Fragment {
                         }
                         else {
                             String event_name_ = event.getKey();
-                            Log.d("funTIMES", event_name_);
                             registerFunction3(key, first_name, last_name, uid);
                             break;
                         }
@@ -395,7 +387,6 @@ public class bottomsheet_fragment extends Fragment {
         myRef = FirebaseDatabase.getInstance().getReference();
         if (event_name != null) {
             // Writing attendee instance to the firebase db
-            Log.d("signedup", "true");
             myRef.child(EVENT_LOC).child(event_name).child("uid").setValue(uid);
             myRef.child(EVENT_LOC).child(event_name).child("note").setValue(note);
             myRef.child(EVENT_LOC).child(event_name).child("last_name").setValue(last_name);
@@ -409,11 +400,11 @@ public class bottomsheet_fragment extends Fragment {
     }
 
     private void full(){
-        signUp.setText("Full");
+        signUp.setText(R.string.full);
         signUp.setOnClickListener(null);
     }
     private void available(){
-        signUp.setText("Sign Up");
+        signUp.setText(R.string.signup);
         signUp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

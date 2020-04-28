@@ -148,4 +148,13 @@ elements to prepare the meal of the day!</string>
     <string name="confirm">Confirm?</string>
     <string name="unregister">Are you sure you want to unregister from this event?</string>
     <string name="yes">Yes</string>
+    <string name="full">Full</string>
+    <string name="event">Event:\u0020"</string>
+    <string name="time">Time:\u0020"</string>
+    <string name="driving_delivery">Driving Delivery</string>
+    <string name="hello">Hello,\u0020</string>
+    <string name="priority">PRIORITY</string>
+    <string name="driver_description">Deliver meals to those in areas that are further away! If you love to drive, this option is for you.</string>
+    <string name="non_driver_description">Deliver meals to those in areas that are closer to Roulant HQ! A great way to get fresh air.</string>
+    <string name="event_cancel_denied">The event is less than 48 hours away. Please call us at (514) 284-9335 in order to cancel.</string>
 </resources>

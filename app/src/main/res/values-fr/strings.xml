@@ -87,7 +87,7 @@
     <string name="username">Nom D\'Utilisateur</string>
     <string name="username_description">*Votre nom d’utilisateur est composé des deux premières lettres de votre nom de famille suivies de votre numéro de téléphone.</string>
     <string name="username_instruction">Vous devez utiliser ce nom d’utilisateur pour vous connecter à votre compte. Il est composé des deux premières lettres de votre nom de famille suivies de votre numéro de téléphone.</string>
-    <string name="volunteer">Bénévolat</string>
+    <string name="volunteer">Faire du bénévolat</string>
     <string name="welcome_back">Bienvenue!</string>
     <string name="welcome_to_nsantropol_roulant">Bienvenue à Santropol Roulant!</string>
     <string name="what_you_are_signed_up_for">Vos prochaines activités de bénévolat</string>
@@ -134,6 +134,18 @@
     <string name="unable_fetch_events">Incapable de récupérer les événements</string>
     <string name="unregister">Êtes-vous sur de vouloir vous désinscrire de cet événement?</string>
     <string name="yes">Oui</string>
-    <string name="swipe_left_to_delete">gauche</string>
+    <string name="swipe_left_to_delete">Glisser à gauche pour supprimer</string>f
+    <string name="full">Plein</string>
+    <string name="event">Événement:\u0020</string>
+    <string name="time">Heure:\u0020</string>
+    <string name="driving_delivery">Livraison de Conduite</string>
+    <string name="hello">Bonjour,\u0020</string>
+    <string name="priority">PRIORITÉ</string>
+    <string name="driver_description">Livrez des repas à ceux qui sont plus loin! Si vous aimez conduire, cette option est faite pour vous.</string>
+    <string name="non_driver_description">Livrez des repas à ceux qui sont plus près du siège social de Santropol Roulant! Une excellente façon de prendre l\'air.</string>
+    <string name="event_cancel_denied">L\'événement est à moins de 48 heures. Veuillez nous appeler au (514) 284-9355 pour annuler.
+</string>
+
 </resources>
+
 

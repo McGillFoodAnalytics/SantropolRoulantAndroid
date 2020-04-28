@@ -143,11 +143,9 @@ public class UserSchedule extends AppCompatActivity {
                         Event curEvent = scheduleSnap.getValue(Event.class);
                         curEvent.setEvent_id(scheduleSnap.getKey());
 
-                        Log.d("@ @ : snapshot here:", "hey : BRaaaa1" + curEvent.getEvent_id());
                         // Make manual entry to eventList
                         // Use default 'Capacity' capVar from the type table
 
-                        Log.d("@ @ : snapshot here:", "hey : after" + curEvent.getEvent_date_txt()+ curEvent.getEvent_time_start() + curEvent.getEvent_time_end() +String.valueOf(curEvent.isFirst_shift()));
                         Boolean isDuplicate = false;
                         for(Event event: eventList)
                         {
@@ -191,7 +189,7 @@ public class UserSchedule extends AppCompatActivity {
                         break;
                     }
                 }else{
-                    Toast.makeText(UserSchedule.this, R.string.unable_fetch_events, Toast.LENGTH_SHORT).show();
+                    //Toast.makeText(UserSchedule.this, R.string.unable_fetch_events, Toast.LENGTH_SHORT).show();
                 }
             }
             @Override
@@ -276,19 +274,6 @@ public class UserSchedule extends AppCompatActivity {
 
                                 //adapter.notifyDataSetChanged();
 
-/*
-                        Snackbar snackbar = Snackbar
-                                .make(relativeLayout, "You have been removed from the list.", Snackbar.LENGTH_LONG);
-                        snackbar.setAction("UNDO", new View.OnClickListener() {
-                            @Override
-                            public void onClick(View view) {
-                                // adapter.restoreItem(item, position);
-                                recyclerView.scrollToPosition(position);
-                            }
-                        });
-
-                        snackbar.setActionTextColor(Color.YELLOW);
-                        snackbar.show();*/
                             }
                         });
 
@@ -315,7 +300,7 @@ public class UserSchedule extends AppCompatActivity {
                         title.setTextColor(DKGRAY);
                         title.setTextSize(20);
                         builder.setCustomTitle(title);
-                        builder.setMessage("The event is less than 48 hours away. Please call us at (514) 284-9335 in order to cancel.");
+                        builder.setMessage(R.string.event_cancel_denied);
 
                         AlertDialog dialog = builder.show();
                         TextView messageView = (TextView) dialog.findViewById(android.R.id.message);
@@ -386,8 +371,6 @@ public class UserSchedule extends AppCompatActivity {
         Date eventDate = newDF.parse(event);
         Date todayDate = newDF.parse(today);
 
-        Log.d("oops", newDF.format(eventDate));
-        Log.d("oops", newDF.format(todayDate));
         long secs = ((eventDate.getTime() - todayDate.getTime()) / (1000));
         int minsApart = (int) secs / 60;
 

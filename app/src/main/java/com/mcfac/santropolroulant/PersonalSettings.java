@@ -23,6 +23,7 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.firebase.auth.AuthCredential;
 import com.google.firebase.auth.EmailAuthProvider;
 import com.google.firebase.database.Query;
+import com.mcfac.santropolroulant.FirebaseClasses.Event;
 import com.mcfac.santropolroulant.FirebaseClasses.User;
 import com.google.firebase.auth.FirebaseUser;
 
@@ -56,16 +57,16 @@ public class PersonalSettings extends AppCompatActivity {
     private Query eventQuery;
     private ValueEventListener eventListener;
     private FirebaseAuth firebaseAuth;
-    private DatabaseReference mDatabase, newMDatabase, userDatabase;
+    private DatabaseReference mDatabase, newMDatabase, userDatabase, eventRef;
 
 
     private final String USER_LOC = MainActivity.USER_LOC;
+    private final String EVENT_LOC = MainActivity.EVENT_LOC;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_personal_settings);
-
         inputFields = new ArrayList<>();
 
         //Ensuring we are logged in to firebase
@@ -82,6 +83,8 @@ public class PersonalSettings extends AppCompatActivity {
         //Pointing reference to the users in the database
        // mDatabase = FirebaseDatabase.getInstance().getReference(USER_LOC + "/" + uid);
         mDatabase = FirebaseDatabase.getInstance().getReference(USER_LOC).child(uid);
+        eventRef = FirebaseDatabase.getInstance().getReference(EVENT_LOC);
+
 
         //Find UI elements from layout
         //each InputField takes the editText from the layout, the name of the field in the database, and the User method which gets that value from a User object
@@ -296,6 +299,7 @@ public class PersonalSettings extends AppCompatActivity {
         userDatabase.child(newKey).child("last_name").setValue("test");//arbitrary setup of key
 
         newMDatabase = FirebaseDatabase.getInstance().getReference(USER_LOC).child(newKey);
+        String oldUsername = mDatabase.getKey();
         copyRecord(mDatabase, newMDatabase);
 
 
@@ -304,7 +308,7 @@ public class PersonalSettings extends AppCompatActivity {
 
         mDatabase.removeValue();
         mDatabase = newMDatabase;
-
+        updateEvents(oldUsername, newKey);
 
     }
 
@@ -389,18 +393,19 @@ public class PersonalSettings extends AppCompatActivity {
         fromPath.addListenerForSingleValueEvent(valueEventListener);
     }
 
-    private void updateEvents(){ //String firstName, String lastName, String oldUid, String newUid
+    private void updateEvents(String oldUsername, String newUsername){ //String firstName, String lastName, String oldUid, String newUid
         eventQuery = FirebaseDatabase.getInstance().getReference(MainActivity.EVENT_LOC)
                 .orderByChild("uid")
-                .equalTo("ka5144491200");
+                .equalTo(oldUsername);
 
         eventListener = new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                int i = 0;
-                for (DataSnapshot event : dataSnapshot.getChildren()) {
-                    i++;
-                    Log.d("occurence", "" + i);
+                for (DataSnapshot scheduleSnap : dataSnapshot.getChildren()) {
+                    Event curEvent = scheduleSnap.getValue(Event.class);
+                    Log.d("currentEvent", curEvent.getUid());
+                    updateEventUid(scheduleSnap.getKey(), newUsername);
+
                 }
 
             }
@@ -412,6 +417,10 @@ public class PersonalSettings extends AppCompatActivity {
         };
         eventQuery.addListenerForSingleValueEvent(eventListener);
 
+    }
+    private void updateEventUid(String key, String newUsername){
+        Log.d("updateEventUid", key);
+        eventRef.child(key).child("uid").setValue(newUsername);
     }
 
     private class NonEditableInputField extends InputField{

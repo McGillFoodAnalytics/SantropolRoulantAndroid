@@ -198,7 +198,6 @@ public class UnlockApplication extends AppCompatActivity{
 
         public void setAccessCode(String code) {
             access = code;
-            Log.d("TheCode", access);
         }
 
         public String getAccessCode() {
@@ -218,7 +217,6 @@ public class UnlockApplication extends AppCompatActivity{
 
         SharedPreferences prefs = getSharedPreferences(MY_PREFS_NAME, MODE_PRIVATE);
         accessCode = prefs.getString("code", "nocode");
-        Log.d("pleasebeban", accessCode);
 
         inputCode = codeInput.getText().toString().trim();
 
