@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <resources>
-    <string name="app_name">RoulantConnexion</string>
+    <string name="app_name">Le Roulant</string>
     <string name="title_activity_volunteer">ActivitéBénévole</string>
     <string name="santropol_roulant">Santropol Roulant!</string>
     <string name="create_account">Créer un Compte</string>
