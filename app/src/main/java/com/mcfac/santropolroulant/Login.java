@@ -27,6 +27,7 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.regex.Pattern;
 
+//This class is for the login activity
 public class Login extends AppCompatActivity {
 
     private EditText userName, passWord;
@@ -56,6 +57,7 @@ public class Login extends AppCompatActivity {
         // Getting current app user from Firebase
         firebaseAuth = FirebaseAuth.getInstance();
         //  FirebaseUser user = firebaseAuth.getCurrentUser();
+
         // Auto login for signed in user - Commented out below
 
         //if(user != null){
@@ -106,13 +108,11 @@ public class Login extends AppCompatActivity {
         });
 
         loginButton = (Button)findViewById(R.id.btnLogin);
-        //forgotPassword = (Button) findViewById(R.id.btnForgotPassword);
 
-     //   loginHeader = (TextView)findViewById(R.id.tvLogInHeader);
         usernameInfo = (TextView)findViewById(R.id.tvUsernameInfo);
     }
 
-
+    //Hiding keyboard for better UX
     public void hideKeyboard(View view) {
         InputMethodManager inputMethodManager =(InputMethodManager)getSystemService(Activity.INPUT_METHOD_SERVICE);
         inputMethodManager.hideSoftInputFromWindow(view.getWindowToken(), 0);
@@ -120,8 +120,7 @@ public class Login extends AppCompatActivity {
 
 
 
-    // *Validate function
-    //TODO: Parse username, as ref.child(username) will crash if there is '.', which may be put by someone if they put there email
+    // Validate function
     private void validate(final String username, String usersPassword){
 
         Pattern p = Pattern.compile("[^0-9A-zÀ-ú]");
@@ -136,8 +135,6 @@ public class Login extends AppCompatActivity {
             public void onDataChange(DataSnapshot snapshot) {
                 if(snapshot!=null){
 
-
-                    Log.d("inDataChange", "true");
                     String userEmail =  snapshot.child("email").getValue(String.class);
                     performLogin(userEmail,userPassword, username);
                 }
@@ -152,11 +149,7 @@ public class Login extends AppCompatActivity {
 
     }
 
-/*
-                SharedPreferences.Editor editor = getSharedPreferences(MY_PREFS_NAME, MODE_PRIVATE).edit();
-                editor.putString("code", access_code);
-                editor.apply();
-            }*/
+    //Method performLogin which updates SharedPreferences UID and goes to Home activity
     private void performLogin(String emailId, String password, final String username){
 
         if(emailId==null){
@@ -187,6 +180,7 @@ public class Login extends AppCompatActivity {
         });
     }
 
+    //Methods for triggering loading overlay
     public void setInvisible() {
         progressOverlay.setVisibility(View.INVISIBLE);
 

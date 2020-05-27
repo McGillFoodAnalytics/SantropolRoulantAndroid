@@ -20,6 +20,7 @@ import com.mcfac.santropolroulant.R;
 
 import org.w3c.dom.Text;
 
+//This class deals with password resets
 public class PasswordActivity extends AppCompatActivity {
 
     private TextView forgotPassword, resetInstructions;

@@ -20,6 +20,7 @@ import com.google.firebase.auth.FirebaseUser;
 
 import java.util.Locale;
 
+//This class is for the settings page where user's can logout, view or change their personal information or change language
 public class Settings extends AppCompatActivity {
 
     private Button personalSettingsBtn;
@@ -79,6 +80,7 @@ public class Settings extends AppCompatActivity {
         startActivity(new Intent(Settings.this, MainActivity.class));
     }
 
+    //Pop up to switch languages between english and french
     private void showChangeLanguageDialog() {
 
         final String[] listItems = {getString(R.string.english), getString(R.string.french)};
@@ -109,7 +111,7 @@ public class Settings extends AppCompatActivity {
         mDialog.show();
 
     }
-
+    //Updating language in SharedPreferences
     private void setLocale(String lang) {
 
         Locale locale = new Locale(lang);
@@ -123,7 +125,7 @@ public class Settings extends AppCompatActivity {
         editor.apply();
 
     }
-
+    //Clearing activity stack
     @Override
     public void finishAffinity() {
         super.finishAffinity();

@@ -21,7 +21,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.ValueEventListener;
 import com.mcfac.santropolroulant.R;
 
-
+//Home activity which is the main navigation activity of the app
 public class Home extends AppCompatActivity {
 
     private CardView volunteerCard;
@@ -49,8 +49,6 @@ public class Home extends AppCompatActivity {
             Redirect.redirectToLogin(Home.this, mAuth);
         }
 
-
-        //TODO: Reinstate name display
 
         //Get uid from sharedPreferences
         SharedPreferences pref = getApplicationContext().getSharedPreferences("MyPref", 0);
@@ -123,8 +121,6 @@ public class Home extends AppCompatActivity {
             public void onClick(View view) {
                 startActivity(new Intent(Home.this, Settings.class));
                 finish();
-                //Toast.makeText(Home.this, "Yet To Come", Toast.LENGTH_SHORT).show();
-                // startActivity(new Intent(Home.this, VolunteerOptions.class));
             }
         });
 
@@ -133,12 +129,13 @@ public class Home extends AppCompatActivity {
             public void onClick(View view) {
                 startActivity(new Intent(Home.this, ContactUs.class));
             }
-            // Toast.makeText(Home.this, "Yet To Come", Toast.LENGTH_SHORT).show();            }
         });
 
 
 
     }
+
+    //Restricting back button
     @Override
     public void onBackPressed() {
        return;
@@ -157,6 +154,7 @@ public class Home extends AppCompatActivity {
         contactCard = (CardView)findViewById(R.id.contactCard);
     }
 
+    //Upon finishing this activity, removing listeners
     @Override
     protected void onDestroy() {
         super.onDestroy();
@@ -167,12 +165,6 @@ public class Home extends AppCompatActivity {
         }
     }
 
-    // to be implemented somewhere on this page
-    private void Logout(){
-        mAuth.signOut();
-        finish();
-        startActivity(new Intent(Home.this, MainActivity.class));
-    }
 
     public int dpToPx(float dp){
         return (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, dp, this.getResources().getDisplayMetrics());

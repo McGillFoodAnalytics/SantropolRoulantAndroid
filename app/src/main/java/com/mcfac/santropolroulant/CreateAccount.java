@@ -33,6 +33,8 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 
+//This class deals with the first page of Create Account
+//The user provides first name, last name and birth date
 public class CreateAccount extends AppCompatActivity {
 
     private static final String TAG = "CreateAccount";
@@ -51,7 +53,7 @@ public class CreateAccount extends AppCompatActivity {
 
         setupUIViews(); // function way to set up UI elements
 
-
+        //Sending the user info to CreateAccount2 with Intent
         next_1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -100,6 +102,8 @@ public class CreateAccount extends AppCompatActivity {
         userLogin = (TextView) findViewById(R.id.tvUserLogin);
 
         userBirthDate = (TextView) findViewById(R.id.etUserBirthDate);
+
+        //Listener for birth date selection
         userBirthDate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -118,12 +122,11 @@ public class CreateAccount extends AppCompatActivity {
             }
         });
 
+        //Listener which sets text to the users date selection
         mDateSetListener = new DatePickerDialog.OnDateSetListener() {
             @Override
             public void onDateSet(DatePicker datePicker, int year, int month, int day) {
                 month = month + 1;
-                Log.d(TAG, "onDateSet: mm/dd/yyy: " + month + "/" + day + "/" + year);
-
 
                 String date = month + "/" + day + "/" + year;
                 userBirthDate.setText(date);
@@ -138,6 +141,7 @@ public class CreateAccount extends AppCompatActivity {
         InputMethodManager inputMethodManager =(InputMethodManager)getSystemService(Activity.INPUT_METHOD_SERVICE);
         inputMethodManager.hideSoftInputFromWindow(view.getWindowToken(), 0);
     }
+
     // Boolean function to check if all info is entered
     private Boolean validate(){
         Boolean result = false;

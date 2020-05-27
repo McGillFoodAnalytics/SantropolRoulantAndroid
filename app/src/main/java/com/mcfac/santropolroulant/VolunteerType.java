@@ -11,12 +11,11 @@ import android.widget.Button;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Toast;
+
 
 import com.google.firebase.auth.FirebaseAuth;
-import com.mcfac.santropolroulant.R;
 
-import java.util.Objects;
+//This class deals with user's selection between kitchen and delivery
 
 public class VolunteerType extends AppCompatActivity {
 
@@ -34,7 +33,7 @@ public class VolunteerType extends AppCompatActivity {
         mAuth = FirebaseAuth.getInstance();
         setupUIViews();
 
-
+        //Listener for kitchen selection
         crdKitchen.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -51,6 +50,7 @@ public class VolunteerType extends AppCompatActivity {
             }
         });
 
+        //Listen for delivery selection
         crdDelivery.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -87,6 +87,7 @@ public class VolunteerType extends AppCompatActivity {
 
     }
 
+    //Setting up UI
     private void setupUIViews() {
         tvTitle = (TextView) findViewById(R.id.tvTitle2);
         btnNext = (Button) findViewById(R.id.btnNext2);

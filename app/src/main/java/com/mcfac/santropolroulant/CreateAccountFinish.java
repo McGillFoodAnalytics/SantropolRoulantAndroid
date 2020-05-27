@@ -16,6 +16,7 @@ import com.mcfac.santropolroulant.R;
 import static com.mcfac.santropolroulant.R.id.btnCreateAccountConfFinish;
 import static com.mcfac.santropolroulant.R.id.tvCreateAccountConfUsername;
 
+//This class is responsible for the activity which displays the user's username once they register.
 public class CreateAccountFinish extends AppCompatActivity {
 
     private TextView username;
@@ -34,18 +35,17 @@ public class CreateAccountFinish extends AppCompatActivity {
 
         Bundle extras = getIntent().getExtras();
         if(extras != null) {
-            Log.d("usaname", "notnull");
             last_name = extras.getString("LAST_NAME");
             phone_number = extras.getString("PHONE_NUMBER");
         }
 
         user_name = last_name.substring(0,2) + phone_number;
-        Log.d("usaname", user_name);
+
 
 
         setupUIViews();
 
-
+        //Redirect to login
         finish_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

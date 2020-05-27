@@ -14,9 +14,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.mcfac.santropolroulant.R;
 
 
-//Address, City, Postal Code,
-
-//Phone, email, password, password
+//This class deals with the second page of Create Account where user inputs Address and Postal Code
 public class CreateAccount2 extends AppCompatActivity {
 
     private Button next_2;
@@ -29,6 +27,7 @@ public class CreateAccount2 extends AppCompatActivity {
         setContentView(R.layout.activity_create_account_2);
         setupUIViews(); // function way to set up UI elements
 
+        //Retrieving the info from CreateAccount
         Bundle extras = getIntent().getExtras();
         if(extras != null) {
             first_name = extras.getString("FIRST_NAME"); // retrieve the data using keyName
@@ -36,6 +35,7 @@ public class CreateAccount2 extends AppCompatActivity {
             birth_date = extras.getString("BIRTH_DATE");
         }
 
+        //Sending info from CreateAccount and CreateAccount2 to CreateAccount3
         next_2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -89,7 +89,7 @@ public class CreateAccount2 extends AppCompatActivity {
         });
     }
 
-    //TODO: fix putting one word in address says address isn't there, instead of address isn't formatted
+    //Valid input fields
     private Boolean validate(){
         Boolean result = false;
 
@@ -118,6 +118,7 @@ public class CreateAccount2 extends AppCompatActivity {
         return  result;
     }
 
+    //Hiding keyboard for better UX
     public void hideKeyboard(View view) {
         InputMethodManager inputMethodManager =(InputMethodManager)getSystemService(Activity.INPUT_METHOD_SERVICE);
         inputMethodManager.hideSoftInputFromWindow(view.getWindowToken(), 0);

@@ -100,13 +100,12 @@ public class bottomsheet_fragment extends Fragment {
 
         available();
 
-
         return view;
     }
 
+    //Method to init the bottom sheet behavior
     private void initializeBottomSheet() {
 
-        // init the bottom sheet behavior
 
         BottomSheetBehavior bottomSheetBehavior = BottomSheetBehavior.from(mBottomSheet);
         bottomSheetBehavior.setHideable(false);
@@ -115,16 +114,11 @@ public class bottomsheet_fragment extends Fragment {
         bottomSheetBehavior.setPeekHeight((int) ((float) height*0.40));
         // change the state of the bottom sheet
         bottomSheetBehavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
-        // change the state of the bottom sheet
-        //bottomSheetBehavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
 
         // set callback for changes
         bottomSheetBehavior.setBottomSheetCallback(new BottomSheetBehavior.BottomSheetCallback() {
             @Override
             public void onStateChanged(@NonNull View bottomSheet, int newState) {
-                //if (newState == BottomSheetBehavior.STATE_COLLAPSED){
-                //    bottomSheetBehavior.setState(BottomSheetBehavior.STATE_HALF_EXPANDED);
-                //}
             }
 
             @Override
@@ -132,9 +126,7 @@ public class bottomsheet_fragment extends Fragment {
                 if (isAdded()) {
                     animateBottomSheetArrows(slideOffset);
                 }
-                //if (slideOffset>=0.0 && slideOffset<=0.5){
-                //    bottomSheetBehavior.setState(BottomSheetBehavior.STATE_HALF_EXPANDED);
-                //}
+
             }
         });
     }
@@ -145,7 +137,7 @@ public class bottomsheet_fragment extends Fragment {
         mRightArrow.setRotation(slideOffset * 180);
     }
 
-
+    //Method to displau appropriate text based on the date and event type
     public void updateEditText(String newText,Integer dateval, String eventType) {
         eventTypeInfo = eventType;
         datevalInfo = dateval;
@@ -213,7 +205,6 @@ public class bottomsheet_fragment extends Fragment {
                                     public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
                                         String userUid = firebaseAuth.getCurrentUser().getUid();
                                         if (userUid != null) {
-                                            Log.d("email", userUid);
                                             registerFunction(userUid);
                                         } else { //user is not logged in
 
@@ -255,6 +246,7 @@ public class bottomsheet_fragment extends Fragment {
 
     }
 
+    //This method is to query the event based on its type and the date
     private void queryFunction(final String eventType, final Integer dateVal){
         attendeeQuery = FirebaseDatabase.getInstance().getReference(EVENT_LOC)
                 .orderByChild("event_date")
@@ -270,7 +262,6 @@ public class bottomsheet_fragment extends Fragment {
                     String key = userSnap.getKey();
 
                     if (key.contains(String.valueOf(dateVal) + eventType)){
-                        //final String slot = userSnap.child("slot").getValue(String.class);
                         final String first_name = userSnap.child("first_name").getValue(String.class);
                         final String last_name = userSnap.child("last_name").getValue(String.class);
 
@@ -290,6 +281,8 @@ public class bottomsheet_fragment extends Fragment {
                     }
                 }
                 adapter.notifyDataSetChanged();
+
+                //Checking if its full or not
                 if(userList.size() == registeredCount){
                     full();
                 }
@@ -308,7 +301,7 @@ public class bottomsheet_fragment extends Fragment {
 
     }
 
-
+    //Method to retrieve first name, last name and uid based on the uid in sharedpreferences
     private void registerFunction(String userUid){
         //find user information
         userQuery = FirebaseDatabase.getInstance().getReference(USER_LOC).orderByChild("key")
@@ -334,18 +327,15 @@ public class bottomsheet_fragment extends Fragment {
             }
         };
         userQuery.addListenerForSingleValueEvent(userListener);
-        // find event_name
 
     }
+
+    //Method checking if user can sign up
     private void registerFunction2(String first_name, String last_name, String uid){
         eventQuery = FirebaseDatabase.getInstance().getReference(EVENT_LOC)
                 .orderByChild("event_date")
                 .equalTo(datevalInfo);
-        Log.d("fun", String.valueOf(datevalInfo));
-        Log.d("fun", eventTypeInfo);
-        Log.d("fun", first_name);
-        Log.d("fun", last_name);
-        Log.d("fun", uid);
+
         eventListener = new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -381,6 +371,7 @@ public class bottomsheet_fragment extends Fragment {
         eventQuery.addListenerForSingleValueEvent(eventListener);
     }
 
+    //Method responsible to entering user information into the event slot in the databse
     private void registerFunction3(String event_name, String first_name, String last_name, String uid){
         String note = txtNote.getText().toString().trim();
         boolean isNew =  checkedItems[0];
@@ -399,10 +390,13 @@ public class bottomsheet_fragment extends Fragment {
         }
     }
 
+    //Method to disable sign up if full
     private void full(){
         signUp.setText(R.string.full);
         signUp.setOnClickListener(null);
     }
+
+    //Method to for sign up button if available slots
     private void available(){
         signUp.setText(R.string.signup);
         signUp.setOnClickListener(new View.OnClickListener() {
@@ -413,6 +407,7 @@ public class bottomsheet_fragment extends Fragment {
         });
     }
 
+    //Killing listeners when activity is destroyed
     @Override
     public void onDestroy() {
         super.onDestroy();
@@ -436,6 +431,8 @@ public class bottomsheet_fragment extends Fragment {
             }
         }
     }
+
+    //Method to return encoding for emoji
     public String getEmojiByUnicode(int unicode){
         return new String(Character.toChars(unicode));
     }

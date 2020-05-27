@@ -27,6 +27,7 @@ import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.List;
 
+//This class deals with the registration calendar fragment
 public class FragmentCalendar extends Fragment {
     private FragmentCalendarListener listener;
     ArrayList<Date> emptyDates = new ArrayList<Date>();
@@ -66,15 +67,13 @@ public class FragmentCalendar extends Fragment {
         nextDay2.add(Calendar.DATE, 5);
 
         ArrayList<Date> calendarList =  getDatesBetween(today, nextMonth.getTime());
-        Log.d("calendarList", calendarList.get(0).toString());
 
         Integer dateVal = Integer.valueOf(Integer.toString(year).substring(1)+ String.format("%02d", month)+ String.format("%02d",day));
-        Log.d("ha", dateVal + "");
         listener.onInputASent(todayDate,dateVal);
         final CalendarPickerView calendar = (CalendarPickerView) v.findViewById(R.id.calendar);
         calendar.init(today, nextMonth.getTime());
-        //queryFunction(event_type, inflater, container);
-        //**********************
+
+
         Query attendeeQuery = FirebaseDatabase.getInstance().getReference(EVENT_LOC)
                 .orderByChild("event_date");
 
@@ -84,13 +83,11 @@ public class FragmentCalendar extends Fragment {
                 emptyDates.clear();
                 subTitles.clear();
                 Integer i=0;
+
                 for (DataSnapshot userSnap : dataSnapshot.getChildren()){
                     String key = userSnap.getKey();
-                    Log.d("hey:","For loop key: " + key);
 
                     if (key.contains(event_type)){
-                        Log.d("hey:","For contained");
-                        //final String slot = userSnap.child("slot").getValue(String.class);
                         final Long event_date_long = userSnap.child("event_date").getValue(Long.class);
 
                         String event_date = "" + event_date_long;
@@ -110,11 +107,6 @@ public class FragmentCalendar extends Fragment {
                             subTitles.add(new SubTitle(subtitleday, getString(R.string.priority)));
                         }
                         if(!emptyDates.contains(emptyDay) && !emptyDay.before(today)) {
-                            //emptyDates.add(i, emptyDay);
-                           // Log.d("calendarListInside", calendarList.get(0).toString());
-                           // emptyDay.setHours(0);
-                           // emptyDay.setMinutes(0);
-                          //  emptyDay.setSeconds(0);
                             for(Date potentialRemoval : calendarList){
                                 String potentialRemovalDate = "" + potentialRemoval.getYear() + "/" + potentialRemoval.getMonth() + "/" + potentialRemoval.getDate();
                                 String emptyDayDate = "" + emptyDay.getYear() + "/" + emptyDay.getMonth() + "/" + emptyDay.getDate();
@@ -146,18 +138,11 @@ public class FragmentCalendar extends Fragment {
         attendeeQuery.addValueEventListener(countListener);
 
 
-        //**************************
-
         ArrayList<Date> highlight1 = new ArrayList<>();
         highlight1.add(0, nextDay.getTime());
         ArrayList<Date> highlight2 = new ArrayList<>();
         highlight2.add(0, nextDay2.getTime());
 
-
-        //final CalendarPickerView calendar = (CalendarPickerView) v.findViewById(R.id.calendar);
-        //calendar.init(today, nextYear.getTime()).withSelectedDate(today).withHighlightedDates(highlight1);
-        //calendar.init(today, nextYear.getTime()).withSelectedDate(today).withHighlightedDates(highlight2);
-        //calendar.highlightDates(highlight2);
 
         calendar.setOnDateSelectedListener(new CalendarPickerView.OnDateSelectedListener() {
             @Override
@@ -168,7 +153,6 @@ public class FragmentCalendar extends Fragment {
                 int month = cal.get(Calendar.MONTH)+1;
                 int year  = cal.get(Calendar.YEAR);
                 int day   = cal.get(Calendar.DAY_OF_MONTH);
-                //Integer dateVal = Integer.valueOf(Integer.toString(year).substring(1)+Integer.toString(month)+Integer.toString(day));
                 Integer dateVal = Integer.valueOf(Integer.toString(year).substring(1)+ String.format("%02d", month)+ String.format("%02d",day));
                 listener.onInputASent(selectedDate,dateVal);
             }
@@ -207,10 +191,9 @@ public class FragmentCalendar extends Fragment {
                 Integer i=0;
                 for (DataSnapshot userSnap : dataSnapshot.getChildren()){
                     String key = userSnap.getKey();
-                    Log.d("hey:","For loop key: " + key);
+
 
                     if (key.contains(eventType)){
-                        Log.d("hey:","For contained");
                         //final String slot = userSnap.child("slot").getValue(String.class);
                         final Long event_date_long = userSnap.child("event_date").getValue(Long.class);
 
@@ -235,17 +218,7 @@ public class FragmentCalendar extends Fragment {
                         if(i == 3) { break; }
                     }
                 }
-               // updateCalendar(emptyDates, inflater, container);
-               /* Date today = new Date();
-                Calendar nextDay = Calendar.getInstance();
-                nextDay.add(Calendar.DATE, 5);
-                Calendar nextYear = Calendar.getInstance();
-                nextYear.add(Calendar.YEAR, 1);
 
-
-*/
-
-                Log.d("updateCalendar", emptyDates.get(0).toString());
                 View v = inflater.inflate(R.layout.fragment_calendar, container,false);
                 final CalendarPickerView calendar = (CalendarPickerView) v.findViewById(R.id.calendar);
                 calendar.highlightDates(emptyDates);
@@ -272,7 +245,6 @@ public class FragmentCalendar extends Fragment {
         emptyDates.clear();
         emptyDates.add(0, nextDay.getTime());
 
-        Log.d("updateCalendar", emptyDates.get(0).toString());
         View v = inflater.inflate(R.layout.fragment_calendar, container,false);
         final CalendarPickerView calendar = (CalendarPickerView) v.findViewById(R.id.calendar);
         calendar.highlightDates(emptyDates);
@@ -280,6 +252,7 @@ public class FragmentCalendar extends Fragment {
 
     }
 
+    //This method returns an ArrayList of dates between two dates
     public static ArrayList<Date> getDatesBetween(Date startDate, Date endDate) {
         ArrayList<Date> datesInRange = new ArrayList<>();
         Calendar calendar = new GregorianCalendar();

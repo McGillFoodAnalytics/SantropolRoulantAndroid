@@ -16,6 +16,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
+//This class deals with user selection of transport type if they choose delivery.
 public class TransportType extends AppCompatActivity {
 
     private FirebaseAuth mAuth;

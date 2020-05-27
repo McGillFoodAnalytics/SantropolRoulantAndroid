@@ -74,9 +74,6 @@ public class PersonalSettings extends AppCompatActivity {
         final FirebaseUser user = firebaseAuth.getCurrentUser();
         // Auto login for signed in user - Commented out below
 
-        //if(user == null){
-        //    Redirect.redirectToLogin(PersonalSettings.this, firebaseAuth);
-        // }
         SharedPreferences pref = getApplicationContext().getSharedPreferences("MyPref", 0);
         final String uid = pref.getString("uid", "notFound");
 
@@ -187,18 +184,14 @@ public class PersonalSettings extends AppCompatActivity {
                     if(usernameChange){
 
                         for(int i = 0; i < inputFields.size(); i++){
-                            Log.d("star", "hi");
                             if(inputFields.get(i).hasChanged() && inputFields.get(i).getDbReference().contains("last_name")) {
                                 last_name = inputFields.get(i).getText();
-                                Log.d("star", "ho");
                             }
                             if(inputFields.get(i).hasChanged() && inputFields.get(i).getDbReference().contains("phone_number")) {
                                 phone_num = inputFields.get(i).getText();
-                                Log.d("pleasegetthis", "" + phone_num);
                             }
                             inputFields.get(i).clearText();
                         }
-                        Log.d("TestPhone", phone_num);
                         updateUsername(phone_num, last_name);
                     }
                     if(emailChange){
@@ -286,6 +279,7 @@ public class PersonalSettings extends AppCompatActivity {
         }
     }
 
+    //Method dealing with updates to their phone number or last name which then changes the username
     private void updateUsername(String phone, String lastName){
         String first_two_letters = lastName.substring(0,2).toLowerCase();
         String newKey = first_two_letters + phone;
@@ -312,6 +306,7 @@ public class PersonalSettings extends AppCompatActivity {
 
     }
 
+    //This method deals with email changes, requiring re-authentication as each email has its own encrypted key.
     private void updateEmail(String newemail){
         // Get auth credentials from the user for re-authentication
         //prompt user for password
@@ -370,7 +365,8 @@ public class PersonalSettings extends AppCompatActivity {
 
     }
 
-
+    //This method is used when a username is changed.  Since when a username changes, a new user must be made
+    //in the User database and thus must copy the records from the old username
     private void copyRecord(DatabaseReference fromPath, final DatabaseReference toPath) {
         ValueEventListener valueEventListener = new ValueEventListener() {
             @Override

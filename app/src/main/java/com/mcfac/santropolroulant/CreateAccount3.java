@@ -27,9 +27,7 @@ import java.util.Calendar;
 import java.util.Date;
 
 
-//Address, City Postal Code,
-
-//Phone, email, password, password
+//This class is for the final activity which asks for user information
 public class CreateAccount3 extends AppCompatActivity {
 
     private Button regButton;
@@ -54,32 +52,32 @@ public class CreateAccount3 extends AppCompatActivity {
         setupUIViews(); // function way to set up UI elements
         firebaseAuth = FirebaseAuth.getInstance();
 
+        //Retrieving info from CreateAccount and CreateAccount2
         Bundle extras = getIntent().getExtras();
         if(extras != null) {
-            first_name = extras.getString("FIRST_NAME"); // retrieve the data using keyName
+            first_name = extras.getString("FIRST_NAME");
             last_name = extras.getString("LAST_NAME");
             birth_date = extras.getString("BIRTH_DATE");
-            address_street = extras.getString("ADDRESS_STREET"); // retrieve the data using keyName
+            address_street = extras.getString("ADDRESS_STREET");
             address_number = extras.getString("ADDRESS_NUMBER");
             city = extras.getString("CITY");
             postal_code = extras.getString("POSTAL_CODE");
         }
 
-
+        //Listener for registration button which create the user in firebase with their email and password
         regButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Log.d("start", "fuck");
+
                 if(validate()){ // validate function as condition
                     createAccount.setClickable(false);
                     setVisible();
-                    Log.d("wtv", "onDateSet: mm/dd/yyy: ");
+
                     firebaseAuth.createUserWithEmailAndPassword(email,password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
 
-
+                        //Sending user to CreateAccountFinish where they will see their username
                         @Override
                         public void onComplete(@NonNull Task<AuthResult> task) {
-                           Log.d("wtv", "hmm");
 
                             if(task.isSuccessful()){
                                 // if successful then entersendUser user data into firebase
@@ -94,22 +92,13 @@ public class CreateAccount3 extends AppCompatActivity {
                                 intent.putExtra("LAST_NAME", last_name);
                                 intent.putExtra("PHONE_NUMBER", phone_number);
                                 startActivity(intent);
-                                /*}
-                                else{
-                                    Toast.makeText(CreateAccount3.this, "Oops a monkey quit!", Toast.LENGTH_SHORT).show();
-                                    startActivity(new Intent(CreateAccount3.this, CreateAccount.class));
-                                    setInvisible();
-                                    createAccount.setClickable(true);
-                                    startActivity(new Intent(CreateAccount3.this, CreateAccount.class));
-                                }*/
 
                             }else{
                                 String s = task.getException().getMessage();
                                 Toast.makeText(CreateAccount3.this, s, Toast.LENGTH_SHORT).show();
 
                                 setInvisible();
-                                createAccount.setClickable(true);/*
-                                startActivity(new Intent(CreateAccount3.this, MainActivity.class));*/
+                                createAccount.setClickable(true);
 
                             }
 
@@ -167,6 +156,7 @@ public class CreateAccount3 extends AppCompatActivity {
 
     }
 
+    //Method returning Boolean to validate input fields
     private Boolean validate(){
         Boolean result = false;
 
@@ -187,20 +177,14 @@ public class CreateAccount3 extends AppCompatActivity {
         return  result;
     }
 
+    //Method to hide keyboard for better UX
     public void hideKeyboard(View view) {
         InputMethodManager inputMethodManager =(InputMethodManager)getSystemService(Activity.INPUT_METHOD_SERVICE);
         inputMethodManager.hideSoftInputFromWindow(view.getWindowToken(), 0);
     }
-   /*
-    private Task[] sendUserData2(){
-        FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
-        DatabaseReference myRef = firebaseDatabase.getReference();
 
-        Task[] tasks = new Task[1];
-        tasks[0] = myRef.child(USER_LOC).child(key).child("first_name").setValue(first_name);
-    }
-    */
 
+    //Method which sends all the user's info to the User database
     private Task[] sendUserData(){
 
         //Custom UserID (key) is first two letters of last name + phonenumber
@@ -219,15 +203,12 @@ public class CreateAccount3 extends AppCompatActivity {
         // Write Statement
         // Call DatabaseReference
         // Specify the Children --> user --> UserID(key) --> ____ --> setValue
-        Log.d("sendingUserData",first_name + "before3 " + last_name);
 
         FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
-        Log.d("sendingUserData",first_name + "before2 " + last_name);
 
         DatabaseReference myRef = firebaseDatabase.getReference();
-        Log.d("myRed", myRef.toString() + " " + myRef.getKey());
-        Log.d("sendingUserData",first_name + "before " + last_name);
 
+        //Setting values to the user's endpoint in User database
         tasks[0] = myRef.child(USER_LOC).child(key).child("first_name").setValue(first_name);
 
         tasks[1] = myRef.child(USER_LOC).child(key).child("last_name").setValue(last_name);

@@ -27,7 +27,7 @@ import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.mcfac.santropolroulant.R;
 
-
+//This class is for the Contact Us activity
 public class ContactUs extends FragmentActivity implements OnMapReadyCallback {
 
     private TextView title, phone, email, address;
@@ -41,13 +41,6 @@ public class ContactUs extends FragmentActivity implements OnMapReadyCallback {
 
 
     }
-    /*
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_contact_us); // Designates which layout XML to be used for this page
-        setupUIViews();
-    }*/
 
 
     private void setupUIViews() {
@@ -55,6 +48,7 @@ public class ContactUs extends FragmentActivity implements OnMapReadyCallback {
         title = findViewById(R.id.tvTitle2);
         phone = findViewById(R.id.tvPhoneNumber);
 
+        //Listener to call Santropol Roulant
         phone.setOnClickListener(new View.OnClickListener() {
             @SuppressLint("MissingPermission")
             @Override
@@ -74,6 +68,7 @@ public class ContactUs extends FragmentActivity implements OnMapReadyCallback {
 
         email = findViewById(R.id.tvEmail);
 
+        //Listener to send an email to Santropol Roulant
         email.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -90,6 +85,7 @@ public class ContactUs extends FragmentActivity implements OnMapReadyCallback {
 
         address = findViewById(R.id.tvAddress);
 
+        //Listener to call Santropol Roulant
         phone.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -113,15 +109,13 @@ public class ContactUs extends FragmentActivity implements OnMapReadyCallback {
         mapFragment.getMapAsync(this);
     }
 
-
+    //Map to view location of Santropol Roulant
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
 
-        // Add a marker in Sydney and move the camera
         LatLng roulantHQ = new LatLng(45.516815, -73.575003);
         mMap.addMarker(new MarkerOptions().position(roulantHQ).title("Santropol Roulant HQ"));
-        //mMap.moveCamera(CameraUpdateFactory.newLatLng(roulantHQ));
         moveToCurrentLocation(roulantHQ);
     }
 
@@ -129,6 +123,7 @@ public class ContactUs extends FragmentActivity implements OnMapReadyCallback {
     public void onPointerCaptureChanged(boolean hasCapture) {
 
     }
+
 
     private void moveToCurrentLocation(LatLng currentLocation)
     {

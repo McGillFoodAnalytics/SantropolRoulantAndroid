@@ -28,7 +28,7 @@ import com.mcfac.santropolroulant.R;
 
 import java.util.Locale;
 
-
+//This class deals with having to enter a code to unlock the application
 public class UnlockApplication extends AppCompatActivity{
     private FirebaseAuth firebaseAuth;
     private DatabaseReference ref;
@@ -56,18 +56,18 @@ public class UnlockApplication extends AppCompatActivity{
         loadLocale();
         firebaseAuth = FirebaseAuth.getInstance();
         final FirebaseUser user = firebaseAuth.getCurrentUser();
-        // Auto login for signed in user - Commented out below
 
         //if(user == null){
         //    System.exit(-1);
         //}
 
-        /*TO SET BACK TO LOCKED*/
+
+        /*TO SET BACK TO LOCKED FOR TESTING PURPOSES*/
         /*SharedPreferences.Editor editor = getSharedPreferences(MY_PREFS_NAME, MODE_PRIVATE).edit();
         editor.putBoolean("unlocked", false);
         editor.apply();*/
 
-
+        //Retrieving whether the device is unlocked or not through the Shared Preferences
         SharedPreferences prefs = getSharedPreferences(MY_PREFS_NAME, MODE_PRIVATE);
         isUnlocked = prefs.getBoolean("unlocked", false);//"No name defined" is the default value.
 
@@ -87,16 +87,7 @@ public class UnlockApplication extends AppCompatActivity{
                 SharedPreferences.Editor editor = getSharedPreferences(MY_PREFS_NAME, MODE_PRIVATE).edit();
                 editor.putString("code", access_code);
                 editor.apply();
-                // Log.d("abc123", accessCodeData);
 
-
-                //setKeys= getSharedPreferences("com.example.santropolroulant", Context.MODE_PRIVATE);
-                //editKeys = setKeys.edit();
-                //editKeys.putString( "AccessCodeData", accessCodeData);
-                //editKeys.apply();
-
-                //dataStorage.setAccessCode(accessCodeData);
-                //accessCodeView.setText(accessCodeData);
             }
 
             @Override
@@ -105,7 +96,7 @@ public class UnlockApplication extends AppCompatActivity{
         });
 
 
-
+        //Listener for Enter button
         enterCodeButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -119,6 +110,7 @@ public class UnlockApplication extends AppCompatActivity{
             }
         });
 
+        //Listener for Login redirection
         loginRedirect.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view){
@@ -127,11 +119,10 @@ public class UnlockApplication extends AppCompatActivity{
 
         });
 
-       //accessCode = dataStorage.getAccessCode();
-
 
     }
 
+    //This code deals with setting the app to the language of the device
     private void setLocale(String lang) {
 
         Locale locale = new Locale(lang);
@@ -152,6 +143,7 @@ public class UnlockApplication extends AppCompatActivity{
 
     }
 
+    //THis method loads the device language
     public void loadLocale() {
 
         SharedPreferences prefs = getSharedPreferences("Settings", Activity.MODE_PRIVATE);
@@ -162,8 +154,7 @@ public class UnlockApplication extends AppCompatActivity{
     }
 
     private void setupUIViews() {
-        //TODO:Determine what R.id.accessCode is, and why isn't it working anymore
-        //accessCodeView = (TextView) findViewById(R.id.accessCode);
+
         logo = (ImageView) findViewById(R.id.unlock_logo);
         welcome = (TextView) findViewById(R.id.unlock_welcome);
         description1 = (TextView) findViewById(R.id.unlock_description1a);
@@ -206,12 +197,14 @@ public class UnlockApplication extends AppCompatActivity{
 
     }
 
+    //Method to hide keyboard for better UX
     public void hideKeyboard(View view) {
         InputMethodManager inputMethodManager =(InputMethodManager)getSystemService(Activity.INPUT_METHOD_SERVICE);
         inputMethodManager.hideSoftInputFromWindow(view.getWindowToken(), 0);
 
     }
 
+    //Method validating unlock code from database
     private Boolean validate(){
         Boolean result = false;
 

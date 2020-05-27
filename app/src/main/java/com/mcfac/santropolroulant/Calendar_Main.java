@@ -24,6 +24,8 @@ import java.util.Date;
 
 import static android.widget.Toast.LENGTH_SHORT;
 
+
+//This class deals with Event Registration.  It implements FragmentCalendar and updates bottomsheet_fragment
 public class Calendar_Main extends AppCompatActivity implements FragmentCalendar.FragmentCalendarListener {
 
     private FragmentCalendar fragmentCalendar;
@@ -53,7 +55,7 @@ public class Calendar_Main extends AppCompatActivity implements FragmentCalendar
                 .commit();
     }
 
-
+    //Redirect Home upon pressing back button on device
     @Override
     public void onBackPressed()
     {
@@ -63,9 +65,9 @@ public class Calendar_Main extends AppCompatActivity implements FragmentCalendar
 
     }
 
+    //Method to update bottomsheetfragment upon a selection to the calendar in FragmentCalendar
     @Override
     public void onInputASent(String input, Integer dateval) {
-        Log.d("bob", "onInputASent: " +dateval.toString()+eventType);
         bottomsheetfragment.updateEditText(input,dateval,eventType);
     }
 

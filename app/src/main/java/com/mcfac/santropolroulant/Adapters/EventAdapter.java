@@ -84,26 +84,6 @@ public class EventAdapter extends RecyclerView.Adapter<EventAdapter.EventViewHol
         holder.txtSlot.setText(mCtx.getString(R.string.time) + event.getEvent_time_start() + "-" + event.getEvent_time_end());
     }
 
-   /* // Set image in list depending on day of the week
-    public void weekImage(@NonNull EventViewHolder holder, String weekString){
-        if (weekString.contains("Sunday")){
-            holder.imgBar.setImageResource(R.drawable.sunday_event);
-        } else if (weekString.contains("Monday")){
-            holder.imgBar.setImageResource(R.drawable.monday_event);
-        } else if (weekString.contains("Tuesday")){
-            holder.imgBar.setImageResource(R.drawable.tuesday_event);
-        } else if (weekString.contains("Wednesday")){
-            holder.imgBar.setImageResource(R.drawable.wednesday_event);
-        } else if (weekString.contains("Thursday")){
-            holder.imgBar.setImageResource(R.drawable.thursday_event);
-        } else if (weekString.contains("Friday")){
-            holder.imgBar.setImageResource(R.drawable.friday_event);
-        } else if (weekString.contains("Saturday")){
-            holder.imgBar.setImageResource(R.drawable.saturday_event);
-        } else {
-            holder.imgBar.setImageResource(R.drawable.sunday_event);
-        }
-    }*/
 
     // Counts number of events in Event ArrayList
     @Override
@@ -136,9 +116,6 @@ public class EventAdapter extends RecyclerView.Adapter<EventAdapter.EventViewHol
             default:
         }
 
-        /*if (event_type.equals("deliv")){
-            properName = "Meal Delivery";
-        }*/
         return properName;
     }
 

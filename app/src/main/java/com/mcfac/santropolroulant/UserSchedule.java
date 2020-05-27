@@ -1,9 +1,8 @@
 package com.mcfac.santropolroulant;
 
-import android.app.Dialog;
+
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Gravity;
@@ -12,10 +11,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
-
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
@@ -23,11 +19,9 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
 import com.mcfac.santropolroulant.Adapters.EventAdapter;
 import com.mcfac.santropolroulant.FirebaseClasses.Event;
 import com.google.android.gms.tasks.Task;
-import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -35,7 +29,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
-import com.mcfac.santropolroulant.R;
+
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -60,10 +54,12 @@ public class UserSchedule extends AppCompatActivity {
     private List<Event> eventList;
     private View progressOverlay;
     private View userSchedule;
-    
+
+    //Database endpoints
     private final String EVENT_LOC = MainActivity.EVENT_LOC;
     private final String USER_LOC = MainActivity.USER_LOC;
 
+    //Emoji unicode
     private int unicode = 0x1F494;
     private int unicodesad = 0x1F62D;
 
@@ -74,47 +70,24 @@ public class UserSchedule extends AppCompatActivity {
 
         setContentView(R.layout.activity_user_schedule);
 
+        //Loading display
         progressOverlay = (View) findViewById(R.id.progress_overlay);
         progressOverlay.setVisibility(View.INVISIBLE);
 
         VolunteerButton = (Button)findViewById(R.id.btnVolunteer);
         mAuth = FirebaseAuth.getInstance();
         relativeLayout = (ConstraintLayout) findViewById(R.id.user_schedule);
-
         userSchedule = (View) findViewById(R.id.user_schedule);
         recyclerView = findViewById(R.id.recyclerViewUser);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
+
         eventList = new ArrayList<>();
         adapter = new EventAdapter(this, eventList);
         recyclerView.setAdapter(adapter);
-
-
-       /* adapter.setOnItemClickListener(new EventAdapter.OnItemClickListener() {
-            @Override
-            public void onItemClick(final int position) {
-                AlertDialog.Builder builder = new AlertDialog.Builder(UserSchedule.this);
-                builder.setCancelable(true);
-                builder.setTitle("Unregister?");
-                builder.setMessage("Would you like to unregister from this volunteering event? :(");
-                builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
-                        dialogInterface.cancel();
-                    }
-                });
-                builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
-                        Toast.makeText(UserSchedule.this, "PumpFake Unregistered!", Toast.LENGTH_SHORT).show();
-                    }
-                });
-                builder.show();
-            }
-        });*/
-
         recyclerView.setVisibility(View.INVISIBLE);
-        //setVisible();
+
+       //Retrieving user's schedule
         getUserInfo();
 
         VolunteerButton.setOnClickListener(new View.OnClickListener() {
@@ -128,8 +101,8 @@ public class UserSchedule extends AppCompatActivity {
         enableSwipeToDeleteAndUndo();
     }
 
+    //Query schedule of the specific using by looking for events with user's uid.
     private void querySchedule(String user_UID){
-        Log.d("@ @ : snapshot here:", "hey : " + user_UID);
         Query querySchedule = FirebaseDatabase.getInstance().getReference(EVENT_LOC)
                 .orderByChild("uid")
                 .equalTo(user_UID);
@@ -171,6 +144,7 @@ public class UserSchedule extends AppCompatActivity {
         querySchedule.addValueEventListener(scheduleListener);
     }
 
+    //Method which calls querySchedule with user's uid as its argument
     private void getUserInfo(){
 
         final String userID = mAuth.getCurrentUser().getUid();
@@ -184,7 +158,6 @@ public class UserSchedule extends AppCompatActivity {
                 if (dataSnapshot.exists()){
                     for (DataSnapshot userSnap : dataSnapshot.getChildren()){
                         String user_UID = userSnap.getKey();
-                        Log.d("hey:","Key: "+user_UID);
                         querySchedule(user_UID);
                         break;
                     }
@@ -200,6 +173,7 @@ public class UserSchedule extends AppCompatActivity {
 
     }
 
+    //Redirect to home
     private void BackToMain(){
         finish();
         startActivity(new Intent(UserSchedule.this, Home.class));
@@ -223,20 +197,19 @@ public class UserSchedule extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
+    //When BACK BUTTON is pressed, the activity on the stack is restarted
     @Override
     public void onRestart() {
         super.onRestart();
         startActivity(new Intent(UserSchedule.this, Home.class));
         finish();
-        //When BACK BUTTON is pressed, the activity on the stack is restarted
-        //Do what you want on the refresh procedure here
     }
 
+    //Swipe to delete function utilizing SwipeToDeleteCallback abstract class
     private void enableSwipeToDeleteAndUndo() {
         SwipeToDeleteCallback swipeToDeleteCallback = new SwipeToDeleteCallback(this) {
             @Override
             public void onSwiped(@NonNull final RecyclerView.ViewHolder viewHolder, int i) {
-                // adapter.notifyDataSetChanged();
                 final int position = viewHolder.getAdapterPosition();
                 try {
                     if (checkDate(position)) {
@@ -266,13 +239,9 @@ public class UserSchedule extends AppCompatActivity {
                         builder.setPositiveButton(getString(R.string.yes), new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialogInterface, int i) {
-                                // final String item = adapter.getData().get(position);
 
-                                //adapter.removeItem(position);
-                                //eventList.remove(position);
                                 deleteEvent(position);
 
-                                //adapter.notifyDataSetChanged();
 
                             }
                         });
@@ -294,7 +263,6 @@ public class UserSchedule extends AppCompatActivity {
                         TextView title = new TextView(UserSchedule.this);
                         //int myColor = getResources().getColor(R.color.white);
                         title.setText(getEmojiByUnicode(unicodesad)+getEmojiByUnicode(unicodesad)+getEmojiByUnicode(unicodesad));
-                        // title.setBackgroundColor(myColor);
                         title.setPadding(10, 10, 10, 10);
                         title.setGravity(Gravity.CENTER);
                         title.setTextColor(DKGRAY);
@@ -317,17 +285,21 @@ public class UserSchedule extends AppCompatActivity {
         ItemTouchHelper itemTouchhelper = new ItemTouchHelper(swipeToDeleteCallback);
         itemTouchhelper.attachToRecyclerView(recyclerView);
     }
+
+    //Method to set overlay spinner to invisible
     public void setInvisible() {
         progressOverlay.setVisibility(View.INVISIBLE);
 
     }
+
+    //Method to set overlay spinner to visible
     public void setVisible() {
         progressOverlay.setVisibility(View.VISIBLE);
         userSchedule.setClickable(false);
     }
 
+    //Method to delete the event from database and remove it from event adapter
     private void deleteEvent(int position){
-        //String key =
         String event_id = eventList.get(position).getEvent_id();
         eventList.remove(position);
         Task[] tasks = new Task[11];
@@ -352,9 +324,9 @@ public class UserSchedule extends AppCompatActivity {
 
         adapter.notifyDataSetChanged();
 
-        //return tasks;
     }
 
+    //Method to verify if the event is more than 2 days away.
     public boolean checkDate(int position) throws ParseException{
         boolean check = false;
 
@@ -380,6 +352,7 @@ public class UserSchedule extends AppCompatActivity {
         return check;
     }
 
+    //Method to convert unicode to emoji
     public String getEmojiByUnicode(int unicode){
         return new String(Character.toChars(unicode));
     }

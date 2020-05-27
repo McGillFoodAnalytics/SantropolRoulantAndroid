@@ -18,6 +18,8 @@ import android.view.View;
 
 import com.mcfac.santropolroulant.R;
 
+
+//This class is in charge of the swipe to delete functionality in the user's personal schedule
 abstract public class SwipeToDeleteCallback extends ItemTouchHelper.Callback {
 
     Context mContext;
